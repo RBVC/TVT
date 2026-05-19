@@ -1,20 +1,36 @@
-<!-- 一部抜粋（バナーとグリッド部分） -->
-<section class="main-banner">
-    <img src="images/gen1us/masquerade-gen1us.jpg" class="banner-img" onerror="this.src='https://placehold.jp/80/ffffff/000000/1920x1080.png?text=TVT+ARTIST'">
-    <div class="banner-overlay"></div>
-    <div class="banner-txt">
-        <p class="logo-font text-gray-400 text-xl tracking-[0.3em] mb-4">GEN1US</p>
-        <h2 class="logo-font text-6xl md:text-9xl italic leading-none tracking-tighter">MASQUERADE</h2>
-        <p class="text-xs mt-6 tracking-[0.6em] font-light text-gray-500 uppercase">1st Single Album / Out Now</p>
-    </div>
-</section>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teyvat Entertainment | Official Site</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #fff; color: #000; font-family: 'Noto Sans JP', sans-serif; }
+        .logo-font { font-family: 'Anton', sans-serif; letter-spacing: 0.1em; }
+        
+        /* 白ベースのグリッド */
+        .visual-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: #eee; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
+        .grid-item { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #fff; }
+        .grid-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; opacity: 0.9; }
+        .grid-item:hover img { transform: scale(1.05); opacity: 1; }
+        
+        /* メインバナー（白背景・グラデーション） */
+        .main-banner { position: relative; width: 100%; height: 80vh; background: #f9f9f9; overflow: hidden; }
+        .banner-img { width: 100%; height: 100%; object-fit: cover; }
+        .banner-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 50%); }
+        .banner-txt { position: absolute; bottom: 10%; left: 5%; color: #000; }
 
-<section class="visual-grid">
-    <a href="gen1us.html" class="grid-item group">
-        <img src="images/gen1us/masquerade-gen1us.jpg" onerror="this.style.display='none'">
-        <div class="absolute bottom-6 left-6">
-            <p class="logo-font text-2xl border-b-2 border-black pb-1 inline-block">GEN1US</p>
-        </div>
-    </a>
-    <!-- 以下、4ggravateなどはそのまま -->
-</section>
+        @media (max-width: 768px) { .visual-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header class="fixed w-full z-50 bg-white/95 border-b border-gray-100">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-3xl logo-font text-black">TVT</div>
+            <nav class="hidden md:flex space-x-12 text-xs font-black tracking-[0.3em] text-gray-400">
+                <a href="#" class="hover:text-black transition uppercase">About</a>
+                <a href="gen1us.html" class="hover:text-black transition text-black uppercase">Artists</a>
+                <a href="./wiki.html" class="hover:text-black transition uppercase">Wiki</a>
