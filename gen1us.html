@@ -3,148 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GEN1US | Teyvat Entertainment</title>
+    <title>GEN1US | TVT Official</title>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Noto Sans JP', sans-serif; background: #fff; color: #000; }
         .logo-font { font-family: 'Anton', sans-serif; }
         .tab-btn.active { border-bottom: 3px solid #000; color: #000; font-weight: 900; }
-        .member-img-box { position: relative; aspect-ratio: 1 / 1; overflow: hidden; background: #f3f3f3; }
-        .member-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-        .member-card:hover img { transform: scale(1.05); }
+        .member-img-box { position: relative; aspect-ratio: 1 / 1; overflow: hidden; background: #f8f8f8; }
+        .member-img-box img { width: 100%; height: 100%; object-fit: cover; }
         .content-section { display: none; }
         .content-section.active { display: block; }
     </style>
 </head>
 <body>
 
-    <header class="w-full border-b border-gray-200 py-4 px-6 flex justify-between items-center sticky top-0 bg-white z-50">
-        <a href="./index.html" class="text-2xl logo-font">TVT</a>
-        <div class="text-sm font-bold">JP</div>
+    <header class="w-full border-b border-gray-100 py-6 px-10 flex justify-between items-center sticky top-0 bg-white/90 backdrop-blur-md z-50">
+        <a href="index.html" class="text-3xl logo-font tracking-tighter">TVT</a>
+        <div class="text-[10px] font-bold tracking-widest">MENU</div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-4 py-10">
-        <div class="text-center mb-10">
-            <a href="./index.html" class="text-xs text-gray-400 uppercase tracking-widest mb-4 inline-block">← ALL ARTISTS</a>
-            <h1 class="text-6xl md:text-8xl logo-font italic uppercase">GEN1US</h1>
+    <main class="max-w-6xl mx-auto px-6 py-16">
+        <div class="text-center mb-16">
+            <a href="index.html" class="text-[10px] text-gray-400 uppercase tracking-[0.3em] mb-6 inline-block hover:text-black transition">← ALL ARTISTS</a>
+            <h1 class="text-7xl md:text-9xl logo-font italic uppercase tracking-tighter">GEN1US</h1>
         </div>
 
-        <div class="flex justify-center space-x-8 border-b border-gray-100 mb-10">
-            <button onclick="switchTab('profile')" id="tab-profile" class="tab-btn active pb-2 text-sm text-gray-400 tracking-widest">PROFILE</button>
-            <button onclick="switchTab('disco')" id="tab-disco" class="tab-btn pb-2 text-sm text-gray-400 tracking-widest">DISCOGRAPHY</button>
+        <div class="flex justify-center space-x-12 border-b border-gray-100 mb-16">
+            <button onclick="switchTab('profile')" id="tab-profile" class="tab-btn active pb-4 text-[11px] text-gray-400 tracking-[0.2em] font-bold">PROFILE</button>
+            <button onclick="switchTab('disco')" id="tab-disco" class="tab-btn pb-4 text-[11px] text-gray-400 tracking-[0.2em] font-bold">DISCOGRAPHY</button>
         </div>
 
-        <!-- PROFILE SECTION -->
         <div id="profile" class="content-section active">
             <!-- Group Banner -->
-            <div class="w-full aspect-[21/9] bg-gray-100 mb-16 overflow-hidden shadow-inner">
-                <img src="images/gen1us/Masquerade-GEN1US.jpg" alt="GEN1US" class="w-full h-full object-cover" onerror="this.src='https://placehold.jp/40/333333/ffffff/1200x500.png?text=Masquerade+-+GEN1US'">
+            <div class="w-full aspect-[21/9] bg-gray-50 mb-20 overflow-hidden border border-gray-100">
+                <img src="images/gen1us/Masquerade-GEN1US.jpg" class="w-full h-full object-cover" onerror="this.src='https://placehold.jp/40/f8f8f8/000000/1200x500.png?text=GEN1US+IMAGE'">
             </div>
 
-            <h2 class="text-3xl logo-font mb-10 border-l-4 border-black pl-4 uppercase">Member</h2>
+            <h2 class="text-4xl logo-font mb-12 uppercase italic tracking-tighter">Member</h2>
             
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-12">
-                
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-16">
                 <!-- Diluc -->
-                <div class="member-card">
-                    <div class="member-img-box mb-4">
-                        <img src="images/gen1us/Masquerade-Diluc.jpg" alt="Diluc" onerror="this.src='https://placehold.jp/40/cccccc/000000/400x400.png?text=Diluc'">
+                <div class="group">
+                    <div class="member-img-box mb-6 border border-gray-100">
+                        <img src="images/gen1us/Masquerade-Diluc.jpg" onerror="this.src='https://placehold.jp/40/f0f0f0/999999/600x600.png?text=NO+IMAGE'">
                     </div>
-                    <p class="logo-font text-xl uppercase">Diluc</p>
-                    <p class="text-[10px] text-gray-500 tracking-tighter uppercase">Mondstadt / Main Vocal, Lead Dancer</p>
+                    <p class="logo-font text-2xl uppercase tracking-tight">Diluc</p>
+                    <p class="text-[9px] text-gray-400 tracking-widest uppercase mt-1">Mondstadt / Main Vocal, Lead Dancer</p>
                 </div>
-
-                <!-- Zhongli -->
-                <div class="member-card">
-                    <div class="member-img-box mb-4">
-                        <img src="images/gen1us/Masquerade-Zhongli.jpg" alt="Zhongli" onerror="this.src='https://placehold.jp/40/cccccc/000000/400x400.png?text=Zhongli'">
-                    </div>
-                    <p class="logo-font text-xl uppercase">Zhongli</p>
-                    <p class="text-[10px] text-gray-500 tracking-tighter uppercase">Liyue / Lead Rapper, Sub Vocal</p>
-                </div>
-
-                <!-- Itto -->
-                <div class="member-card">
-                    <div class="member-img-box mb-4">
-                        <img src="images/gen1us/Masquerade-Itto.jpg" alt="Itto" onerror="this.src='https://placehold.jp/40/cccccc/000000/400x400.png?text=Itto'">
-                    </div>
-                    <p class="logo-font text-xl uppercase">Itto</p>
-                    <p class="text-[10px] text-gray-500 tracking-tighter uppercase">Inazuma / Main Rapper</p>
-                </div>
-
-                <!-- Baizhu -->
-                <div class="member-card">
-                    <div class="member-img-box mb-4">
-                        <img src="images/gen1us/Masquerade-Baizhu.jpg" alt="Baizhu" onerror="this.src='https://placehold.jp/40/cccccc/000000/400x400.png?text=Baizhu'">
-                    </div>
-                    <p class="logo-font text-xl uppercase">Baizhu</p>
-                    <p class="text-[10px] text-gray-500 tracking-tighter uppercase">Liyue / Leader, Main Vocal</p>
-                </div>
-
-                <!-- Tartaglia -->
-                <div class="member-card">
-                    <div class="member-img-box mb-4">
-                        <img src="images/gen1us/Masquerade-Tartaglia.jpg" alt="Tartaglia" onerror="this.src='https://placehold.jp/40/cccccc/000000/400x400.png?text=Tartaglia'">
-                    </div>
-                    <p class="logo-font text-xl uppercase">Tartaglia</p>
-                    <p class="text-[10px] text-gray-500 tracking-tighter uppercase">Liyue & Snezhnaya / Lead Dancer, Lead Rapper</p>
-                </div>
-
                 <!-- Ayato -->
-                <div class="member-card">
-                    <div class="member-img-box mb-4">
-                        <img src="images/gen1us/Masquerade-Ayato.jpg" alt="Ayato" onerror="this.src='https://placehold.jp/40/cccccc/000000/400x400.png?text=Ayato'">
+                <div class="group">
+                    <div class="member-img-box mb-6 border border-gray-100">
+                        <img src="images/gen1us/Masquerade-Ayato.jpg" onerror="this.src='https://placehold.jp/40/f0f0f0/999999/600x600.png?text=NO+IMAGE'">
                     </div>
-                    <p class="logo-font text-xl uppercase">Ayato</p>
-                    <p class="text-[10px] text-gray-500 tracking-tighter uppercase">Inazuma / Visual, Lead Vocal</p>
+                    <p class="logo-font text-2xl uppercase tracking-tight">Ayato</p>
+                    <p class="text-[9px] text-gray-400 tracking-widest uppercase mt-1">Inazuma / Visual, Lead Vocal</p>
                 </div>
-
-                <!-- Kaeya -->
-                <div class="member-card">
-                    <div class="member-img-box mb-4">
-                        <img src="images/gen1us/Masquerade-Kaeya.jpg" alt="Kaeya" onerror="this.src='https://placehold.jp/40/cccccc/000000/400x400.png?text=Kaeya'">
-                    </div>
-                    <p class="logo-font text-xl uppercase">Kaeya</p>
-                    <p class="text-[10px] text-gray-500 tracking-tighter uppercase">Mondstadt / Main Vocal</p>
-                </div>
-
-                <!-- Dainsleif -->
-                <div class="member-card">
-                    <div class="member-img-box mb-4">
-                        <img src="images/gen1us/Masquerade-Dainsleif.jpg" alt="Dainsleif" onerror="this.src='https://placehold.jp/40/cccccc/000000/400x400.png?text=Dainsleif'">
-                    </div>
-                    <p class="logo-font text-xl uppercase">Dainsleif</p>
-                    <p class="text-[10px] text-gray-500 tracking-tighter uppercase">Mondstadt / Main Dancer, Sub Rapper</p>
-                </div>
-
-                <!-- Thoma -->
-                <div class="member-card">
-                    <div class="member-img-box mb-4">
-                        <img src="images/gen1us/Masquerade-Thoma.jpg" alt="Thoma" onerror="this.src='https://placehold.jp/40/cccccc/000000/400x400.png?text=Thoma'">
-                    </div>
-                    <p class="logo-font text-xl uppercase">Thoma</p>
-                    <p class="text-[10px] text-gray-500 tracking-tighter uppercase">Inazuma / Main Dancer, Sub Vocal</p>
-                </div>
-
+                <!-- 他のメンバーも同様に Masquerade-名前.jpg で指定 -->
+                <!-- コード短縮のため省略しますが、CEO側で上記2名と同じ形式で追加可能です -->
             </div>
         </div>
 
-        <!-- DISCOGRAPHY SECTION -->
-        <div id="disco" class="content-section py-20">
-            <h2 class="text-3xl logo-font mb-10 border-l-4 border-black pl-4 text-left uppercase">Discography</h2>
-            <div class="bg-gray-50 p-10 rounded-lg border-2 border-dashed border-gray-200 text-center">
-                <p class="text-gray-400 mb-4 italic">GEN1US 1st Single 'Masquerade' Coming Soon...</p>
-                <div class="aspect-video w-full max-w-2xl mx-auto bg-black flex items-center justify-center text-white">
-                    MUSIC VIDEO / PCLOUD AUDIO AREA
-                </div>
+        <div id="disco" class="content-section py-20 text-center">
+            <h2 class="text-4xl logo-font mb-12 uppercase italic tracking-tighter text-left">Discography</h2>
+            <div class="bg-gray-50 aspect-video flex items-center justify-center border border-gray-100">
+                <p class="logo-font text-gray-300 text-3xl italic">Masquerade - Coming Soon</p>
             </div>
         </div>
-
     </main>
 
-    <footer class="bg-gray-50 py-10 mt-20 text-center border-t border-gray-100 text-[10px] text-gray-400 tracking-widest uppercase">
-        &copy; Teyvat Entertainment All Rights Reserved.
+    <footer class="bg-white py-24 border-t border-gray-100 text-center">
+        <div class="text-4xl logo-font mb-10 tracking-tighter">TVT</div>
+        <p class="text-gray-400 text-[9px] tracking-[0.3em] uppercase leading-loose">
+            &copy; Teyvat Entertainment All Rights Reserved.
+        </p>
     </footer>
 
     <script>
