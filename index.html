@@ -7,99 +7,114 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #000; color: #fff; font-family: 'Noto Sans JP', sans-serif; overflow-x: hidden; }
+        body { background-color: #000; color: #fff; font-family: 'Noto Sans JP', sans-serif; }
         .logo-font { font-family: 'Anton', sans-serif; letter-spacing: 0.1em; }
         
-        /* ヒーローセクションのフェードアニメーション */
-        .hero-overlay { background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 50%); }
+        /* YG風ビジュアルグリッドの再現 */
+        .visual-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: #000; }
+        .artist-item { position: relative; aspect-ratio: 1582 / 1108; overflow: hidden; background: #1a1a1a; }
+        .artist-item img { width: 100%; height: 100%; object-cover: cover; transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1); filter: grayscale(20%); }
+        .artist-item:hover img { transform: scale(1.05); filter: grayscale(0%); }
         
-        /* ホバー時のズーム効果 */
-        .artist-card img { transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
-        .artist-card:hover img { transform: scale(1.1); }
-        
-        /* スクロールバーのカスタマイズ */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #333; }
+        /* ホバー時のテキスト演出 */
+        .hover-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.3); opacity: 0; transition: opacity 0.4s; }
+        .artist-item:hover .hover-overlay { opacity: 1; }
+        .hover-text { font-family: 'Anton', sans-serif; font-size: 2.5vw; border-bottom: 2px solid #fff; }
+
+        @media (max-width: 768px) {
+            .visual-grid { grid-template-columns: 1fr; }
+            .hover-text { font-size: 10vw; }
+        }
+
+        /* ニュースセクション */
+        .news-card { border-top: 1px solid #333; padding: 20px 0; transition: all 0.3s; }
+        .news-card:hover { border-color: #fff; }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 flex justify-between items-center px-10 py-6 bg-black/50 backdrop-blur-md">
-        <div class="text-3xl logo-font">TVT</div>
-        <div class="hidden md:flex space-x-10 text-sm font-bold tracking-widest">
-            <a href="#" class="hover:text-gray-400">ARTISTS</a>
-            <a href="#" class="hover:text-gray-400">NEWS</a>
-            <a href="./wiki.html" class="hover:text-gray-400 text-yellow-500">WIKI (Internal)</a>
+    <!-- YG風 HEADER -->
+    <header class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-bottom border-zinc-900">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-3xl logo-font text-white">TVT</div>
+            <nav class="hidden md:flex space-x-8 text-xs font-bold tracking-widest text-zinc-400">
+                <a href="#" class="hover:text-white transition">ABOUT TVT</a>
+                <a href="#" class="hover:text-white transition text-white">ARTISTS</a>
+                <a href="#" class="hover:text-white transition">NEWS</a>
+                <a href="./wiki.html" class="hover:text-yellow-500 transition text-zinc-600">INTERNAL WIKI</a>
+            </nav>
+            <div class="text-xs font-bold">JP</div>
         </div>
-        <div class="md:hidden text-2xl">≡</div>
-    </nav>
+    </header>
 
-    <!-- Main Visual -->
-    <section class="relative h-screen flex items-end justify-center overflow-hidden">
-        <!-- ここにGEN1USの集合写真などを入れる想定 -->
-        <div class="absolute inset-0 bg-gray-900 flex items-center justify-center">
-            <p class="logo-font text-6xl md:text-9xl text-white/10 select-none">GEN1US COMING SOON</p>
-        </div>
-        <div class="hero-overlay absolute inset-0"></div>
-        
-        <div class="relative z-10 text-center pb-20">
-            <h2 class="text-5xl md:text-8xl font-black mb-4 italic tracking-tighter">THE NEW STANDARD</h2>
-            <p class="text-lg md:text-2xl tracking-[0.5em] font-light">TEYVAT ENTERTAINMENT</p>
-        </div>
-    </section>
+    <main class="pt-20">
+        <!-- VISUAL GRID (ここがYGサイトの肝！) -->
+        <section class="visual-grid">
+            <!-- GEN1US -->
+            <div class="artist-item group">
+                <div class="absolute inset-0 flex items-center justify-center text-zinc-800 logo-font text-2xl">GEN1US</div>
+                <!-- <img src="images/gen1us_main.jpg" alt="GEN1US"> -->
+                <div class="hover-overlay">
+                    <span class="hover-text italic">GEN1US</span>
+                </div>
+            </div>
+            <!-- 4ggravate -->
+            <div class="artist-item group">
+                <div class="absolute inset-0 flex items-center justify-center text-zinc-800 logo-font text-2xl">4ggravate</div>
+                <div class="hover-overlay">
+                    <span class="hover-text italic">4ggravate</span>
+                </div>
+            </div>
+            <!-- 6reeze -->
+            <div class="artist-item group">
+                <div class="absolute inset-0 flex items-center justify-center text-zinc-800 logo-font text-2xl">6reeze</div>
+                <div class="hover-overlay">
+                    <span class="hover-text italic">6reeze</span>
+                </div>
+            </div>
+            <!-- TVT U -->
+            <div class="artist-item group">
+                <div class="absolute inset-0 flex items-center justify-center text-zinc-800 logo-font text-2xl">TVT U</div>
+                <div class="hover-overlay">
+                    <span class="hover-text italic text-sm md:text-2xl">MORE ARTISTS</span>
+                </div>
+            </div>
+        </section>
 
-    <!-- Artists Grid -->
-    <section class="px-5 py-20 bg-black">
-        <h3 class="logo-font text-4xl mb-10 ml-5 border-l-4 border-white pl-4">ARTISTS</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- LATEST NEWS (CEOの設定を反映) -->
+        <section class="container mx-auto px-6 py-20">
+            <div class="flex justify-between items-end mb-10">
+                <h2 class="text-4xl logo-font italic">LATEST NEWS</h2>
+                <a href="#" class="text-xs font-bold border-b border-white pb-1">VIEW MORE</a>
+            </div>
             
-            <!-- Group 1: GEN1US -->
-            <div class="artist-card relative aspect-[3/4] overflow-hidden bg-zinc-900 group cursor-pointer">
-                <div class="absolute inset-0 flex items-center justify-center text-zinc-700 logo-font text-4xl">GEN1US</div>
-                <!-- <img src="URL" class="absolute inset-0 w-full h-full object-cover"> -->
-                <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors"></div>
-                <div class="absolute bottom-6 left-6">
-                    <p class="text-2xl font-black italic">GEN1US</p>
-                    <p class="text-xs tracking-widest opacity-70">SUPER UNIT</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="news-card">
+                    <p class="text-xs text-zinc-500 mb-2">ARTISTS | 202X.05.15</p>
+                    <h3 class="text-xl font-bold mb-4">GEN1US、「DCKZ vs BADIT」プロジェクトを経てついに完全体デビュー決定。</h3>
+                    <div class="aspect-video bg-zinc-900 overflow-hidden">
+                        <div class="w-full h-full flex items-center justify-center text-zinc-800 italic">GEN1US MV PREVIEW</div>
+                    </div>
+                </div>
+                <div class="news-card">
+                    <p class="text-xs text-zinc-500 mb-2">ARTISTS | 202X.05.12</p>
+                    <h3 class="text-xl font-bold mb-4">4ggravate、スメール支部発の1stシングルがミリオン達成。「ナヒーダの戦略」的中。</h3>
+                    <div class="aspect-video bg-zinc-900 overflow-hidden">
+                        <div class="w-full h-full flex items-center justify-center text-zinc-800 italic">4ggravate SPECIAL CLIP</div>
+                    </div>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <!-- Group 2: 4ggravate -->
-            <div class="artist-card relative aspect-[3/4] overflow-hidden bg-zinc-800 group cursor-pointer">
-                <div class="absolute inset-0 flex items-center justify-center text-zinc-700 logo-font text-4xl">4ggravate</div>
-                <div class="absolute bottom-6 left-6">
-                    <p class="text-2xl font-black italic">4ggravate</p>
-                    <p class="text-xs tracking-widest opacity-70">HIPHOP / RAP</p>
-                </div>
-            </div>
-
-            <!-- Group 3: 6reeze -->
-            <div class="artist-card relative aspect-[3/4] overflow-hidden bg-zinc-900 group cursor-pointer">
-                <div class="absolute inset-0 flex items-center justify-center text-zinc-700 logo-font text-4xl">6reeze</div>
-                <div class="absolute bottom-6 left-6">
-                    <p class="text-2xl font-black italic">6reeze</p>
-                    <p class="text-xs tracking-widest opacity-70">POP / DANCE</p>
-                </div>
-            </div>
-
-            <!-- Group 4: TVT U -->
-            <div class="artist-card relative aspect-[3/4] overflow-hidden bg-zinc-800 group cursor-pointer">
-                <div class="absolute inset-0 flex items-center justify-center text-zinc-700 logo-font text-4xl">TVT U</div>
-                <div class="absolute bottom-6 left-6">
-                    <p class="text-2xl font-black italic">TVT U</p>
-                    <p class="text-xs tracking-widest opacity-70">TE JUNIOR</p>
-                </div>
-            </div>
-
+    <footer class="bg-zinc-950 py-20 border-t border-zinc-900">
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-4xl logo-font mb-10">TVT</div>
+            <p class="text-zinc-600 text-[10px] tracking-[0.2em]">
+                ALL CONTENTS OF TEYVAT ENTERTAINMENT ARE PROTECTED BY COPYRIGHT.<br>
+                &copy; TEYVAT ENTERTAINMENT ALL RIGHTS RESERVED.
+            </p>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-10 text-center border-t border-zinc-800 text-zinc-500 text-xs">
-        <p class="logo-font text-xl mb-4 text-white">TVT</p>
-        <p>&copy; TEYVAT ENTERTAINMENT ALL RIGHTS RESERVED.</p>
     </footer>
 
 </body>
