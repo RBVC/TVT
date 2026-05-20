@@ -1,61 +1,10 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teyvat Entertainment | Official</title>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { background-color: #fff; color: #000; font-family: 'Noto Sans JP', sans-serif; }
-        .logo-font { font-family: 'Anton', sans-serif; }
-        .section-title { font-family: 'Anton', sans-serif; letter-spacing: 0.05em; font-style: italic; }
-        .visual-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: #eee; }
-        .grid-item { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #f9f9f9; }
-        .grid-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; opacity: 0.9; }
-        .grid-item:hover img { transform: scale(1.05); opacity: 1; }
-        .main-banner { position: relative; width: 100%; height: 80vh; background: #f9f9f9; overflow: hidden; }
-        .banner-img { width: 100%; height: 100%; object-fit: cover; }
-        .banner-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 50%); }
-    </style>
-</head>
-<body>
-    <header class="fixed w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-3xl logo-font text-black tracking-tighter">TVT</div>
-            <nav class="hidden md:flex space-x-12 text-[11px] font-black tracking-widest text-gray-400">
-                <a href="#" class="hover:text-black uppercase">About</a>
-                <a href="gen1us.html" class="text-black uppercase">Artists</a>
-                <a href="./wiki.html" class="hover:text-black uppercase">Wiki</a>
-            </nav>
-            <div class="text-[10px] font-bold text-gray-400 uppercase">JP</div>
-        </div>
-    </header>
+<!-- GEN1USのカード -->
+<a href="artist.html?id=gen1us" class="grid-item group">
+    <img src="images/gen1us/masquerade-gen1us.jpg">
+    <div class="absolute bottom-6 left-6 logo-font text-2xl border-b-2 border-black pb-1 uppercase">GEN1US</div>
+</a>
 
-    <main class="pt-16">
-        <section class="main-banner">
-            <!-- パスを images に固定 -->
-            <img src="images/gen1us/masquerade-gen1us.jpg" class="banner-img">
-            <div class="banner-overlay"></div>
-            <div class="absolute bottom-12 left-10">
-                <p class="logo-font text-gray-400 text-xl mb-2 tracking-widest">GEN1US</p>
-                <h2 class="logo-font text-6xl md:text-9xl section-title leading-none">MASQUERADE</h2>
-            </div>
-        </section>
-
-        <section class="visual-grid">
-            <a href="gen1us.html" class="grid-item group">
-                <img src="images/gen1us/masquerade-gen1us.jpg">
-                <div class="absolute bottom-6 left-6 logo-font text-2xl border-b-2 border-black pb-1">GEN1US</div>
-            </a>
-            <div class="grid-item flex items-center justify-center text-gray-200 logo-font text-5xl italic uppercase select-none">4ggravate</div>
-            <div class="grid-item flex items-center justify-center text-gray-200 logo-font text-5xl italic uppercase select-none">6reeze</div>
-            <div class="grid-item flex items-center justify-center text-gray-200 logo-font text-2xl uppercase">Coming Soon</div>
-        </section>
-    </main>
-
-    <footer class="py-20 text-center text-gray-300 text-[10px] tracking-[0.4em] uppercase">
-        &copy; Teyvat Entertainment All Rights Reserved.
-    </footer>
-</body>
-</html>
+<!-- 6reezeのカード（まだページがなくてもデータさえあれば飛べます） -->
+<a href="artist.html?id=6reeze" class="grid-item group">
+    <div class="absolute bottom-6 left-6 logo-font text-2xl border-b-2 border-gray-200 pb-1 uppercase">6reeze</div>
+</a>
