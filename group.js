@@ -19,6 +19,19 @@ const allGroups = {
             { title: "Masquerade", type: "1st Single Album", date: "202X.05.20", embed: "" }
         ]
     },
-    "4ggravate": { name: "4ggravate", concept: "COMING SOON", banner: "", members: [], discography: [] },
-    "6reeze": { name: "6reeze", concept: "COMING SOON", banner: "", members: [], discography: [] }
+    "4ggravate": {
+        name: "4ggravate",
+        concept: "Cyber / Hiphop",
+        banner: "images/4ggravate/4ggravate.jpg",
+        members: [
+            { name: "Alhaitham", div: "Sumeru", pos: "Main Dancer / Lead Rapper / Sub Vocal", img: "images/4ggravate/cyber-alhaitham.jpg" },
+            { name: "Cyno", div: "Sumeru", pos: "Main Rapper / Sub Vocal / Sub Dancer", img: "images/4ggravate/cyber-cyno.jpg" },
+            { name: "Kaveh", div: "Sumeru", pos: "Lead Dancer / Lead Vocal / Sub Rapper", img: "images/4ggravate/cyber-kaveh.jpg" },
+            { name: "Tighnari", div: "Sumeru", pos: "Leader / Main Vocal / Lead Dancer / Sub Rapper", img: "images/4ggravate/cyber-tighnari.jpg" }
+        ],
+        discography: [
+            { title: "Coming Soon", type: "1st Debut Single", date: "202X.XX.XX", embed: "" }
+        ]
+    }
+    // 次は 6reeze を追加予定
 };
