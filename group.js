@@ -20,7 +20,7 @@ const allGroups = {
         ]
     },
     "4ggravate": {
-        name: "4GGRAVATE",
+        name: "4ggravate",
         concept: "CYBER / HIPHOP",
         banner: "images/4ggravate/4ggravate.jpg",
         members: [
@@ -32,5 +32,12 @@ const allGroups = {
         discography: [
             { title: "COMING SOON", type: "1ST DEBUT SINGLE", date: "202X.XX.XX", embed: "" }
         ]
+    },
+    "6reeze": {
+        name: "6reeze",
+        concept: "VENTI-LATION",
+        banner: "",
+        members: [],
+        discography: []
     }
 };
