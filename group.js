@@ -29,9 +29,7 @@ const allGroups = {
             { name: "Kaveh", div: "Sumeru", pos: "Lead Dancer / Lead Vocal / Sub Rapper", img: "images/4ggravate/cyber-kaveh.jpg" },
             { name: "Tighnari", div: "Sumeru", pos: "Leader / Main Vocal / Lead Dancer / Sub Rapper", img: "images/4ggravate/cyber-tighnari.jpg" }
         ],
-        discography: [
-            { title: "COMING SOON", type: "1ST DEBUT SINGLE", date: "202X.XX.XX", embed: "" }
-        ]
+        discography: []
     },
     "6reeze": {
         name: "6reeze",

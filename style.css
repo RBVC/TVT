@@ -1,7 +1,7 @@
 /* style.css */
-@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+JP:wght@400;700;900&display=swap');
 
-/* ヘッダーの高さ分だけジャンプ位置を下げる */
+/* ヘッダー被り防止 */
 html { 
     scroll-behavior: smooth; 
     scroll-padding-top: 80px; 
@@ -15,13 +15,13 @@ body {
     -webkit-font-smoothing: antialiased; 
 }
 
-/* 🆕 Prompt フォント：横長でどっしりした最新のワイドフォント */
+/* 🆕 Archivo Black：横広で重厚感のある、一切「可愛さ」のない硬派なフォント */
 .logo-font { 
-    font-family: 'Prompt', sans-serif; 
-    font-weight: 900; /* 最も太く */
-    letter-spacing: -0.01em; /* ワイドフォントなので少し詰めるとロゴっぽくなります */
+    font-family: 'Archivo Black', sans-serif; 
+    font-weight: 900; 
+    letter-spacing: -0.03em; /* 重厚感を出すために少し詰め */
     font-style: normal; 
-    text-transform: none; /* 大文字に強制せず、入力通りに表示 */
+    text-transform: none; /* 小文字を活かす設定 */
 }
 
 header {
