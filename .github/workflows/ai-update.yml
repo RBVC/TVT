@@ -1,84 +1,89 @@
-name: TVT-AI-Automatic-Developer
+name: TVT-AI-Automatic-Developer-v2
 
 on:
   workflow_dispatch:
     inputs:
       instruction:
-        description: 'CCOへの指示（例：6reezeのメンバーを追加して、デザインを整えて）'
+        description: '指示内容を入力'
         required: true
-        default: '全体のバグをチェックして、デザインをより良く修正して'
+        default: 'デザインを少し洗練させて'
 
 jobs:
   update-code:
     runs-on: ubuntu-latest
+    permissions: # 明示的に書き込み権限を付与
+      contents: write
     steps:
-      - name: クローニング（最新ファイルの取得）
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Gemini APIにおまかせ修正を依頼
+      - name: Gemini AI Update
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          USER_INPUT: ${{ github.event.inputs.instruction }}
         run: |
           python3 -c "
-          import os, urllib.request, json, glob
-          
-          # 1. ファイルの探索
-          target_extensions = ['*.html', '*.css', '*.js']
-          files_dict = {}
-          for ext in target_extensions:
-              for file_path in glob.glob(ext):
-                  files_dict[file_path] = open(file_path, 'r', encoding='utf-8').read()
-          
-          files_context = ''
-          for name, content in files_dict.items():
-              files_context += f'\n【{name}】\n{content}\n'
-          
-          # 2. プロンプトの作成
-          user_instruction = \"${{ github.event.inputs.instruction }}\"
-          prompt = f'''
-          あなたは最強のフロントエンドエンジニアです。
-          現在のファイル構成：
-          {files_context}
+          import os, urllib.request, json, glob, re
 
-          主人からの指示：{user_instruction}
+          def solve():
+              # 1. ファイル読み込み
+              files_dict = {}
+              for ext in ['*.html', '*.css', '*.js']:
+                  for path in glob.glob(ext):
+                      with open(path, 'r', encoding='utf-8') as f:
+                          files_dict[path] = f.read()
+              
+              context = '\n'.join([f'【{n}】\n{c}' for n, c in files_dict.items()])
+              instruction = os.environ.get('USER_INPUT', '')
 
-          【ルール】
-          1. 指示に従い、ファイルを修正または新規作成してください。
-          2. 出力は必ず以下の純粋なJSON形式のみで返してください。
-          3. 解説や装飾文字（\`\`\`jsonなど）は一切不要です。
-          {{
-            \"filename.html\": \"full content\",
-            \"style.css\": \"full content\"
-          }}
-          '''
-          
-          # 3. APIリクエスト（モデルを1.5-flashに修正、URLも修正）
-          url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={os.environ[\"GEMINI_API_KEY\"]}'
-          data = json.dumps({'contents': [{'parts': [{'text': prompt}]}]}).encode('utf-8')
-          req = urllib.request.Request(url, data=data, headers={'Content-Type': 'application/json'})
-          
-          try:
-              response = urllib.request.urlopen(req)
-              res_json = json.loads(response.read().decode('utf-8'))
-              ai_text = res_json['candidates'][0]['content']['parts'][0]['text']
+              # 2. プロンプト作成
+              prompt = f'''あなたは天才WEBエンジニアです。
+              現在のコード：
+              {context}
+
+              指示：{instruction}
+
+              【重要】
+              返答は必ず以下のJSON形式のみとし、\`\`\`json などのマークダウンや解説は一切含めないでください。
+              {{
+                \"filename\": \"content\"
+              }}
+              '''
+
+              # 3. APIリクエスト
+              url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={os.environ[\"GEMINI_API_KEY\"]}'
+              payload = {'contents': [{'parts': [{'text': prompt}]}]}
               
-              # 余計な装飾を削ってJSONとして読み込む
-              clean_text = ai_text.strip().replace('```json', '').replace('```', '').strip()
-              result = json.loads(clean_text)
-              
-              for filename, code in result.items():
-                  with open(filename, 'w', encoding='utf-8') as f:
-                      f.write(code)
-              print('Success: AI has updated the files.')
-          except Exception as e:
-              print(f'Error: {e}')
-              exit(1)
+              try:
+                  req = urllib.request.Request(url, data=json.dumps(payload).encode('utf-8'), headers={'Content-Type': 'application/json'})
+                  with urllib.request.urlopen(req) as res:
+                      res_json = json.loads(res.read().decode('utf-8'))
+                      ai_text = res_json['candidates'][0]['content']['parts'][0]['text']
+                      
+                      # JSON部分だけを抽出する（余計な文字が入った場合対策）
+                      match = re.search(r'\{.*\}', ai_text, re.DOTALL)
+                      if match:
+                          clean_json = match.group(0)
+                          result = json.loads(clean_json)
+                          for filename, code in result.items():
+                              with open(filename, 'w', encoding='utf-8') as f:
+                                  f.write(code)
+                          print('AI Update Success.')
+                      else:
+                          print('Error: AI response was not JSON.')
+                          print(f'AI Response: {ai_text}')
+                          exit(1)
+              except Exception as e:
+                  print(f'Critical Error: {e}')
+                  exit(1)
+
+          solve()
           "
 
-      - name: 変更を保存してGitHubに反映
+      - name: Commit and Push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "TVT-AI-Bot"
           git add -A
-          git commit -m "AIによる自動修正: ${{ github.event.inputs.instruction }}" || exit 0
+          git commit -m "AI Update: ${{ github.event.inputs.instruction }}" || exit 0
           git push
