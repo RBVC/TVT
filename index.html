@@ -7,10 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* 黒背景に乗る白い文字に、わずかな高級感を出すためのシャドウ（お好みで） */
-        .text-glow-white {
-            text-shadow: 0 0 15px rgba(255,255,255,0.3);
-        }
+        .text-glow-white { text-shadow: 0 0 15px rgba(255,255,255,0.3); }
     </style>
 </head>
 <body>
@@ -24,16 +21,10 @@
     </header>
 
     <main class="pt-0">
-        <!-- Main Banner: 背景黒・文字白のドラマチック仕様 -->
+        <!-- Main Banner -->
         <section class="relative w-full h-[85vh] bg-black overflow-hidden">
-            <!-- 画像の透明度を少し下げて、背後の黒に沈み込ませる -->
             <img src="images/gen1us/masquerade-gen1us.jpg" class="w-full h-full object-cover opacity-70">
-            
-            <!-- 【重要】黒のグラデーションレイヤー -->
-            <!-- 下から上に向かって黒→透明になるレイヤーを重ねることで、文字を浮き立たせます -->
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
-            
-            <!-- テキストエリア：すべて白 -->
             <div class="absolute bottom-20 left-10 md:left-20 z-10">
                 <p class="logo-font text-white/70 text-2xl tracking-[0.4em] mb-4 uppercase text-glow-white">Gen1us</p>
                 <h2 class="logo-font text-7xl md:text-[11rem] leading-[0.8] tracking-tighter text-white uppercase text-glow-white">
@@ -42,7 +33,7 @@
             </div>
         </section>
 
-        <!-- Artists Grid: ホバーギミック（黒背景・白文字） -->
+        <!-- Artists Grid -->
         <section id="artists" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 border-y border-gray-100">
             
             <!-- GEN1US -->
@@ -54,16 +45,19 @@
             </a>
 
             <!-- 4ggravate -->
-            <a href="artist.html?id=4ggravate" class="relative aspect-[16/10] bg-white group overflow-hidden flex items-center justify-center">
-                <span class="logo-font text-gray-200 text-4xl uppercase">4ggravate</span>
+            <a href="artist.html?id=4ggravate" class="relative aspect-[16/10] bg-white group overflow-hidden">
+                <img src="images/4ggravate/4ggravate.jpg" class="w-full h-full object-cover transition duration-700" onerror="this.style.display='none'">
+                <!-- 画像がない場合の代替表示 -->
+                <div class="absolute inset-0 flex items-center justify-center text-gray-200 logo-font text-4xl uppercase -z-10">4ggravate</div>
+                <!-- Hover Overlay -->
                 <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                     <span class="logo-font text-white text-4xl uppercase tracking-widest">4ggravate</span>
                 </div>
             </a>
 
-            <!-- 6reeze -->
-            <a href="artist.html?id=6reeze" class="relative aspect-[16/10] bg-white group overflow-hidden flex items-center justify-center">
-                <span class="logo-font text-gray-200 text-4xl uppercase">6reeze</span>
+            <!-- 6reeze (Placeholder) -->
+            <a href="#" class="relative aspect-[16/10] bg-white group overflow-hidden flex items-center justify-center">
+                <span class="logo-font text-gray-200 text-4xl uppercase select-none">6reeze</span>
                 <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                     <span class="logo-font text-white text-4xl uppercase tracking-widest">6reeze</span>
                 </div>
