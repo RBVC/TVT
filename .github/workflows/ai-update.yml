@@ -1,7 +1,12 @@
 name: AI Studio Automatic Developer
 
 on:
-  workflow_dispatch: # 文字入力欄を完全に無くしました！ボタンを押すだけで動きます。
+  workflow_dispatch:
+    inputs:
+      instruction:
+        description: 'AI Studio本部からの指示'
+        required: true
+        default: '全体のバグをチェックして、デザインをより良く修正して'
 
 jobs:
   update-code:
@@ -10,57 +15,46 @@ jobs:
       - name: クローニング（最新ファイルの取得）
         uses: actions/checkout@v4
 
-      - name: Gemini APIにお任せ修正を依頼
+      - name: Gemini APIにおまかせ修正を依頼
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python3 -c "
-          import os, urllib.request, json
+          import os, urllib.request, json, glob
           
-          # あなたのサイトの主要なファイルをすべて読み込みます
-          html_content = open('index.html', 'r').read() if os.path.exists('index.html') else ''
-          artist_html = open('artist.html', 'r').read() if os.path.exists('artist.html') else ''
-          wiki_html = open('wiki.html', 'r').read() if os.path.exists('wiki.html') else ''
-          css_content = open('style.css', 'r').read() if os.path.exists('style.css') else '/* 新規作成 */'
-          js_content = open('group.js', 'r').read() if os.path.exists('group.js') else '// 新規作成'
+          # ディレクトリ内の主要なWEBファイルを自動的にすべて探索して読み込む
+          target_extensions = ['*.html', '*.css', '*.js']
+          files_dict = {}
+          
+          for ext in target_extensions:
+              for file_path in glob.glob(ext):
+                  files_dict[file_path] = open(file_path, 'r', encoding='utf-8').read()
+          
+          # 読み込んだファイルの情報をプロンプト用にまとめる
+          files_context = ''
+          for name, content in files_dict.items():
+              files_context += f'\n【{name}】\n{content}\n'
+          
+          user_instruction = \"${{ github.event.inputs.instruction }}\"
           
           prompt = f'''
-          あなたは世界最高峰のWEBデザイナー兼フロントエンドエンジニアです。
-          現在主人が開発中のホームページ（TVT）のファイル一式は以下の通りです。
+          あなたは凄腕のフロントエンドエンジニア兼WEBデザイナーです。
+          現在のホームページのすべてのファイル構成は以下の通りです。
 
-          【index.html】
-          {html_content}
+          {files_context}
 
-          【artist.html】
-          {artist_html}
+          主人からの指示：{user_instruction}
 
-          【wiki.html】
-          {wiki_html}
-
-          【style.css】
-          {css_content}
-
-          【group.js】
-          {js_content}
-
-          【あなたの仕事】
-          これらのファイル全体をプロの目で見直してください。
-          AI Studio本部でのこれまでの開発の流れ（TVTというサイトの文脈）を汲み取り、
-          「デザインの洗練（今風でおしゃれに）」「バグの修正」「レスポンシブ（スマホ対応）の強化」「JSの動きの改善」など、
-          現状のクオリティをより一段高めるための最適なアップデートを、あなたの判断で**すべてのファイルに**施してください。
-
-          出力は必ず以下のJSON形式のみで返してください。余計な挨拶や解説、マークダウンの枠は一切不要です。
+          この指示に従って、必要に応じてファイルを修正・連携させてアップデートしてください。
+          出力は必ず以下のJSON形式のみで返してください。余計な挨拶や解説、マークダウンの\`\`\`jsonなどの枠は一切不要です。既存のファイルにないものでも、指示に必要なファイルであれば自由に追加して構いません。
           {{
-            \"index.html\": \"修正後の内容\",
-            \"artist.html\": \"修正後の内容\",
-            \"wiki.html\": \"修正後の内容\",
-            \"style.css\": \"修正後の内容\",
-            \"group.js\": \"修正後の内容\"
+            \"ファイル名1.html\": \"修正後の全内容\",
+            \"ファイル名2.css\": \"修正後の全内容\"
           }}
           '''
           
           url = 'https://generativelending.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' + os.environ['GEMINI_API_KEY']
-          data = json.dumps({\"contents\": [{{'parts': [{{'text': prompt}}]}}]}).encode('utf-8')
+          data = json.dumps({'contents': [{'parts': [{'text': prompt}]}]}).encode('utf-8')
           req = urllib.request.Request(url, data=data, headers={'Content-Type': 'application/json'})
           
           try:
@@ -68,18 +62,18 @@ jobs:
               res_json = json.loads(response.read().decode('utf-8'))
               ai_text = res_json['candidates'][0]['content']['parts'][0]['text']
               
+              # AIの返答からJSONをクリーンアップ
               clean_text = ai_text.strip().replace('```json', '').replace('```', '').strip()
               result = json.loads(clean_text)
               
-              with open('index.html', 'w') as f: f.write(result['index.html'])
-              with open('artist.html', 'w') as f: f.write(result['artist.html'])
-              with open('wiki.html', 'w') as f: f.write(result['wiki.html'])
-              with open('style.css', 'w') as f: f.write(result['style.css'])
-              with open('group.js', 'w') as f: f.write(result['group.js'])
-              print('AIによる自動ブラッシュアップが完了しました。')
+              # 生成されたファイル群を自動上書き保存
+              for filename, code in result.items():
+                  with open(filename, 'w', encoding='utf-8') as f:
+                      f.write(code)
+              print('AIによる修正と全ファイルの自動書き換えが完了しました。')
           except Exception as e:
               print(f'エラーが発生しました: {e}')
-              if 'ai_text' in locals(): print(f'AIの返答: {ai_text}')
+              if 'ai_text' in locals(): print(f'AIの生の返答: {ai_text}')
               exit(1)
           "
 
@@ -88,5 +82,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
-          git commit -m "AIによる自動ブラッシュアップ（お任せ実行）" || exit 0
+          git commit -m "AIによる自動修正: ${{ github.event.inputs.instruction }}" || exit 0
           git push
