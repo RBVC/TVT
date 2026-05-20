@@ -1,10 +1,48 @@
-<!-- GEN1USのカード -->
-<a href="artist.html?id=gen1us" class="grid-item group">
-    <img src="images/gen1us/masquerade-gen1us.jpg">
-    <div class="absolute bottom-6 left-6 logo-font text-2xl border-b-2 border-black pb-1 uppercase">GEN1US</div>
-</a>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teyvat Entertainment | Official</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo logo-font">TVT</a>
+        <nav>
+            <a href="#" class="active">Artists</a>
+            <a href="wiki.html">Wiki</a>
+        </nav>
+        <div style="font-size: 10px; font-weight: bold; color: #ccc;">JP</div>
+    </header>
 
-<!-- 6reezeのカード（まだページがなくてもデータさえあれば飛べます） -->
-<a href="artist.html?id=6reeze" class="grid-item group">
-    <div class="absolute bottom-6 left-6 logo-font text-2xl border-b-2 border-gray-200 pb-1 uppercase">6reeze</div>
-</a>
+    <main class="pt-24">
+        <!-- メインバナー -->
+        <section class="relative w-full h-[70vh] bg-gray-50 overflow-hidden">
+            <img src="images/gen1us/masquerade-gen1us.jpg" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
+            <div class="absolute bottom-10 left-10">
+                <p class="logo-font text-gray-400 text-xl tracking-widest mb-2">GEN1US</p>
+                <h2 class="logo-font text-6xl md:text-8xl italic leading-none">MASQUERADE</h2>
+            </div>
+        </section>
+
+        <!-- アーティスト一覧 -->
+        <section class="visual-grid">
+            <a href="artist.html?id=gen1us" class="grid-item group">
+                <img src="images/gen1us/masquerade-gen1us.jpg">
+                <div class="absolute bottom-6 left-6 logo-font text-2xl border-b-2 border-black pb-1 uppercase">GEN1US</div>
+            </a>
+            <a href="artist.html?id=4ggravate" class="grid-item flex items-center justify-center text-gray-200 logo-font text-5xl italic uppercase">4ggravate</a>
+            <a href="artist.html?id=6reeze" class="grid-item flex items-center justify-center text-gray-200 logo-font text-5xl italic uppercase">6reeze</a>
+            <div class="grid-item flex items-center justify-center text-gray-200 logo-font text-xl uppercase italic">Coming Soon</div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="f-logo logo-font">TVT</div>
+        <p>&copy; Teyvat Entertainment All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
