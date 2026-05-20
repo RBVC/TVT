@@ -1,8 +1,8 @@
 /* style.css */
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@300;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;700;900&display=swap');
 
 body { background-color: #ffffff; color: #000000; font-family: 'Noto Sans JP', sans-serif; margin: 0; -webkit-font-smoothing: antialiased; }
-.logo-font { font-family: 'Anton', sans-serif; letter-spacing: 0.05em; }
+.logo-font { font-family: 'Anton', sans-serif; letter-spacing: 0.05em; font-style: normal; } /* 斜めなし */
 
 /* 共通ヘッダー */
 header {
@@ -23,14 +23,11 @@ footer { padding: 80px 0; border-top: 1px solid #f0f0f0; text-align: center; bac
 footer .f-logo { font-size: 3rem; margin-bottom: 20px; color: #000; }
 footer p { font-size: 9px; color: #ccc; letter-spacing: 0.3em; text-transform: uppercase; }
 
-/* グリッド・カード共通 */
-.visual-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: #eee; }
-.grid-item { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #fff; text-decoration: none; color: #000; }
-.grid-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; opacity: 0.9; }
-.grid-item:hover img { transform: scale(1.03); opacity: 1; }
+/* タブボタン */
+.tab-btn { font-size: 12px; font-weight: 900; color: #ccc; letter-spacing: 0.2em; transition: 0.3s; border-bottom: 2px solid transparent; padding-bottom: 10px; }
+.tab-btn.active { color: #000; border-bottom: 2px solid #000; }
 
 @media (max-width: 768px) {
     header { padding: 15px 20px; }
     header nav { gap: 15px; }
-    .visual-grid { grid-template-columns: 1fr; }
 }

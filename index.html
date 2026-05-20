@@ -18,25 +18,45 @@
     </header>
 
     <main class="pt-24">
-        <!-- メインバナー -->
+        <!-- Main Banner -->
         <section class="relative w-full h-[70vh] bg-gray-50 overflow-hidden">
             <img src="images/gen1us/masquerade-gen1us.jpg" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent"></div>
             <div class="absolute bottom-10 left-10">
                 <p class="logo-font text-gray-400 text-xl tracking-widest mb-2">GEN1US</p>
-                <h2 class="logo-font text-6xl md:text-8xl italic leading-none">MASQUERADE</h2>
+                <h2 class="logo-font text-6xl md:text-8xl leading-none">MASQUERADE</h2>
             </div>
         </section>
 
-        <!-- アーティスト一覧 -->
-        <section class="visual-grid">
-            <a href="artist.html?id=gen1us" class="grid-item group">
-                <img src="images/gen1us/masquerade-gen1us.jpg">
+        <!-- Artists Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[2px] bg-gray-100 border-y border-gray-100">
+            <a href="artist.html?id=gen1us" class="relative aspect-[16/10] bg-white group overflow-hidden">
+                <img src="images/gen1us/masquerade-gen1us.jpg" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-500">
                 <div class="absolute bottom-6 left-6 logo-font text-2xl border-b-2 border-black pb-1 uppercase">GEN1US</div>
             </a>
-            <a href="artist.html?id=4ggravate" class="grid-item flex items-center justify-center text-gray-200 logo-font text-5xl italic uppercase">4ggravate</a>
-            <a href="artist.html?id=6reeze" class="grid-item flex items-center justify-center text-gray-200 logo-font text-5xl italic uppercase">6reeze</a>
-            <div class="grid-item flex items-center justify-center text-gray-200 logo-font text-xl uppercase italic">Coming Soon</div>
+            <div class="aspect-[16/10] bg-gray-50 flex items-center justify-center text-gray-200 logo-font text-4xl uppercase select-none">4ggravate</div>
+            <div class="aspect-[16/10] bg-white flex items-center justify-center text-gray-200 logo-font text-4xl uppercase select-none">6reeze</div>
+            <div class="aspect-[16/10] bg-gray-50 flex items-center justify-center text-gray-200 logo-font text-xl uppercase select-none">Coming Soon</div>
+        </section>
+
+        <!-- LATEST NEWS (復活) -->
+        <section class="max-w-6xl mx-auto px-6 py-24">
+            <div class="flex justify-between items-end mb-12 border-b-2 border-black pb-6">
+                <h2 class="logo-font text-4xl uppercase">Latest News</h2>
+                <a href="#" class="text-[10px] font-bold tracking-widest hover:underline uppercase">View All</a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="group cursor-pointer">
+                    <p class="text-[10px] text-gray-400 mb-2 uppercase tracking-widest">Project | 202X.XX.XX</p>
+                    <h3 class="text-xl font-bold mb-4 group-hover:underline">【妄想】グループの枠を超えたスペシャルコラボユニット始動？</h3>
+                    <div class="aspect-video bg-gray-100 flex items-center justify-center text-gray-300 logo-font text-2xl">COMING SOON</div>
+                </div>
+                <div class="group cursor-pointer">
+                    <p class="text-[10px] text-gray-400 mb-2 uppercase tracking-widest">Stage | 202X.XX.XX</p>
+                    <h3 class="text-xl font-bold mb-4 group-hover:underline">TVT所属メンバー主演舞台、チケット先行予約開始のお知らせ。</h3>
+                    <div class="aspect-video bg-gray-100 flex items-center justify-center text-gray-300 logo-font text-2xl">STAGE IMAGE</div>
+                </div>
+            </div>
         </section>
     </main>
 

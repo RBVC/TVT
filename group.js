@@ -18,15 +18,6 @@ const allGroups = {
         discography: [
             { title: "Masquerade", type: "1st Single Album", date: "202X.05.20", embed: "" }
         ]
-    },
-    "6reeze": {
-        name: "6reeze",
-        concept: "Venti-lation",
-        banner: "images/6reeze/main.jpg",
-        members: [
-            { name: "Venti", div: "Mondstadt", pos: "Main Vocal / Center", img: "images/6reeze/venti.jpg" }
-        ],
-        discography: []
     }
-    // 今後 4ggravate 等もここに追加
+    // 他のグループも同様の形式で追加可能
 };
