@@ -18,5 +18,7 @@ const allGroups = {
         discography: [
             { title: "Masquerade", type: "1st Single Album", date: "202X.05.20", embed: "" }
         ]
-    }
+    },
+    "4ggravate": { name: "4ggravate", concept: "COMING SOON", banner: "", members: [], discography: [] },
+    "6reeze": { name: "6reeze", concept: "COMING SOON", banner: "", members: [], discography: [] }
 };

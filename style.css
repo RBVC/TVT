@@ -1,7 +1,7 @@
 /* style.css */
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;700;900&display=swap');
 
-/* ヘッダーの高さ分（80px）だけジャンプ位置を下げる */
+/* ヘッダーの高さ分だけジャンプ位置を下げる */
 html { 
     scroll-behavior: smooth; 
     scroll-padding-top: 80px; 
@@ -15,10 +15,10 @@ body {
     -webkit-font-smoothing: antialiased; 
 }
 
-/* 全ての Anton フォントから斜体を除去し、字間を調整 */
+/* 斜体なしの Anton 設定 */
 .logo-font { 
     font-family: 'Anton', sans-serif; 
-    letter-spacing: 0.02em; 
+    letter-spacing: 0.05em; 
     font-style: normal; 
 }
 

@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .text-shadow-premium {
-            text-shadow: 0 0 20px rgba(255,255,255,0.8);
+        /* 黒背景に乗る白い文字に、わずかな高級感を出すためのシャドウ（お好みで） */
+        .text-glow-white {
+            text-shadow: 0 0 15px rgba(255,255,255,0.3);
         }
     </style>
 </head>
@@ -19,29 +20,59 @@
             <a href="index.html#artists" class="active">Artists</a>
             <a href="wiki.html">Wiki</a>
         </nav>
-        <div class="text-[10px] font-bold text-gray-400">JP</div>
+        <div class="text-[10px] font-bold text-gray-400 uppercase">JP</div>
     </header>
 
     <main class="pt-0">
-        <!-- Main Banner -->
-        <section class="relative w-full h-[85vh] bg-white overflow-hidden">
-            <img src="images/gen1us/masquerade-gen1us.jpg" class="w-full h-full object-cover opacity-90">
-            <div class="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent"></div>
+        <!-- Main Banner: 背景黒・文字白のドラマチック仕様 -->
+        <section class="relative w-full h-[85vh] bg-black overflow-hidden">
+            <!-- 画像の透明度を少し下げて、背後の黒に沈み込ませる -->
+            <img src="images/gen1us/masquerade-gen1us.jpg" class="w-full h-full object-cover opacity-70">
+            
+            <!-- 【重要】黒のグラデーションレイヤー -->
+            <!-- 下から上に向かって黒→透明になるレイヤーを重ねることで、文字を浮き立たせます -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+            
+            <!-- テキストエリア：すべて白 -->
             <div class="absolute bottom-20 left-10 md:left-20 z-10">
-                <p class="logo-font text-gray-400 text-2xl tracking-[0.4em] mb-4 uppercase text-shadow-premium">Gen1us</p>
-                <h2 class="logo-font text-7xl md:text-[11rem] leading-[0.8] tracking-tighter text-black uppercase text-shadow-premium">Masquerade</h2>
+                <p class="logo-font text-white/70 text-2xl tracking-[0.4em] mb-4 uppercase text-glow-white">Gen1us</p>
+                <h2 class="logo-font text-7xl md:text-[11rem] leading-[0.8] tracking-tighter text-white uppercase text-glow-white">
+                    Masquerade
+                </h2>
             </div>
         </section>
 
-        <!-- Artists Grid: 背景白・枠線を極細に -->
+        <!-- Artists Grid: ホバーギミック（黒背景・白文字） -->
         <section id="artists" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 border-y border-gray-100">
+            
+            <!-- GEN1US -->
             <a href="artist.html?id=gen1us" class="relative aspect-[16/10] bg-white group overflow-hidden">
-                <img src="images/gen1us/masquerade-gen1us.jpg" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700">
-                <div class="absolute bottom-6 left-6 logo-font text-2xl border-b border-black pb-1 uppercase">Gen1us</div>
+                <img src="images/gen1us/masquerade-gen1us.jpg" class="w-full h-full object-cover transition duration-700">
+                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                    <span class="logo-font text-white text-4xl uppercase tracking-widest">Gen1us</span>
+                </div>
             </a>
-            <div class="aspect-[16/10] bg-white flex items-center justify-center text-gray-200 logo-font text-4xl uppercase select-none">4ggravate</div>
-            <div class="aspect-[16/10] bg-white flex items-center justify-center text-gray-200 logo-font text-4xl uppercase select-none">6reeze</div>
-            <div class="aspect-[16/10] bg-white flex items-center justify-center text-gray-200 logo-font text-xl uppercase select-none">Coming Soon</div>
+
+            <!-- 4ggravate -->
+            <a href="artist.html?id=4ggravate" class="relative aspect-[16/10] bg-white group overflow-hidden flex items-center justify-center">
+                <span class="logo-font text-gray-200 text-4xl uppercase">4ggravate</span>
+                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                    <span class="logo-font text-white text-4xl uppercase tracking-widest">4ggravate</span>
+                </div>
+            </a>
+
+            <!-- 6reeze -->
+            <a href="artist.html?id=6reeze" class="relative aspect-[16/10] bg-white group overflow-hidden flex items-center justify-center">
+                <span class="logo-font text-gray-200 text-4xl uppercase">6reeze</span>
+                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                    <span class="logo-font text-white text-4xl uppercase tracking-widest">6reeze</span>
+                </div>
+            </a>
+
+            <!-- Coming Soon -->
+            <div class="aspect-[16/10] bg-white flex items-center justify-center">
+                <span class="logo-font text-gray-200 text-xl uppercase">Coming Soon</span>
+            </div>
         </section>
 
         <!-- LATEST NEWS -->
