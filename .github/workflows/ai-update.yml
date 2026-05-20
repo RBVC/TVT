@@ -1,12 +1,12 @@
-name: TVT-AI-Automatic-Developer-v4
+name: TVT-AI-Automatic-Developer-v5
 
 on:
   workflow_dispatch:
     inputs:
       instruction:
-        description: 'CCOへの指示を入力'
+        description: 'CCOへの指示を入力（例：アーティスト一覧の背景を白にして、ヘッダー被りを直して）'
         required: true
-        default: '全体のデザインをチェックして、さらに洗練させて'
+        default: '全体のバグをチェックして、デザインをより良く修正して'
 
 jobs:
   update-code:
@@ -14,7 +14,6 @@ jobs:
     permissions:
       contents: write
     env:
-      # GitHubの警告（Node.js 20の件）を解消するための設定
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout code
@@ -29,76 +28,77 @@ jobs:
           import os, urllib.request, urllib.error, json, glob, re, sys
 
           def solve():
-              print('🚀 診断開始...')
+              print('🚀 TVT自動開発システム v5 起動...')
               api_key = os.environ.get('GEMINI_API_KEY')
               if not api_key:
-                  print('❌ 致命的エラー: Secretsに GEMINI_API_KEY が登録されていません。')
+                  print('❌ Secretsに GEMINI_API_KEY がありません。')
                   sys.exit(1)
 
-              # 1. ファイル読み込み（テキストファイルのみ）
+              # 1. 関連ファイルを一括スキャン
               files_dict = {}
-              print('📁 ファイルをスキャン中...')
+              print('📁 構成ファイルを読み込み中...')
               for ext in ['*.html', '*.css', '*.js']:
                   for path in glob.glob(ext):
                       try:
                           with open(path, 'r', encoding='utf-8') as f:
                               files_dict[path] = f.read()
-                          print(f'  - {path} を読み込みました')
+                          print(f'  - {path} OK')
                       except Exception as e:
-                          print(f'  - ⚠️ {path} の読み込みに失敗: {e}')
+                          print(f'  - ⚠️ {path} 失敗: {e}')
               
               if not files_dict:
-                  print('❌ エラー: 対象ファイル（html/css/js）が見つかりません。')
+                  print('❌ 修正対象ファイルが見つかりません。')
                   sys.exit(1)
 
+              # 2. 緻密なプロンプト構築
               context = '\n'.join([f'【{n}】\n{c}' for n, c in files_dict.items()])
               instruction = os.environ.get('USER_INPUT', '')
-
-              # 2. プロンプト作成
-              prompt = f'''あなたは世界最高峰のフロントエンドエンジニアです。
-              
-              現在のコード：
+              prompt = f'''あなたは世界最強のWEBデザイナー兼エンジニアです。
+          
+              現在の全ソースコード：
               {context}
 
-              主人からの指示：{instruction}
+              主人（CEO）からの指示：{instruction}
 
-              【返答の鉄則】
-              - 会話や解説、\`\`\`json などの装飾は一切不要。
-              - 修正後のファイル名とコード全文を、以下の純粋なJSON形式のみで出力せよ。
+              【出力ルール：厳守】
+              - 会話、解説、\`\`\`json などの装飾は一切不要。
+              - 全ての修正ファイルを、以下の純粋なJSON形式1つにまとめて返せ。
+              - 修正がないファイルは含めるな。
               {{
-                \"filename\": \"修正後の全コード\"
+                \"filename.html\": \"full code...\",
+                \"style.css\": \"full code...\"
               }}
               '''
 
-              # 3. APIリクエスト
-              url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}'
+              # 3. APIリクエスト（v1に変更して404を回避）
+              url = f'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key={api_key}'
               payload = {'contents': [{'parts': [{'text': prompt}]}]}
               
-              print('📡 Gemini APIにリクエストを送信しています...')
+              print('📡 Gemini API (v1) に接続中...')
               try:
                   req = urllib.request.Request(url, data=json.dumps(payload).encode('utf-8'), headers={'Content-Type': 'application/json'})
                   with urllib.request.urlopen(req) as res:
                       res_json = json.loads(res.read().decode('utf-8'))
                       ai_text = res_json['candidates'][0]['content']['parts'][0]['text']
                       
-                      # JSON抽出
-                      match = re.search(r'\{.*\}', ai_text, re.DOTALL)
+                      # JSON部分のみを抽出（AIが前後に文章を書いても大丈夫なように）
+                      match = re.search(r'(\{.*\})', ai_text, re.DOTALL)
                       if match:
-                          result = json.loads(match.group(0))
+                          result = json.loads(match.group(1))
                           for filename, code in result.items():
                               with open(filename, 'w', encoding='utf-8') as f:
                                   f.write(code)
-                          print(f'✅ 成功: {list(result.keys())} をアップデートしました。')
+                          print(f'✅ 完遂: {list(result.keys())} を自動更新しました。')
                       else:
                           print('❌ エラー: AIの返答がJSONではありませんでした。')
-                          print(f'AIの返答原文:\n{ai_text}')
+                          print(f'AI返答原文:\n{ai_text}')
                           sys.exit(1)
               except urllib.error.HTTPError as e:
-                  print(f'❌ API通信エラー: {e.code} {e.reason}')
-                  print(e.read().decode('utf-8'))
+                  err_body = e.read().decode('utf-8')
+                  print(f'❌ APIエラー: {e.code}\n{err_body}')
                   sys.exit(1)
               except Exception as e:
-                  print(f'❌ 予期せぬエラー: {e}')
+                  print(f'❌ システムエラー: {e}')
                   sys.exit(1)
 
           solve()
