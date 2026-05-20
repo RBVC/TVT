@@ -1,12 +1,12 @@
-name: TVT-AI-Automatic-Developer-v5
+name: TVT-AI-Automatic-Developer-v6
 
 on:
   workflow_dispatch:
     inputs:
       instruction:
-        description: 'CCOへの指示を入力（例：アーティスト一覧の背景を白にして、ヘッダー被りを直して）'
+        description: 'CCOへの指示を入力'
         required: true
-        default: '全体のバグをチェックして、デザインをより良く修正して'
+        default: '全体のデザインをチェックして、さらに洗練させて'
 
 jobs:
   update-code:
@@ -19,7 +19,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Gemini AI Update
+      - name: Gemini AI Update (Robust Version)
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           USER_INPUT: ${{ github.event.inputs.instruction }}
@@ -27,78 +27,81 @@ jobs:
           python3 -c "
           import os, urllib.request, urllib.error, json, glob, re, sys
 
+          def call_gemini(api_key, model, prompt):
+              url = f'https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}'
+              payload = {'contents': [{'parts': [{'text': prompt}]}]}
+              print(f'📡 {model} にリクエスト送信中...')
+              req = urllib.request.Request(url, data=json.dumps(payload).encode('utf-8'), headers={'Content-Type': 'application/json'})
+              with urllib.request.urlopen(req) as res:
+                  return json.loads(res.read().decode('utf-8'))
+
           def solve():
-              print('🚀 TVT自動開発システム v5 起動...')
+              print('🚀 TVT自動開発システム v6 起動...')
               api_key = os.environ.get('GEMINI_API_KEY')
               if not api_key:
-                  print('❌ Secretsに GEMINI_API_KEY がありません。')
+                  print('❌ Secrets設定ミス: GEMINI_API_KEY が見つかりません。')
                   sys.exit(1)
 
-              # 1. 関連ファイルを一括スキャン
+              # 1. ファイルスキャン
               files_dict = {}
-              print('📁 構成ファイルを読み込み中...')
               for ext in ['*.html', '*.css', '*.js']:
                   for path in glob.glob(ext):
-                      try:
-                          with open(path, 'r', encoding='utf-8') as f:
-                              files_dict[path] = f.read()
-                          print(f'  - {path} OK')
-                      except Exception as e:
-                          print(f'  - ⚠️ {path} 失敗: {e}')
+                      with open(path, 'r', encoding='utf-8') as f:
+                          files_dict[path] = f.read()
               
-              if not files_dict:
-                  print('❌ 修正対象ファイルが見つかりません。')
-                  sys.exit(1)
-
-              # 2. 緻密なプロンプト構築
               context = '\n'.join([f'【{n}】\n{c}' for n, c in files_dict.items()])
               instruction = os.environ.get('USER_INPUT', '')
-              prompt = f'''あなたは世界最強のWEBデザイナー兼エンジニアです。
-          
+              prompt = f'''あなたは世界最高のWEBエンジニアです。
+              
               現在の全ソースコード：
               {context}
 
-              主人（CEO）からの指示：{instruction}
+              主人からの指示：{instruction}
 
-              【出力ルール：厳守】
-              - 会話、解説、\`\`\`json などの装飾は一切不要。
+              【返答の鉄則：厳守】
+              - 会話、解説、装飾（\`\`\`jsonなど）は一切不要。
               - 全ての修正ファイルを、以下の純粋なJSON形式1つにまとめて返せ。
-              - 修正がないファイルは含めるな。
               {{
-                \"filename.html\": \"full code...\",
-                \"style.css\": \"full code...\"
+                \"filename.html\": \"full code...\"
               }}
               '''
 
-              # 3. APIリクエスト（v1に変更して404を回避）
-              url = f'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key={api_key}'
-              payload = {'contents': [{'parts': [{'text': prompt}]}]}
+              # 2. トリプル・フォールバック (1.5 Flash Latest -> 1.5 Flash -> 1.0 Pro)
+              models_to_try = ['gemini-1.5-flash-latest', 'gemini-1.5-flash', 'gemini-pro']
+              ai_text = None
               
-              print('📡 Gemini API (v1) に接続中...')
-              try:
-                  req = urllib.request.Request(url, data=json.dumps(payload).encode('utf-8'), headers={'Content-Type': 'application/json'})
-                  with urllib.request.urlopen(req) as res:
-                      res_json = json.loads(res.read().decode('utf-8'))
+              for model in models_to_try:
+                  try:
+                      res_json = call_gemini(api_key, model, prompt)
                       ai_text = res_json['candidates'][0]['content']['parts'][0]['text']
-                      
-                      # JSON部分のみを抽出（AIが前後に文章を書いても大丈夫なように）
-                      match = re.search(r'(\{.*\})', ai_text, re.DOTALL)
-                      if match:
-                          result = json.loads(match.group(1))
-                          for filename, code in result.items():
-                              with open(filename, 'w', encoding='utf-8') as f:
-                                  f.write(code)
-                          print(f'✅ 完遂: {list(result.keys())} を自動更新しました。')
-                      else:
-                          print('❌ エラー: AIの返答がJSONではありませんでした。')
-                          print(f'AI返答原文:\n{ai_text}')
-                          sys.exit(1)
-              except urllib.error.HTTPError as e:
-                  err_body = e.read().decode('utf-8')
-                  print(f'❌ APIエラー: {e.code}\n{err_body}')
+                      print(f'✅ {model} からの応答を受信しました。')
+                      break
+                  except urllib.error.HTTPError as e:
+                      print(f'⚠️ {model} が利用不可 (Error {e.code})。次のモデルを試します...')
+                      continue
+                  except Exception as e:
+                      print(f'⚠️ {model} で予期せぬエラー: {e}')
+                      continue
+
+              if not ai_text:
+                  print('❌ 全てのモデルで接続に失敗しました。APIキーまたはリージョン制限を確認してください。')
                   sys.exit(1)
+
+              # 3. JSON抽出と書き換え
+              try:
+                  match = re.search(r'(\{.*\})', ai_text, re.DOTALL)
+                  if match:
+                      result = json.loads(match.group(1))
+                      for filename, code in result.items():
+                          with open(filename, 'w', encoding='utf-8') as f:
+                              f.write(code)
+                      print(f'🎉 完遂: {list(result.keys())} を更新しました。')
+                  else:
+                      print('❌ エラー: AIの返答がJSON形式ではありません。')
+                      print(f'AI返答原文:\n{ai_text}')
+                      sys.exit(1)
               except Exception as e:
-                  print(f'❌ システムエラー: {e}')
+                  print(f'❌ 処理エラー: {e}')
                   sys.exit(1)
 
           solve()
