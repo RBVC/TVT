@@ -7,21 +7,9 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #fff; color: #000; font-family: 'Noto Sans JP', sans-serif; }
-        .logo-font { font-family: 'Anton', sans-serif; letter-spacing: 0.05em; font-style: normal; }
-        
-        /* メインバナーの文字を浮かび上がらせる魔法 */
         .text-shadow-premium {
-            /* 非常に薄い白の光を文字の背後に置いて、可読性を劇的に上げます */
-            text-shadow: 0 0 20px rgba(255,255,255,0.8), 0 0 10px rgba(255,255,255,0.5);
+            text-shadow: 0 0 20px rgba(255,255,255,0.8);
         }
-
-        .visual-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: #eee; }
-        .grid-item { position: relative; aspect-ratio: 16/9; overflow: hidden; background: #fff; }
-        .grid-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; opacity: 0.9; }
-        .grid-item:hover img { transform: scale(1.05); opacity: 1; }
-
-        @media (max-width: 768px) { .visual-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -31,38 +19,29 @@
             <a href="index.html#artists" class="active">Artists</a>
             <a href="wiki.html">Wiki</a>
         </nav>
-        <div class="text-[10px] font-bold text-gray-400 uppercase">JP</div>
+        <div class="text-[10px] font-bold text-gray-400">JP</div>
     </header>
 
     <main class="pt-0">
         <!-- Main Banner -->
         <section class="relative w-full h-[85vh] bg-white overflow-hidden">
-            <!-- 画像自体を少しだけ明るくして、白背景に馴染ませる -->
             <img src="images/gen1us/masquerade-gen1us.jpg" class="w-full h-full object-cover opacity-90">
-            
-            <!-- 【重要】白のレイヤー（グラデーション） -->
-            <!-- 下から上に向かって白→透明になるレイヤーを重ねます -->
-            <div class="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent"></div>
-            
-            <!-- テキストエリア -->
+            <div class="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent"></div>
             <div class="absolute bottom-20 left-10 md:left-20 z-10">
-                <p class="logo-font text-gray-500 text-2xl tracking-[0.4em] mb-4 uppercase text-shadow-premium">Gen1us</p>
-                <!-- 大文字・斜めなし・圧倒的な存在感 -->
-                <h2 class="logo-font text-7xl md:text-[11rem] leading-[0.8] tracking-tighter text-black uppercase text-shadow-premium">
-                    Masquerade
-                </h2>
+                <p class="logo-font text-gray-400 text-2xl tracking-[0.4em] mb-4 uppercase text-shadow-premium">Gen1us</p>
+                <h2 class="logo-font text-7xl md:text-[11rem] leading-[0.8] tracking-tighter text-black uppercase text-shadow-premium">Masquerade</h2>
             </div>
         </section>
 
-        <!-- Artists Grid -->
-        <section id="artists" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[1px] bg-gray-100 border-y border-gray-100">
+        <!-- Artists Grid: 背景白・枠線を極細に -->
+        <section id="artists" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 border-y border-gray-100">
             <a href="artist.html?id=gen1us" class="relative aspect-[16/10] bg-white group overflow-hidden">
-                <img src="images/gen1us/masquerade-gen1us.jpg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition duration-700">
-                <div class="absolute bottom-6 left-6 logo-font text-2xl border-b-2 border-black pb-1 uppercase">Gen1us</div>
+                <img src="images/gen1us/masquerade-gen1us.jpg" class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700">
+                <div class="absolute bottom-6 left-6 logo-font text-2xl border-b border-black pb-1 uppercase">Gen1us</div>
             </a>
-            <div class="aspect-[16/10] bg-gray-50 flex items-center justify-center text-gray-200 logo-font text-4xl uppercase select-none">4ggravate</div>
+            <div class="aspect-[16/10] bg-white flex items-center justify-center text-gray-200 logo-font text-4xl uppercase select-none">4ggravate</div>
             <div class="aspect-[16/10] bg-white flex items-center justify-center text-gray-200 logo-font text-4xl uppercase select-none">6reeze</div>
-            <div class="aspect-[16/10] bg-gray-50 flex items-center justify-center text-gray-200 logo-font text-xl uppercase select-none">Coming Soon</div>
+            <div class="aspect-[16/10] bg-white flex items-center justify-center text-gray-200 logo-font text-xl uppercase select-none">Coming Soon</div>
         </section>
 
         <!-- LATEST NEWS -->

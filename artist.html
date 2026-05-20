@@ -19,10 +19,10 @@
     </header>
 
     <main class="max-w-6xl mx-auto px-6 py-24">
-        <!-- Breadcrumb & Title: 斜めを削除 -->
+        <!-- Breadcrumb & Title -->
         <div class="text-center mb-16 pt-10">
             <a href="index.html#artists" class="text-[10px] text-gray-300 uppercase tracking-[0.4em] mb-6 inline-block hover:text-black transition font-bold">← ALL ARTISTS</a>
-            <h1 id="group-name" class="text-7xl md:text-9xl logo-font uppercase tracking-tighter" style="font-style: normal;">Artist</h1>
+            <h1 id="group-name" class="text-7xl md:text-9xl logo-font uppercase tracking-tighter">Artist</h1>
         </div>
 
         <!-- Tabs -->
@@ -31,20 +31,19 @@
             <button onclick="switchTab('disco')" id="btn-disco" class="tab-btn uppercase">Discography</button>
         </div>
 
-        <!-- PROFILE -->
+        <!-- PROFILE CONTENT -->
         <div id="profile" class="content-section block">
-            <div class="w-full aspect-[21/9] bg-gray-50 mb-20 overflow-hidden border border-gray-100">
+            <div class="w-full aspect-[21/9] bg-gray-50 mb-20 overflow-hidden border border-gray-100 shadow-sm">
                 <img id="group-banner" src="" class="w-full h-full object-cover">
             </div>
-            <!-- 見出しも斜めなし -->
-            <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6" style="font-style: normal;">Member</h2>
+            <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6">Member</h2>
             <div id="member-grid" class="grid grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-20"></div>
         </div>
 
-        <!-- DISCOGRAPHY -->
+        <!-- DISCOGRAPHY CONTENT -->
         <div id="disco" class="content-section hidden">
-            <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6" style="font-style: normal;">Discography</h2>
-            <div id="disco-list" class="grid grid-cols-1 gap-10"></div>
+            <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6">Discography</h2>
+            <div id="disco-list" class="grid grid-cols-1 gap-10 text-center"></div>
         </div>
     </main>
 
@@ -65,16 +64,14 @@
 
             const memberGrid = document.getElementById('member-grid');
             data.members.forEach(m => {
-                // ポジションの改行を反映させる処理
-                const formattedPos = m.pos.replace(/\n/g, '<br>');
                 memberGrid.innerHTML += `
                     <div class="member-card">
                         <div class="aspect-square overflow-hidden bg-gray-50 border border-gray-100 mb-6">
                             <img src="${m.img}" class="w-full h-full object-cover" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMAGE'">
                         </div>
-                        <p class="logo-font text-2xl uppercase tracking-wider" style="font-style: normal;">${m.name}</p>
-                        <p class="text-[12px] text-black font-bold mt-3 uppercase tracking-widest">${m.div}</p>
-                        <p class="text-[10px] text-gray-400 mt-2 uppercase tracking-widest leading-relaxed">${formattedPos}</p>
+                        <p class="logo-font text-2xl uppercase tracking-wider">${m.name}</p>
+                        <p class="text-[12px] text-black font-black mt-3 uppercase tracking-widest">${m.div}</p>
+                        <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-widest leading-relaxed">${m.pos}</p>
                     </div>
                 `;
             });
@@ -85,9 +82,9 @@
             } else {
                 data.discography.forEach(d => {
                     discoList.innerHTML += `
-                        <div class="bg-gray-50 p-10 border border-gray-100">
-                            <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-2">${d.type} / ${d.date}</p>
-                            <h3 class="text-2xl logo-font mb-6" style="font-style: normal;">${d.title}</h3>
+                        <div class="bg-gray-50 p-10 border border-gray-100 text-left">
+                            <p class="text-[9px] text-gray-400 uppercase tracking-widest mb-2">${d.type} / ${d.date}</p>
+                            <h3 class="text-2xl logo-font mb-6">${d.title}</h3>
                             <div class="aspect-video bg-black flex items-center justify-center text-white text-xs">MUSIC VIDEO AREA</div>
                         </div>
                     `;
