@@ -1,5 +1,5 @@
 /* style.css */
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap');
 
 /* ヘッダーの高さ分だけジャンプ位置を下げる */
 html { 
@@ -15,11 +15,13 @@ body {
     -webkit-font-smoothing: antialiased; 
 }
 
-/* 斜体なしの Anton 設定 */
+/* 🆕 Prompt フォント：横長でどっしりした最新のワイドフォント */
 .logo-font { 
-    font-family: 'Anton', sans-serif; 
-    letter-spacing: 0.05em; 
+    font-family: 'Prompt', sans-serif; 
+    font-weight: 900; /* 最も太く */
+    letter-spacing: -0.01em; /* ワイドフォントなので少し詰めるとロゴっぽくなります */
     font-style: normal; 
+    text-transform: none; /* 大文字に強制せず、入力通りに表示 */
 }
 
 header {

@@ -22,7 +22,6 @@
         <!-- Breadcrumb & Title -->
         <div class="text-center mb-16 pt-10">
             <a href="index.html#artists" class="text-[10px] text-gray-300 uppercase tracking-[0.4em] mb-6 inline-block hover:text-black transition font-bold">← ALL ARTISTS</a>
-            <!-- id="group-name" には group.js のケーシングがそのまま入ります -->
             <h1 id="group-name" class="text-7xl md:text-9xl logo-font tracking-tighter">ARTIST</h1>
         </div>
 
@@ -37,13 +36,13 @@
             <div class="w-full aspect-[21/9] bg-gray-50 mb-20 overflow-hidden border border-gray-100 shadow-sm">
                 <img id="group-banner" src="" class="w-full h-full object-cover">
             </div>
-            <h2 class="text-3xl logo-font mb-12 border-l-8 border-black pl-6">MEMBER</h2>
+            <h2 class="text-4xl logo-font mb-12 border-l-8 border-black pl-6">MEMBER</h2>
             <div id="member-grid" class="grid grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-20"></div>
         </div>
 
         <!-- DISCOGRAPHY CONTENT -->
         <div id="disco" class="content-section hidden">
-            <h2 class="text-3xl logo-font mb-12 border-l-8 border-black pl-6">DISCOGRAPHY</h2>
+            <h2 class="text-4xl logo-font mb-12 border-l-8 border-black pl-6">DISCOGRAPHY</h2>
             <div id="disco-list" class="grid grid-cols-1 gap-10 text-center"></div>
         </div>
     </main>
@@ -61,6 +60,7 @@
         if (data) {
             document.title = `${data.name} | TVT OFFICIAL`;
             document.getElementById('group-name').innerText = data.name;
+            document.getElementById('group-concept').innerText = data.concept;
             document.getElementById('group-banner').src = data.banner;
 
             const memberGrid = document.getElementById('member-grid');
@@ -70,7 +70,7 @@
                         <div class="aspect-square overflow-hidden bg-gray-50 border border-gray-100 mb-6">
                             <img src="${m.img}" class="w-full h-full object-cover" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMAGE'">
                         </div>
-                        <p class="logo-font text-2xl uppercase tracking-wider">${m.name}</p>
+                        <p class="logo-font text-2xl tracking-wider">${m.name}</p>
                         <p class="text-[12px] text-black font-black mt-3 uppercase tracking-widest">${m.div}</p>
                         <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-widest leading-relaxed">${m.pos}</p>
                     </div>
@@ -79,14 +79,14 @@
 
             const discoList = document.getElementById('disco-list');
             if (data.discography.length === 0) {
-                discoList.innerHTML = '<p class="logo-font text-gray-200 text-3xl">COMING SOON</p>';
+                discoList.innerHTML = '<p class="logo-font text-gray-200 text-3xl uppercase">COMING SOON</p>';
             } else {
                 data.discography.forEach(d => {
                     discoList.innerHTML += `
                         <div class="bg-gray-50 p-10 border border-gray-100 text-left">
                             <p class="text-[9px] text-gray-400 uppercase tracking-widest mb-2">${d.type} / ${d.date}</p>
-                            <h3 class="text-2xl logo-font mb-6">${d.title}</h3>
-                            <div class="aspect-video bg-black flex items-center justify-center text-white text-xs uppercase font-bold italic">MUSIC VIDEO AREA</div>
+                            <h3 class="text-2xl logo-font mb-6 uppercase">${d.title}</h3>
+                            <div class="aspect-video bg-black flex items-center justify-center text-white text-xs uppercase font-bold italic">Music Video Area</div>
                         </div>
                     `;
                 });
