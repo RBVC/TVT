@@ -1,12 +1,7 @@
-name: AI Studio Developer Assistant
+name: AI Studio Automatic Developer
 
 on:
-  workflow_dispatch:
-    inputs:
-      instruction:
-        description: 'AI Studio本部からの指示（例：ボタンをフワッと動かして、背景をグラデーションにして）'
-        required: true
-        default: '全体のデザインを今風に少し整えて'
+  workflow_dispatch: # 文字入力欄を完全に無くしました！ボタンを押すだけで動きます。
 
 jobs:
   update-code:
@@ -15,39 +10,52 @@ jobs:
       - name: クローニング（最新ファイルの取得）
         uses: actions/checkout@v4
 
-      - name: Gemini APIに修正を依頼
+      - name: Gemini APIにお任せ修正を依頼
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python3 -c "
           import os, urllib.request, json
           
-          # あなたのサイトの主要な3つのファイルを読み込みます（なければ新規作成）
-          html_content = open('index.html', 'r').read() if os.path.exists('index.html') else '<!-- 新規作成 -->'
+          # あなたのサイトの主要なファイルをすべて読み込みます
+          html_content = open('index.html', 'r').read() if os.path.exists('index.html') else ''
+          artist_html = open('artist.html', 'r').read() if os.path.exists('artist.html') else ''
+          wiki_html = open('wiki.html', 'r').read() if os.path.exists('wiki.html') else ''
           css_content = open('style.css', 'r').read() if os.path.exists('style.css') else '/* 新規作成 */'
-          js_content = open('main.js', 'r').read() if os.path.exists('main.js') else '// 新規作成（もしscript.jsなら後で名前を変更できます）'
+          js_content = open('group.js', 'r').read() if os.path.exists('group.js') else '// 新規作成'
           
           prompt = f'''
-          あなたは凄腕のフロントエンドエンジニア兼WEBデザイナーです。
-          現在のホームページのファイル構成は以下の通りです。
+          あなたは世界最高峰のWEBデザイナー兼フロントエンドエンジニアです。
+          現在主人が開発中のホームページ（TVT）のファイル一式は以下の通りです。
 
           【index.html】
           {html_content}
 
+          【artist.html】
+          {artist_html}
+
+          【wiki.html】
+          {wiki_html}
+
           【style.css】
           {css_content}
 
-          【main.js】
+          【group.js】
           {js_content}
 
-          主人からの指示：${{ {{ github.event.inputs.instruction }} }}
+          【あなたの仕事】
+          これらのファイル全体をプロの目で見直してください。
+          AI Studio本部でのこれまでの開発の流れ（TVTというサイトの文脈）を汲み取り、
+          「デザインの洗練（今風でおしゃれに）」「バグの修正」「レスポンシブ（スマホ対応）の強化」「JSの動きの改善」など、
+          現状のクオリティをより一段高めるための最適なアップデートを、あなたの判断で**すべてのファイルに**施してください。
 
-          この指示に従って、HTML、CSS、JavaScriptを修正・連携させてアップデートしてください。
-          出力は必ず以下のJSON形式のみで返してください。余計な挨拶や解説、マークダウンの\`\`\`jsonなどの枠は一切不要です。
+          出力は必ず以下のJSON形式のみで返してください。余計な挨拶や解説、マークダウンの枠は一切不要です。
           {{
-            \"index.html\": \"修正後のHTMLの全内容\",
-            \"style.css\": \"修正後のCSSの全内容\",
-            \"main.js\": \"修正後のJavaScriptの全内容\"
+            \"index.html\": \"修正後の内容\",
+            \"artist.html\": \"修正後の内容\",
+            \"wiki.html\": \"修正後の内容\",
+            \"style.css\": \"修正後の内容\",
+            \"group.js\": \"修正後の内容\"
           }}
           '''
           
@@ -60,15 +68,15 @@ jobs:
               res_json = json.loads(response.read().decode('utf-8'))
               ai_text = res_json['candidates'][0]['content']['parts'][0]['text']
               
-              # 余計な装飾を削る
-              clean_text = ai_text.strip().replace('```json', '').replace('
-```', '').strip()
+              clean_text = ai_text.strip().replace('```json', '').replace('```', '').strip()
               result = json.loads(clean_text)
               
               with open('index.html', 'w') as f: f.write(result['index.html'])
+              with open('artist.html', 'w') as f: f.write(result['artist.html'])
+              with open('wiki.html', 'w') as f: f.write(result['wiki.html'])
               with open('style.css', 'w') as f: f.write(result['style.css'])
-              with open('main.js', 'w') as f: f.write(result['main.js'])
-              print('AIによる修正が完了しました。')
+              with open('group.js', 'w') as f: f.write(result['group.js'])
+              print('AIによる自動ブラッシュアップが完了しました。')
           except Exception as e:
               print(f'エラーが発生しました: {e}')
               if 'ai_text' in locals(): print(f'AIの返答: {ai_text}')
@@ -80,5 +88,5 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add -A
-          git commit -m "AIによる自動修正: ${{ github.event.inputs.instruction }}" || exit 0
+          git commit -m "AIによる自動ブラッシュアップ（お任せ実行）" || exit 0
           git push
