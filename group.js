@@ -49,7 +49,7 @@ const allGroups = {
     "universe": {
         name: "TVT U",
         concept: "Universe / Dark / Mysterious",
-        layout: 4, // 4列レイアウト
+        layout: 4,
         banner: "images/universe/tvt-u.jpg",
         members: [
             { name: "Gaming", div: "Liyue", pos: "Main Vocal", img: "images/universe/universe-gaming.jpg" },
