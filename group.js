@@ -16,7 +16,15 @@ const allGroups = {
             { name: "Dainsleif", div: "Mondstadt", pos: "Main Dancer / Sub Rapper", img: "images/gen1us/masquerade-dainsleif.jpg" },
             { name: "Thoma", div: "Inazuma", pos: "Main Dancer / Sub Vocal", img: "images/gen1us/masquerade-thoma.jpg" }
         ],
-        discography: [{ title: "MASQUERADE", type: "1st Single Album", date: "202X.05.20" }]
+        discography: [
+            { 
+                title: "EXO SPECIAL SELECTION", 
+                type: "COVER PLAYLIST", 
+                date: "202X.05.22",
+                link: "https://u.pcloud.link/publink/show?code=0ZYVGU5ZbF49BOJQSz4iYzt2uWuryHFMAuik",
+                img: "images/gen1us/disc-exo.jpg" // もしジャケ写があれば。ない場合はNO IMAGEになります
+            }
+        ]
     },
     "4ggravate": {
         name: "4ggravate",
