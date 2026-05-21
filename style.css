@@ -46,6 +46,7 @@ header .logo {
     letter-spacing: -0.05em;
 }
 
+/* ハンバーガーアニメーション */
 .menu-trigger {
     position: relative;
     width: 30px;
@@ -114,23 +115,38 @@ footer p { font-size: 9px; color: #ccc; letter-spacing: 0.3em; text-transform: u
 }
 .tab-btn.active { color: #000; border-bottom: 2px solid #000; }
 
+/* --- メンバーグリッド（最重要） --- */
 .member-flex-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 40px 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
-.member-card {
+
+/* PC版：4列レイアウト時 */
+.layout-4 .member-card {
     width: calc(25% - 20px);
-    box-sizing: border-box;
 }
 
-@media (max-width: 1024px) {
-    .member-card { width: calc(33.333% - 20px); }
+/* PC版：3列レイアウト時（GEN1US, 6reeze） */
+.layout-3 .member-card {
+    width: calc(33.33% - 20px);
 }
 
+/* スマホ版：全グループ共通2列 */
 @media (max-width: 768px) {
     header { padding: 15px 20px; }
     .nav-overlay a { font-size: 2rem; }
-    .member-card { width: calc(50% - 20px); }
+    
+    .member-flex-container {
+        gap: 30px 10px;
+    }
+    .layout-3 .member-card,
+    .layout-4 .member-card {
+        width: calc(50% - 10px); /* 確実に2列 */
+    }
+    .logo-font.text-7xl, .logo-font.text-6xl { font-size: 3.5rem !important; }
 }
