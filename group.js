@@ -3,7 +3,7 @@ const allGroups = {
     "gen1us": {
         name: "GEN1US",
         concept: "MASQUERADE",
-        layout: 3,
+        layout: 3, // PCで3列
         banner: "images/gen1us/masquerade-gen1us.jpg",
         members: [
             { name: "Diluc", div: "Mondstadt", pos: "Main Vocal / Lead Dancer", img: "images/gen1us/masquerade-diluc.jpg" },
@@ -21,7 +21,7 @@ const allGroups = {
     "4ggravate": {
         name: "4ggravate",
         concept: "CYBER / HIPHOP",
-        layout: 4,
+        layout: 4, // PCで4列
         banner: "images/4ggravate/4ggravate.jpg",
         members: [
             { name: "Alhaitham", div: "Sumeru", pos: "Main Dancer / Lead Rapper / Sub Vocal", img: "images/4ggravate/cyber-alhaitham.jpg" },
@@ -34,7 +34,7 @@ const allGroups = {
     "6reeze": {
         name: "6reeze",
         concept: "VENTI-LATION",
-        layout: 3,
+        layout: 3, // PCで3列
         banner: "",
         members: [
             { name: "Venti", div: "Mondstadt", pos: "Main Vocal / Center", img: "" },
