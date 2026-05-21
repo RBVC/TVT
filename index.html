@@ -6,6 +6,17 @@
     <title>Teyvat Entertainment | Official</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 画像を枠内に絶対収めるための魔法 */
+        .grid-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -31,32 +42,31 @@
             </div>
         </section>
 
-        <!-- Artists Grid -->
-        <section id="artists" class="grid grid-cols-1 lg:grid-cols-4 gap-px bg-gray-100 border-y border-gray-100">
+        <!-- Artists Grid: overflow-hiddenを全要素に適用 -->
+        <section id="artists" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 border-y border-gray-100 overflow-hidden">
             
-            <a href="artist.html?id=gen1us" class="relative aspect-[16/10] bg-white group overflow-hidden">
-                <img src="images/gen1us/masquerade-gen1us.jpg" class="w-full h-full object-cover transition duration-700">
+            <a href="artist.html?id=gen1us" class="relative aspect-[16/10] bg-white group overflow-hidden grid-img-container">
+                <img src="images/gen1us/masquerade-gen1us.jpg" class="transition duration-700">
                 <div class="absolute inset-0 bg-black opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                     <span class="logo-font text-white text-3xl">GEN1US</span>
                 </div>
             </a>
 
-            <a href="artist.html?id=4ggravate" class="relative aspect-[16/10] bg-white group overflow-hidden">
-                <img src="images/4ggravate/4ggravate.jpg" class="w-full h-full object-cover transition duration-700" style="object-position: center 20%;">
+            <a href="artist.html?id=4ggravate" class="relative aspect-[16/10] bg-white group overflow-hidden grid-img-container">
+                <img src="images/4ggravate/4ggravate.jpg" class="transition duration-700" style="object-position: center 20%;">
                 <div class="absolute inset-0 bg-black opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                     <span class="logo-font text-white text-3xl">4ggravate</span>
                 </div>
             </a>
 
-            <a href="artist.html?id=6reeze" class="relative aspect-[16/10] bg-white group overflow-hidden flex items-center justify-center">
-                <img src="images/6reeze/6reeze.jpg" class="w-full h-full object-cover transition duration-700" onerror="this.style.opacity='0'">
-                <span class="logo-font text-gray-200 text-3xl">6reeze</span>
+            <a href="artist.html?id=6reeze" class="relative aspect-[16/10] bg-white group overflow-hidden grid-img-container">
+                <img src="images/6reeze/6reeze.jpg" class="transition duration-700">
                 <div class="absolute inset-0 bg-black opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                     <span class="logo-font text-white text-3xl">6reeze</span>
                 </div>
             </a>
 
-            <div class="aspect-[16/10] bg-white flex items-center justify-center">
+            <div class="relative aspect-[16/10] bg-white flex items-center justify-center overflow-hidden">
                 <span class="logo-font text-gray-200 text-xl uppercase">Coming Soon</span>
             </div>
         </section>

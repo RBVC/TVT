@@ -24,7 +24,7 @@
     <main class="max-w-6xl mx-auto px-6 py-24">
         <div class="text-center mb-16 pt-16">
             <a href="index.html#artists" class="text-[10px] text-gray-300 uppercase tracking-[0.4em] mb-6 inline-block hover:text-black transition font-bold">← ALL ARTISTS</a>
-            <h1 id="group-name" class="text-6xl md:text-[8rem] logo-font leading-none uppercase">Artist</h1>
+            <h1 id="group-name" class="logo-font text-6xl md:text-[8rem] leading-none">Artist</h1>
         </div>
 
         <div class="flex justify-center space-x-12 mb-16 border-b border-gray-100">
@@ -37,8 +37,7 @@
                 <img id="group-banner" src="" class="w-full h-full object-cover">
             </div>
             <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6">Member</h2>
-            
-            <div id="member-grid" class="grid grid-cols-2 gap-x-6 gap-y-12 md:gap-x-10 md:gap-y-20"></div>
+            <div id="member-grid" class="member-flex-container"></div>
         </div>
 
         <div id="disco" class="content-section hidden">
@@ -63,24 +62,15 @@
             document.getElementById('group-banner').src = data.banner;
 
             const memberGrid = document.getElementById('member-grid');
-            
-            if (data.layout === 3) {
-                memberGrid.classList.add('md:grid-cols-3');
-                memberGrid.classList.add('max-w-5xl');
-                memberGrid.classList.add('mx-auto');
-            } else {
-                memberGrid.classList.add('md:grid-cols-4');
-            }
-
             data.members.forEach((m) => {
                 memberGrid.innerHTML += `
                     <div class="member-card text-left">
                         <div class="aspect-square overflow-hidden bg-gray-50 border border-gray-100 mb-6">
                             <img src="${m.img}" class="w-full h-full object-cover" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMAGE'">
                         </div>
-                        <p class="logo-font text-2xl leading-none" style="text-transform: none;">${m.name}</p>
-                        <p class="text-[12px] text-black font-black mt-4 tracking-widest" style="text-transform: none;">${m.div}</p>
-                        <p class="text-[10px] text-gray-400 mt-1 tracking-widest leading-relaxed" style="text-transform: none;">${m.pos}</p>
+                        <p class="logo-font text-2xl leading-none">${m.name}</p>
+                        <p class="text-[12px] text-black font-black mt-4 tracking-widest">${m.div}</p>
+                        <p class="text-[10px] text-gray-400 mt-1 tracking-widest leading-relaxed">${m.pos}</p>
                     </div>
                 `;
             });

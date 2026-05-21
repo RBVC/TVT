@@ -9,7 +9,7 @@ html {
 body { 
     background-color: #ffffff; 
     color: #000000; 
-    font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif; 
+    font-family: 'Noto Sans JP', sans-serif; 
     margin: 0; 
     -webkit-font-smoothing: antialiased; 
     overflow-x: hidden;
@@ -17,10 +17,10 @@ body {
 
 .logo-font { 
     font-family: 'Plus Jakarta Sans', sans-serif; 
-    font-weight: 700; 
-    letter-spacing: 0.02em; 
+    font-weight: 800; 
+    letter-spacing: -0.02em; 
     font-style: normal;
-    text-transform: none; 
+    text-transform: none !important; 
 }
 
 header {
@@ -42,6 +42,7 @@ header .logo {
     text-decoration: none; 
     color: #000; 
     font-weight: 900; 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
     letter-spacing: -0.05em;
 }
 
@@ -88,6 +89,7 @@ header .logo {
 .nav-overlay a {
     font-size: 3rem;
     font-weight: 800;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     text-decoration: none;
     color: #000;
     margin: 15px 0;
@@ -96,12 +98,13 @@ header .logo {
 .nav-overlay a:hover { color: #ccc; }
 
 footer { padding: 80px 0; border-top: 1px solid #f0f0f0; text-align: center; background: #fff; margin-top: 100px; }
-footer .f-logo { font-size: 3rem; margin-bottom: 20px; color: #000; font-weight: 800; }
+footer .f-logo { font-size: 3rem; margin-bottom: 20px; color: #000; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; }
 footer p { font-size: 9px; color: #ccc; letter-spacing: 0.3em; text-transform: uppercase; }
 
 .tab-btn { 
     font-size: 12px; 
     font-weight: 700; 
+    font-family: 'Plus Jakarta Sans', sans-serif;
     color: #ccc; 
     letter-spacing: 0.15em; 
     transition: 0.3s; 
@@ -111,8 +114,23 @@ footer p { font-size: 9px; color: #ccc; letter-spacing: 0.3em; text-transform: u
 }
 .tab-btn.active { color: #000; border-bottom: 2px solid #000; }
 
+.member-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px 20px;
+}
+.member-card {
+    width: calc(25% - 20px);
+    box-sizing: border-box;
+}
+
+@media (max-width: 1024px) {
+    .member-card { width: calc(33.333% - 20px); }
+}
+
 @media (max-width: 768px) {
     header { padding: 15px 20px; }
     .nav-overlay a { font-size: 2rem; }
-    .logo-font.text-7xl, .logo-font.text-6xl { font-size: 3.5rem !important; }
+    .member-card { width: calc(50% - 20px); }
 }

@@ -34,7 +34,7 @@ const allGroups = {
     "6reeze": {
         name: "6reeze",
         concept: "Kawaii / Cool",
-        layout: 3, // 3列中央揃え
+        layout: 3,
         banner: "images/6reeze/6reeze.jpg",
         members: [
             { name: "Wanderer", div: "Sumeru", pos: "Main Dancer / Lead Vocal / Sub Rapper", img: "images/6reeze/heart-wanderer.jpg" },
