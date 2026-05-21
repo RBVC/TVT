@@ -45,5 +45,21 @@ const allGroups = {
             { name: "Heizou", div: "Inazuma", pos: "Lead Rapper / Lead Dancer", img: "images/6reeze/heart-heizou.jpg" }
         ],
         discography: []
+    },
+    "universe": {
+        name: "TVT U",
+        concept: "Universe / Dark / Mysterious",
+        layout: 4, // 4列レイアウト
+        banner: "images/universe/tvt-u.jpg",
+        members: [
+            { name: "Gaming", div: "Liyue", pos: "Main Vocal", img: "images/universe/universe-gaming.jpg" },
+            { name: "Chongyun", div: "Liyue", pos: "Lead Rapper", img: "images/universe/universe-chongyun.jpg" },
+            { name: "Xingqiu", div: "Liyue", pos: "Main Vocal", img: "images/universe/universe-xingqiu.jpg" },
+            { name: "Albedo", div: "Mondstadt", pos: "Sub Vocal", img: "images/universe/universe-albedo.jpg" },
+            { name: "Gorou", div: "Inazuma", pos: "Lead Dancer", img: "images/universe/universe-gorou.jpg" },
+            { name: "Bennett", div: "Mondstadt", pos: "Main Dancer", img: "images/universe/universe-bennett.jpg" },
+            { name: "Razor", div: "Mondstadt", pos: "Main Rapper", img: "images/universe/universe-razor.jpg" }
+        ],
+        discography: []
     }
 };
