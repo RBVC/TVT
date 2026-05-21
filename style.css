@@ -1,27 +1,28 @@
 /* style.css */
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Noto+Sans+JP:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap');
 
-/* ヘッダー被り防止 */
+/* ヘッダー被り防止：100px分ジャンプ位置を下げる */
 html { 
     scroll-behavior: smooth; 
-    scroll-padding-top: 80px; 
+    scroll-padding-top: 100px; 
 }
 
 body { 
     background-color: #ffffff; 
     color: #000000; 
-    font-family: 'Noto Sans JP', sans-serif; 
+    font-family: 'Montserrat', 'Noto Sans JP', sans-serif; 
     margin: 0; 
     -webkit-font-smoothing: antialiased; 
 }
 
-/* 🆕 Archivo Black：横広で重厚感のある、一切「可愛さ」のない硬派なフォント */
+/* 🆕 YG風：Montserrat 
+   太くて幾何学的、小文字の形も最高にクールなYGのメインフォントです */
 .logo-font { 
-    font-family: 'Archivo Black', sans-serif; 
+    font-family: 'Montserrat', sans-serif; 
     font-weight: 900; 
-    letter-spacing: -0.03em; /* 重厚感を出すために少し詰め */
-    font-style: normal; 
-    text-transform: none; /* 小文字を活かす設定 */
+    letter-spacing: -0.01em; 
+    font-style: normal;
+    text-transform: none; /* 大文字・小文字を自由にするため */
 }
 
 header {
@@ -34,20 +35,19 @@ header {
     position: fixed; 
     top: 0; 
     background: rgba(255,255,255,0.95); 
-    backdrop-blur: 10px; 
+    backdrop-blur: 15px; 
     z-index: 1000;
     box-sizing: border-box;
 }
 
-header .logo { font-size: 1.8rem; text-decoration: none; color: #000; }
+header .logo { font-size: 1.8rem; text-decoration: none; color: #000; font-weight: 900; }
 header nav { display: flex; gap: 30px; }
 header nav a { 
-    font-size: 10px; 
-    font-weight: 900; 
+    font-size: 11px; 
+    font-weight: 800; 
     color: #bbb; 
     text-decoration: none; 
-    letter-spacing: 0.2em; 
-    text-transform: uppercase; 
+    letter-spacing: 0.1em; 
     transition: 0.3s;
 }
 header nav a:hover, header nav a.active { color: #000; }
@@ -59,17 +59,18 @@ footer {
     background: #fff; 
     margin-top: 100px; 
 }
-footer .f-logo { font-size: 3rem; margin-bottom: 20px; color: #000; }
+footer .f-logo { font-size: 3rem; margin-bottom: 20px; color: #000; font-weight: 900; }
 footer p { font-size: 9px; color: #ccc; letter-spacing: 0.3em; text-transform: uppercase; }
 
 .tab-btn { 
     font-size: 12px; 
-    font-weight: 900; 
+    font-weight: 800; 
     color: #ccc; 
-    letter-spacing: 0.2em; 
+    letter-spacing: 0.15em; 
     transition: 0.3s; 
     border-bottom: 2px solid transparent; 
     padding-bottom: 10px; 
+    cursor: pointer;
 }
 .tab-btn.active { color: #000; border-bottom: 2px solid #000; }
 
