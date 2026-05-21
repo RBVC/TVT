@@ -16,7 +16,7 @@ const allGroups = {
             { name: "Thoma", div: "Inazuma", pos: "Main Dancer / Sub Vocal", img: "images/gen1us/masquerade-thoma.jpg" }
         ],
         discography: [
-            { title: "MASQUERADE", type: "1ST SINGLE ALBUM", date: "202X.05.20", embed: "" }
+            { title: "MASQUERADE", type: "1st Single Album", date: "202X.05.20", embed: "" }
         ]
     },
     "4ggravate": {
