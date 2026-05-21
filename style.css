@@ -1,7 +1,7 @@
 /* style.css */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Noto+Sans+JP:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Noto+Sans+JP:wght@400;700;900&display=swap');
 
-/* ヘッダー被り防止：100px分ジャンプ位置を下げる */
+/* スムーズスクロールと位置調整 */
 html { 
     scroll-behavior: smooth; 
     scroll-padding-top: 100px; 
@@ -10,24 +10,24 @@ html {
 body { 
     background-color: #ffffff; 
     color: #000000; 
-    font-family: 'Montserrat', 'Noto Sans JP', sans-serif; 
+    font-family: 'Noto Sans JP', sans-serif; 
     margin: 0; 
     -webkit-font-smoothing: antialiased; 
+    overflow-x: hidden;
 }
 
-/* 🆕 YG風：Montserrat 
-   太くて幾何学的、小文字の形も最高にクールなYGのメインフォントです */
+/* 🆕 Klavika風：Rajdhani（スクエアで鋭い印象の見出し用） */
 .logo-font { 
-    font-family: 'Montserrat', sans-serif; 
-    font-weight: 900; 
-    letter-spacing: -0.01em; 
+    font-family: 'Rajdhani', sans-serif; 
+    font-weight: 700; 
+    letter-spacing: 0.02em; 
     font-style: normal;
-    text-transform: none; /* 大文字・小文字を自由にするため */
+    text-transform: none; 
 }
 
+/* ヘッダー：ハンバーガーメニューのみのクリーンな構成 */
 header {
     width: 100%; 
-    border-bottom: 1px solid #f0f0f0; 
     padding: 20px 40px;
     display: flex; 
     justify-content: space-between; 
@@ -36,45 +36,63 @@ header {
     top: 0; 
     background: rgba(255,255,255,0.95); 
     backdrop-blur: 15px; 
-    z-index: 1000;
+    z-index: 2000;
     box-sizing: border-box;
+    border-bottom: 1px solid #f0f0f0;
 }
+header .logo { font-size: 1.8rem; text-decoration: none; color: #000; font-weight: 900; font-family: 'Rajdhani', sans-serif; }
 
-header .logo { font-size: 1.8rem; text-decoration: none; color: #000; font-weight: 900; }
-header nav { display: flex; gap: 30px; }
-header nav a { 
-    font-size: 11px; 
-    font-weight: 800; 
-    color: #bbb; 
-    text-decoration: none; 
-    letter-spacing: 0.1em; 
+/* ハンバーガーアイコン */
+.menu-trigger {
+    cursor: pointer;
+    z-index: 3000;
+}
+.menu-trigger span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: #000;
+    margin-bottom: 6px;
     transition: 0.3s;
 }
-header nav a:hover, header nav a.active { color: #000; }
+.menu-trigger span:last-child { margin-bottom: 0; }
 
-footer { 
-    padding: 80px 0; 
-    border-top: 1px solid #f0f0f0; 
-    text-align: center; 
-    background: #fff; 
-    margin-top: 100px; 
+/* 全画面メニューオーバーレイ */
+.nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #fff;
+    z-index: 2500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-100%);
+    transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
 }
-footer .f-logo { font-size: 3rem; margin-bottom: 20px; color: #000; font-weight: 900; }
+.nav-overlay.open { transform: translateY(0); }
+.nav-overlay a {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #000;
+    margin: 15px 0;
+    transition: 0.3s;
+}
+.nav-overlay a:hover { color: #bbb; }
+
+/* フッター */
+footer { padding: 80px 0; border-top: 1px solid #f0f0f0; text-align: center; background: #fff; margin-top: 100px; }
+footer .f-logo { font-size: 3rem; margin-bottom: 20px; color: #000; font-family: 'Rajdhani', sans-serif; font-weight: 700; }
 footer p { font-size: 9px; color: #ccc; letter-spacing: 0.3em; text-transform: uppercase; }
 
-.tab-btn { 
-    font-size: 12px; 
-    font-weight: 800; 
-    color: #ccc; 
-    letter-spacing: 0.15em; 
-    transition: 0.3s; 
-    border-bottom: 2px solid transparent; 
-    padding-bottom: 10px; 
-    cursor: pointer;
-}
-.tab-btn.active { color: #000; border-bottom: 2px solid #000; }
-
+/* スマホ最適化 */
 @media (max-width: 768px) {
     header { padding: 15px 20px; }
-    header nav { gap: 15px; }
+    .nav-overlay a { font-size: 2rem; }
+    .logo-font.text-7xl { font-size: 4rem !important; }
 }
