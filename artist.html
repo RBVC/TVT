@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ARTIST | TVT OFFICIAL</title>
+    <title>Artist | TVT Official</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="group.js"></script>
@@ -12,8 +12,8 @@
     <header>
         <a href="index.html" class="logo logo-font">TVT</a>
         <nav>
-            <a href="index.html#artists">ARTISTS</a>
-            <a href="wiki.html">WIKI</a>
+            <a href="index.html#artists">Artists</a>
+            <a href="wiki.html">Wiki</a>
         </nav>
         <div class="text-[10px] font-bold text-gray-400 uppercase">JP</div>
     </header>
@@ -21,14 +21,14 @@
     <main class="max-w-6xl mx-auto px-6 py-24">
         <!-- Breadcrumb & Title -->
         <div class="text-center mb-16 pt-10">
-            <a href="index.html#artists" class="text-[10px] text-gray-300 uppercase tracking-[0.4em] mb-6 inline-block hover:text-black transition font-bold">← ALL ARTISTS</a>
-            <h1 id="group-name" class="text-7xl md:text-[8rem] logo-font uppercase tracking-tighter leading-none">ARTIST</h1>
+            <a href="index.html#artists" class="text-[11px] text-gray-300 uppercase tracking-[0.4em] mb-6 inline-block hover:text-black transition font-extrabold underline-offset-4 decoration-1">← ALL ARTISTS</a>
+            <h1 id="group-name" class="text-7xl md:text-[8rem] logo-font leading-none uppercase">Artist</h1>
         </div>
 
         <!-- Tabs -->
         <div class="flex justify-center space-x-12 mb-16 border-b border-gray-100">
-            <button onclick="switchTab('profile')" id="btn-profile" class="tab-btn active uppercase">PROFILE</button>
-            <button onclick="switchTab('disco')" id="btn-disco" class="tab-btn uppercase">DISCOGRAPHY</button>
+            <button onclick="switchTab('profile')" id="btn-profile" class="tab-btn active uppercase">Profile</button>
+            <button onclick="switchTab('disco')" id="btn-disco" class="tab-btn uppercase">Discography</button>
         </div>
 
         <!-- PROFILE CONTENT -->
@@ -36,19 +36,19 @@
             <div class="w-full aspect-[21/9] bg-gray-50 mb-20 overflow-hidden border border-gray-100 shadow-sm">
                 <img id="group-banner" src="" class="w-full h-full object-cover">
             </div>
-            <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6">MEMBER</h2>
+            <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6">Member</h2>
             <div id="member-grid" class="grid grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-20"></div>
         </div>
 
         <!-- DISCOGRAPHY CONTENT -->
         <div id="disco" class="content-section hidden">
-            <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6">DISCOGRAPHY</h2>
+            <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6">Discography</h2>
             <div id="disco-list" class="grid grid-cols-1 gap-10 text-center"></div>
         </div>
     </main>
 
     <footer>
-        <div class="f-logo logo-font">TVT</div>
+        <div class="f-logo logo-font uppercase">TVT</div>
         <p>&copy; Teyvat Entertainment All Rights Reserved.</p>
     </footer>
 
@@ -58,7 +58,7 @@
         const data = allGroups[groupId];
 
         if (data) {
-            document.title = `${data.name} | TVT OFFICIAL`;
+            document.title = `${data.name} | TVT Official`;
             document.getElementById('group-name').innerText = data.name;
             document.getElementById('group-banner').src = data.banner;
 
@@ -69,7 +69,7 @@
                         <div class="aspect-square overflow-hidden bg-gray-50 border border-gray-100 mb-6">
                             <img src="${m.img}" class="w-full h-full object-cover" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMAGE'">
                         </div>
-                        <p class="logo-font text-2xl uppercase tracking-tight leading-none">${m.name}</p>
+                        <p class="logo-font text-2xl leading-none uppercase">${m.name}</p>
                         <p class="text-[12px] text-black font-black mt-4 uppercase tracking-widest">${m.div}</p>
                         <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-widest leading-relaxed">${m.pos}</p>
                     </div>
@@ -78,7 +78,7 @@
 
             const discoList = document.getElementById('disco-list');
             if (!data.discography || data.discography.length === 0) {
-                discoList.innerHTML = '<p class="logo-font text-gray-200 text-3xl uppercase">COMING SOON</p>';
+                discoList.innerHTML = '<p class="logo-font text-gray-200 text-3xl uppercase">Coming Soon</p>';
             } else {
                 data.discography.forEach(d => {
                     discoList.innerHTML += `
