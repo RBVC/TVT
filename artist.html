@@ -38,8 +38,8 @@
             </div>
             <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6">Member</h2>
             
-            <!-- PC版で4列、スマホ版で1列の基本構造 -->
-            <div id="member-grid" class="grid grid-cols-1 md:grid-cols-4 gap-x-10 gap-y-16"></div>
+            <!-- 中央揃え対応のコンテナ -->
+            <div id="member-grid" class="member-flex-container"></div>
         </div>
 
         <div id="disco" class="content-section hidden">
@@ -64,22 +64,17 @@
             document.getElementById('group-banner').src = data.banner;
 
             const memberGrid = document.getElementById('member-grid');
-            data.members.forEach((m, index) => {
+            data.members.forEach((m) => {
                 memberGrid.innerHTML += `
                     <div class="member-card text-left">
                         <div class="aspect-square overflow-hidden bg-gray-50 border border-gray-100 mb-6">
                             <img src="${m.img}" class="w-full h-full object-cover" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMAGE'">
                         </div>
-                        <p class="logo-font text-2xl leading-none uppercase">${m.name}</p>
+                        <p class="logo-font text-2xl leading-none" style="text-transform: none;">${m.name}</p>
                         <p class="text-[12px] text-black font-black mt-4 uppercase tracking-widest">${m.div}</p>
-                        <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-widest leading-relaxed">${m.pos}</p>
+                        <p class="text-[10px] text-gray-400 mt-1 tracking-widest leading-relaxed" style="text-transform: none;">${m.pos}</p>
                     </div>
                 `;
-
-                // 💡CEOのこだわり：layout=3 の場合、3人ごとに空の1枠を挿入して4列目を空白にする
-                if (data.layout === 3 && (index + 1) % 3 === 0) {
-                    memberGrid.innerHTML += `<div class="hidden md:block"></div>`;
-                }
             });
         }
 
