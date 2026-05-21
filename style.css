@@ -1,7 +1,6 @@
 /* style.css */
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Noto+Sans+JP:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Noto+Sans+JP:wght@400;700;900&display=swap');
 
-/* ヘッダー被り防止 */
 html { 
     scroll-behavior: smooth; 
     scroll-padding-top: 100px; 
@@ -10,22 +9,20 @@ html {
 body { 
     background-color: #ffffff; 
     color: #000000; 
-    font-family: 'Noto Sans JP', sans-serif; 
+    font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif; 
     margin: 0; 
     -webkit-font-smoothing: antialiased; 
     overflow-x: hidden;
 }
 
-/* 見出し・名前用：Rajdhani (Klavika風) */
 .logo-font { 
-    font-family: 'Rajdhani', sans-serif; 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
     font-weight: 700; 
     letter-spacing: 0.02em; 
     font-style: normal;
-    text-transform: none; /* 大文字強制を解除 */
+    text-transform: none; 
 }
 
-/* ヘッダー構成 */
 header {
     width: 100%; 
     padding: 20px 40px;
@@ -45,11 +42,9 @@ header .logo {
     text-decoration: none; 
     color: #000; 
     font-weight: 900; 
-    font-family: 'Rajdhani', sans-serif; 
     letter-spacing: -0.05em;
 }
 
-/* ハンバーガーアニメーション */
 .menu-trigger {
     position: relative;
     width: 30px;
@@ -73,7 +68,6 @@ header .logo {
 .menu-trigger.active span:nth-child(2) { opacity: 0; }
 .menu-trigger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-/* メニューオーバーレイ */
 .nav-overlay {
     position: fixed;
     top: 0;
@@ -92,9 +86,8 @@ header .logo {
 }
 .nav-overlay.open { visibility: visible; opacity: 1; }
 .nav-overlay a {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 3.5rem;
-    font-weight: 700;
+    font-size: 3rem;
+    font-weight: 800;
     text-decoration: none;
     color: #000;
     margin: 15px 0;
@@ -103,13 +96,12 @@ header .logo {
 .nav-overlay a:hover { color: #ccc; }
 
 footer { padding: 80px 0; border-top: 1px solid #f0f0f0; text-align: center; background: #fff; margin-top: 100px; }
-footer .f-logo { font-size: 3rem; margin-bottom: 20px; color: #000; font-family: 'Rajdhani', sans-serif; font-weight: 700; }
+footer .f-logo { font-size: 3rem; margin-bottom: 20px; color: #000; font-weight: 800; }
 footer p { font-size: 9px; color: #ccc; letter-spacing: 0.3em; text-transform: uppercase; }
 
 .tab-btn { 
     font-size: 12px; 
     font-weight: 700; 
-    font-family: 'Rajdhani', sans-serif;
     color: #ccc; 
     letter-spacing: 0.15em; 
     transition: 0.3s; 
@@ -121,5 +113,6 @@ footer p { font-size: 9px; color: #ccc; letter-spacing: 0.3em; text-transform: u
 
 @media (max-width: 768px) {
     header { padding: 15px 20px; }
-    .nav-overlay a { font-size: 2.5rem; }
+    .nav-overlay a { font-size: 2rem; }
+    .logo-font.text-7xl, .logo-font.text-6xl { font-size: 3.5rem !important; }
 }

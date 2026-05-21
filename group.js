@@ -3,7 +3,7 @@ const allGroups = {
     "gen1us": {
         name: "GEN1US",
         concept: "MASQUERADE",
-        layout: 3, // PCで3列
+        layout: 3,
         banner: "images/gen1us/masquerade-gen1us.jpg",
         members: [
             { name: "Diluc", div: "Mondstadt", pos: "Main Vocal / Lead Dancer", img: "images/gen1us/masquerade-diluc.jpg" },
@@ -21,7 +21,7 @@ const allGroups = {
     "4ggravate": {
         name: "4ggravate",
         concept: "CYBER / HIPHOP",
-        layout: 4, // PCで4列
+        layout: 4,
         banner: "images/4ggravate/4ggravate.jpg",
         members: [
             { name: "Alhaitham", div: "Sumeru", pos: "Main Dancer / Lead Rapper / Sub Vocal", img: "images/4ggravate/cyber-alhaitham.jpg" },
@@ -33,16 +33,16 @@ const allGroups = {
     },
     "6reeze": {
         name: "6reeze",
-        concept: "VENTI-LATION",
-        layout: 3, // PCで3列
-        banner: "",
+        concept: "Kawaii / Cool",
+        layout: 3, // 3列中央揃え
+        banner: "images/6reeze/6reeze.jpg",
         members: [
-            { name: "Venti", div: "Mondstadt", pos: "Main Vocal / Center", img: "" },
-            { name: "Xiao", div: "Liyue", pos: "Lead Rapper / Sub Vocal", img: "" },
-            { name: "Kazuha", div: "Inazuma", pos: "Lead Vocal / Lead Dancer", img: "" },
-            { name: "Heizou", div: "Inazuma", pos: "Main Rapper / Lead Dancer", img: "" },
-            { name: "Wanderer", div: "Sumeru", pos: "Main Dancer / Sub Vocal", img: "" },
-            { name: "Aether", div: "Sumeru", pos: "Main Vocal / Leader", img: "" }
+            { name: "Wanderer", div: "Sumeru", pos: "Main Dancer / Lead Vocal / Sub Rapper", img: "images/6reeze/heart-wanderer.jpg" },
+            { name: "Xiao", div: "Liyue", pos: "Main Rapper / Sub Vocal", img: "images/6reeze/heart-xiao.jpg" },
+            { name: "Venti", div: "Mondstadt", pos: "Main Vocal / Center", img: "images/6reeze/heart-venti.jpg" },
+            { name: "Kazuha", div: "Inazuma", pos: "Main Vocal / Lead Dancer", img: "images/6reeze/heart-kazuha.jpg" },
+            { name: "Aether", div: "???", pos: "Lead Vocal / Leader", img: "images/6reeze/heart-aether.jpg" },
+            { name: "Heizou", div: "Inazuma", pos: "Lead Rapper / Lead Dancer", img: "images/6reeze/heart-heizou.jpg" }
         ],
         discography: []
     }
