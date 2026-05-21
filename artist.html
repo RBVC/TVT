@@ -10,37 +10,36 @@
 </head>
 <body>
     <header>
-        <a href="index.html" class="logo logo-font">TVT</a>
-        <nav>
-            <a href="index.html#artists">Artists</a>
-            <a href="wiki.html">Wiki</a>
-        </nav>
-        <div class="text-[10px] font-bold text-gray-400 uppercase">JP</div>
+        <a href="index.html" class="logo">TVT</a>
+        <div class="menu-trigger" id="menu-btn">
+            <span></span><span></span><span></span>
+        </div>
     </header>
 
+    <div class="nav-overlay" id="nav-menu">
+        <a href="index.html#artists" class="menu-close">ARTISTS</a>
+        <a href="wiki.html" class="menu-close">WIKI</a>
+    </div>
+
     <main class="max-w-6xl mx-auto px-6 py-24">
-        <!-- Breadcrumb & Title -->
-        <div class="text-center mb-16 pt-10">
-            <a href="index.html#artists" class="text-[11px] text-gray-300 uppercase tracking-[0.4em] mb-6 inline-block hover:text-black transition font-extrabold underline-offset-4 decoration-1">← ALL ARTISTS</a>
-            <h1 id="group-name" class="text-7xl md:text-[8rem] logo-font leading-none uppercase">Artist</h1>
+        <div class="text-center mb-16 pt-16">
+            <a href="index.html#artists" class="text-[10px] text-gray-300 uppercase tracking-[0.4em] mb-6 inline-block hover:text-black transition font-bold">← ALL ARTISTS</a>
+            <h1 id="group-name" class="text-6xl md:text-[8rem] logo-font leading-none">Artist</h1>
         </div>
 
-        <!-- Tabs -->
         <div class="flex justify-center space-x-12 mb-16 border-b border-gray-100">
             <button onclick="switchTab('profile')" id="btn-profile" class="tab-btn active uppercase">Profile</button>
             <button onclick="switchTab('disco')" id="btn-disco" class="tab-btn uppercase">Discography</button>
         </div>
 
-        <!-- PROFILE CONTENT -->
         <div id="profile" class="content-section block">
-            <div class="w-full aspect-[21/9] bg-gray-50 mb-20 overflow-hidden border border-gray-100 shadow-sm">
+            <div class="w-full aspect-[21/9] bg-gray-50 mb-20 overflow-hidden border border-gray-100">
                 <img id="group-banner" src="" class="w-full h-full object-cover">
             </div>
             <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6">Member</h2>
-            <div id="member-grid" class="grid grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-20"></div>
+            <div id="member-grid" class="grid grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16"></div>
         </div>
 
-        <!-- DISCOGRAPHY CONTENT -->
         <div id="disco" class="content-section hidden">
             <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6">Discography</h2>
             <div id="disco-list" class="grid grid-cols-1 gap-10 text-center"></div>
@@ -48,7 +47,7 @@
     </main>
 
     <footer>
-        <div class="f-logo logo-font uppercase">TVT</div>
+        <div class="f-logo">TVT</div>
         <p>&copy; Teyvat Entertainment All Rights Reserved.</p>
     </footer>
 
@@ -75,21 +74,6 @@
                     </div>
                 `;
             });
-
-            const discoList = document.getElementById('disco-list');
-            if (!data.discography || data.discography.length === 0) {
-                discoList.innerHTML = '<p class="logo-font text-gray-200 text-3xl uppercase">Coming Soon</p>';
-            } else {
-                data.discography.forEach(d => {
-                    discoList.innerHTML += `
-                        <div class="bg-gray-50 p-10 border border-gray-100 text-left">
-                            <p class="text-[9px] text-gray-400 uppercase tracking-widest mb-2">${d.type} / ${d.date}</p>
-                            <h3 class="text-2xl logo-font mb-6 uppercase">${d.title}</h3>
-                            <div class="aspect-video bg-black flex items-center justify-center text-white text-xs uppercase font-bold italic">Music Video Area</div>
-                        </div>
-                    `;
-                });
-            }
         }
 
         function switchTab(tabName) {
@@ -99,6 +83,11 @@
             document.getElementById(tabName).classList.add('block');
             document.getElementById('btn-' + tabName).classList.add('active');
         }
+
+        // Menu Script
+        const menuBtn = document.getElementById('menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        menuBtn.onclick = () => { navMenu.classList.toggle('open'); menuBtn.classList.toggle('active'); };
     </script>
 </body>
 </html>
