@@ -1,7 +1,6 @@
 /* style.css */
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Noto+Sans+JP:wght@400;700;900&display=swap');
 
-/* スムーズスクロールと位置調整 */
 html { 
     scroll-behavior: smooth; 
     scroll-padding-top: 100px; 
@@ -16,7 +15,6 @@ body {
     overflow-x: hidden;
 }
 
-/* 🆕 Klavika風：Rajdhani（スクエアで鋭い印象の見出し用） */
 .logo-font { 
     font-family: 'Rajdhani', sans-serif; 
     font-weight: 700; 
@@ -25,7 +23,7 @@ body {
     text-transform: none; 
 }
 
-/* ヘッダー：ハンバーガーメニューのみのクリーンな構成 */
+/* ヘッダー：ハンバーガー固定 */
 header {
     width: 100%; 
     padding: 20px 40px;
@@ -36,28 +34,45 @@ header {
     top: 0; 
     background: rgba(255,255,255,0.95); 
     backdrop-blur: 15px; 
-    z-index: 2000;
+    z-index: 4000;
     box-sizing: border-box;
     border-bottom: 1px solid #f0f0f0;
 }
-header .logo { font-size: 1.8rem; text-decoration: none; color: #000; font-weight: 900; font-family: 'Rajdhani', sans-serif; }
+header .logo { 
+    font-size: 1.8rem; 
+    text-decoration: none; 
+    color: #000; 
+    font-weight: 900; 
+    font-family: 'Rajdhani', sans-serif; 
+    letter-spacing: -0.05em;
+}
 
-/* ハンバーガーアイコン */
+/* ハンバーガーアニメーション */
 .menu-trigger {
+    position: relative;
+    width: 30px;
+    height: 20px;
     cursor: pointer;
-    z-index: 3000;
+    z-index: 5000;
 }
 .menu-trigger span {
-    display: block;
-    width: 25px;
-    height: 2px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px; /* 少し太くして存在感を */
     background: #000;
-    margin-bottom: 6px;
-    transition: 0.3s;
+    transition: all 0.4s;
 }
-.menu-trigger span:last-child { margin-bottom: 0; }
+.menu-trigger span:nth-child(1) { top: 0; }
+.menu-trigger span:nth-child(2) { top: 9px; }
+.menu-trigger span:nth-child(3) { bottom: 0; }
 
-/* 全画面メニューオーバーレイ */
+/* 閉じる（×）状態 */
+.menu-trigger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.menu-trigger.active span:nth-child(2) { opacity: 0; }
+.menu-trigger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* メニューオーバーレイ */
 .nav-overlay {
     position: fixed;
     top: 0;
@@ -65,34 +80,45 @@ header .logo { font-size: 1.8rem; text-decoration: none; color: #000; font-weigh
     width: 100%;
     height: 100vh;
     background: #fff;
-    z-index: 2500;
+    z-index: 3000;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transform: translateY(-100%);
-    transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
 }
-.nav-overlay.open { transform: translateY(0); }
+.nav-overlay.open { visibility: visible; opacity: 1; }
 .nav-overlay a {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 700;
     text-decoration: none;
     color: #000;
     margin: 15px 0;
     transition: 0.3s;
 }
-.nav-overlay a:hover { color: #bbb; }
+.nav-overlay a:hover { color: #ccc; }
 
-/* フッター */
 footer { padding: 80px 0; border-top: 1px solid #f0f0f0; text-align: center; background: #fff; margin-top: 100px; }
 footer .f-logo { font-size: 3rem; margin-bottom: 20px; color: #000; font-family: 'Rajdhani', sans-serif; font-weight: 700; }
 footer p { font-size: 9px; color: #ccc; letter-spacing: 0.3em; text-transform: uppercase; }
 
-/* スマホ最適化 */
+.tab-btn { 
+    font-size: 12px; 
+    font-weight: 700; 
+    color: #ccc; 
+    letter-spacing: 0.15em; 
+    transition: 0.3s; 
+    border-bottom: 2px solid transparent; 
+    padding-bottom: 10px; 
+    cursor: pointer;
+}
+.tab-btn.active { color: #000; border-bottom: 2px solid #000; }
+
 @media (max-width: 768px) {
     header { padding: 15px 20px; }
-    .nav-overlay a { font-size: 2rem; }
-    .logo-font.text-7xl { font-size: 4rem !important; }
+    .nav-overlay a { font-size: 2.5rem; }
+    .logo-font.text-7xl { font-size: 3.5rem !important; }
 }

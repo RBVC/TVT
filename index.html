@@ -8,7 +8,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <!-- Hamburger Header -->
     <header>
         <a href="index.html" class="logo">TVT</a>
         <div class="menu-trigger" id="menu-btn">
@@ -16,7 +15,6 @@
         </div>
     </header>
 
-    <!-- Nav Overlay -->
     <div class="nav-overlay" id="nav-menu">
         <a href="index.html#artists" class="menu-close">ARTISTS</a>
         <a href="wiki.html" class="menu-close">WIKI</a>
@@ -24,7 +22,7 @@
 
     <main class="pt-0">
         <!-- Main Banner -->
-        <section class="relative w-full h-[80vh] bg-black overflow-hidden">
+        <section class="relative w-full h-[85vh] bg-black overflow-hidden">
             <img src="images/gen1us/masquerade-gen1us.jpg" class="w-full h-full object-cover opacity-60">
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
             <div class="absolute bottom-16 left-8 md:left-20">
@@ -33,40 +31,38 @@
             </div>
         </section>
 
-        <!-- Artists Grid: スマホでのレイアウトを1列〜2列に自動調整 -->
-        <section id="artists" class="grid grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 border-y border-gray-100">
-            <!-- GEN1US -->
-            <a href="artist.html?id=gen1us" class="relative aspect-[4/5] md:aspect-[16/10] bg-white group overflow-hidden">
+        <!-- Artists Grid: スマホ1列（grid-cols-1） -->
+        <section id="artists" class="grid grid-cols-1 lg:grid-cols-4 gap-px bg-gray-100 border-y border-gray-100">
+            
+            <a href="artist.html?id=gen1us" class="relative aspect-[16/10] bg-white group overflow-hidden">
                 <img src="images/gen1us/masquerade-gen1us.jpg" class="w-full h-full object-cover transition duration-700">
                 <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                     <span class="logo-font text-white text-3xl">GEN1US</span>
                 </div>
             </a>
-            <!-- 4ggravate (見切れないよう配置修正) -->
-            <a href="artist.html?id=4ggravate" class="relative aspect-[4/5] md:aspect-[16/10] bg-white group overflow-hidden">
+
+            <a href="artist.html?id=4ggravate" class="relative aspect-[16/10] bg-white group overflow-hidden">
                 <img src="images/4ggravate/4ggravate.jpg" class="w-full h-full object-cover transition duration-700" style="object-position: center 20%;">
                 <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                     <span class="logo-font text-white text-3xl">4ggravate</span>
                 </div>
             </a>
-            <!-- 6reeze -->
-            <a href="artist.html?id=6reeze" class="relative aspect-[4/5] md:aspect-[16/10] bg-white group overflow-hidden flex items-center justify-center">
+
+            <a href="artist.html?id=6reeze" class="relative aspect-[16/10] bg-white group overflow-hidden flex items-center justify-center">
                 <span class="logo-font text-gray-200 text-3xl">6reeze</span>
                 <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                     <span class="logo-font text-white text-3xl">6reeze</span>
                 </div>
             </a>
-            <!-- Coming Soon -->
-            <div class="aspect-[4/5] md:aspect-[16/10] bg-white flex items-center justify-center">
-                <span class="logo-font text-gray-200 text-lg uppercase">Coming Soon</span>
+
+            <div class="aspect-[16/10] bg-white flex items-center justify-center">
+                <span class="logo-font text-gray-200 text-xl uppercase">Coming Soon</span>
             </div>
         </section>
 
-        <!-- LATEST NEWS -->
         <section class="max-w-6xl mx-auto px-6 py-24">
             <div class="flex justify-between items-end mb-12 border-b-2 border-black pb-8">
                 <h2 class="logo-font text-4xl uppercase">Latest News</h2>
-                <a href="#" class="text-[10px] font-bold tracking-[0.3em] hover:underline">VIEW ALL</a>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div class="group cursor-pointer">
@@ -89,13 +85,15 @@
         const menuLinks = document.querySelectorAll('.menu-close');
 
         menuBtn.onclick = () => {
-            navMenu.classList.toggle('open');
             menuBtn.classList.toggle('active');
+            navMenu.classList.toggle('open');
+            document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : 'auto';
         };
         menuLinks.forEach(link => {
             link.onclick = () => {
-                navMenu.classList.remove('open');
                 menuBtn.classList.remove('active');
+                navMenu.classList.remove('open');
+                document.body.style.overflow = 'auto';
             };
         });
     </script>
