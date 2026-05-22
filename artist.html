@@ -32,6 +32,7 @@
             <button onclick="switchTab('disco')" id="btn-disco" class="tab-btn uppercase">Discography</button>
         </div>
 
+        <!-- PROFILE CONTENT -->
         <div id="profile" class="content-section block">
             <div class="w-full mb-20 overflow-hidden bg-gray-50 border border-gray-100 shadow-sm" style="aspect-ratio: 3 / 1;">
                 <img id="group-banner" src="" class="w-full h-full object-contain">
@@ -40,6 +41,7 @@
             <div id="member-grid" class="member-flex-container"></div>
         </div>
 
+        <!-- DISCOGRAPHY CONTENT -->
         <div id="disco" class="content-section hidden">
             <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6">Discography</h2>
             <div id="disco-list" class="grid grid-cols-1 gap-12 text-center"></div>
@@ -77,6 +79,7 @@
                 `;
             });
 
+            // ディスコグラフィ描画
             const discoList = document.getElementById('disco-list');
             if (!data.discography || data.discography.length === 0) {
                 discoList.innerHTML = '<p class="logo-font text-gray-200 text-3xl uppercase">Coming Soon</p>';

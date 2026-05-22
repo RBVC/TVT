@@ -31,9 +31,9 @@ const allGroups = {
         ],
         discography: [
             {
-                title: "4ggravate - SPECIAL SELECTION",
-                type: "PLAYLIST",
-                embed: `<iframe src="https://u.pcloud.link/publink/show?code=VZd2GU5ZuCeB9odHugu3CujTmUbSIQY8bSi7&view=list" width="100%" height="500" frameborder="0"></iframe>`
+                title: "All Out",
+                type: "Mini Album",
+                embed: `<iframe src="https://u.pcloud.link/publink/show?code=0ZfjiU5ZFUGomJCKJ8XBS3YOVjqAVYqbB2EX&view=list" width="100%" height="500" frameborder="0"></iframe>`
             }
         ]
     },
@@ -50,7 +50,13 @@ const allGroups = {
             { name: "Aether", div: "???", pos: "Lead Vocal / Leader", img: "images/6reeze/heart-aether.jpg" },
             { name: "Heizou", div: "Inazuma", pos: "Lead Rapper / Lead Dancer", img: "images/6reeze/heart-heizou.jpg" }
         ],
-        discography: []
+        discography: [
+            {
+                title: "EMPATHY",
+                type: "Mini Album",
+                embed: `<iframe src="https://u.pcloud.link/publink/show?code=0ZKSiU5ZyeY0Tie17AfQ2saxTO7PBpiKqcC7&view=list" width="100%" height="500" frameborder="0"></iframe>`
+            }
+        ]
     },
     "universe": {
         name: "TVT U",
@@ -69,7 +75,7 @@ const allGroups = {
         discography: [
             {
                 title: "HANA",
-                type: "1st Mini Album",
+                type: "Mini Album",
                 embed: `<iframe src="https://u.pcloud.link/publink/show?code=0ZpJiU5ZTiglKk3h3KXhuoUPRUSWTL7UJ5Ok&view=list" width="100%" height="500" frameborder="0"></iframe>`
             }
         ]
