@@ -32,6 +32,7 @@
             <button onclick="switchTab('disco')" id="btn-disco" class="tab-btn uppercase">Discography</button>
         </div>
 
+        <!-- PROFILE CONTENT -->
         <div id="profile" class="content-section block">
             <div class="w-full aspect-[21/9] bg-gray-50 mb-20 overflow-hidden border border-gray-100 shadow-sm">
                 <img id="group-banner" src="" class="w-full h-full object-cover">
@@ -40,10 +41,10 @@
             <div id="member-grid" class="member-flex-container"></div>
         </div>
 
+        <!-- DISCOGRAPHY CONTENT -->
         <div id="disco" class="content-section hidden">
             <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6">Discography</h2>
-            <!-- ディスコグラフィのリスト表示エリア -->
-            <div id="disco-list" class="grid grid-cols-1 md:grid-cols-2 gap-10"></div>
+            <div id="disco-list" class="grid grid-cols-1 gap-12 text-center"></div>
         </div>
     </main>
 
@@ -78,21 +79,20 @@
                 `;
             });
 
-            // ✅ Discography 描画ロジック
+            // ディスコグラフィ描画ロジック
             const discoList = document.getElementById('disco-list');
             if (!data.discography || data.discography.length === 0) {
                 discoList.innerHTML = '<p class="logo-font text-gray-200 text-3xl uppercase">Coming Soon</p>';
             } else {
                 data.discography.forEach(d => {
                     discoList.innerHTML += `
-                        <div class="bg-white border border-gray-100 p-6 flex gap-6 items-center">
-                            <div class="w-32 h-32 bg-gray-100 flex-shrink-0">
-                                <img src="${d.img || ''}" class="w-full h-full object-cover" onerror="this.src='https://placehold.jp/200x200.png?text=NO+IMAGE'">
+                        <div class="max-w-4xl mx-auto w-full">
+                            <div class="text-left mb-6">
+                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] mb-1">${d.type} / ${d.date}</p>
+                                <h3 class="logo-font text-3xl uppercase">${d.title}</h3>
                             </div>
-                            <div class="text-left">
-                                <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest mb-1">${d.type} / ${d.date}</p>
-                                <h3 class="logo-font text-xl mb-4 leading-tight">${d.title}</h3>
-                                <a href="${d.link}" target="_blank" class="inline-block bg-black text-white text-[10px] font-bold px-6 py-2 tracking-widest hover:bg-gray-800 transition">LISTEN NOW</a>
+                            <div class="bg-gray-50 rounded-xl overflow-hidden shadow-inner border border-gray-100">
+                                ${d.embed}
                             </div>
                         </div>
                     `;
