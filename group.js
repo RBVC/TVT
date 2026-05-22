@@ -31,10 +31,11 @@ const allGroups = {
         ],
         discography: [
             {
-                title: "4ggravate - Special Selection",
+                title: "4ggravate - SPECIAL SELECTION",
                 type: "PLAYLIST",
                 date: "202X.05.22",
-                embed: `<iframe src="https://app.box.com/embed/s/05j0s6bw6mx33dadc13gpwkj4478bqld?theme=dark&show_parent_path=no" width="100%" height="450" frameborder="0" allowfullscreen webkitallowfullscreen msallowfullscreen></iframe>`
+                // pCloud形式に統一（&view=list を試験導入）
+                embed: `<iframe src="https://u.pcloud.link/publink/show?code=VZd2GU5ZuCeB9odHugu3CujTmUbSIQY8bSi7&view=list" width="100%" height="500" frameborder="0"></iframe>`
             }
         ]
     },
@@ -69,11 +70,11 @@ const allGroups = {
         ],
         discography: [
             {
-                title: "TVT U - Special Archive",
+                title: "TVT U - SPECIAL ARCHIVE",
                 type: "PLAYLIST",
                 date: "202X.05.22",
-                // pCloudのフォルダ埋め込み
-                embed: `<iframe src="https://u.pcloud.link/publink/show?code=kZyWGU5ZqQjzghxDwWFlPWRGMsR9wRX0GTGy" width="100%" height="500" frameborder="0"></iframe>`
+                // &view=list を追加
+                embed: `<iframe src="https://u.pcloud.link/publink/show?code=kZyWGU5ZqQjzghxDwWFlPWRGMsR9wRX0GTGy&view=list" width="100%" height="500" frameborder="0"></iframe>`
             }
         ]
     }
