@@ -1,5 +1,6 @@
 /* style.css */
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Noto+Sans+JP:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&display=swap');
 
 html { 
     scroll-behavior: smooth; 
@@ -9,14 +10,15 @@ html {
 body { 
     background-color: #ffffff; 
     color: #000000; 
-    font-family: 'Noto Sans JP', sans-serif; 
+    font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif; 
     margin: 0; 
     -webkit-font-smoothing: antialiased; 
     overflow-x: hidden;
 }
 
+/* Rajdhaniフォント（Klavika風）の設定 */
 .logo-font { 
-    font-family: 'Plus Jakarta Sans', sans-serif; 
+    font-family: 'Rajdhani', sans-serif; 
     font-weight: 700; 
     letter-spacing: 0.02em; 
     font-style: normal;
@@ -42,7 +44,7 @@ header .logo {
     text-decoration: none; 
     color: #000; 
     font-weight: 900; 
-    font-family: 'Plus Jakarta Sans', sans-serif; 
+    font-family: 'Rajdhani', sans-serif; 
     letter-spacing: -0.05em;
 }
 
@@ -89,7 +91,7 @@ header .logo {
 .nav-overlay a {
     font-size: 3rem;
     font-weight: 800;
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
     text-decoration: none;
     color: #000;
     margin: 15px 0;
@@ -98,13 +100,13 @@ header .logo {
 .nav-overlay a:hover { color: #ccc; }
 
 footer { padding: 80px 0; border-top: 1px solid #f0f0f0; text-align: center; background: #fff; margin-top: 100px; }
-footer .f-logo { font-size: 3rem; margin-bottom: 20px; color: #000; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; }
+footer .f-logo { font-size: 3rem; margin-bottom: 20px; color: #000; font-family: 'Rajdhani', sans-serif; font-weight: 800; }
 footer p { font-size: 9px; color: #ccc; letter-spacing: 0.3em; text-transform: uppercase; }
 
 .tab-btn { 
     font-size: 12px; 
     font-weight: 700; 
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Rajdhani', sans-serif;
     color: #ccc; 
     letter-spacing: 0.15em; 
     transition: 0.3s; 
@@ -114,33 +116,27 @@ footer p { font-size: 9px; color: #ccc; letter-spacing: 0.3em; text-transform: u
 }
 .tab-btn.active { color: #000; border-bottom: 2px solid #000; }
 
-/* --- 🆕 メンバーグリッド：中央配置かつ左詰めレイアウト --- */
 #member-grid {
     display: grid;
-    margin: 0 auto; /* グリッド全体を中央へ */
+    margin: 0 auto;
     gap: 40px 20px;
     width: 100%;
 }
 
-/* PC版：4列設定 (TVT U, 4ggravate) */
 .layout-4 {
     grid-template-columns: repeat(4, 1fr);
     max-width: 1200px;
 }
 
-/* PC版：3列設定 (GEN1US, 6reeze) */
 .layout-3 {
     grid-template-columns: repeat(3, 1fr);
-    max-width: 900px; /* 列に合わせて幅を絞ることで中央感を維持 */
+    max-width: 900px;
 }
 
 @media (max-width: 768px) {
     header { padding: 15px 20px; }
     .nav-overlay a { font-size: 2rem; }
-    
-    /* スマホ版：全グループ共通2列 */
-    #member-grid.layout-3, 
-    #member-grid.layout-4 {
+    #member-grid.layout-3, #member-grid.layout-4 {
         grid-template-columns: repeat(2, 1fr);
         gap: 30px 10px;
     }
