@@ -33,8 +33,6 @@ const allGroups = {
             {
                 title: "4ggravate - SPECIAL SELECTION",
                 type: "PLAYLIST",
-                date: "202X.05.22",
-                // pCloud形式に統一（&view=list を試験導入）
                 embed: `<iframe src="https://u.pcloud.link/publink/show?code=VZd2GU5ZuCeB9odHugu3CujTmUbSIQY8bSi7&view=list" width="100%" height="500" frameborder="0"></iframe>`
             }
         ]
@@ -70,11 +68,9 @@ const allGroups = {
         ],
         discography: [
             {
-                title: "TVT U - SPECIAL ARCHIVE",
-                type: "PLAYLIST",
-                date: "202X.05.22",
-                // &view=list を追加
-                embed: `<iframe src="https://u.pcloud.link/publink/show?code=kZyWGU5ZqQjzghxDwWFlPWRGMsR9wRX0GTGy&view=list" width="100%" height="500" frameborder="0"></iframe>`
+                title: "1st Mini Album「HANA」",
+                type: "MINI ALBUM",
+                embed: `<iframe src="https://u.pcloud.link/publink/show?code=0ZpJiU5ZTiglKk3h3KXhuoUPRUSWTL7UJ5Ok&view=list" width="100%" height="500" frameborder="0"></iframe>`
             }
         ]
     }
