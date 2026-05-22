@@ -13,9 +13,10 @@ body {
     font-family: 'Noto Sans JP', sans-serif; 
     margin: 0; 
     -webkit-font-smoothing: antialiased; 
-    overflow-x: hidden; /* 横スクロールを完全に禁止 */
+    overflow-x: hidden;
 }
 
+/* Rajdhani：鋭い見出し・ロゴ用 */
 .logo-font { 
     font-family: 'Rajdhani', sans-serif; 
     font-weight: 700; 
@@ -47,6 +48,7 @@ header .logo {
     letter-spacing: -0.05em;
 }
 
+/* ハンバーガーアイコン */
 .menu-trigger {
     position: relative;
     width: 30px;
@@ -70,6 +72,7 @@ header .logo {
 .menu-trigger.active span:nth-child(2) { opacity: 0; }
 .menu-trigger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
+/* 全画面メニュー */
 .nav-overlay {
     position: fixed;
     top: 0;
@@ -115,6 +118,7 @@ footer p { font-size: 9px; color: #ccc; letter-spacing: 0.3em; text-transform: u
 }
 .tab-btn.active { color: #000; border-bottom: 2px solid #000; }
 
+/* メンバーグリッド（左詰め・中央配置） */
 #member-grid {
     display: grid;
     margin: 0 auto;

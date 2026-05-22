@@ -7,60 +7,58 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* 🆕 フルワイド・グリッド：画面の端まで隙間なく配置 */
-        .yg-full-grid {
+        /* 🆕 完璧なフルワイド・2x2グリッド */
+        .main-visual-grid {
             display: grid;
-            grid-template-columns: 1.2fr 1fr; /* 左右比率を不均等にしてモダンに */
-            gap: 2px;
-            width: 100vw; /* 画面幅いっぱい */
-            margin-left: calc(50% - 50vw); /* 親要素の幅を超えて全画面化 */
+            grid-template-columns: repeat(2, 1fr); /* 横に2つ */
+            gap: 2px; /* 境界のライン */
+            width: 100vw;
+            margin-left: calc(50% - 50vw);
+            background-color: #fff;
         }
         
-        .yg-item {
+        .artist-box {
             position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9比率を維持（画像に合わせて調整可能） */
             overflow: hidden;
             background-color: #000;
         }
 
-        /* 迫力を出すための高さ設定（スクショ5枚目を意識） */
-        .height-main { height: 60vh; }
-        .height-sub { height: 45vh; }
-
-        .yg-item img {
+        .artist-box img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
-            filter: brightness(0.95);
         }
 
-        .yg-item:hover img {
+        .artist-box:hover img {
             transform: scale(1.05);
-            filter: brightness(1.1);
         }
 
-        /* ホバー時のテキスト演出 */
-        .yg-overlay {
+        /* ホバー時のオーバーレイ（黒背景・白文字） */
+        .artist-hover {
             position: absolute;
             inset: 0;
-            background-color: rgba(0,0,0,0.7);
+            background-color: rgba(0,0,0,0.8);
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             transition: opacity 0.5s ease;
+            z-index: 10;
         }
-        .yg-item:hover .yg-overlay {
+        .artist-box:hover .artist-hover {
             opacity: 1;
         }
 
-        /* スマホ対応：1列に縦積み */
+        /* スマホ版：1列で迫力全開 */
         @media (max-width: 768px) {
-            .yg-full-grid {
+            .main-visual-grid {
                 grid-template-columns: 1fr;
-            }
-            .height-main, .height-sub {
-                height: 50vh;
             }
         }
     </style>
@@ -78,46 +76,46 @@
         <a href="wiki.html" class="menu-close">WIKI</a>
     </div>
 
-    <main class="pt-[73px]">
+    <main class="pt-[73px]"> <!-- ヘッダーの高さ分 -->
         
-        <!-- 🆕 フルワイド・ビジュアル・グリッド -->
-        <section id="artists" class="yg-full-grid">
+        <!-- 🆕 アーティスト・フルワイド・グリッド -->
+        <section id="artists" class="main-visual-grid">
             
             <!-- 1. GEN1US -->
-            <a href="artist.html?id=gen1us" class="yg-item height-main">
+            <a href="artist.html?id=gen1us" class="artist-box">
                 <img src="images/gen1us/masquerade-gen1us.jpg" alt="GEN1US">
-                <div class="yg-overlay">
-                    <span class="logo-font text-white text-5xl tracking-widest">GEN1US</span>
+                <div class="artist-hover">
+                    <span class="logo-font text-white text-4xl md:text-6xl tracking-widest">GEN1US</span>
                 </div>
             </a>
 
             <!-- 2. 4ggravate -->
-            <a href="artist.html?id=4ggravate" class="yg-item height-main">
-                <img src="images/4ggravate/4ggravate.jpg" alt="4ggravate" style="object-position: center 20%;">
-                <div class="yg-overlay">
-                    <span class="logo-font text-white text-5xl tracking-widest">4ggravate</span>
+            <a href="artist.html?id=4ggravate" class="artist-box">
+                <img src="images/4ggravate/4ggravate.jpg" alt="4ggravate">
+                <div class="artist-hover">
+                    <span class="logo-font text-white text-4xl md:text-6xl tracking-widest">4ggravate</span>
                 </div>
             </a>
 
             <!-- 3. 6reeze -->
-            <a href="artist.html?id=6reeze" class="yg-item height-sub">
+            <a href="artist.html?id=6reeze" class="artist-box">
                 <img src="images/6reeze/6reeze.jpg" alt="6reeze">
-                <div class="yg-overlay">
-                    <span class="logo-font text-white text-5xl tracking-widest">6reeze</span>
+                <div class="artist-hover">
+                    <span class="logo-font text-white text-4xl md:text-6xl tracking-widest">6reeze</span>
                 </div>
             </a>
 
             <!-- 4. TVT U -->
-            <a href="artist.html?id=universe" class="yg-item height-sub">
+            <a href="artist.html?id=universe" class="artist-box">
                 <img src="images/universe/tvt-u.jpg" alt="TVT U">
-                <div class="yg-overlay">
-                    <span class="logo-font text-white text-5xl tracking-widest">TVT U</span>
+                <div class="artist-hover">
+                    <span class="logo-font text-white text-4xl md:text-6xl tracking-widest">TVT U</span>
                 </div>
             </a>
 
         </section>
 
-        <!-- LATEST NEWS: ここは中央寄せのまま品格を保つ -->
+        <!-- LATEST NEWS -->
         <section class="max-w-6xl mx-auto px-6 py-24">
             <div class="flex justify-between items-end mb-16 border-b-2 border-black pb-8">
                 <h2 class="logo-font text-5xl uppercase">Latest News</h2>
