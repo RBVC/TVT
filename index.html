@@ -7,58 +7,60 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* 🆕 YGスタイルの動的グリッド：全幅対応 */
-        .yg-visual-grid {
+        /* 🆕 フルワイド・グリッド：画面の端まで隙間なく配置 */
+        .yg-full-grid {
             display: grid;
-            grid-template-columns: 1.2fr 1fr; /* 左右で比率を変えてリズムを出す */
-            gap: 4px; /* 極細のライン */
-            width: 100%;
-            background-color: #fff;
+            grid-template-columns: 1.2fr 1fr; /* 左右比率を不均等にしてモダンに */
+            gap: 2px;
+            width: 100vw; /* 画面幅いっぱい */
+            margin-left: calc(50% - 50vw); /* 親要素の幅を超えて全画面化 */
         }
         
-        .yg-grid-item {
+        .yg-item {
             position: relative;
             overflow: hidden;
-            background-color: #f9f9f9;
+            background-color: #000;
         }
 
-        /* 縦横比の調整：スクショ5枚目の雰囲気を再現 */
-        .height-large { height: 70vh; }
-        .height-medium { height: 50vh; }
+        /* 迫力を出すための高さ設定（スクショ5枚目を意識） */
+        .height-main { height: 60vh; }
+        .height-sub { height: 45vh; }
 
-        .yg-grid-item img {
+        .yg-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+            transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+            filter: brightness(0.95);
         }
 
-        .yg-grid-item:hover img {
+        .yg-item:hover img {
             transform: scale(1.05);
+            filter: brightness(1.1);
         }
 
-        /* ホバー時のテキストオーバーレイ */
-        .hover-mask {
+        /* ホバー時のテキスト演出 */
+        .yg-overlay {
             position: absolute;
             inset: 0;
-            background-color: rgba(0,0,0,0.8);
+            background-color: rgba(0,0,0,0.7);
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.5s ease;
         }
-        .yg-grid-item:hover .hover-mask {
+        .yg-item:hover .yg-overlay {
             opacity: 1;
         }
 
-        /* スマホ版：1列で全画面幅に */
+        /* スマホ対応：1列に縦積み */
         @media (max-width: 768px) {
-            .yg-visual-grid {
+            .yg-full-grid {
                 grid-template-columns: 1fr;
             }
-            .height-large, .height-medium {
-                height: 50vh; /* スマホでは高さを統一して見やすく */
+            .height-main, .height-sub {
+                height: 50vh;
             }
         }
     </style>
@@ -76,54 +78,54 @@
         <a href="wiki.html" class="menu-close">WIKI</a>
     </div>
 
-    <main class="pt-[73px]"> <!-- ヘッダーの高さ分だけ空ける -->
+    <main class="pt-[73px]">
         
-        <!-- 🆕 アーティスト・メイン・グリッド -->
-        <section id="artists" class="yg-visual-grid">
+        <!-- 🆕 フルワイド・ビジュアル・グリッド -->
+        <section id="artists" class="yg-full-grid">
             
-            <!-- 1. GEN1US (Top Left - Large) -->
-            <a href="artist.html?id=gen1us" class="yg-grid-item height-large">
+            <!-- 1. GEN1US -->
+            <a href="artist.html?id=gen1us" class="yg-item height-main">
                 <img src="images/gen1us/masquerade-gen1us.jpg" alt="GEN1US">
-                <div class="hover-mask">
+                <div class="yg-overlay">
                     <span class="logo-font text-white text-5xl tracking-widest">GEN1US</span>
                 </div>
             </a>
 
-            <!-- 2. 4ggravate (Top Right - Large) -->
-            <a href="artist.html?id=4ggravate" class="yg-grid-item height-large">
+            <!-- 2. 4ggravate -->
+            <a href="artist.html?id=4ggravate" class="yg-item height-main">
                 <img src="images/4ggravate/4ggravate.jpg" alt="4ggravate" style="object-position: center 20%;">
-                <div class="hover-mask">
+                <div class="yg-overlay">
                     <span class="logo-font text-white text-5xl tracking-widest">4ggravate</span>
                 </div>
             </a>
 
-            <!-- 3. 6reeze (Bottom Left - Medium) -->
-            <a href="artist.html?id=6reeze" class="yg-grid-item height-medium">
+            <!-- 3. 6reeze -->
+            <a href="artist.html?id=6reeze" class="yg-item height-sub">
                 <img src="images/6reeze/6reeze.jpg" alt="6reeze">
-                <div class="hover-mask">
+                <div class="yg-overlay">
                     <span class="logo-font text-white text-5xl tracking-widest">6reeze</span>
                 </div>
             </a>
 
-            <!-- 4. TVT U (Bottom Right - Medium) -->
-            <a href="artist.html?id=universe" class="yg-grid-item height-medium">
+            <!-- 4. TVT U -->
+            <a href="artist.html?id=universe" class="yg-item height-sub">
                 <img src="images/universe/tvt-u.jpg" alt="TVT U">
-                <div class="hover-mask">
+                <div class="yg-overlay">
                     <span class="logo-font text-white text-5xl tracking-widest">TVT U</span>
                 </div>
             </a>
 
         </section>
 
-        <!-- LATEST NEWS -->
+        <!-- LATEST NEWS: ここは中央寄せのまま品格を保つ -->
         <section class="max-w-6xl mx-auto px-6 py-24">
-            <div class="flex justify-between items-end mb-12 border-b-2 border-black pb-8">
-                <h2 class="logo-font text-4xl uppercase">Latest News</h2>
+            <div class="flex justify-between items-end mb-16 border-b-2 border-black pb-8">
+                <h2 class="logo-font text-5xl uppercase">Latest News</h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
                 <div class="group cursor-pointer">
                     <p class="text-[10px] text-gray-400 mb-4 uppercase tracking-[0.4em]">Project / 202X.XX.XX</p>
-                    <h3 class="text-xl font-bold mb-6">【妄想】スペシャルコラボユニット始動？</h3>
+                    <h3 class="text-2xl font-bold mb-6">【妄想】スペシャルコラボユニット始動？</h3>
                     <div class="aspect-video bg-gray-50 flex items-center justify-center text-gray-200 logo-font text-3xl uppercase">Coming Soon</div>
                 </div>
             </div>
