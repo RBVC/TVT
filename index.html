@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* 🆕 1500x500 (3:1) 比率に最適化したフルワイド・グリッド */
+        /* 🆕 1500x500画像を活かす全幅グリッド設定 */
         .main-visual-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -20,7 +20,7 @@
         .artist-box {
             position: relative;
             width: 100%;
-            /* 3:1比率の計算 (500 / 1500 * 100 = 33.33%) */
+            /* PC版：3:1比率 (500 / 1500 * 100) */
             padding-top: 33.33%; 
             overflow: hidden;
             background-color: #000;
@@ -32,7 +32,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* 枠に合わせて自動トリミング */
             transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1);
         }
 
@@ -40,6 +40,7 @@
             transform: scale(1.05);
         }
 
+        /* ホバー時のオーバーレイ：文字はデータのまま（大文字化しない） */
         .artist-hover {
             position: absolute;
             inset: 0;
@@ -55,13 +56,18 @@
             opacity: 1;
         }
 
+        /* 📱 スマホ版最適化：高さを出して視認性をアップ */
         @media (max-width: 768px) {
             .main-visual-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr; /* 1列に */
+                gap: 1px;
             }
             .artist-box {
-                /* スマホでは少し高さを出して見やすくする (例: 2:1比率) */
-                padding-top: 50%;
+                /* スマホでは高さを60%に設定（3:1よりも縦に厚みを持たせる） */
+                padding-top: 60%; 
+            }
+            .artist-hover span {
+                font-size: 2.5rem !important; /* スマホで見やすい文字サイズ */
             }
         }
     </style>
@@ -81,8 +87,10 @@
 
     <main class="pt-[73px]">
         
+        <!-- アーティスト・メイン・グリッド -->
         <section id="artists" class="main-visual-grid">
             
+            <!-- 1. GEN1US -->
             <a href="artist.html?id=gen1us" class="artist-box">
                 <img src="images/gen1us/masquerade-gen1us.jpg" alt="GEN1US">
                 <div class="artist-hover">
@@ -90,13 +98,15 @@
                 </div>
             </a>
 
+            <!-- 2. 4ggravate -->
             <a href="artist.html?id=4ggravate" class="artist-box">
-                <img src="images/4ggravate/4ggravate.jpg" alt="4ggravate">
+                <img src="images/4ggravate/4ggravate.jpg" alt="4ggravate" style="object-position: center 20%;">
                 <div class="artist-hover">
                     <span class="logo-font text-white text-4xl md:text-6xl tracking-widest">4ggravate</span>
                 </div>
             </a>
 
+            <!-- 3. 6reeze -->
             <a href="artist.html?id=6reeze" class="artist-box">
                 <img src="images/6reeze/6reeze.jpg" alt="6reeze">
                 <div class="artist-hover">
@@ -104,6 +114,7 @@
                 </div>
             </a>
 
+            <!-- 4. TVT U -->
             <a href="artist.html?id=universe" class="artist-box">
                 <img src="images/universe/tvt-u.jpg" alt="TVT U">
                 <div class="artist-hover">
@@ -113,14 +124,15 @@
 
         </section>
 
+        <!-- LATEST NEWS -->
         <section class="max-w-6xl mx-auto px-6 py-24">
             <div class="flex justify-between items-end mb-12 border-b-2 border-black pb-8">
                 <h2 class="logo-font text-5xl uppercase">Latest News</h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div class="group cursor-pointer">
                     <p class="text-[10px] text-gray-400 mb-4 uppercase tracking-[0.4em]">Project / 202X.XX.XX</p>
-                    <h3 class="text-2xl font-bold mb-6">【妄想】スペシャルコラボユニット始動？</h3>
+                    <h3 class="text-xl font-bold mb-6">【妄想】スペシャルコラボユニット始動？</h3>
                     <div class="aspect-video bg-gray-50 flex items-center justify-center text-gray-200 logo-font text-3xl uppercase">Coming Soon</div>
                 </div>
             </div>
