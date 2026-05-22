@@ -16,7 +16,7 @@ const allGroups = {
             { name: "Dainsleif", div: "Mondstadt", pos: "Main Dancer / Sub Rapper", img: "images/gen1us/masquerade-dainsleif.jpg" },
             { name: "Thoma", div: "Inazuma", pos: "Main Dancer / Sub Vocal", img: "images/gen1us/masquerade-thoma.jpg" }
         ],
-        discography: [] // ここに今後GEN1USのBoxリンクを追加できます
+        discography: []
     },
     "4ggravate": {
         name: "4ggravate",
@@ -31,10 +31,9 @@ const allGroups = {
         ],
         discography: [
             {
-                title: "4ggravate - SPECIAL SELECTION",
+                title: "4ggravate - Special Selection",
                 type: "PLAYLIST",
                 date: "202X.05.22",
-                // Boxのプレイリスト埋め込み
                 embed: `<iframe src="https://app.box.com/embed/s/05j0s6bw6mx33dadc13gpwkj4478bqld?theme=dark&show_parent_path=no" width="100%" height="450" frameborder="0" allowfullscreen webkitallowfullscreen msallowfullscreen></iframe>`
             }
         ]
@@ -68,6 +67,14 @@ const allGroups = {
             { name: "Bennett", div: "Mondstadt", pos: "Main Dancer", img: "images/universe/universe-bennett.jpg" },
             { name: "Razor", div: "Mondstadt", pos: "Main Rapper", img: "images/universe/universe-razor.jpg" }
         ],
-        discography: []
+        discography: [
+            {
+                title: "TVT U - Special Archive",
+                type: "PLAYLIST",
+                date: "202X.05.22",
+                // pCloudのフォルダ埋め込み
+                embed: `<iframe src="https://u.pcloud.link/publink/show?code=kZyWGU5ZqQjzghxDwWFlPWRGMsR9wRX0GTGy" width="100%" height="500" frameborder="0"></iframe>`
+            }
+        ]
     }
 };
