@@ -16,15 +16,7 @@ const allGroups = {
             { name: "Dainsleif", div: "Mondstadt", pos: "Main Dancer / Sub Rapper", img: "images/gen1us/masquerade-dainsleif.jpg" },
             { name: "Thoma", div: "Inazuma", pos: "Main Dancer / Sub Vocal", img: "images/gen1us/masquerade-thoma.jpg" }
         ],
-        discography: [
-            { 
-                title: "EXO SPECIAL SELECTION", 
-                type: "COVER PLAYLIST", 
-                date: "202X.05.22",
-                link: "https://u.pcloud.link/publink/show?code=0ZYVGU5ZbF49BOJQSz4iYzt2uWuryHFMAuik",
-                img: "images/gen1us/disc-exo.jpg" // もしジャケ写があれば。ない場合はNO IMAGEになります
-            }
-        ]
+        discography: [] // ここに今後GEN1USのBoxリンクを追加できます
     },
     "4ggravate": {
         name: "4ggravate",
@@ -37,7 +29,15 @@ const allGroups = {
             { name: "Kaveh", div: "Sumeru", pos: "Lead Dancer / Lead Vocal / Sub Rapper", img: "images/4ggravate/cyber-kaveh.jpg" },
             { name: "Tighnari", div: "Sumeru", pos: "Leader / Main Vocal / Lead Dancer / Sub Rapper", img: "images/4ggravate/cyber-tighnari.jpg" }
         ],
-        discography: []
+        discography: [
+            {
+                title: "4ggravate - SPECIAL SELECTION",
+                type: "PLAYLIST",
+                date: "202X.05.22",
+                // Boxのプレイリスト埋め込み
+                embed: `<iframe src="https://app.box.com/embed/s/05j0s6bw6mx33dadc13gpwkj4478bqld?theme=dark&show_parent_path=no" width="100%" height="450" frameborder="0" allowfullscreen webkitallowfullscreen msallowfullscreen></iframe>`
+            }
+        ]
     },
     "6reeze": {
         name: "6reeze",
