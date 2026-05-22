@@ -68,8 +68,8 @@ const allGroups = {
         ],
         discography: [
             {
-                title: "1st Mini Album「HANA」",
-                type: "MINI ALBUM",
+                title: "HANA",
+                type: "1st Mini Album",
                 embed: `<iframe src="https://u.pcloud.link/publink/show?code=0ZpJiU5ZTiglKk3h3KXhuoUPRUSWTL7UJ5Ok&view=list" width="100%" height="500" frameborder="0"></iframe>`
             }
         ]
