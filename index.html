@@ -37,12 +37,12 @@
             <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
             <div class="absolute bottom-16 left-8 md:left-20">
                 <p class="logo-font text-white/60 text-xl tracking-[0.4em] mb-4 uppercase">GEN1US</p>
-                <h2 class="logo-font text-6xl md:text-[9rem] leading-[0.8] tracking-tighter text-white uppercase">MASQUERADE</h2>
+                <h2 class="logo-font text-6xl md:text-[9rem] leading-[0.8] tracking-tighter text-white">MASQUERADE</h2>
             </div>
         </section>
 
         <!-- Artists Grid -->
-        <section id="artists" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100 border-y border-gray-100 overflow-hidden">
+        <section id="artists" class="grid grid-cols-1 lg:grid-cols-4 gap-px bg-gray-100 border-y border-gray-100 overflow-hidden">
             
             <a href="artist.html?id=gen1us" class="relative aspect-[16/10] bg-white group overflow-hidden grid-img-container">
                 <img src="images/gen1us/masquerade-gen1us.jpg" class="transition duration-700">
@@ -66,8 +66,7 @@
             </a>
 
             <a href="artist.html?id=universe" class="relative aspect-[16/10] bg-white group overflow-hidden grid-img-container">
-                <img src="images/universe/tvt-u.jpg" class="transition duration-700" onerror="this.style.opacity='0'">
-                <div class="absolute inset-0 flex items-center justify-center text-gray-200 logo-font text-3xl select-none -z-10">TVT U</div>
+                <img src="images/universe/tvt-u.jpg" class="transition duration-700">
                 <div class="absolute inset-0 bg-black opacity-0 lg:group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
                     <span class="logo-font text-white text-3xl">TVT U</span>
                 </div>
@@ -97,12 +96,19 @@
         const menuBtn = document.getElementById('menu-btn');
         const navMenu = document.getElementById('nav-menu');
         const menuLinks = document.querySelectorAll('.menu-close');
+
         menuBtn.onclick = () => {
             menuBtn.classList.toggle('active');
             navMenu.classList.toggle('open');
             document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : 'auto';
         };
-        menuLinks.forEach(link => { link.onclick = () => { menuBtn.classList.remove('active'); navMenu.classList.remove('open'); document.body.style.overflow = 'auto'; }; });
+        menuLinks.forEach(link => {
+            link.onclick = () => {
+                menuBtn.classList.remove('active');
+                navMenu.classList.remove('open');
+                document.body.style.overflow = 'auto';
+            };
+        });
     </script>
 </body>
 </html>
