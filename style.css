@@ -4,19 +4,18 @@
 
 html { 
     scroll-behavior: smooth; 
-    scroll-padding-top: 100px; 
+    scroll-padding-top: 80px; 
 }
 
 body { 
     background-color: #ffffff; 
     color: #000000; 
-    font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif; 
+    font-family: 'Noto Sans JP', sans-serif; 
     margin: 0; 
     -webkit-font-smoothing: antialiased; 
     overflow-x: hidden;
 }
 
-/* Rajdhaniフォント（Klavika風）の設定 */
 .logo-font { 
     font-family: 'Rajdhani', sans-serif; 
     font-weight: 700; 
@@ -122,16 +121,8 @@ footer p { font-size: 9px; color: #ccc; letter-spacing: 0.3em; text-transform: u
     gap: 40px 20px;
     width: 100%;
 }
-
-.layout-4 {
-    grid-template-columns: repeat(4, 1fr);
-    max-width: 1200px;
-}
-
-.layout-3 {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 900px;
-}
+.layout-4 { grid-template-columns: repeat(4, 1fr); max-width: 1200px; }
+.layout-3 { grid-template-columns: repeat(3, 1fr); max-width: 900px; }
 
 @media (max-width: 768px) {
     header { padding: 15px 20px; }
