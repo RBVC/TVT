@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVT Wiki | Internal Records</title>
+    <title>TVT Wiki | 内部機密資料</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: #f6f6f6; color: #202122; font-family: 'Noto Sans JP', sans-serif; }
-        .wiki-container { max-width: 1000px; margin: 100px auto; background: white; padding: 60px; border: 1px solid #a2a9b1; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
-        h1 { font-family: 'Rajdhani', sans-serif; font-size: 3.5rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-bottom: 1rem; }
+        .wiki-container { max-width: 1100px; margin: 100px auto; background: white; padding: 60px; border: 1px solid #a2a9b1; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        h1 { font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-bottom: 1rem; }
         h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-top: 3rem; margin-bottom: 1.5rem; display: flex; align-items: center; }
         h2::before { content: ""; display: inline-block; width: 8px; height: 1.8rem; background: #000; margin-right: 12px; }
-        h3 { font-weight: bold; margin-top: 2rem; margin-bottom: 1rem; border-left: 5px solid #eee; padding-left: 15px; }
         
-        table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; font-size: 0.9rem; }
-        th, td { border: 1px solid #a2a9b1; padding: 12px; text-align: left; }
-        th { background-color: #eaecf0; font-weight: bold; }
+        /* テーブル設定 */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; font-size: 0.9rem; table-layout: fixed; }
+        th, td { border: 1px solid #a2a9b1; padding: 12px; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        th { background-color: #eaecf0; font-weight: bold; cursor: pointer; position: relative; transition: background 0.2s; }
+        th:hover { background-color: #d1d4d9; }
+        th::after { content: '↕'; position: absolute; right: 5px; opacity: 0.3; }
         tr:nth-child(even) { background-color: #f8f9fa; }
-
-        .rank-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-weight: bold; font-family: 'Rajdhani', sans-serif; }
-        .rank-1 { background: #ffd700; color: #000; }
-        .commentary { font-size: 0.85rem; color: #555; line-height: 1.6; background: #f9f9f9; padding: 15px; border-radius: 4px; margin-top: 5px; }
+        
         .label-name { font-family: 'Rajdhani', sans-serif; font-weight: 700; color: #000; }
+        .rank-num { font-family: 'Rajdhani', sans-serif; font-weight: 700; }
+        .eliminated { color: #ccc; font-style: italic; }
     </style>
 </head>
 <body>
@@ -40,220 +41,123 @@
     </div>
 
     <main class="wiki-container">
-        <h1>Internal Records</h1>
-        <p class="text-xs text-gray-400 italic mb-8 uppercase tracking-widest">Teyvat Entertainment / CEO Eyes Only</p>
+        <h1>内部機密アーカイブ</h1>
+        <p class="text-xs text-gray-400 italic mb-8 uppercase tracking-widest">Teyvat Entertainment / CEO専用記録</p>
 
-        <!-- Section 1: Organization -->
+        <!-- セクション1: 組織図 -->
         <section>
-            <h2>TVT HOLDINGS Organization</h2>
-            <p class="mb-6">テイワット大陸の各国を拠点とする独立レーベルを統合したマルチレーベル体制。</p>
+            <h2>TVTホールディングス 組織図</h2>
+            <p class="mb-6 text-sm text-gray-600">各国の文化を代表する独立レーベルを統合したマルチレーベル体制の記録。</p>
             
             <table>
                 <thead>
                     <tr>
-                        <th>Region</th>
-                        <th>Label Name</th>
-                        <th>CEO</th>
-                        <th>Concept</th>
+                        <th style="width: 15%;">拠点</th>
+                        <th style="width: 30%;">レーベル名</th>
+                        <th style="width: 20%;">最高責任者</th>
+                        <th style="width: 35%;">コンセプト</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Mondstadt</td>
-                        <td class="label-name">FAVONIUS MUSIC</td>
-                        <td>Jean</td>
-                        <td>Freedom / Pop / Tradition</td>
-                    </tr>
-                    <tr>
-                        <td>Liyue</td>
-                        <td class="label-name">QIXING STUDIO</td>
-                        <td>Ningguang</td>
-                        <td>Luxury / Production / High-end</td>
-                    </tr>
-                    <tr>
-                        <td>Inazuma</td>
-                        <td class="label-name">NARUKAMI RECORDS</td>
-                        <td>Raiden Shogun</td>
-                        <td>Sharpness / Performance / Eternity</td>
-                    </tr>
-                    <tr>
-                        <td>Sumeru</td>
-                        <td class="label-name">AKASHA LAB</td>
-                        <td>Nahida</td>
-                        <td>Cyber / Intellectual / Experimental</td>
-                    </tr>
-                    <tr>
-                        <td>Fontaine</td>
-                        <td class="label-name">EPICLESES PROMOTION</td>
-                        <td>Furina</td>
-                        <td>Dramatic / Entertainment / Epics</td>
-                    </tr>
+                    <tr><td>モンド</td><td class="label-name">FAVONIUS MUSIC</td><td>ジン</td><td>自由 / ポップ / 伝統</td></tr>
+                    <tr><td>璃月</td><td class="label-name">QIXING STUDIO</td><td>凝光</td><td>豪華 / 制作 / ハイエンド</td></tr>
+                    <tr><td>稲妻</td><td class="label-name">NARUKAMI RECORDS</td><td>雷電将軍</td><td>鋭利 / 職人芸 / 永遠</td></tr>
+                    <tr><td>スメール</td><td class="label-name">AKASHA LAB</td><td>ナヒーダ</td><td>サイバー / 知的 / 実験的</td></tr>
+                    <tr><td>フォンテーヌ</td><td class="label-name">EPICLESES PROMOTION</td><td>フリーナ</td><td>劇的 / エンタメ / 叙事詩</td></tr>
                 </tbody>
             </table>
         </section>
 
-        <!-- Section 2: HEAVENTEEN -->
+        <!-- セクション2: HEAVENTEEN -->
         <section>
-            <h2>Project: HEAVENTEEN Archive</h2>
-            <p class="mb-4">GEN1US結成の足掛かりとなった伝説のサバイバル番組。13名の練習生が参加し、最終的に9名がデビューを勝ち取った。番組内のユニット対決「DCKZ vs BADIT」は今も語り草となっている。</p>
+            <h2>プロジェクト: HEAVENTEEN 全記録</h2>
+            <p class="mb-6 text-sm text-gray-600">GEN1US結成に至るサバイバル番組の全過程。ヘッダーをクリックすると並べ替えが可能です。</p>
 
-            <h3>Final Ranking & Historical Results</h3>
-            <table>
+            <table id="heaventeenTable">
                 <thead>
                     <tr>
-                        <th>Final</th>
-                        <th>Name</th>
-                        <th>0th (Test)</th>
-                        <th>1st (SVT)</th>
-                        <th>2nd (JO1/INI)</th>
-                        <th>Result</th>
+                        <th onclick="sortTable(0)">名前</th>
+                        <th onclick="sortTable(1)">0次 (実力)</th>
+                        <th onclick="sortTable(2)">1次 (SVT)</th>
+                        <th onclick="sortTable(3)">2次 (JO1)</th>
+                        <th onclick="sortTable(4)">最終 (ONEUS)</th>
+                        <th onclick="sortTable(5)">結果</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><span class="rank-badge rank-1">1st</span></td>
-                        <td><strong>Tartaglia</strong></td>
-                        <td>9th</td>
-                        <td>4th</td>
-                        <td>3rd</td>
-                        <td>GEN1US (DCKZ)</td>
-                    </tr>
-                    <tr>
-                        <td><span class="rank-badge">2nd</span></td>
-                        <td><strong>Dainsleif</strong></td>
-                        <td>1st</td>
-                        <td>2nd</td>
-                        <td>4th</td>
-                        <td>GEN1US (BADIT)</td>
-                    </tr>
-                    <tr>
-                        <td><span class="rank-badge">3rd</span></td>
-                        <td><strong>Diluc</strong></td>
-                        <td>2nd</td>
-                        <td>1st</td>
-                        <td>1st</td>
-                        <td>GEN1US (DCKZ)</td>
-                    </tr>
-                    <tr>
-                        <td><span class="rank-badge">4th</span></td>
-                        <td><strong>Ayato</strong></td>
-                        <td>7th</td>
-                        <td>6th</td>
-                        <td>2nd</td>
-                        <td>GEN1US (BADIT)</td>
-                    </tr>
-                    <tr>
-                        <td><span class="rank-badge">5th</span></td>
-                        <td><strong>Zhongli</strong></td>
-                        <td>12th</td>
-                        <td>10th</td>
-                        <td>6th</td>
-                        <td>GEN1US (DCKZ)</td>
-                    </tr>
-                    <tr>
-                        <td><span class="rank-badge">6th</span></td>
-                        <td><strong>Baizhu</strong></td>
-                        <td>4th</td>
-                        <td>7th</td>
-                        <td>8th</td>
-                        <td>GEN1US (BADIT)</td>
-                    </tr>
-                    <tr>
-                        <td><span class="rank-badge">7th</span></td>
-                        <td><strong>Kaeya</strong></td>
-                        <td>8th</td>
-                        <td>5th</td>
-                        <td>5th</td>
-                        <td>GEN1US (DCKZ)</td>
-                    </tr>
-                    <tr>
-                        <td><span class="rank-badge">8th</span></td>
-                        <td><strong>Thoma</strong></td>
-                        <td>11th</td>
-                        <td>3rd</td>
-                        <td>9th</td>
-                        <td>GEN1US (BADIT)</td>
-                    </tr>
-                    <tr>
-                        <td><span class="rank-badge">9th</span></td>
-                        <td><strong>Itto</strong></td>
-                        <td>13th</td>
-                        <td>11th</td>
-                        <td>7th</td>
-                        <td>GEN1US (BADIT)</td>
-                    </tr>
-                    <tr style="color: #999;">
-                        <td>-</td>
-                        <td>Alhaitham</td>
-                        <td>3rd</td>
-                        <td>8th</td>
-                        <td>Eliminated</td>
-                        <td>4ggravate</td>
-                    </tr>
-                    <tr style="color: #999;">
-                        <td>-</td>
-                        <td>Kaveh</td>
-                        <td>10th</td>
-                        <td>9th</td>
-                        <td>Eliminated</td>
-                        <td>4ggravate</td>
-                    </tr>
-                    <tr style="color: #999;">
-                        <td>-</td>
-                        <td>Neuvillette</td>
-                        <td>5th</td>
-                        <td>Eliminated</td>
-                        <td>-</td>
-                        <td>Fontaine Div.</td>
-                    </tr>
-                    <tr style="color: #999;">
-                        <td>-</td>
-                        <td>Wriothesley</td>
-                        <td>6th</td>
-                        <td>Eliminated</td>
-                        <td>-</td>
-                        <td>Fontaine Div.</td>
-                    </tr>
+                    <tr><td>Tartaglia</td><td class="rank-num" data-val="9">9位</td><td class="rank-num" data-val="4">4位</td><td class="rank-num" data-val="3">3位</td><td class="rank-num" data-val="1">1位</td><td>GEN1US (DCKZ)</td></tr>
+                    <tr><td>Dainsleif</td><td class="rank-num" data-val="1">1位</td><td class="rank-num" data-val="2">2位</td><td class="rank-num" data-val="4">4位</td><td class="rank-num" data-val="2">2位</td><td>GEN1US (BADIT)</td></tr>
+                    <tr><td>Diluc</td><td class="rank-num" data-val="2">2位</td><td class="rank-num" data-val="1">1位</td><td class="rank-num" data-val="1">1位</td><td class="rank-num" data-val="3">3位</td><td>GEN1US (DCKZ)</td></tr>
+                    <tr><td>Ayato</td><td class="rank-num" data-val="7">7位</td><td class="rank-num" data-val="6">6位</td><td class="rank-num" data-val="2">2位</td><td class="rank-num" data-val="4">4位</td><td>GEN1US (BADIT)</td></tr>
+                    <tr><td>Zhongli</td><td class="rank-num" data-val="12">12位</td><td class="rank-num" data-val="10">10位</td><td class="rank-num" data-val="6">6位</td><td class="rank-num" data-val="5">5位</td><td>GEN1US (DCKZ)</td></tr>
+                    <tr><td>Baizhu</td><td class="rank-num" data-val="4">4位</td><td class="rank-num" data-val="7">7位</td><td class="rank-num" data-val="8">8位</td><td class="rank-num" data-val="6">6位</td><td>GEN1US (BADIT)</td></tr>
+                    <tr><td>Kaeya</td><td class="rank-num" data-val="8">8位</td><td class="rank-num" data-val="5">5位</td><td class="rank-num" data-val="5">5位</td><td class="rank-num" data-val="7">7位</td><td>GEN1US (DCKZ)</td></tr>
+                    <tr><td>Thoma</td><td class="rank-num" data-val="11">11位</td><td class="rank-num" data-val="3">3位</td><td class="rank-num" data-val="9">9位</td><td class="rank-num" data-val="8">8位</td><td>GEN1US (BADIT)</td></tr>
+                    <tr><td>Itto</td><td class="rank-num" data-val="13">13位</td><td class="rank-num" data-val="11">11位</td><td class="rank-num" data-val="7">7位</td><td class="rank-num" data-val="9">9位</td><td>GEN1US (BADIT)</td></tr>
+                    <tr class="eliminated"><td>Alhaitham</td><td class="rank-num" data-val="3">3位</td><td class="rank-num" data-val="8">8位</td><td data-val="99">脱落</td><td data-val="99">-</td><td>4ggravate</td></tr>
+                    <tr class="eliminated"><td>Kaveh</td><td class="rank-num" data-val="10">10位</td><td class="rank-num" data-val="9">9位</td><td data-val="99">脱落</td><td data-val="99">-</td><td>4ggravate</td></tr>
+                    <tr class="eliminated"><td>Neuvillette</td><td class="rank-num" data-val="5">5位</td><td data-val="99">脱落</td><td data-val="99">-</td><td data-val="99">-</td><td>フォンテーヌ支部</td></tr>
+                    <tr class="eliminated"><td>Wriothesley</td><td class="rank-num" data-val="6">6位</td><td data-val="99">脱落</td><td data-val="99">-</td><td data-val="99">-</td><td>フォンテーヌ支部</td></tr>
                 </tbody>
             </table>
-
-            <h3>CCO Analysis: Performance Notes</h3>
-            <div class="space-y-4">
-                <div class="commentary">
-                    <strong>Tartaglia (1st)</strong>: 最終ステージでの逆転劇は「カイ(EXO)」を彷彿とさせる狂気的なカリスマ性によるもの。DCKZの敗北を個人の実力で覆した。
-                </div>
-                <div class="commentary">
-                    <strong>Dainsleif (2nd)</strong>: 最初から最後までトップ5を維持した「不変の軸」。勝利チームBADITを技術面で完璧に統率した功績が2位という結果に繋がった。
-                </div>
-                <div class="commentary">
-                    <strong>Diluc (3rd)</strong>: 番組中盤までの圧倒的王者。DCKZの調和のために自身の個を抑えた結果3位となったが、その歌唱力は今もなおグループ最高峰。
-                </div>
-                <div class="commentary">
-                    <strong>Neuvillette & Wriothesley (1st Round Eliminated)</strong>: 「完成されすぎた大人の色気」が13人の少年コンセプトに合わず脱落。フォンテーヌ支部での独自活動へと繋がる伝説の悲劇。
-                </div>
-                <div class="commentary">
-                    <strong>Alhaitham & Kaveh (2nd Round Eliminated)</strong>: 知性と芸術性の追求がアイドル番組の枠を超えてしまい脱落。直後にナヒーダによる電撃的な「4ggravate引き抜き」が発生。
-                </div>
-            </div>
         </section>
 
         <footer class="mt-32 pt-8 border-t text-center">
             <div class="f-logo">TVT</div>
-            <p>&copy; Teyvat Entertainment Confidential Record. Unauthorized access is strictly prohibited.</p>
+            <p class="text-[10px] text-gray-400">&copy; Teyvat Entertainment Confidential Record.</p>
         </footer>
     </main>
 
     <script>
+        // 並べ替えロジック
+        function sortTable(n) {
+            const table = document.getElementById("heaventeenTable");
+            let rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+            switching = true;
+            dir = "asc";
+            while (switching) {
+                switching = false;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    shouldSwitch = false;
+                    x = rows[i].getElementsByTagName("TD")[n];
+                    y = rows[i + 1].getElementsByTagName("TD")[n];
+                    
+                    let xVal = x.getAttribute("data-val") || x.innerText.toLowerCase();
+                    let yVal = y.getAttribute("data-val") || y.innerText.toLowerCase();
+                    
+                    // 数値として比較可能な場合は数値化
+                    if (!isNaN(parseFloat(xVal))) xVal = parseFloat(xVal);
+                    if (!isNaN(parseFloat(yVal))) yVal = parseFloat(yVal);
+
+                    if (dir == "asc") {
+                        if (xVal > yVal) { shouldSwitch = true; break; }
+                    } else if (dir == "desc") {
+                        if (xVal < yVal) { shouldSwitch = true; break; }
+                    }
+                }
+                if (shouldSwitch) {
+                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                    switching = true;
+                    switchcount ++;
+                } else {
+                    if (switchcount == 0 && dir == "asc") {
+                        dir = "desc";
+                        switching = true;
+                    }
+                }
+            }
+        }
+
+        // メニュー制御
         const menuBtn = document.getElementById('menu-btn');
         const navMenu = document.getElementById('nav-menu');
-        const menuLinks = document.querySelectorAll('.menu-close');
-
         menuBtn.onclick = () => {
             menuBtn.classList.toggle('active');
             navMenu.classList.toggle('open');
             document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : 'auto';
         };
-        menuLinks.forEach(link => {
+        document.querySelectorAll('.menu-close').forEach(link => {
             link.onclick = () => {
                 menuBtn.classList.remove('active');
                 navMenu.classList.remove('open');
