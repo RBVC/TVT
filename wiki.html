@@ -11,12 +11,17 @@
         .wiki-container { max-width: 1100px; margin: 100px auto; background: white; padding: 40px; border: 1px solid #a2a9b1; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
         
         h1 { font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-bottom: 1rem; }
-        h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-top: 4rem; margin-bottom: 1.5rem; display: flex; align-items: center; }
+        h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-top: 3rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
         h2::before { content: ""; display: inline-block; width: 8px; height: 1.8rem; background: #000; margin-right: 12px; }
-        h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.6rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1rem; color: #000; }
+        h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; background: #f8f9fa; padding: 10px; border: 1px solid #eee; }
+
+        /* 折りたたみボタンのデザイン */
+        .toggle-btn { font-size: 0.8rem; font-family: 'Noto Sans JP', sans-serif; color: #0645ad; font-weight: normal; }
+        .toggle-btn::before { content: "["; }
+        .toggle-btn::after { content: "]"; }
 
         /* 目次 */
-        .toc-box { background: #f8f9fa; border: 1px solid #a2a9b1; padding: 20px; display: inline-block; min-width: 350px; margin-bottom: 2rem; font-size: 0.9rem; }
+        .toc-box { background: #f8f9fa; border: 1px solid #a2a9b1; padding: 20px; display: inline-block; min-width: 300px; margin-bottom: 2rem; font-size: 0.9rem; }
         .toc-title { font-weight: bold; text-align: center; margin-bottom: 10px; }
         .toc-box ul { list-style: none; padding: 0; }
         .toc-box li { margin: 5px 0; }
@@ -24,30 +29,38 @@
         .toc-box a:hover { text-decoration: underline; }
 
         /* テーブル設定 */
-        .table-wrapper { overflow-x: auto; margin-bottom: 2rem; }
+        .collapsible-content { display: block; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .collapsible-content.collapsed { display: none; }
+
+        .table-wrapper { overflow-x: auto; margin-bottom: 2rem; border: 1px solid #a2a9b1; }
         table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
         th, td { border: 1px solid #a2a9b1; padding: 10px; text-align: left; vertical-align: middle; }
         th { background-color: #eaecf0; font-weight: bold; }
         
-        /* 🆕 マトリックス表：列幅を完全に均等化 (100% / 6列 = 16.66%) */
-        .matrix-table { table-layout: fixed; width: 100%; }
+        /* マトリックス表：PC均等、スマホスクロール */
+        .matrix-table { table-layout: fixed; min-width: 900px; }
         .matrix-table th, .matrix-table td { width: 16.66%; text-align: center; padding: 12px 5px; }
-        .matrix-table th { font-family: 'Rajdhani', sans-serif; }
-        .matrix-label { font-size: 0.8rem; font-weight: 800; white-space: nowrap; }
-        .matrix-ceo { font-size: 0.75rem; color: #666; font-weight: 400; }
-        .group-col { font-family: 'Rajdhani', sans-serif; font-weight: 800; background: #f8f9fa; text-align: left !important; }
+        .matrix-label { font-size: 0.8rem; font-weight: 800; font-family: 'Rajdhani', sans-serif; }
+        .matrix-ceo { font-size: 0.7rem; color: #666; font-weight: 400; }
+        .group-col { font-family: 'Rajdhani', sans-serif; font-weight: 800; background: #f8f9fa; text-align: left !important; width: 130px !important; }
 
-        /* グループ詳細表：幅統一 */
-        .detail-table { table-layout: fixed; width: 100%; }
-        .detail-table th:nth-child(1), .detail-table td:nth-child(1) { width: 80px; text-align: center; }
-        .detail-table th:nth-child(2), .detail-table td:nth-child(2) { width: 180px; }
-        .detail-table th:nth-child(3), .detail-table td:nth-child(3) { width: 120px; }
-        .detail-table th:nth-child(4), .detail-table td:nth-child(4) { width: 250px; }
-        .detail-table th:nth-child(5), .detail-table td:nth-child(5) { width: 120px; }
+        /* 詳細表：幅統一 */
+        .detail-table { table-layout: fixed; min-width: 800px; }
+        .detail-table th:nth-child(1), .detail-table td:nth-child(1) { width: 70px; text-align: center; }
+        .detail-table th:nth-child(2), .detail-table td:nth-child(2) { width: 150px; }
+        .detail-table th:nth-child(3), .detail-table td:nth-child(3) { width: 110px; }
+        .detail-table th:nth-child(4), .detail-table td:nth-child(4) { width: 220px; }
+        .detail-table th:nth-child(5), .detail-table td:nth-child(5) { width: 100px; }
 
-        .member-img { width: 60px; height: 60px; object-fit: cover; background: #eee; border-radius: 2px; }
-        .bold { font-weight: 900; }
+        .member-img { width: 50px; height: 50px; object-fit: cover; background: #eee; border-radius: 2px; margin: 0 auto; }
         .rank-num { font-family: 'Rajdhani', sans-serif; font-weight: 700; }
+
+        @media (max-width: 768px) {
+            .wiki-container { padding: 20px; margin: 70px 10px; }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.4rem; }
+            .toc-box { width: 100%; min-width: 0; }
+        }
     </style>
 </head>
 <body>
@@ -68,109 +81,70 @@
         <h1>Teyvat Entertainment 内部機密資料</h1>
         <p class="text-[10px] text-gray-400 italic mb-8 uppercase tracking-[0.3em]">Confidential Archive / CEO Eyes Only</p>
 
-        <!-- 目次 -->
         <div class="toc-box">
             <div class="toc-title">目次</div>
             <ul>
-                <li>1. <a href="#affiliates">所属アーティスト・マトリックス</a></li>
-                <li>2. <a href="#details">グループ詳細（メンバー一覧）</a>
-                    <ul class="ml-4">
-                        <li>2.1 <a href="#details-gen1us">GEN1US</a></li>
-                        <li>2.2 <a href="#details-4ggravate">4ggravate</a></li>
-                        <li>2.3 <a href="#details-6reeze">6reeze</a></li>
-                        <li>2.4 <a href="#details-universe">TVT U</a></li>
-                        <li>2.5 <a href="#details-hoth">House of the Hearth</a></li>
-                    </ul>
-                </li>
-                <li>3. <a href="#projects">プロジェクト一覧</a></li>
+                <li>1. <a href="#sec-affiliates">所属アーティスト・マトリックス</a></li>
+                <li>2. <a href="#sec-details">グループ詳細設定</a></li>
+                <li>3. <a href="#sec-projects">プロジェクト一覧</a></li>
             </ul>
         </div>
 
         <!-- Section 1: マトリックス -->
-        <section id="affiliates">
-            <h2>所属アーティスト・マトリックス</h2>
-            <div class="table-wrapper">
-                <table class="matrix-table">
-                    <thead>
-                        <tr>
-                            <th rowspan="2" class="group-col">グループ名</th>
-                            <th class="matrix-label">FAVONIUS MUSIC</th>
-                            <th class="matrix-label">QIXING STUDIO</th>
-                            <th class="matrix-label">NARUKAMI RECORDS</th>
-                            <th class="matrix-label">AKASHA LAB</th>
-                            <th class="matrix-label">EPICLESES PROMOTION</th>
-                        </tr>
-                        <tr>
-                            <th class="matrix-ceo">ジン</th>
-                            <th class="matrix-ceo">凝光</th>
-                            <th class="matrix-ceo">雷電将軍</th>
-                            <th class="matrix-ceo">ナヒーダ</th>
-                            <th class="matrix-ceo">フリーナ</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="group-col">GEN1US</td>
-                            <td style="font-size: 0.75rem;">Diluc, Kaeya, Dainsleif</td>
-                            <td style="font-size: 0.75rem;">Zhongli, Baizhu, Tartaglia</td>
-                            <td style="font-size: 0.75rem;">Ayato, Thoma, Itto</td>
-                            <td class="text-gray-300">-</td>
-                            <td class="text-gray-300">-</td>
-                        </tr>
-                        <tr>
-                            <td class="group-col">4ggravate</td>
-                            <td class="text-gray-300">-</td>
-                            <td class="text-gray-300">-</td>
-                            <td class="text-gray-300">-</td>
-                            <td style="font-size: 0.75rem;">Alhaitham, Cyno, Kaveh, Tighnari</td>
-                            <td class="text-gray-300">-</td>
-                        </tr>
-                        <tr>
-                            <td class="group-col">6reeze</td>
-                            <td style="font-size: 0.75rem;">Venti</td>
-                            <td style="font-size: 0.75rem;">Xiao</td>
-                            <td style="font-size: 0.75rem;">Kazuha, Heizou</td>
-                            <td style="font-size: 0.75rem;">Wanderer, Aether</td>
-                            <td class="text-gray-300">-</td>
-                        </tr>
-                        <tr>
-                            <td class="group-col">TVT U</td>
-                            <td style="font-size: 0.75rem;">Bennett, Razor, Albedo</td>
-                            <td style="font-size: 0.75rem;">Xingqiu, Chongyun, Gaming</td>
-                            <td style="font-size: 0.75rem;">Gorou</td>
-                            <td class="text-gray-300">-</td>
-                            <td class="text-gray-300">-</td>
-                        </tr>
-                        <tr>
-                            <td class="group-col">House of the Hearth</td>
-                            <td class="text-gray-300">-</td>
-                            <td class="text-gray-300">-</td>
-                            <td class="text-gray-300">-</td>
-                            <td class="text-gray-300">-</td>
-                            <td style="font-size: 0.75rem;">Neuvillette, Wriothesley, Lyney, Freminet</td>
-                        </tr>
-                    </tbody>
-                </table>
+        <section id="sec-affiliates">
+            <h2 onclick="toggleSection('matrix-content', 'matrix-btn')">
+                所属アーティスト・マトリックス
+                <span class="toggle-btn" id="matrix-btn">非表示</span>
+            </h2>
+            <div class="collapsible-content" id="matrix-content">
+                <div class="table-wrapper">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th rowspan="2" class="group-col">グループ名</th>
+                                <th class="matrix-label">FAVONIUS MUSIC</th>
+                                <th class="matrix-label">QIXING STUDIO</th>
+                                <th class="matrix-label">NARUKAMI RECORDS</th>
+                                <th class="matrix-label">AKASHA LAB</th>
+                                <th class="matrix-label">EPICLESES PROMOTION</th>
+                            </tr>
+                            <tr>
+                                <th class="matrix-ceo">ジン</th>
+                                <th class="matrix-ceo">凝光</th>
+                                <th class="matrix-ceo">雷電将軍</th>
+                                <th class="matrix-ceo">ナヒーダ</th>
+                                <th class="matrix-ceo">フリーナ</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="group-col">GEN1US</td><td>Diluc, Kaeya, Dainsleif</td><td>Zhongli, Baizhu, Tartaglia</td><td>Ayato, Thoma, Itto</td><td class="text-gray-300">-</td><td class="text-gray-300">-</td></tr>
+                            <tr><td class="group-col">4ggravate</td><td class="text-gray-300">-</td><td class="text-gray-300">-</td><td class="text-gray-300">-</td><td>Alhaitham, Cyno, Kaveh, Tighnari</td><td class="text-gray-300">-</td></tr>
+                            <tr><td class="group-col">6reeze</td><td>Venti</td><td>Xiao</td><td>Kazuha, Heizou</td><td>Wanderer, Aether</td><td class="text-gray-300">-</td></tr>
+                            <tr><td class="group-col">TVT U</td><td>Bennett, Razor, Albedo</td><td>Xingqiu, Chongyun, Gaming</td><td>Gorou</td><td class="text-gray-300">-</td><td class="text-gray-300">-</td></tr>
+                            <tr><td class="group-col">H.O.T.H</td><td class="text-gray-300">-</td><td class="text-gray-300">-</td><td class="text-gray-300">-</td><td class="text-gray-300">-</td><td>Neuvillette, Wriothesley, Lyney, Freminet</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
         <!-- Section 2: グループ詳細 -->
-        <section id="details">
-            <h2>グループ詳細設定</h2>
-
-            <!-- GEN1US -->
-            <div id="details-gen1us" class="mb-10">
-                <h3 class="border-b-2 border-black pb-2">GEN1US</h3>
-                <div class="table-wrapper">
+        <section id="sec-details">
+            <h2 onclick="toggleSection('details-content', 'details-btn')">
+                グループ詳細設定
+                <span class="toggle-btn" id="details-btn">非表示</span>
+            </h2>
+            <div class="collapsible-content" id="details-content">
+                
+                <h3 onclick="toggleSection('details-gen1us', 'btn-gen1us')">GEN1US <span class="toggle-btn font-normal text-xs" id="btn-gen1us">表示</span></h3>
+                <div class="table-wrapper collapsible-content collapsed" id="details-gen1us">
                     <table class="detail-table">
-                        <thead>
-                            <tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>所属レーベル</th></tr>
-                        </thead>
+                        <thead><tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>レーベル</th></tr></thead>
                         <tbody>
                             <tr><td><img src="images/gen1us/masquerade-diluc.jpg" class="member-img"></td><td>Diluc</td><td>Mondstadt</td><td>Main Vocal / Sub Dancer</td><td>FAVONIUS</td></tr>
                             <tr><td><img src="images/gen1us/masquerade-zhongli.jpg" class="member-img"></td><td>Zhongli</td><td>Liyue</td><td>Lead Rapper / Sub Vocal</td><td>QIXING</td></tr>
                             <tr><td><img src="images/gen1us/masquerade-itto.jpg" class="member-img"></td><td>Itto</td><td>Inazuma</td><td>Main Rapper</td><td>NARUKAMI</td></tr>
-                            <tr><td><img src="images/gen1us/masquerade-baizhu.jpg" class="member-img"></td><td class="bold">Baizhu (Leader)</td><td>Liyue</td><td>Main Vocal</td><td>QIXING</td></tr>
+                            <tr><td><img src="images/gen1us/masquerade-baizhu.jpg" class="member-img"></td><td class="font-bold">Baizhu (Leader)</td><td>Liyue</td><td>Main Vocal</td><td>QIXING</td></tr>
                             <tr><td><img src="images/gen1us/masquerade-tartaglia.jpg" class="member-img"></td><td>Tartaglia</td><td>Snezhnaya</td><td>Main Dancer / Lead Rapper</td><td>QIXING</td></tr>
                             <tr><td><img src="images/gen1us/masquerade-ayato.jpg" class="member-img"></td><td>Ayato</td><td>Inazuma</td><td>Visual / Lead Vocal / Sub Dancer</td><td>NARUKAMI</td></tr>
                             <tr><td><img src="images/gen1us/masquerade-kaeya.jpg" class="member-img"></td><td>Kaeya</td><td>Mondstadt</td><td>Main Vocal</td><td>FAVONIUS</td></tr>
@@ -179,58 +153,43 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
 
-            <!-- 4ggravate -->
-            <div id="details-4ggravate" class="mb-10">
-                <h3 class="border-b-2 border-black pb-2">4ggravate</h3>
-                <div class="table-wrapper">
+                <h3 onclick="toggleSection('details-4ggravate', 'btn-4ggravate')">4ggravate <span class="toggle-btn font-normal text-xs" id="btn-4ggravate">表示</span></h3>
+                <div class="table-wrapper collapsible-content collapsed" id="details-4ggravate">
                     <table class="detail-table">
-                        <thead>
-                            <tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>所属レーベル</th></tr>
-                        </thead>
+                        <thead><tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>レーベル</th></tr></thead>
                         <tbody>
                             <tr><td><img src="images/4ggravate/cyber-alhaitham.jpg" class="member-img"></td><td>Alhaitham</td><td>Sumeru</td><td>Main Dancer / Lead Rapper</td><td>AKASHA</td></tr>
                             <tr><td><img src="images/4ggravate/cyber-cyno.jpg" class="member-img"></td><td>Cyno</td><td>Sumeru</td><td>Main Rapper / Sub Vocal</td><td>AKASHA</td></tr>
                             <tr><td><img src="images/4ggravate/cyber-kaveh.jpg" class="member-img"></td><td>Kaveh</td><td>Sumeru</td><td>Lead Dancer / Lead Vocal</td><td>AKASHA</td></tr>
-                            <tr><td><img src="images/4ggravate/cyber-tighnari.jpg" class="member-img"></td><td class="bold">Tighnari (Leader)</td><td>Sumeru</td><td>Main Vocal / Lead Dancer</td><td>AKASHA</td></tr>
+                            <tr><td><img src="images/4ggravate/cyber-tighnari.jpg" class="member-img"></td><td class="font-bold">Tighnari (Leader)</td><td>Sumeru</td><td>Main Vocal / Lead Dancer</td><td>AKASHA</td></tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
 
-            <!-- 6reeze -->
-            <div id="details-6reeze" class="mb-10">
-                <h3 class="border-b-2 border-black pb-2">6reeze</h3>
-                <div class="table-wrapper">
+                <h3 onclick="toggleSection('details-6reeze', 'btn-6reeze')">6reeze <span class="toggle-btn font-normal text-xs" id="btn-6reeze">表示</span></h3>
+                <div class="table-wrapper collapsible-content collapsed" id="details-6reeze">
                     <table class="detail-table">
-                        <thead>
-                            <tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>所属レーベル</th></tr>
-                        </thead>
+                        <thead><tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>レーベル</th></tr></thead>
                         <tbody>
                             <tr><td><img src="images/6reeze/heart-wanderer.jpg" class="member-img"></td><td>Wanderer</td><td>Inazuma</td><td>Main Dancer / Lead Vocal / Sub Rapper</td><td>AKASHA</td></tr>
                             <tr><td><img src="images/6reeze/heart-xiao.jpg" class="member-img"></td><td>Xiao</td><td>Liyue</td><td>Main Rapper / Sub Vocal</td><td>QIXING</td></tr>
                             <tr><td><img src="images/6reeze/heart-venti.jpg" class="member-img"></td><td>Venti</td><td>Mondstadt</td><td>Main Vocal / Center</td><td>FAVONIUS</td></tr>
                             <tr><td><img src="images/6reeze/heart-kazuha.jpg" class="member-img"></td><td>Kazuha</td><td>Inazuma</td><td>Main Vocal / Lead Dancer</td><td>NARUKAMI</td></tr>
-                            <tr><td><img src="images/6reeze/heart-aether.jpg" class="member-img"></td><td class="bold">Aether (Leader)</td><td>???</td><td>Lead Vocal</td><td>AKASHA</td></tr>
+                            <tr><td><img src="images/6reeze/heart-aether.jpg" class="member-img"></td><td class="font-bold">Aether (Leader)</td><td>???</td><td>Lead Vocal</td><td>AKASHA</td></tr>
                             <tr><td><img src="images/6reeze/heart-heizou.jpg" class="member-img"></td><td>Heizou</td><td>Inazuma</td><td>Lead Rapper / Lead Dancer</td><td>NARUKAMI</td></tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
 
-            <!-- TVT U -->
-            <div id="details-universe" class="mb-10">
-                <h3 class="border-b-2 border-black pb-2">TVT U</h3>
-                <div class="table-wrapper">
+                <h3 onclick="toggleSection('details-tvtu', 'btn-tvtu')">TVT U <span class="toggle-btn font-normal text-xs" id="btn-tvtu">表示</span></h3>
+                <div class="table-wrapper collapsible-content collapsed" id="details-tvtu">
                     <table class="detail-table">
-                        <thead>
-                            <tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>所属レーベル</th></tr>
-                        </thead>
+                        <thead><tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>レーベル</th></tr></thead>
                         <tbody>
                             <tr><td><img src="images/universe/universe-gaming.jpg" class="member-img"></td><td>Gaming</td><td>Liyue</td><td>Main Vocal</td><td>QIXING</td></tr>
                             <tr><td><img src="images/universe/universe-chongyun.jpg" class="member-img"></td><td>Chongyun</td><td>Liyue</td><td>Lead Rapper</td><td>QIXING</td></tr>
-                            <tr><td><img src="images/universe/universe-xingqiu.jpg" class="member-img"></td><td class="bold">Xingqiu (Leader)</td><td>Liyue</td><td>Main Vocal</td><td>QIXING</td></tr>
+                            <tr><td><img src="images/universe/universe-xingqiu.jpg" class="member-img"></td><td class="font-bold">Xingqiu (Leader)</td><td>Liyue</td><td>Main Vocal</td><td>QIXING</td></tr>
                             <tr><td><img src="images/universe/universe-albedo.jpg" class="member-img"></td><td>Albedo</td><td>Mondstadt</td><td>Sub Vocal</td><td>FAVONIUS</td></tr>
                             <tr><td><img src="images/universe/universe-gorou.jpg" class="member-img"></td><td>Gorou</td><td>Inazuma</td><td>Lead Dancer</td><td>NARUKAMI</td></tr>
                             <tr><td><img src="images/universe/universe-bennett.jpg" class="member-img"></td><td>Bennett</td><td>Mondstadt</td><td>Main Dancer</td><td>FAVONIUS</td></tr>
@@ -238,18 +197,13 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
 
-            <!-- House of the Hearth -->
-            <div id="details-hoth" class="mb-10">
-                <h3 class="border-b-2 border-black pb-2">House of the Hearth</h3>
-                <div class="table-wrapper">
+                <h3 onclick="toggleSection('details-hoth', 'btn-hoth')">House of the Hearth <span class="toggle-btn font-normal text-xs" id="btn-hoth">表示</span></h3>
+                <div class="table-wrapper collapsible-content collapsed" id="details-hoth">
                     <table class="detail-table">
-                        <thead>
-                            <tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>所属レーベル</th></tr>
-                        </thead>
+                        <thead><tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>レーベル</th></tr></thead>
                         <tbody>
-                            <tr><td>-</td><td class="bold">Neuvillette (Leader)</td><td>Fontaine</td><td>Main Vocal</td><td>EPICLESES</td></tr>
+                            <tr><td>-</td><td class="font-bold">Neuvillette (Leader)</td><td>Fontaine</td><td>Main Vocal</td><td>EPICLESES</td></tr>
                             <tr><td>-</td><td>Wriothesley</td><td>Fontaine</td><td>Main Rapper</td><td>EPICLESES</td></tr>
                             <tr><td>-</td><td>Lyney</td><td>Fontaine</td><td>Main Dancer</td><td>EPICLESES</td></tr>
                             <tr><td>-</td><td>Freminet</td><td>Fontaine</td><td>Lead Vocal</td><td>EPICLESES</td></tr>
@@ -260,11 +214,14 @@
         </section>
 
         <!-- Section 3: プロジェクト -->
-        <section id="projects">
-            <h2>プロジェクト一覧</h2>
-            <div id="heaventeen">
-                <h3>HEAVENTEEN 全記録</h3>
-                <div class="table-wrapper">
+        <section id="sec-projects">
+            <h2 onclick="toggleSection('projects-content', 'projects-btn')">
+                プロジェクト一覧
+                <span class="toggle-btn" id="projects-btn">非表示</span>
+            </h2>
+            <div class="collapsible-content" id="projects-content">
+                <h3 onclick="toggleSection('heaventeen-table', 'btn-heaventeen')">HEAVENTEEN 全記録 <span class="toggle-btn font-normal text-xs" id="btn-heaventeen">表示</span></h3>
+                <div class="table-wrapper collapsible-content collapsed" id="heaventeen-table">
                     <table id="heaventeenTable" style="table-layout: auto; min-width: 100%;">
                         <thead>
                             <tr>
@@ -303,6 +260,20 @@
     </main>
 
     <script>
+        // 折りたたみ切り替え機能
+        function toggleSection(contentId, btnId) {
+            const content = document.getElementById(contentId);
+            const btn = document.getElementById(btnId);
+            if (content.classList.contains('collapsed')) {
+                content.classList.remove('collapsed');
+                btn.innerText = "非表示";
+            } else {
+                content.classList.add('collapsed');
+                btn.innerText = "表示";
+            }
+        }
+
+        // 並べ替えロジック
         function sortWiki(n, tableId) {
             const table = document.getElementById(tableId);
             if(!table) return;
@@ -325,6 +296,8 @@
                 else if (switchcount == 0 && dir == "asc") { dir = "desc"; switching = true; }
             }
         }
+
+        // メニュー制御
         const menuBtn = document.getElementById('menu-btn');
         const navMenu = document.getElementById('nav-menu');
         menuBtn.onclick = () => { menuBtn.classList.toggle('active'); navMenu.classList.toggle('open'); document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : 'auto'; };
