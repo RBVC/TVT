@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVT Wiki | 内部機密アーカイブ</title>
+    <title>TVT Wiki | 内部機密資料</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -13,7 +13,7 @@
         h1 { font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-bottom: 1rem; }
         h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-top: 3.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; }
         h2::before { content: ""; display: inline-block; width: 8px; height: 1.8rem; background: #000; margin-right: 12px; }
-        h3 { font-weight: 900; font-size: 1.4rem; margin-top: 2.5rem; margin-bottom: 1rem; border-left: 5px solid #333; padding-left: 15px; }
+        h3 { font-weight: 900; font-size: 1.3rem; margin-top: 2.5rem; margin-bottom: 1rem; border-left: 5px solid #333; padding-left: 15px; }
 
         /* 目次 (TOC) */
         .toc-box { background: #f8f9fa; border: 1px solid #a2a9b1; padding: 20px; display: inline-block; min-width: 350px; margin-bottom: 2rem; font-size: 0.9rem; }
@@ -23,19 +23,16 @@
         .toc-box a { color: #0645ad; text-decoration: none; }
         .toc-box a:hover { text-decoration: underline; }
 
-        /* Wikipedia風テーブル */
-        table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; font-size: 0.85rem; }
-        th, td { border: 1px solid #a2a9b1; padding: 10px; text-align: left; }
-        th { background-color: #eaecf0; font-weight: bold; cursor: pointer; }
-        tr:nth-child(even) { background-color: #f8f9fa; }
-        
-        .label-cell { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.9rem; }
-        .group-cell { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1rem; }
-        .rank-num { font-family: 'Rajdhani', sans-serif; font-weight: 700; }
+        /* マトリックス表設定 */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; font-size: 0.85rem; table-layout: fixed; }
+        th, td { border: 1px solid #a2a9b1; padding: 12px; text-align: left; vertical-align: top; }
+        th { background-color: #eaecf0; font-weight: bold; }
+        .label-head { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; text-align: center; }
+        .group-name-col { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1rem; background-color: #f8f9fa; width: 150px; }
+        .member-unit { line-height: 1.4; margin-bottom: 5px; display: block; }
         
         /* 詳細用ロアカード */
         .lore-card { background: #fdfdfd; border: 1px solid #eee; padding: 25px; margin-bottom: 2rem; border-radius: 4px; border-top: 4px solid #000; }
-        .member-list-mini { font-size: 0.8rem; color: #666; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -61,13 +58,14 @@
             <div class="toc-title">目次</div>
             <ul>
                 <li>1. <a href="#org">組織構造</a></li>
-                <li>2. <a href="#affiliates">所属アーティスト</a></li>
+                <li>2. <a href="#affiliates">所属アーティスト・マトリックス</a></li>
                 <li>3. <a href="#details">グループ詳細設定</a>
                     <ul class="ml-4">
                         <li>3.1 <a href="#lore-gen1us">GEN1US</a></li>
                         <li>3.2 <a href="#lore-4ggravate">4ggravate</a></li>
                         <li>3.3 <a href="#lore-6reeze">6reeze</a></li>
                         <li>3.4 <a href="#lore-universe">TVT U (universe)</a></li>
+                        <li>3.5 <a href="#lore-hoth">House of the Hearth</a></li>
                     </ul>
                 </li>
                 <li>4. <a href="#projects">プロジェクト一覧</a>
@@ -81,63 +79,81 @@
         <!-- Section 1: 組織構造 -->
         <section id="org">
             <h2>組織構造</h2>
-            <p class="mb-6 text-sm">Teyvat Entertainment は、各国の文化と神々の意志を反映した5つの独立レーベルによるマルチレーベル体制を敷いている。</p>
+            <p class="mb-6 text-sm">各国の文化を代表する5つの独立レーベルを統合したマルチレーベル体制。</p>
             <table>
                 <thead>
                     <tr>
-                        <th>拠点</th>
-                        <th>レーベル名</th>
-                        <th>最高責任者</th>
+                        <th style="width: 15%;">拠点</th>
+                        <th style="width: 30%;">レーベル名</th>
+                        <th style="width: 20%;">最高責任者</th>
                         <th>コンセプト</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>モンド</td><td class="label-cell">FAVONIUS MUSIC</td><td>ジン</td><td>自由 / ポップ / 伝統</td></tr>
-                    <tr><td>璃月</td><td class="label-cell">QIXING STUDIO</td><td>凝光</td><td>豪華 / 制作 / ハイエンド</td></tr>
-                    <tr><td>稲妻</td><td class="label-cell">NARUKAMI RECORDS</td><td>雷電将軍</td><td>鋭利 / 職人芸 / 永遠</td></tr>
-                    <tr><td>スメール</td><td class="label-cell">AKASHA LAB</td><td>ナヒーダ</td><td>サイバー / 知的 / 実験的</td></tr>
-                    <tr><td>フォンテーヌ</td><td class="label-cell">EPICLESES PROMOTION</td><td>フリーナ</td><td>劇的 / エンタメ / 叙事詩</td></tr>
+                    <tr><td>モンド</td><td class="logo-font">FAVONIUS MUSIC</td><td>ジン</td><td>自由 / ポップ / 伝統</td></tr>
+                    <tr><td>璃月</td><td class="logo-font">QIXING STUDIO</td><td>凝光</td><td>豪華 / 制作 / ハイエンド</td></tr>
+                    <tr><td>稲妻</td><td class="logo-font">NARUKAMI RECORDS</td><td>雷電将軍</td><td>鋭利 / 職人芸 / 永遠</td></tr>
+                    <tr><td>スメール</td><td class="logo-font">AKASHA LAB</td><td>ナヒーダ</td><td>サイバー / 知的 / 実験的</td></tr>
+                    <tr><td>フォンテーヌ</td><td class="logo-font">EPICLESES PROMOTION</td><td>フリーナ</td><td>劇的 / エンタメ / 叙事詩</td></tr>
                 </tbody>
             </table>
         </section>
 
-        <!-- Section 2: 所属アーティスト (HYBE Style) -->
+        <!-- Section 2: レーベル別所属メンバー表 -->
         <section id="affiliates">
-            <h2>所属アーティスト</h2>
-            <p class="mb-4 text-xs text-gray-500">※ <b>太字</b>はリーダー</p>
-            <table id="artistTable">
+            <h2>所属アーティスト・マトリックス</h2>
+            <p class="mb-4 text-xs text-gray-500">※ 各グループに所属するメンバーを、契約レーベル（Label）別に分類した相関図。</p>
+            <table>
                 <thead>
                     <tr>
-                        <th onclick="sortWiki(0)">所属レーベル</th>
-                        <th onclick="sortWiki(1)">グループ名</th>
-                        <th onclick="sortWiki(2)">メンバー</th>
-                        <th onclick="sortWiki(3)">期間</th>
+                        <th class="group-name-col">グループ名</th>
+                        <th class="label-head">FAVONIUS MUSIC</th>
+                        <th class="label-head">QIXING STUDIO</th>
+                        <th class="label-head">NARUKAMI RECORDS</th>
+                        <th class="label-head">AKASHA LAB</th>
+                        <th class="label-head">EPICLESES PROMOTION</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="label-cell">QIXING STUDIO</td>
-                        <td class="group-cell">GEN1US</td>
-                        <td>Diluc, Zhongli, Itto, <b>Baizhu</b>, Tartaglia, Ayato, Kaeya, Dainsleif, Thoma</td>
-                        <td>202X年 - 現在</td>
+                        <td class="group-name-col">GEN1US</td>
+                        <td><span class="member-unit">Diluc<br>Kaeya<br>Dainsleif</span></td>
+                        <td><span class="member-unit">Zhongli<br>Baizhu<br>Tartaglia</span></td>
+                        <td><span class="member-unit">Ayato<br>Thoma<br>Itto</span></td>
+                        <td class="text-gray-300 text-center">-</td>
+                        <td class="text-gray-300 text-center">-</td>
                     </tr>
                     <tr>
-                        <td class="label-cell">AKASHA LAB</td>
-                        <td class="group-cell">4ggravate</td>
-                        <td>Alhaitham, Cyno, Kaveh, <b>Tighnari</b></td>
-                        <td>202X年 - 現在</td>
+                        <td class="group-name-col">4ggravate</td>
+                        <td class="text-gray-300 text-center">-</td>
+                        <td class="text-gray-300 text-center">-</td>
+                        <td class="text-gray-300 text-center">-</td>
+                        <td><span class="member-unit">Alhaitham<br>Cyno<br>Kaveh<br>Tighnari</span></td>
+                        <td class="text-gray-300 text-center">-</td>
                     </tr>
                     <tr>
-                        <td class="label-cell">FAVONIUS MUSIC</td>
-                        <td class="group-cell">6reeze</td>
-                        <td>Wanderer, Xiao, Venti, Kazuha, <b>Aether</b>, Heizou</td>
-                        <td>202X年 - 現在</td>
+                        <td class="group-name-col">6reeze</td>
+                        <td><span class="member-unit">Venti</span></td>
+                        <td><span class="member-unit">Xiao</span></td>
+                        <td><span class="member-unit">Kazuha<br>Heizou</span></td>
+                        <td><span class="member-unit">Wanderer<br>Aether</span></td>
+                        <td class="text-gray-300 text-center">-</td>
                     </tr>
                     <tr>
-                        <td class="label-cell">FAVONIUS MUSIC</td>
-                        <td class="group-cell">TVT U</td>
-                        <td>Gaming, Chongyun, Xingqiu, Albedo, Gorou, <b>Bennett</b>, Razor</td>
-                        <td>202X年 - 現在</td>
+                        <td class="group-name-col">TVT U</td>
+                        <td><span class="member-unit">Bennett<br>Razor<br>Albedo</span></td>
+                        <td><span class="member-unit">Xingqiu<br>Chongyun<br>Gaming</span></td>
+                        <td><span class="member-unit">Gorou</span></td>
+                        <td class="text-gray-300 text-center">-</td>
+                        <td class="text-gray-300 text-center">-</td>
+                    </tr>
+                    <tr>
+                        <td class="group-name-col">House of the Hearth</td>
+                        <td class="text-gray-300 text-center">-</td>
+                        <td class="text-gray-300 text-center">-</td>
+                        <td class="text-gray-300 text-center">-</td>
+                        <td class="text-gray-300 text-center">-</td>
+                        <td><span class="member-unit">Neuvillette<br>Wriothesley<br>Lyney<br>Freminet</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -148,48 +164,36 @@
             <h2>グループ詳細設定</h2>
 
             <div id="lore-gen1us" class="lore-card">
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Super Unit</span>
-                <h3 class="group-cell">GEN1US</h3>
-                <p class="text-sm leading-relaxed mb-4">サバイバル番組『HEAVENTEEN』の覇者。「DCKZ」の爆発力と「BADIT」の芸術性が融合した、大陸史上最強の9人。センターの座を巡る静かなる闘争と、圧倒的な実力が共存する。</p>
-                <div class="member-list-mini">
-                    <b>Members:</b> Diluc (Mond/Main Vocal), Zhongli (Liyue/Lead Rapper), Itto (Inazuma/Main Rapper), <b>Baizhu (Liyue/Leader)</b>, Tartaglia (Snezhnaya/Main Dancer), Ayato (Inazuma/Visual), Kaeya (Mond/Main Vocal), Dainsleif (Mond/Lead Dancer), Thoma (Inazuma/Lead Dancer)
-                </div>
+                <h3 class="logo-font">GEN1US</h3>
+                <p class="text-sm leading-loose mb-4">サバイバル番組『HEAVENTEEN』を経て結成されたスーパーユニット。各国の主要レーベルから選りすぐりの精鋭が集結した混成チームであり、Teyvat Entertainment の象徴的グループ。DCKZの持つ攻撃的なカリスマと、BADITの持つ緻密な芸術性が高次元で融合している。</p>
             </div>
 
             <div id="lore-4ggravate" class="lore-card">
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Sumeru Unit</span>
-                <h3 class="group-cell">4ggravate</h3>
-                <p class="text-sm leading-relaxed mb-4">ナヒーダCEOによる「引き抜き事件」によって誕生した実力派ラップユニット。挫折した天才たちが、サイバー・ヒップホップという新たな武器を手にし、感情を音に乗せて世界を圧倒する。</p>
-                <div class="member-list-mini">
-                    <b>Members:</b> Alhaitham (Sumeru/Main Dancer), Cyno (Sumeru/Main Rapper), Kaveh (Sumeru/Lead Dancer), <b>Tighnari (Sumeru/Leader)</b>
-                </div>
+                <h3 class="logo-font">4ggravate</h3>
+                <p class="text-sm leading-loose mb-4">AKASHA LAB（スメール）所属。番組で惜しくも脱落した天才たちをナヒーダCEOが救い上げ、独自にプロデュース。サイバー・ヒップホップというジャンルを確立し、論理と情熱が交差するステージを展開する。</p>
             </div>
 
             <div id="lore-6reeze" class="lore-card">
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Inter-label Project</span>
-                <h3 class="group-cell">6reeze</h3>
-                <p class="text-sm leading-relaxed mb-4">凝光のお達しにより、蛍がプロデュースした「可愛い×格好良い」の最高到達点。留学から帰還した放浪者の超絶ダンスと、魈の鋭利なラップが、自由な風と共に世界を駆け抜ける。</p>
-                <div class="member-list-mini">
-                    <b>Members:</b> Wanderer (Inazuma/Main Dancer), Xiao (Liyue/Main Rapper), Venti (Mond/Main Vocal), Kazuha (Inazuma/Main Vocal), <b>Aether (??? / Leader)</b>, Heizou (Inazuma/Lead Rapper)
-                </div>
+                <h3 class="logo-font">6reeze</h3>
+                <p class="text-sm leading-loose mb-4">4つのレーベルによる共同プロジェクト。「可愛い×格好良い」をコンセプトに、自由な風のように枠に囚われないパフォーマンスを見せる。放浪者の移籍、空の保護といった劇的な背景を抱えつつ、最強の調和を保っている。</p>
             </div>
 
             <div id="lore-universe" class="lore-card">
-                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Junior Project</span>
-                <h3 class="group-cell">TVT U (universe)</h3>
-                <p class="text-sm leading-relaxed mb-4">ジュニア育成枠から誕生した可変式プロジェクト。楽曲ごとにコンセプトを変え、メンバーを入れ替える。ベネットの不運をも力に変える生命力と、HANAのような瑞々しさが特徴。</p>
-                <div class="member-list-mini">
-                    <b>Members:</b> Gaming (Liyue/Main Vocal), Chongyun (Liyue/Lead Rapper), Xingqiu (Liyue/Main Vocal), Albedo (Mond/Sub Vocal), Gorou (Inazuma/Lead Dancer), <b>Bennett (Mond/Leader)</b>, Razor (Mond/Main Rapper)
-                </div>
+                <h3 class="logo-font">TVT U (universe)</h3>
+                <p class="text-sm leading-loose mb-4">次世代育成プロジェクト。ベネット率いるモンド組、行秋率いる璃月組などがレーベルの枠を超えて協力。楽曲ごとに編成が変わる「可変式ユニット」として、無限の可能性（universe）を秘めている。</p>
+            </div>
+
+            <div id="lore-hoth" class="lore-card">
+                <h3 class="logo-font">House of the Hearth</h3>
+                <p class="text-sm leading-loose mb-4">EPICLESES PROMOTION（フォンテーヌ）所属。番組内で「完成されすぎている」として不遇の脱落を喫したヌヴィレットとリオセスリを核に、リネ・フレミネという新たな才能を加えて結成。芸術と審判、そして魔術が融合した比類なきステージを披露する、フォンテーヌの誇り。</p>
             </div>
         </section>
 
         <!-- Section 4: プロジェクト一覧 -->
         <section id="projects">
             <h2>プロジェクト一覧</h2>
-            <div id="heaventeen" class="mb-10">
-                <h3>HEAVENTEEN (サバイバル番組)</h3>
-                <p class="mb-6 text-sm">GEN1USの結成を記録したドキュメンタリー・サバイバル。13人の練習生が参加。</p>
+            <div id="heaventeen">
+                <h3>HEAVENTEEN (サバイバル番組) 全記録</h3>
                 <table id="heaventeenTable">
                     <thead>
                         <tr>
@@ -223,7 +227,6 @@
     </main>
 
     <script>
-        // 並べ替えロジック
         function sortWiki(n, tableId = 'artistTable') {
             const table = document.getElementById(tableId);
             let rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
@@ -245,22 +248,10 @@
                 else if (switchcount == 0 && dir == "asc") { dir = "desc"; switching = true; }
             }
         }
-
-        // メニュー制御
         const menuBtn = document.getElementById('menu-btn');
         const navMenu = document.getElementById('nav-menu');
-        menuBtn.onclick = () => {
-            menuBtn.classList.toggle('active');
-            navMenu.classList.toggle('open');
-            document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : 'auto';
-        };
-        document.querySelectorAll('.menu-close').forEach(link => {
-            link.onclick = () => {
-                menuBtn.classList.remove('active');
-                navMenu.classList.remove('open');
-                document.body.style.overflow = 'auto';
-            };
-        });
+        menuBtn.onclick = () => { menuBtn.classList.toggle('active'); navMenu.classList.toggle('open'); document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : 'auto'; };
+        document.querySelectorAll('.menu-close').forEach(link => { link.onclick = () => { menuBtn.classList.remove('active'); navMenu.classList.remove('open'); document.body.style.overflow = 'auto'; }; });
     </script>
 </body>
 </html>
