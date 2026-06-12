@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVT Wiki | 内部機密資料</title>
+    <title>TVT Wiki | 内部機密アーカイブ</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: #f6f6f6; color: #202122; font-family: 'Noto Sans JP', sans-serif; }
-        .wiki-container { max-width: 1100px; margin: 100px auto; background: white; padding: 60px; border: 1px solid #a2a9b1; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .wiki-container { max-width: 1200px; margin: 100px auto; background: white; padding: 40px; border: 1px solid #a2a9b1; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
         
         h1 { font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-bottom: 1rem; }
-        h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-top: 3.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; }
+        h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-top: 4rem; margin-bottom: 1.5rem; display: flex; align-items: center; }
         h2::before { content: ""; display: inline-block; width: 8px; height: 1.8rem; background: #000; margin-right: 12px; }
-        h3 { font-weight: 900; font-size: 1.3rem; margin-top: 2.5rem; margin-bottom: 1rem; border-left: 5px solid #333; padding-left: 15px; }
+        h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1rem; color: #000; }
 
-        /* 目次 (TOC) */
+        /* 目次 */
         .toc-box { background: #f8f9fa; border: 1px solid #a2a9b1; padding: 20px; display: inline-block; min-width: 350px; margin-bottom: 2rem; font-size: 0.9rem; }
         .toc-title { font-weight: bold; text-align: center; margin-bottom: 10px; }
         .toc-box ul { list-style: none; padding: 0; }
@@ -23,16 +23,17 @@
         .toc-box a { color: #0645ad; text-decoration: none; }
         .toc-box a:hover { text-decoration: underline; }
 
-        /* マトリックス表設定 */
-        table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; font-size: 0.85rem; table-layout: fixed; }
-        th, td { border: 1px solid #a2a9b1; padding: 12px; text-align: left; vertical-align: top; }
-        th { background-color: #eaecf0; font-weight: bold; }
-        .label-head { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; text-align: center; }
-        .group-name-col { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1rem; background-color: #f8f9fa; width: 150px; }
-        .member-unit { line-height: 1.4; margin-bottom: 5px; display: block; }
+        /* テーブル共通設定 */
+        .table-wrapper { overflow-x: auto; margin-bottom: 2rem; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: 800px; }
+        th, td { border: 1px solid #a2a9b1; padding: 10px; text-align: left; vertical-align: middle; }
+        th { background-color: #eaecf0; font-weight: bold; cursor: pointer; }
+        tr:nth-child(even) { background-color: #f8f9fa; }
         
-        /* 詳細用ロアカード */
-        .lore-card { background: #fdfdfd; border: 1px solid #eee; padding: 25px; margin-bottom: 2rem; border-radius: 4px; border-top: 4px solid #000; }
+        .label-cell { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.9rem; background: #f0f0f0; width: 220px; }
+        .member-img { width: 60px; height: 60px; object-fit: cover; background: #eee; border-radius: 2px; }
+        .rank-num { font-family: 'Rajdhani', sans-serif; font-weight: 700; }
+        .bold { font-weight: 900; }
     </style>
 </head>
 <body>
@@ -57,166 +58,225 @@
         <div class="toc-box">
             <div class="toc-title">目次</div>
             <ul>
-                <li>1. <a href="#org">組織構造</a></li>
-                <li>2. <a href="#affiliates">所属アーティスト・マトリックス</a></li>
-                <li>3. <a href="#details">グループ詳細設定</a>
+                <li>1. <a href="#affiliates">所属アーティスト・マトリックス</a></li>
+                <li>2. <a href="#details">グループ詳細（メンバー一覧）</a>
                     <ul class="ml-4">
-                        <li>3.1 <a href="#lore-gen1us">GEN1US</a></li>
-                        <li>3.2 <a href="#lore-4ggravate">4ggravate</a></li>
-                        <li>3.3 <a href="#lore-6reeze">6reeze</a></li>
-                        <li>3.4 <a href="#lore-universe">TVT U (universe)</a></li>
-                        <li>3.5 <a href="#lore-hoth">House of the Hearth</a></li>
+                        <li>2.1 <a href="#details-gen1us">GEN1US</a></li>
+                        <li>2.2 <a href="#details-4ggravate">4ggravate</a></li>
+                        <li>2.3 <a href="#details-6reeze">6reeze</a></li>
+                        <li>2.4 <a href="#details-universe">TVT U</a></li>
+                        <li>2.5 <a href="#details-hoth">House of the Hearth</a></li>
                     </ul>
                 </li>
-                <li>4. <a href="#projects">プロジェクト一覧</a>
+                <li>3. <a href="#projects">プロジェクト一覧</a>
                     <ul class="ml-4">
-                        <li>4.1 <a href="#heaventeen">HEAVENTEEN (サバイバル番組)</a></li>
+                        <li>3.1 <a href="#heaventeen">HEAVENTEEN 全記録</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
 
-        <!-- Section 1: 組織構造 -->
-        <section id="org">
-            <h2>組織構造</h2>
-            <p class="mb-6 text-sm">各国の文化を代表する5つの独立レーベルを統合したマルチレーベル体制。</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th style="width: 15%;">拠点</th>
-                        <th style="width: 30%;">レーベル名</th>
-                        <th style="width: 20%;">最高責任者</th>
-                        <th>コンセプト</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>モンド</td><td class="logo-font">FAVONIUS MUSIC</td><td>ジン</td><td>自由 / ポップ / 伝統</td></tr>
-                    <tr><td>璃月</td><td class="logo-font">QIXING STUDIO</td><td>凝光</td><td>豪華 / 制作 / ハイエンド</td></tr>
-                    <tr><td>稲妻</td><td class="logo-font">NARUKAMI RECORDS</td><td>雷電将軍</td><td>鋭利 / 職人芸 / 永遠</td></tr>
-                    <tr><td>スメール</td><td class="logo-font">AKASHA LAB</td><td>ナヒーダ</td><td>サイバー / 知的 / 実験的</td></tr>
-                    <tr><td>フォンテーヌ</td><td class="logo-font">EPICLESES PROMOTION</td><td>フリーナ</td><td>劇的 / エンタメ / 叙事詩</td></tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Section 2: レーベル別所属メンバー表 -->
+        <!-- Section 1: 所属アーティストマトリックス -->
         <section id="affiliates">
             <h2>所属アーティスト・マトリックス</h2>
-            <p class="mb-4 text-xs text-gray-500">※ 各グループに所属するメンバーを、契約レーベル（Label）別に分類した相関図。</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th class="group-name-col">グループ名</th>
-                        <th class="label-head">FAVONIUS MUSIC</th>
-                        <th class="label-head">QIXING STUDIO</th>
-                        <th class="label-head">NARUKAMI RECORDS</th>
-                        <th class="label-head">AKASHA LAB</th>
-                        <th class="label-head">EPICLESES PROMOTION</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="group-name-col">GEN1US</td>
-                        <td><span class="member-unit">Diluc<br>Kaeya<br>Dainsleif</span></td>
-                        <td><span class="member-unit">Zhongli<br>Baizhu<br>Tartaglia</span></td>
-                        <td><span class="member-unit">Ayato<br>Thoma<br>Itto</span></td>
-                        <td class="text-gray-300 text-center">-</td>
-                        <td class="text-gray-300 text-center">-</td>
-                    </tr>
-                    <tr>
-                        <td class="group-name-col">4ggravate</td>
-                        <td class="text-gray-300 text-center">-</td>
-                        <td class="text-gray-300 text-center">-</td>
-                        <td class="text-gray-300 text-center">-</td>
-                        <td><span class="member-unit">Alhaitham<br>Cyno<br>Kaveh<br>Tighnari</span></td>
-                        <td class="text-gray-300 text-center">-</td>
-                    </tr>
-                    <tr>
-                        <td class="group-name-col">6reeze</td>
-                        <td><span class="member-unit">Venti</span></td>
-                        <td><span class="member-unit">Xiao</span></td>
-                        <td><span class="member-unit">Kazuha<br>Heizou</span></td>
-                        <td><span class="member-unit">Wanderer<br>Aether</span></td>
-                        <td class="text-gray-300 text-center">-</td>
-                    </tr>
-                    <tr>
-                        <td class="group-name-col">TVT U</td>
-                        <td><span class="member-unit">Bennett<br>Razor<br>Albedo</span></td>
-                        <td><span class="member-unit">Xingqiu<br>Chongyun<br>Gaming</span></td>
-                        <td><span class="member-unit">Gorou</span></td>
-                        <td class="text-gray-300 text-center">-</td>
-                        <td class="text-gray-300 text-center">-</td>
-                    </tr>
-                    <tr>
-                        <td class="group-name-col">House of the Hearth</td>
-                        <td class="text-gray-300 text-center">-</td>
-                        <td class="text-gray-300 text-center">-</td>
-                        <td class="text-gray-300 text-center">-</td>
-                        <td class="text-gray-300 text-center">-</td>
-                        <td><span class="member-unit">Neuvillette<br>Wriothesley<br>Lyney<br>Freminet</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-
-        <!-- Section 3: グループ詳細 -->
-        <section id="details">
-            <h2>グループ詳細設定</h2>
-
-            <div id="lore-gen1us" class="lore-card">
-                <h3 class="logo-font">GEN1US</h3>
-                <p class="text-sm leading-loose mb-4">サバイバル番組『HEAVENTEEN』を経て結成されたスーパーユニット。各国の主要レーベルから選りすぐりの精鋭が集結した混成チームであり、Teyvat Entertainment の象徴的グループ。DCKZの持つ攻撃的なカリスマと、BADITの持つ緻密な芸術性が高次元で融合している。</p>
-            </div>
-
-            <div id="lore-4ggravate" class="lore-card">
-                <h3 class="logo-font">4ggravate</h3>
-                <p class="text-sm leading-loose mb-4">AKASHA LAB（スメール）所属。番組で惜しくも脱落した天才たちをナヒーダCEOが救い上げ、独自にプロデュース。サイバー・ヒップホップというジャンルを確立し、論理と情熱が交差するステージを展開する。</p>
-            </div>
-
-            <div id="lore-6reeze" class="lore-card">
-                <h3 class="logo-font">6reeze</h3>
-                <p class="text-sm leading-loose mb-4">4つのレーベルによる共同プロジェクト。「可愛い×格好良い」をコンセプトに、自由な風のように枠に囚われないパフォーマンスを見せる。放浪者の移籍、空の保護といった劇的な背景を抱えつつ、最強の調和を保っている。</p>
-            </div>
-
-            <div id="lore-universe" class="lore-card">
-                <h3 class="logo-font">TVT U (universe)</h3>
-                <p class="text-sm leading-loose mb-4">次世代育成プロジェクト。ベネット率いるモンド組、行秋率いる璃月組などがレーベルの枠を超えて協力。楽曲ごとに編成が変わる「可変式ユニット」として、無限の可能性（universe）を秘めている。</p>
-            </div>
-
-            <div id="lore-hoth" class="lore-card">
-                <h3 class="logo-font">House of the Hearth</h3>
-                <p class="text-sm leading-loose mb-4">EPICLESES PROMOTION（フォンテーヌ）所属。番組内で「完成されすぎている」として不遇の脱落を喫したヌヴィレットとリオセスリを核に、リネ・フレミネという新たな才能を加えて結成。芸術と審判、そして魔術が融合した比類なきステージを披露する、フォンテーヌの誇り。</p>
-            </div>
-        </section>
-
-        <!-- Section 4: プロジェクト一覧 -->
-        <section id="projects">
-            <h2>プロジェクト一覧</h2>
-            <div id="heaventeen">
-                <h3>HEAVENTEEN (サバイバル番組) 全記録</h3>
-                <table id="heaventeenTable">
+            <p class="mb-4 text-sm">レーベル別・グループ別の所属メンバー配置図。</p>
+            <div class="table-wrapper">
+                <table>
                     <thead>
                         <tr>
-                            <th onclick="sortWiki(0, 'heaventeenTable')">名前</th>
-                            <th onclick="sortWiki(1, 'heaventeenTable')">0次 (実力)</th>
-                            <th onclick="sortWiki(2, 'heaventeenTable')">1次 (SVT)</th>
-                            <th onclick="sortWiki(3, 'heaventeenTable')">2次 (JO1)</th>
-                            <th onclick="sortWiki(4, 'heaventeenTable')">最終 (ONEUS)</th>
-                            <th onclick="sortWiki(5, 'heaventeenTable')">結果</th>
+                            <th>所属レーベル (最高責任者)</th>
+                            <th>GEN1US</th>
+                            <th>4ggravate</th>
+                            <th>6reeze</th>
+                            <th>TVT U</th>
+                            <th>H.O.T.H</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>Tartaglia</td><td class="rank-num" data-val="9">9位</td><td class="rank-num" data-val="4">4位</td><td class="rank-num" data-val="3">3位</td><td class="rank-num" data-val="1">1位</td><td>GEN1US (DCKZ)</td></tr>
-                        <tr><td>Dainsleif</td><td class="rank-num" data-val="1">1位</td><td class="rank-num" data-val="2">2位</td><td class="rank-num" data-val="4">4位</td><td class="rank-num" data-val="2">2位</td><td>GEN1US (BADIT)</td></tr>
-                        <tr><td>Diluc</td><td class="rank-num" data-val="2">2位</td><td class="rank-num" data-val="1">1位</td><td class="rank-num" data-val="1">1位</td><td class="rank-num" data-val="3">3位</td><td>GEN1US (DCKZ)</td></tr>
-                        <tr><td>Ayato</td><td class="rank-num" data-val="7">7位</td><td class="rank-num" data-val="6">6位</td><td class="rank-num" data-val="2">2位</td><td class="rank-num" data-val="4">4位</td><td>GEN1US (BADIT)</td></tr>
-                        <tr><td>Zhongli</td><td class="rank-num" data-val="12">12位</td><td class="rank-num" data-val="10">10位</td><td class="rank-num" data-val="6">6位</td><td class="rank-num" data-val="5">5位</td><td>GEN1US (DCKZ)</td></tr>
-                        <tr><td>Baizhu</td><td class="rank-num" data-val="4">4位</td><td class="rank-num" data-val="7">7位</td><td class="rank-num" data-val="8">8位</td><td class="rank-num" data-val="6">6位</td><td>GEN1US (BADIT)</td></tr>
-                        <tr><td>Kaeya</td><td class="rank-num" data-val="8">8位</td><td class="rank-num" data-val="5">5位</td><td class="rank-num" data-val="5">5位</td><td class="rank-num" data-val="7">7位</td><td>GEN1US (DCKZ)</td></tr>
-                        <tr><td>Thoma</td><td class="rank-num" data-val="11">11位</td><td class="rank-num" data-val="3">3位</td><td class="rank-num" data-val="9">9位</td><td class="rank-num" data-val="8">8位</td><td>GEN1US (BADIT)</td></tr>
-                        <tr><td>Itto</td><td class="rank-num" data-val="13">13位</td><td class="rank-num" data-val="11">11位</td><td class="rank-num" data-val="7">7位</td><td class="rank-num" data-val="9">9位</td><td>GEN1US (BADIT)</td></tr>
+                        <tr>
+                            <td class="label-cell">FAVONIUS MUSIC (ジン)</td>
+                            <td>Diluc, Kaeya, Dainsleif</td>
+                            <td class="text-gray-300">-</td>
+                            <td>Venti</td>
+                            <td>Bennett, Razor, Albedo</td>
+                            <td class="text-gray-300">-</td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell">QIXING STUDIO (凝光)</td>
+                            <td>Zhongli, Baizhu, Tartaglia</td>
+                            <td class="text-gray-300">-</td>
+                            <td>Xiao</td>
+                            <td>Xingqiu, Chongyun, Gaming</td>
+                            <td class="text-gray-300">-</td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell">NARUKAMI RECORDS (雷電将軍)</td>
+                            <td>Ayato, Thoma, Itto</td>
+                            <td class="text-gray-300">-</td>
+                            <td>Kazuha, Heizou</td>
+                            <td>Gorou</td>
+                            <td class="text-gray-300">-</td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell">AKASHA LAB (ナヒーダ)</td>
+                            <td class="text-gray-300">-</td>
+                            <td>Alhaitham, Cyno, Kaveh, Tighnari</td>
+                            <td>Wanderer, Aether</td>
+                            <td class="text-gray-300">-</td>
+                            <td class="text-gray-300">-</td>
+                        </tr>
+                        <tr>
+                            <td class="label-cell">EPICLESES PROMOTION (フリーナ)</td>
+                            <td class="text-gray-300">-</td>
+                            <td class="text-gray-300">-</td>
+                            <td class="text-gray-300">-</td>
+                            <td class="text-gray-300">-</td>
+                            <td>Neuvillette, Wriothesley, Lyney, Freminet</td>
+                        </tr>
                     </tbody>
                 </table>
+            </div>
+        </section>
+
+        <!-- Section 2: グループ詳細 -->
+        <section id="details">
+            <h2>グループ詳細設定</h2>
+
+            <!-- GEN1US -->
+            <div id="details-gen1us">
+                <h3 class="border-b pb-2">GEN1US</h3>
+                <div class="table-wrapper">
+                    <table id="table-gen1us">
+                        <thead>
+                            <tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>所属レーベル</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><img src="images/gen1us/masquerade-diluc.jpg" class="member-img"></td><td>Diluc</td><td>Mondstadt</td><td>Main Vocal / Sub Dancer</td><td>FAVONIUS</td></tr>
+                            <tr><td><img src="images/gen1us/masquerade-zhongli.jpg" class="member-img"></td><td>Zhongli</td><td>Liyue</td><td>Lead Rapper / Sub Vocal</td><td>QIXING</td></tr>
+                            <tr><td><img src="images/gen1us/masquerade-itto.jpg" class="member-img"></td><td>Itto</td><td>Inazuma</td><td>Main Rapper</td><td>NARUKAMI</td></tr>
+                            <tr><td><img src="images/gen1us/masquerade-baizhu.jpg" class="member-img"></td><td class="bold">Baizhu (Leader)</td><td>Liyue</td><td>Main Vocal</td><td>QIXING</td></tr>
+                            <tr><td><img src="images/gen1us/masquerade-tartaglia.jpg" class="member-img"></td><td>Tartaglia</td><td>Snezhnaya</td><td>Main Dancer / Lead Rapper</td><td>QIXING</td></tr>
+                            <tr><td><img src="images/gen1us/masquerade-ayato.jpg" class="member-img"></td><td>Ayato</td><td>Inazuma</td><td>Visual / Lead Vocal / Sub Dancer</td><td>NARUKAMI</td></tr>
+                            <tr><td><img src="images/gen1us/masquerade-kaeya.jpg" class="member-img"></td><td>Kaeya</td><td>Mondstadt</td><td>Main Vocal</td><td>FAVONIUS</td></tr>
+                            <tr><td><img src="images/gen1us/masquerade-dainsleif.jpg" class="member-img"></td><td>Dainsleif</td><td>Mondstadt</td><td>Lead Dancer / Sub Rapper</td><td>FAVONIUS</td></tr>
+                            <tr><td><img src="images/gen1us/masquerade-thoma.jpg" class="member-img"></td><td>Thoma</td><td>Inazuma</td><td>Lead Dancer / Sub Vocal</td><td>NARUKAMI</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 4ggravate -->
+            <div id="details-4ggravate">
+                <h3 class="border-b pb-2">4ggravate</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>所属レーベル</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><img src="images/4ggravate/cyber-alhaitham.jpg" class="member-img"></td><td>Alhaitham</td><td>Sumeru</td><td>Main Dancer / Lead Rapper</td><td>AKASHA</td></tr>
+                            <tr><td><img src="images/4ggravate/cyber-cyno.jpg" class="member-img"></td><td>Cyno</td><td>Sumeru</td><td>Main Rapper / Sub Vocal</td><td>AKASHA</td></tr>
+                            <tr><td><img src="images/4ggravate/cyber-kaveh.jpg" class="member-img"></td><td>Kaveh</td><td>Sumeru</td><td>Lead Dancer / Lead Vocal</td><td>AKASHA</td></tr>
+                            <tr><td><img src="images/4ggravate/cyber-tighnari.jpg" class="member-img"></td><td class="bold">Tighnari (Leader)</td><td>Sumeru</td><td>Main Vocal / Lead Dancer</td><td>AKASHA</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 6reeze -->
+            <div id="details-6reeze">
+                <h3 class="border-b pb-2">6reeze</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>所属レーベル</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><img src="images/6reeze/heart-wanderer.jpg" class="member-img"></td><td>Wanderer</td><td>Inazuma</td><td>Main Dancer / Lead Vocal</td><td>AKASHA</td></tr>
+                            <tr><td><img src="images/6reeze/heart-xiao.jpg" class="member-img"></td><td>Xiao</td><td>Liyue</td><td>Main Rapper / Sub Vocal</td><td>QIXING</td></tr>
+                            <tr><td><img src="images/6reeze/heart-venti.jpg" class="member-img"></td><td>Venti</td><td>Mondstadt</td><td>Main Vocal / Center</td><td>FAVONIUS</td></tr>
+                            <tr><td><img src="images/6reeze/heart-kazuha.jpg" class="member-img"></td><td>Kazuha</td><td>Inazuma</td><td>Main Vocal / Lead Dancer</td><td>NARUKAMI</td></tr>
+                            <tr><td><img src="images/6reeze/heart-aether.jpg" class="member-img"></td><td class="bold">Aether (Leader)</td><td>???</td><td>Lead Vocal</td><td>AKASHA</td></tr>
+                            <tr><td><img src="images/6reeze/heart-heizou.jpg" class="member-img"></td><td>Heizou</td><td>Inazuma</td><td>Lead Rapper / Lead Dancer</td><td>NARUKAMI</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- TVT U -->
+            <div id="details-universe">
+                <h3 class="border-b pb-2">TVT U (universe)</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>所属レーベル</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><img src="images/universe/universe-gaming.jpg" class="member-img"></td><td>Gaming</td><td>Liyue</td><td>Main Vocal</td><td>QIXING</td></tr>
+                            <tr><td><img src="images/universe/universe-chongyun.jpg" class="member-img"></td><td>Chongyun</td><td>Liyue</td><td>Lead Rapper</td><td>QIXING</td></tr>
+                            <tr><td><img src="images/universe/universe-xingqiu.jpg" class="member-img"></td><td>Xingqiu</td><td>Liyue</td><td>Main Vocal</td><td>QIXING</td></tr>
+                            <tr><td><img src="images/universe/universe-albedo.jpg" class="member-img"></td><td>Albedo</td><td>Mondstadt</td><td>Sub Vocal</td><td>FAVONIUS</td></tr>
+                            <tr><td><img src="images/universe/universe-gorou.jpg" class="member-img"></td><td>Gorou</td><td>Inazuma</td><td>Lead Dancer</td><td>NARUKAMI</td></tr>
+                            <tr><td><img src="images/universe/universe-bennett.jpg" class="member-img"></td><td class="bold">Bennett (Leader)</td><td>Mondstadt</td><td>Main Dancer</td><td>FAVONIUS</td></tr>
+                            <tr><td><img src="images/universe/universe-razor.jpg" class="member-img"></td><td>Razor</td><td>Mondstadt</td><td>Main Rapper</td><td>FAVONIUS</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- House of the Hearth -->
+            <div id="details-hoth">
+                <h3 class="border-b pb-2">House of the Hearth</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>所属レーベル</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>-</td><td>Neuvillette</td><td>Fontaine</td><td>Artist</td><td>EPICLESES</td></tr>
+                            <tr><td>-</td><td>Wriothesley</td><td>Fontaine</td><td>Artist</td><td>EPICLESES</td></tr>
+                            <tr><td>-</td><td>Lyney</td><td>Fontaine</td><td>Magician / Artist</td><td>EPICLESES</td></tr>
+                            <tr><td>-</td><td>Freminet</td><td>Fontaine</td><td>Artist</td><td>EPICLESES</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: プロジェクト -->
+        <section id="projects">
+            <h2>プロジェクト一覧</h2>
+            <div id="heaventeen">
+                <h3>HEAVENTEEN 全記録</h3>
+                <div class="table-wrapper">
+                    <table id="heaventeenTable">
+                        <thead>
+                            <tr>
+                                <th onclick="sortWiki(0, 'heaventeenTable')">名前</th>
+                                <th onclick="sortWiki(1, 'heaventeenTable')">0次 (実力)</th>
+                                <th onclick="sortWiki(2, 'heaventeenTable')">1次 (SVT)</th>
+                                <th onclick="sortWiki(3, 'heaventeenTable')">2次 (JO1)</th>
+                                <th onclick="sortWiki(4, 'heaventeenTable')">最終 (ONEUS)</th>
+                                <th onclick="sortWiki(5, 'heaventeenTable')">結果</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Tartaglia</td><td class="rank-num" data-val="9">9位</td><td class="rank-num" data-val="4">4位</td><td class="rank-num" data-val="3">3位</td><td class="rank-num" data-val="1">1位</td><td>GEN1US</td></tr>
+                            <tr><td>Dainsleif</td><td class="rank-num" data-val="1">1位</td><td class="rank-num" data-val="2">2位</td><td class="rank-num" data-val="4">4位</td><td class="rank-num" data-val="2">2位</td><td>GEN1US</td></tr>
+                            <tr><td>Diluc</td><td class="rank-num" data-val="2">2位</td><td class="rank-num" data-val="1">1位</td><td class="rank-num" data-val="1">1位</td><td class="rank-num" data-val="3">3位</td><td>GEN1US</td></tr>
+                            <tr><td>Ayato</td><td class="rank-num" data-val="7">7位</td><td class="rank-num" data-val="6">6位</td><td class="rank-num" data-val="2">2位</td><td class="rank-num" data-val="4">4位</td><td>GEN1US</td></tr>
+                            <tr><td>Zhongli</td><td class="rank-num" data-val="12">12位</td><td class="rank-num" data-val="10">10位</td><td class="rank-num" data-val="6">6位</td><td class="rank-num" data-val="5">5位</td><td>GEN1US</td></tr>
+                            <tr><td>Baizhu</td><td class="rank-num" data-val="4">4位</td><td class="rank-num" data-val="7">7位</td><td class="rank-num" data-val="8">8位</td><td class="rank-num" data-val="6">6位</td><td>GEN1US</td></tr>
+                            <tr><td>Kaeya</td><td class="rank-num" data-val="8">8位</td><td class="rank-num" data-val="5">5位</td><td class="rank-num" data-val="5">5位</td><td class="rank-num" data-val="7">7位</td><td>GEN1US</td></tr>
+                            <tr><td>Thoma</td><td class="rank-num" data-val="11">11位</td><td class="rank-num" data-val="3">3位</td><td class="rank-num" data-val="9">9位</td><td class="rank-num" data-val="8">8位</td><td>GEN1US</td></tr>
+                            <tr><td>Itto</td><td class="rank-num" data-val="13">13位</td><td class="rank-num" data-val="11">11位</td><td class="rank-num" data-val="7">7位</td><td class="rank-num" data-val="9">9位</td><td>GEN1US</td></tr>
+                            <tr style="color:#bbb"><td>Alhaitham</td><td class="rank-num" data-val="3">3位</td><td class="rank-num" data-val="8">8位</td><td data-val="99">脱落</td><td data-val="99">-</td><td>4ggravate</td></tr>
+                            <tr style="color:#bbb"><td>Kaveh</td><td class="rank-num" data-val="10">10位</td><td class="rank-num" data-val="9">9位</td><td data-val="99">脱落</td><td data-val="99">-</td><td>4ggravate</td></tr>
+                            <tr style="color:#bbb"><td>Neuvillette</td><td class="rank-num" data-val="5">5位</td><td data-val="99">脱落</td><td data-val="99">-</td><td data-val="99">-</td><td>House of the Hearth</td></tr>
+                            <tr style="color:#bbb"><td>Wriothesley</td><td class="rank-num" data-val="6">6位</td><td data-val="99">脱落</td><td data-val="99">-</td><td data-val="99">-</td><td>House of the Hearth</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
