@@ -9,21 +9,31 @@
     <style>
         body { background-color: #f6f6f6; color: #202122; font-family: 'Noto Sans JP', sans-serif; }
         .wiki-container { max-width: 1100px; margin: 100px auto; background: white; padding: 60px; border: 1px solid #a2a9b1; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
-        h1 { font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-bottom: 1rem; }
-        h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-top: 3rem; margin-bottom: 1.5rem; display: flex; align-items: center; }
-        h2::before { content: ""; display: inline-block; width: 8px; height: 1.8rem; background: #000; margin-right: 12px; }
         
+        h1 { font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-bottom: 1rem; }
+        h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-top: 3.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; }
+        h2::before { content: ""; display: inline-block; width: 8px; height: 1.8rem; background: #000; margin-right: 12px; }
+        h3 { font-weight: 900; font-size: 1.2rem; margin-top: 2.5rem; margin-bottom: 1rem; border-left: 5px solid #333; padding-left: 15px; }
+
+        /* 目次 (TOC) */
+        .toc-box { background: #f8f9fa; border: 1px solid #a2a9b1; padding: 20px; display: inline-block; min-width: 300px; margin-bottom: 2rem; font-size: 0.9rem; }
+        .toc-title { font-weight: bold; text-align: center; margin-bottom: 10px; }
+        .toc-box ul { list-style: none; padding: 0; }
+        .toc-box li { margin: 5px 0; }
+        .toc-box a { color: #0645ad; text-decoration: none; }
+        .toc-box a:hover { underline; }
+
         /* テーブル設定 */
         table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; font-size: 0.9rem; table-layout: fixed; }
-        th, td { border: 1px solid #a2a9b1; padding: 12px; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        th { background-color: #eaecf0; font-weight: bold; cursor: pointer; position: relative; transition: background 0.2s; }
+        th, td { border: 1px solid #a2a9b1; padding: 12px; text-align: left; overflow: hidden; text-overflow: ellipsis; }
+        th { background-color: #eaecf0; font-weight: bold; cursor: pointer; position: relative; }
         th:hover { background-color: #d1d4d9; }
-        th::after { content: '↕'; position: absolute; right: 5px; opacity: 0.3; }
         tr:nth-child(even) { background-color: #f8f9fa; }
         
         .label-name { font-family: 'Rajdhani', sans-serif; font-weight: 700; color: #000; }
         .rank-num { font-family: 'Rajdhani', sans-serif; font-weight: 700; }
-        .eliminated { color: #ccc; font-style: italic; }
+        .lore-card { background: #fdfdfd; border: 1px solid #eee; padding: 20px; margin-bottom: 1.5rem; border-radius: 4px; }
+        .lore-tag { font-size: 0.7rem; font-weight: bold; background: #000; color: #fff; padding: 2px 8px; border-radius: 2px; margin-bottom: 10px; display: inline-block; }
     </style>
 </head>
 <body>
@@ -41,14 +51,30 @@
     </div>
 
     <main class="wiki-container">
-        <h1>内部機密アーカイブ</h1>
-        <p class="text-xs text-gray-400 italic mb-8 uppercase tracking-widest">Teyvat Entertainment / CEO専用記録</p>
+        <h1>Teyvat Entertainment 内部機密資料</h1>
+        <p class="text-xs text-gray-400 italic mb-8 uppercase tracking-widest">Confidential Record / CEO Eyes Only</p>
 
-        <!-- セクション1: 組織図 -->
-        <section>
-            <h2>TVTホールディングス 組織図</h2>
-            <p class="mb-6 text-sm text-gray-600">各国の文化を代表する独立レーベルを統合したマルチレーベル体制の記録。</p>
-            
+        <!-- 目次 -->
+        <div class="toc-box">
+            <div class="toc-title">目次</div>
+            <ul>
+                <li>1. <a href="#org">組織構造（マルチレーベル体制）</a></li>
+                <li>2. <a href="#heaventeen">プロジェクト: HEAVENTEEN 全記録</a></li>
+                <li>3. <a href="#groups">所属アーティスト詳細設定</a>
+                    <ul class="ml-4">
+                        <li>3.1 <a href="#lore-gen1us">GEN1US - 絶対王者の誕生</a></li>
+                        <li>3.2 <a href="#lore-4ggravate">4ggravate - 知性の逆転劇</a></li>
+                        <li>3.3 <a href="#lore-6reeze">6reeze - 自由な風の帰還</a></li>
+                        <li>3.4 <a href="#lore-universe">TVT U (universe) - 次世代の光</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Section 1: 組織図 -->
+        <section id="org">
+            <h2>組織構造（マルチレーベル体制）</h2>
+            <p class="mb-6 text-sm text-gray-600">各国支部の神々がCEOを務める、独立性の高い5つのレーベルによる連合体制。</p>
             <table>
                 <thead>
                     <tr>
@@ -68,11 +94,10 @@
             </table>
         </section>
 
-        <!-- セクション2: HEAVENTEEN -->
-        <section>
+        <!-- Section 2: HEAVENTEEN -->
+        <section id="heaventeen">
             <h2>プロジェクト: HEAVENTEEN 全記録</h2>
-            <p class="mb-6 text-sm text-gray-600">GEN1US結成に至るサバイバル番組の全過程。ヘッダーをクリックすると並べ替えが可能です。</p>
-
+            <p class="mb-4 text-sm text-gray-600">伝説のサバイバル番組。13人から始まり、視聴者の熱望により現在の9名（GEN1US）が選出された。</p>
             <table id="heaventeenTable">
                 <thead>
                     <tr>
@@ -94,12 +119,50 @@
                     <tr><td>Kaeya</td><td class="rank-num" data-val="8">8位</td><td class="rank-num" data-val="5">5位</td><td class="rank-num" data-val="5">5位</td><td class="rank-num" data-val="7">7位</td><td>GEN1US (DCKZ)</td></tr>
                     <tr><td>Thoma</td><td class="rank-num" data-val="11">11位</td><td class="rank-num" data-val="3">3位</td><td class="rank-num" data-val="9">9位</td><td class="rank-num" data-val="8">8位</td><td>GEN1US (BADIT)</td></tr>
                     <tr><td>Itto</td><td class="rank-num" data-val="13">13位</td><td class="rank-num" data-val="11">11位</td><td class="rank-num" data-val="7">7位</td><td class="rank-num" data-val="9">9位</td><td>GEN1US (BADIT)</td></tr>
-                    <tr class="eliminated"><td>Alhaitham</td><td class="rank-num" data-val="3">3位</td><td class="rank-num" data-val="8">8位</td><td data-val="99">脱落</td><td data-val="99">-</td><td>4ggravate</td></tr>
-                    <tr class="eliminated"><td>Kaveh</td><td class="rank-num" data-val="10">10位</td><td class="rank-num" data-val="9">9位</td><td data-val="99">脱落</td><td data-val="99">-</td><td>4ggravate</td></tr>
-                    <tr class="eliminated"><td>Neuvillette</td><td class="rank-num" data-val="5">5位</td><td data-val="99">脱落</td><td data-val="99">-</td><td data-val="99">-</td><td>フォンテーヌ支部</td></tr>
-                    <tr class="eliminated"><td>Wriothesley</td><td class="rank-num" data-val="6">6位</td><td data-val="99">脱落</td><td data-val="99">-</td><td data-val="99">-</td><td>フォンテーヌ支部</td></tr>
                 </tbody>
             </table>
+        </section>
+
+        <!-- Section 3: Artist Lore -->
+        <section id="groups">
+            <h2>所属アーティスト詳細設定</h2>
+
+            <div id="lore-gen1us" class="lore-card">
+                <span class="lore-tag">GEN1US</span>
+                <h3>絶対王者の誕生と二大ユニットの融合</h3>
+                <p class="text-sm leading-loose">
+                    番組最終審査にて、芸術性と完成度で圧倒した<b>BADIT</b>（勝利チーム）と、爆発的な個のカリスマで視聴者を虜にした<b>DCKZ</b>が融合。
+                    センターの座を巡る「ダインスレイヴ vs タルタリヤ」の静かなる火花と、それを気高く見守る「ディルック」という、全方位に隙のない最強の9人体制が完成。
+                </p>
+            </div>
+
+            <div id="lore-4ggravate" class="lore-card">
+                <span class="lore-tag">4ggravate</span>
+                <h3>スメール支部による「引き抜き事件」</h3>
+                <p class="text-sm leading-loose">
+                    HEAVENTEEN 2次審査で惜しくも脱落したアルハイゼンとカーヴェの才能を、ナヒーダ局長が即座に確保。
+                    セノ、ティナリを加え、「感情の欠如」や「繊細すぎる表現力」を、無機質なサイバー・ヒップホップという新たな武器に変換。番組への最大のリベンジを果たした。
+                </p>
+            </div>
+
+            <div id="lore-6reeze" class="lore-card">
+                <span class="lore-tag">6reeze</span>
+                <h3>自由な風の帰還と調和</h3>
+                <p class="text-sm leading-loose">
+                    「可愛いとかっこいいの両立」を掲げ、凝光のお達しにより蛍がプロデュース。
+                    スメールへのダンス留学から帰国した空と放浪者を中心に、モンド・璃月・稲妻の精鋭が集結。
+                    放浪者の圧倒的なダンススキルと、魈の鋭いラップを核とした、爽やかさと力強さが共存する稀有なユニット。
+                </p>
+            </div>
+
+            <div id="lore-universe" class="lore-card">
+                <span class="lore-tag">TVT U</span>
+                <h3>次世代の光：universeプロジェクト</h3>
+                <p class="text-sm leading-loose">
+                    Teyvat Entertainment のジュニアメンバーによって構成される可変式レーベルプロジェクト。
+                    「不運ボーイ」と呼ばれたベネットの類まれな体力を中心に、楽曲ごとに最適なメンバーを選抜する挑戦的なスタイル。1st Mini Album「HANA」により、その実力は既にデビュー組を凌駕すると噂されている。
+                </p>
+            </div>
         </section>
 
         <footer class="mt-32 pt-8 border-t text-center">
@@ -113,39 +176,22 @@
         function sortTable(n) {
             const table = document.getElementById("heaventeenTable");
             let rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-            switching = true;
-            dir = "asc";
+            switching = true; dir = "asc";
             while (switching) {
-                switching = false;
-                rows = table.rows;
+                switching = false; rows = table.rows;
                 for (i = 1; i < (rows.length - 1); i++) {
                     shouldSwitch = false;
                     x = rows[i].getElementsByTagName("TD")[n];
                     y = rows[i + 1].getElementsByTagName("TD")[n];
-                    
                     let xVal = x.getAttribute("data-val") || x.innerText.toLowerCase();
                     let yVal = y.getAttribute("data-val") || y.innerText.toLowerCase();
-                    
-                    // 数値として比較可能な場合は数値化
                     if (!isNaN(parseFloat(xVal))) xVal = parseFloat(xVal);
                     if (!isNaN(parseFloat(yVal))) yVal = parseFloat(yVal);
-
-                    if (dir == "asc") {
-                        if (xVal > yVal) { shouldSwitch = true; break; }
-                    } else if (dir == "desc") {
-                        if (xVal < yVal) { shouldSwitch = true; break; }
-                    }
+                    if (dir == "asc") { if (xVal > yVal) { shouldSwitch = true; break; } }
+                    else if (dir == "desc") { if (xVal < yVal) { shouldSwitch = true; break; } }
                 }
-                if (shouldSwitch) {
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    switching = true;
-                    switchcount ++;
-                } else {
-                    if (switchcount == 0 && dir == "asc") {
-                        dir = "desc";
-                        switching = true;
-                    }
-                }
+                if (shouldSwitch) { rows[i].parentNode.insertBefore(rows[i + 1], rows[i]); switching = true; switchcount ++; }
+                else if (switchcount == 0 && dir == "asc") { dir = "desc"; switching = true; }
             }
         }
 
