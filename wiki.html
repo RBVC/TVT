@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: #f6f6f6; color: #202122; font-family: 'Noto Sans JP', sans-serif; }
-        .wiki-container { max-width: 1200px; margin: 100px auto; background: white; padding: 40px; border: 1px solid #a2a9b1; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .wiki-container { max-width: 1100px; margin: 100px auto; background: white; padding: 40px; border: 1px solid #a2a9b1; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
         
         h1 { font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-bottom: 1rem; }
         h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-top: 4rem; margin-bottom: 1.5rem; display: flex; align-items: center; }
@@ -29,20 +29,21 @@
         th, td { border: 1px solid #a2a9b1; padding: 10px; text-align: left; vertical-align: middle; }
         th { background-color: #eaecf0; font-weight: bold; }
         
-        /* 🆕 マトリックス表：幅調整と1行表示の徹底 */
-        .matrix-table { table-layout: auto; width: 100%; }
-        .matrix-table th { text-align: center; font-family: 'Rajdhani', sans-serif; white-space: nowrap; padding: 12px 5px; }
-        .matrix-label { font-size: 0.85rem; font-weight: 800; letter-spacing: 0; }
+        /* 🆕 マトリックス表：列幅を完全に均等化 (100% / 6列 = 16.66%) */
+        .matrix-table { table-layout: fixed; width: 100%; }
+        .matrix-table th, .matrix-table td { width: 16.66%; text-align: center; padding: 12px 5px; }
+        .matrix-table th { font-family: 'Rajdhani', sans-serif; }
+        .matrix-label { font-size: 0.8rem; font-weight: 800; white-space: nowrap; }
         .matrix-ceo { font-size: 0.75rem; color: #666; font-weight: 400; }
-        .group-col { font-family: 'Rajdhani', sans-serif; font-weight: 800; background: #f8f9fa; width: 140px; text-align: left; white-space: nowrap; }
+        .group-col { font-family: 'Rajdhani', sans-serif; font-weight: 800; background: #f8f9fa; text-align: left !important; }
 
         /* グループ詳細表：幅統一 */
         .detail-table { table-layout: fixed; width: 100%; }
-        .detail-table th:nth-child(1) { width: 80px; }  /* 画像 */
-        .detail-table th:nth-child(2) { width: 180px; } /* 名前 */
-        .detail-table th:nth-child(3) { width: 120px; } /* 出身 */
-        .detail-table th:nth-child(4) { width: 250px; } /* ポジション */
-        .detail-table th:nth-child(5) { width: 120px; } /* レーベル */
+        .detail-table th:nth-child(1), .detail-table td:nth-child(1) { width: 80px; text-align: center; }
+        .detail-table th:nth-child(2), .detail-table td:nth-child(2) { width: 180px; }
+        .detail-table th:nth-child(3), .detail-table td:nth-child(3) { width: 120px; }
+        .detail-table th:nth-child(4), .detail-table td:nth-child(4) { width: 250px; }
+        .detail-table th:nth-child(5), .detail-table td:nth-child(5) { width: 120px; }
 
         .member-img { width: 60px; height: 60px; object-fit: cover; background: #eee; border-radius: 2px; }
         .bold { font-weight: 900; }
@@ -110,43 +111,43 @@
                     <tbody>
                         <tr>
                             <td class="group-col">GEN1US</td>
-                            <td>Diluc, Kaeya, Dainsleif</td>
-                            <td>Zhongli, Baizhu, Tartaglia</td>
-                            <td>Ayato, Thoma, Itto</td>
-                            <td class="text-gray-300 text-center">-</td>
-                            <td class="text-gray-300 text-center">-</td>
+                            <td style="font-size: 0.75rem;">Diluc, Kaeya, Dainsleif</td>
+                            <td style="font-size: 0.75rem;">Zhongli, Baizhu, Tartaglia</td>
+                            <td style="font-size: 0.75rem;">Ayato, Thoma, Itto</td>
+                            <td class="text-gray-300">-</td>
+                            <td class="text-gray-300">-</td>
                         </tr>
                         <tr>
                             <td class="group-col">4ggravate</td>
-                            <td class="text-gray-300 text-center">-</td>
-                            <td class="text-gray-300 text-center">-</td>
-                            <td class="text-gray-300 text-center">-</td>
-                            <td>Alhaitham, Cyno, Kaveh, Tighnari</td>
-                            <td class="text-gray-300 text-center">-</td>
+                            <td class="text-gray-300">-</td>
+                            <td class="text-gray-300">-</td>
+                            <td class="text-gray-300">-</td>
+                            <td style="font-size: 0.75rem;">Alhaitham, Cyno, Kaveh, Tighnari</td>
+                            <td class="text-gray-300">-</td>
                         </tr>
                         <tr>
                             <td class="group-col">6reeze</td>
-                            <td>Venti</td>
-                            <td>Xiao</td>
-                            <td>Kazuha, Heizou</td>
-                            <td>Wanderer, Aether</td>
-                            <td class="text-gray-300 text-center">-</td>
+                            <td style="font-size: 0.75rem;">Venti</td>
+                            <td style="font-size: 0.75rem;">Xiao</td>
+                            <td style="font-size: 0.75rem;">Kazuha, Heizou</td>
+                            <td style="font-size: 0.75rem;">Wanderer, Aether</td>
+                            <td class="text-gray-300">-</td>
                         </tr>
                         <tr>
                             <td class="group-col">TVT U</td>
-                            <td>Bennett, Razor, Albedo</td>
-                            <td>Xingqiu, Chongyun, Gaming</td>
-                            <td>Gorou</td>
-                            <td class="text-gray-300 text-center">-</td>
-                            <td class="text-gray-300 text-center">-</td>
+                            <td style="font-size: 0.75rem;">Bennett, Razor, Albedo</td>
+                            <td style="font-size: 0.75rem;">Xingqiu, Chongyun, Gaming</td>
+                            <td style="font-size: 0.75rem;">Gorou</td>
+                            <td class="text-gray-300">-</td>
+                            <td class="text-gray-300">-</td>
                         </tr>
                         <tr>
                             <td class="group-col">House of the Hearth</td>
-                            <td class="text-gray-300 text-center">-</td>
-                            <td class="text-gray-300 text-center">-</td>
-                            <td class="text-gray-300 text-center">-</td>
-                            <td class="text-gray-300 text-center">-</td>
-                            <td>Neuvillette, Wriothesley, Lyney, Freminet</td>
+                            <td class="text-gray-300">-</td>
+                            <td class="text-gray-300">-</td>
+                            <td class="text-gray-300">-</td>
+                            <td class="text-gray-300">-</td>
+                            <td style="font-size: 0.75rem;">Neuvillette, Wriothesley, Lyney, Freminet</td>
                         </tr>
                     </tbody>
                 </table>
@@ -207,7 +208,7 @@
                             <tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>所属レーベル</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td><img src="images/6reeze/heart-wanderer.jpg" class="member-img"></td><td>Wanderer</td><td>Inazuma</td><td>Main Dancer / Lead Vocal</td><td>AKASHA</td></tr>
+                            <tr><td><img src="images/6reeze/heart-wanderer.jpg" class="member-img"></td><td>Wanderer</td><td>Inazuma</td><td>Main Dancer / Lead Vocal / Sub Rapper</td><td>AKASHA</td></tr>
                             <tr><td><img src="images/6reeze/heart-xiao.jpg" class="member-img"></td><td>Xiao</td><td>Liyue</td><td>Main Rapper / Sub Vocal</td><td>QIXING</td></tr>
                             <tr><td><img src="images/6reeze/heart-venti.jpg" class="member-img"></td><td>Venti</td><td>Mondstadt</td><td>Main Vocal / Center</td><td>FAVONIUS</td></tr>
                             <tr><td><img src="images/6reeze/heart-kazuha.jpg" class="member-img"></td><td>Kazuha</td><td>Inazuma</td><td>Main Vocal / Lead Dancer</td><td>NARUKAMI</td></tr>
