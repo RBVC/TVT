@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVT Wiki | 内部機密資料</title>
+    <title>TVT Wiki | 内部機密アーカイブ</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -13,27 +13,29 @@
         h1 { font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-bottom: 1rem; }
         h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-top: 3.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; }
         h2::before { content: ""; display: inline-block; width: 8px; height: 1.8rem; background: #000; margin-right: 12px; }
-        h3 { font-weight: 900; font-size: 1.2rem; margin-top: 2.5rem; margin-bottom: 1rem; border-left: 5px solid #333; padding-left: 15px; }
+        h3 { font-weight: 900; font-size: 1.4rem; margin-top: 2.5rem; margin-bottom: 1rem; border-left: 5px solid #333; padding-left: 15px; }
 
         /* 目次 (TOC) */
-        .toc-box { background: #f8f9fa; border: 1px solid #a2a9b1; padding: 20px; display: inline-block; min-width: 300px; margin-bottom: 2rem; font-size: 0.9rem; }
+        .toc-box { background: #f8f9fa; border: 1px solid #a2a9b1; padding: 20px; display: inline-block; min-width: 350px; margin-bottom: 2rem; font-size: 0.9rem; }
         .toc-title { font-weight: bold; text-align: center; margin-bottom: 10px; }
         .toc-box ul { list-style: none; padding: 0; }
         .toc-box li { margin: 5px 0; }
         .toc-box a { color: #0645ad; text-decoration: none; }
-        .toc-box a:hover { underline; }
+        .toc-box a:hover { text-decoration: underline; }
 
-        /* テーブル設定 */
-        table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; font-size: 0.9rem; table-layout: fixed; }
-        th, td { border: 1px solid #a2a9b1; padding: 12px; text-align: left; overflow: hidden; text-overflow: ellipsis; }
-        th { background-color: #eaecf0; font-weight: bold; cursor: pointer; position: relative; }
-        th:hover { background-color: #d1d4d9; }
+        /* Wikipedia風テーブル */
+        table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; font-size: 0.85rem; }
+        th, td { border: 1px solid #a2a9b1; padding: 10px; text-align: left; }
+        th { background-color: #eaecf0; font-weight: bold; cursor: pointer; }
         tr:nth-child(even) { background-color: #f8f9fa; }
         
-        .label-name { font-family: 'Rajdhani', sans-serif; font-weight: 700; color: #000; }
+        .label-cell { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 0.9rem; }
+        .group-cell { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1rem; }
         .rank-num { font-family: 'Rajdhani', sans-serif; font-weight: 700; }
-        .lore-card { background: #fdfdfd; border: 1px solid #eee; padding: 20px; margin-bottom: 1.5rem; border-radius: 4px; }
-        .lore-tag { font-size: 0.7rem; font-weight: bold; background: #000; color: #fff; padding: 2px 8px; border-radius: 2px; margin-bottom: 10px; display: inline-block; }
+        
+        /* 詳細用ロアカード */
+        .lore-card { background: #fdfdfd; border: 1px solid #eee; padding: 25px; margin-bottom: 2rem; border-radius: 4px; border-top: 4px solid #000; }
+        .member-list-mini { font-size: 0.8rem; color: #666; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -52,116 +54,165 @@
 
     <main class="wiki-container">
         <h1>Teyvat Entertainment 内部機密資料</h1>
-        <p class="text-xs text-gray-400 italic mb-8 uppercase tracking-widest">Confidential Record / CEO Eyes Only</p>
+        <p class="text-[10px] text-gray-400 italic mb-8 uppercase tracking-[0.3em]">Confidential Archive / CEO Eyes Only</p>
 
         <!-- 目次 -->
         <div class="toc-box">
             <div class="toc-title">目次</div>
             <ul>
-                <li>1. <a href="#org">組織構造（マルチレーベル体制）</a></li>
-                <li>2. <a href="#heaventeen">プロジェクト: HEAVENTEEN 全記録</a></li>
-                <li>3. <a href="#groups">所属アーティスト詳細設定</a>
+                <li>1. <a href="#org">組織構造</a></li>
+                <li>2. <a href="#affiliates">所属アーティスト</a></li>
+                <li>3. <a href="#details">グループ詳細設定</a>
                     <ul class="ml-4">
-                        <li>3.1 <a href="#lore-gen1us">GEN1US - 絶対王者の誕生</a></li>
-                        <li>3.2 <a href="#lore-4ggravate">4ggravate - 知性の逆転劇</a></li>
-                        <li>3.3 <a href="#lore-6reeze">6reeze - 自由な風の帰還</a></li>
-                        <li>3.4 <a href="#lore-universe">TVT U (universe) - 次世代の光</a></li>
+                        <li>3.1 <a href="#lore-gen1us">GEN1US</a></li>
+                        <li>3.2 <a href="#lore-4ggravate">4ggravate</a></li>
+                        <li>3.3 <a href="#lore-6reeze">6reeze</a></li>
+                        <li>3.4 <a href="#lore-universe">TVT U (universe)</a></li>
+                    </ul>
+                </li>
+                <li>4. <a href="#projects">プロジェクト一覧</a>
+                    <ul class="ml-4">
+                        <li>4.1 <a href="#heaventeen">HEAVENTEEN (サバイバル番組)</a></li>
                     </ul>
                 </li>
             </ul>
         </div>
 
-        <!-- Section 1: 組織図 -->
+        <!-- Section 1: 組織構造 -->
         <section id="org">
-            <h2>組織構造（マルチレーベル体制）</h2>
-            <p class="mb-6 text-sm text-gray-600">各国支部の神々がCEOを務める、独立性の高い5つのレーベルによる連合体制。</p>
+            <h2>組織構造</h2>
+            <p class="mb-6 text-sm">Teyvat Entertainment は、各国の文化と神々の意志を反映した5つの独立レーベルによるマルチレーベル体制を敷いている。</p>
             <table>
                 <thead>
                     <tr>
-                        <th style="width: 15%;">拠点</th>
-                        <th style="width: 30%;">レーベル名</th>
-                        <th style="width: 20%;">最高責任者</th>
-                        <th style="width: 35%;">コンセプト</th>
+                        <th>拠点</th>
+                        <th>レーベル名</th>
+                        <th>最高責任者</th>
+                        <th>コンセプト</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>モンド</td><td class="label-name">FAVONIUS MUSIC</td><td>ジン</td><td>自由 / ポップ / 伝統</td></tr>
-                    <tr><td>璃月</td><td class="label-name">QIXING STUDIO</td><td>凝光</td><td>豪華 / 制作 / ハイエンド</td></tr>
-                    <tr><td>稲妻</td><td class="label-name">NARUKAMI RECORDS</td><td>雷電将軍</td><td>鋭利 / 職人芸 / 永遠</td></tr>
-                    <tr><td>スメール</td><td class="label-name">AKASHA LAB</td><td>ナヒーダ</td><td>サイバー / 知的 / 実験的</td></tr>
-                    <tr><td>フォンテーヌ</td><td class="label-name">EPICLESES PROMOTION</td><td>フリーナ</td><td>劇的 / エンタメ / 叙事詩</td></tr>
+                    <tr><td>モンド</td><td class="label-cell">FAVONIUS MUSIC</td><td>ジン</td><td>自由 / ポップ / 伝統</td></tr>
+                    <tr><td>璃月</td><td class="label-cell">QIXING STUDIO</td><td>凝光</td><td>豪華 / 制作 / ハイエンド</td></tr>
+                    <tr><td>稲妻</td><td class="label-cell">NARUKAMI RECORDS</td><td>雷電将軍</td><td>鋭利 / 職人芸 / 永遠</td></tr>
+                    <tr><td>スメール</td><td class="label-cell">AKASHA LAB</td><td>ナヒーダ</td><td>サイバー / 知的 / 実験的</td></tr>
+                    <tr><td>フォンテーヌ</td><td class="label-cell">EPICLESES PROMOTION</td><td>フリーナ</td><td>劇的 / エンタメ / 叙事詩</td></tr>
                 </tbody>
             </table>
         </section>
 
-        <!-- Section 2: HEAVENTEEN -->
-        <section id="heaventeen">
-            <h2>プロジェクト: HEAVENTEEN 全記録</h2>
-            <p class="mb-4 text-sm text-gray-600">伝説のサバイバル番組。13人から始まり、視聴者の熱望により現在の9名（GEN1US）が選出された。</p>
-            <table id="heaventeenTable">
+        <!-- Section 2: 所属アーティスト (HYBE Style) -->
+        <section id="affiliates">
+            <h2>所属アーティスト</h2>
+            <p class="mb-4 text-xs text-gray-500">※ <b>太字</b>はリーダー</p>
+            <table id="artistTable">
                 <thead>
                     <tr>
-                        <th onclick="sortTable(0)">名前</th>
-                        <th onclick="sortTable(1)">0次 (実力)</th>
-                        <th onclick="sortTable(2)">1次 (SVT)</th>
-                        <th onclick="sortTable(3)">2次 (JO1)</th>
-                        <th onclick="sortTable(4)">最終 (ONEUS)</th>
-                        <th onclick="sortTable(5)">結果</th>
+                        <th onclick="sortWiki(0)">所属レーベル</th>
+                        <th onclick="sortWiki(1)">グループ名</th>
+                        <th onclick="sortWiki(2)">メンバー</th>
+                        <th onclick="sortWiki(3)">期間</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr><td>Tartaglia</td><td class="rank-num" data-val="9">9位</td><td class="rank-num" data-val="4">4位</td><td class="rank-num" data-val="3">3位</td><td class="rank-num" data-val="1">1位</td><td>GEN1US (DCKZ)</td></tr>
-                    <tr><td>Dainsleif</td><td class="rank-num" data-val="1">1位</td><td class="rank-num" data-val="2">2位</td><td class="rank-num" data-val="4">4位</td><td class="rank-num" data-val="2">2位</td><td>GEN1US (BADIT)</td></tr>
-                    <tr><td>Diluc</td><td class="rank-num" data-val="2">2位</td><td class="rank-num" data-val="1">1位</td><td class="rank-num" data-val="1">1位</td><td class="rank-num" data-val="3">3位</td><td>GEN1US (DCKZ)</td></tr>
-                    <tr><td>Ayato</td><td class="rank-num" data-val="7">7位</td><td class="rank-num" data-val="6">6位</td><td class="rank-num" data-val="2">2位</td><td class="rank-num" data-val="4">4位</td><td>GEN1US (BADIT)</td></tr>
-                    <tr><td>Zhongli</td><td class="rank-num" data-val="12">12位</td><td class="rank-num" data-val="10">10位</td><td class="rank-num" data-val="6">6位</td><td class="rank-num" data-val="5">5位</td><td>GEN1US (DCKZ)</td></tr>
-                    <tr><td>Baizhu</td><td class="rank-num" data-val="4">4位</td><td class="rank-num" data-val="7">7位</td><td class="rank-num" data-val="8">8位</td><td class="rank-num" data-val="6">6位</td><td>GEN1US (BADIT)</td></tr>
-                    <tr><td>Kaeya</td><td class="rank-num" data-val="8">8位</td><td class="rank-num" data-val="5">5位</td><td class="rank-num" data-val="5">5位</td><td class="rank-num" data-val="7">7位</td><td>GEN1US (DCKZ)</td></tr>
-                    <tr><td>Thoma</td><td class="rank-num" data-val="11">11位</td><td class="rank-num" data-val="3">3位</td><td class="rank-num" data-val="9">9位</td><td class="rank-num" data-val="8">8位</td><td>GEN1US (BADIT)</td></tr>
-                    <tr><td>Itto</td><td class="rank-num" data-val="13">13位</td><td class="rank-num" data-val="11">11位</td><td class="rank-num" data-val="7">7位</td><td class="rank-num" data-val="9">9位</td><td>GEN1US (BADIT)</td></tr>
+                    <tr>
+                        <td class="label-cell">QIXING STUDIO</td>
+                        <td class="group-cell">GEN1US</td>
+                        <td>Diluc, Zhongli, Itto, <b>Baizhu</b>, Tartaglia, Ayato, Kaeya, Dainsleif, Thoma</td>
+                        <td>202X年 - 現在</td>
+                    </tr>
+                    <tr>
+                        <td class="label-cell">AKASHA LAB</td>
+                        <td class="group-cell">4ggravate</td>
+                        <td>Alhaitham, Cyno, Kaveh, <b>Tighnari</b></td>
+                        <td>202X年 - 現在</td>
+                    </tr>
+                    <tr>
+                        <td class="label-cell">FAVONIUS MUSIC</td>
+                        <td class="group-cell">6reeze</td>
+                        <td>Wanderer, Xiao, Venti, Kazuha, <b>Aether</b>, Heizou</td>
+                        <td>202X年 - 現在</td>
+                    </tr>
+                    <tr>
+                        <td class="label-cell">FAVONIUS MUSIC</td>
+                        <td class="group-cell">TVT U</td>
+                        <td>Gaming, Chongyun, Xingqiu, Albedo, Gorou, <b>Bennett</b>, Razor</td>
+                        <td>202X年 - 現在</td>
+                    </tr>
                 </tbody>
             </table>
         </section>
 
-        <!-- Section 3: Artist Lore -->
-        <section id="groups">
-            <h2>所属アーティスト詳細設定</h2>
+        <!-- Section 3: グループ詳細 -->
+        <section id="details">
+            <h2>グループ詳細設定</h2>
 
             <div id="lore-gen1us" class="lore-card">
-                <span class="lore-tag">GEN1US</span>
-                <h3>絶対王者の誕生と二大ユニットの融合</h3>
-                <p class="text-sm leading-loose">
-                    番組最終審査にて、芸術性と完成度で圧倒した<b>BADIT</b>（勝利チーム）と、爆発的な個のカリスマで視聴者を虜にした<b>DCKZ</b>が融合。
-                    センターの座を巡る「ダインスレイヴ vs タルタリヤ」の静かなる火花と、それを気高く見守る「ディルック」という、全方位に隙のない最強の9人体制が完成。
-                </p>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Super Unit</span>
+                <h3 class="group-cell">GEN1US</h3>
+                <p class="text-sm leading-relaxed mb-4">サバイバル番組『HEAVENTEEN』の覇者。「DCKZ」の爆発力と「BADIT」の芸術性が融合した、大陸史上最強の9人。センターの座を巡る静かなる闘争と、圧倒的な実力が共存する。</p>
+                <div class="member-list-mini">
+                    <b>Members:</b> Diluc (Mond/Main Vocal), Zhongli (Liyue/Lead Rapper), Itto (Inazuma/Main Rapper), <b>Baizhu (Liyue/Leader)</b>, Tartaglia (Snezhnaya/Main Dancer), Ayato (Inazuma/Visual), Kaeya (Mond/Main Vocal), Dainsleif (Mond/Lead Dancer), Thoma (Inazuma/Lead Dancer)
+                </div>
             </div>
 
             <div id="lore-4ggravate" class="lore-card">
-                <span class="lore-tag">4ggravate</span>
-                <h3>スメール支部による「引き抜き事件」</h3>
-                <p class="text-sm leading-loose">
-                    HEAVENTEEN 2次審査で惜しくも脱落したアルハイゼンとカーヴェの才能を、ナヒーダ局長が即座に確保。
-                    セノ、ティナリを加え、「感情の欠如」や「繊細すぎる表現力」を、無機質なサイバー・ヒップホップという新たな武器に変換。番組への最大のリベンジを果たした。
-                </p>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Sumeru Unit</span>
+                <h3 class="group-cell">4ggravate</h3>
+                <p class="text-sm leading-relaxed mb-4">ナヒーダCEOによる「引き抜き事件」によって誕生した実力派ラップユニット。挫折した天才たちが、サイバー・ヒップホップという新たな武器を手にし、感情を音に乗せて世界を圧倒する。</p>
+                <div class="member-list-mini">
+                    <b>Members:</b> Alhaitham (Sumeru/Main Dancer), Cyno (Sumeru/Main Rapper), Kaveh (Sumeru/Lead Dancer), <b>Tighnari (Sumeru/Leader)</b>
+                </div>
             </div>
 
             <div id="lore-6reeze" class="lore-card">
-                <span class="lore-tag">6reeze</span>
-                <h3>自由な風の帰還と調和</h3>
-                <p class="text-sm leading-loose">
-                    「可愛いとかっこいいの両立」を掲げ、凝光のお達しにより蛍がプロデュース。
-                    スメールへのダンス留学から帰国した空と放浪者を中心に、モンド・璃月・稲妻の精鋭が集結。
-                    放浪者の圧倒的なダンススキルと、魈の鋭いラップを核とした、爽やかさと力強さが共存する稀有なユニット。
-                </p>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Inter-label Project</span>
+                <h3 class="group-cell">6reeze</h3>
+                <p class="text-sm leading-relaxed mb-4">凝光のお達しにより、蛍がプロデュースした「可愛い×格好良い」の最高到達点。留学から帰還した放浪者の超絶ダンスと、魈の鋭利なラップが、自由な風と共に世界を駆け抜ける。</p>
+                <div class="member-list-mini">
+                    <b>Members:</b> Wanderer (Inazuma/Main Dancer), Xiao (Liyue/Main Rapper), Venti (Mond/Main Vocal), Kazuha (Inazuma/Main Vocal), <b>Aether (??? / Leader)</b>, Heizou (Inazuma/Lead Rapper)
+                </div>
             </div>
 
             <div id="lore-universe" class="lore-card">
-                <span class="lore-tag">TVT U</span>
-                <h3>次世代の光：universeプロジェクト</h3>
-                <p class="text-sm leading-loose">
-                    Teyvat Entertainment のジュニアメンバーによって構成される可変式レーベルプロジェクト。
-                    「不運ボーイ」と呼ばれたベネットの類まれな体力を中心に、楽曲ごとに最適なメンバーを選抜する挑戦的なスタイル。1st Mini Album「HANA」により、その実力は既にデビュー組を凌駕すると噂されている。
-                </p>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Junior Project</span>
+                <h3 class="group-cell">TVT U (universe)</h3>
+                <p class="text-sm leading-relaxed mb-4">ジュニア育成枠から誕生した可変式プロジェクト。楽曲ごとにコンセプトを変え、メンバーを入れ替える。ベネットの不運をも力に変える生命力と、HANAのような瑞々しさが特徴。</p>
+                <div class="member-list-mini">
+                    <b>Members:</b> Gaming (Liyue/Main Vocal), Chongyun (Liyue/Lead Rapper), Xingqiu (Liyue/Main Vocal), Albedo (Mond/Sub Vocal), Gorou (Inazuma/Lead Dancer), <b>Bennett (Mond/Leader)</b>, Razor (Mond/Main Rapper)
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: プロジェクト一覧 -->
+        <section id="projects">
+            <h2>プロジェクト一覧</h2>
+            <div id="heaventeen" class="mb-10">
+                <h3>HEAVENTEEN (サバイバル番組)</h3>
+                <p class="mb-6 text-sm">GEN1USの結成を記録したドキュメンタリー・サバイバル。13人の練習生が参加。</p>
+                <table id="heaventeenTable">
+                    <thead>
+                        <tr>
+                            <th onclick="sortWiki(0, 'heaventeenTable')">名前</th>
+                            <th onclick="sortWiki(1, 'heaventeenTable')">0次 (実力)</th>
+                            <th onclick="sortWiki(2, 'heaventeenTable')">1次 (SVT)</th>
+                            <th onclick="sortWiki(3, 'heaventeenTable')">2次 (JO1)</th>
+                            <th onclick="sortWiki(4, 'heaventeenTable')">最終 (ONEUS)</th>
+                            <th onclick="sortWiki(5, 'heaventeenTable')">結果</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Tartaglia</td><td class="rank-num" data-val="9">9位</td><td class="rank-num" data-val="4">4位</td><td class="rank-num" data-val="3">3位</td><td class="rank-num" data-val="1">1位</td><td>GEN1US (DCKZ)</td></tr>
+                        <tr><td>Dainsleif</td><td class="rank-num" data-val="1">1位</td><td class="rank-num" data-val="2">2位</td><td class="rank-num" data-val="4">4位</td><td class="rank-num" data-val="2">2位</td><td>GEN1US (BADIT)</td></tr>
+                        <tr><td>Diluc</td><td class="rank-num" data-val="2">2位</td><td class="rank-num" data-val="1">1位</td><td class="rank-num" data-val="1">1位</td><td class="rank-num" data-val="3">3位</td><td>GEN1US (DCKZ)</td></tr>
+                        <tr><td>Ayato</td><td class="rank-num" data-val="7">7位</td><td class="rank-num" data-val="6">6位</td><td class="rank-num" data-val="2">2位</td><td class="rank-num" data-val="4">4位</td><td>GEN1US (BADIT)</td></tr>
+                        <tr><td>Zhongli</td><td class="rank-num" data-val="12">12位</td><td class="rank-num" data-val="10">10位</td><td class="rank-num" data-val="6">6位</td><td class="rank-num" data-val="5">5位</td><td>GEN1US (DCKZ)</td></tr>
+                        <tr><td>Baizhu</td><td class="rank-num" data-val="4">4位</td><td class="rank-num" data-val="7">7位</td><td class="rank-num" data-val="8">8位</td><td class="rank-num" data-val="6">6位</td><td>GEN1US (BADIT)</td></tr>
+                        <tr><td>Kaeya</td><td class="rank-num" data-val="8">8位</td><td class="rank-num" data-val="5">5位</td><td class="rank-num" data-val="5">5位</td><td class="rank-num" data-val="7">7位</td><td>GEN1US (DCKZ)</td></tr>
+                        <tr><td>Thoma</td><td class="rank-num" data-val="11">11位</td><td class="rank-num" data-val="3">3位</td><td class="rank-num" data-val="9">9位</td><td class="rank-num" data-val="8">8位</td><td>GEN1US (BADIT)</td></tr>
+                        <tr><td>Itto</td><td class="rank-num" data-val="13">13位</td><td class="rank-num" data-val="11">11位</td><td class="rank-num" data-val="7">7位</td><td class="rank-num" data-val="9">9位</td><td>GEN1US (BADIT)</td></tr>
+                    </tbody>
+                </table>
             </div>
         </section>
 
@@ -173,8 +224,8 @@
 
     <script>
         // 並べ替えロジック
-        function sortTable(n) {
-            const table = document.getElementById("heaventeenTable");
+        function sortWiki(n, tableId = 'artistTable') {
+            const table = document.getElementById(tableId);
             let rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
             switching = true; dir = "asc";
             while (switching) {
