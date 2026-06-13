@@ -15,24 +15,19 @@
             <span></span><span></span><span></span>
         </div>
     </header>
-
     <div class="nav-overlay" id="nav-menu">
         <a href="index.html#artists" class="menu-close">ARTISTS</a>
         <a href="wiki.html" class="menu-close">WIKI</a>
     </div>
-
-    <main class="max-w-6xl mx-auto px-6 py-24">
+    <main class="max-w-6xl mx-auto px-6 py-24 text-left">
         <div class="text-center mb-16 pt-16">
             <a href="index.html#artists" class="text-[10px] text-gray-300 uppercase tracking-[0.4em] mb-6 inline-block hover:text-black transition font-bold">← ALL ARTISTS</a>
             <h1 id="group-name" class="text-6xl md:text-[8rem] logo-font leading-none uppercase">Artist</h1>
         </div>
-
         <div class="flex justify-center space-x-12 mb-16 border-b border-gray-100">
             <button onclick="switchTab('profile')" id="btn-profile" class="tab-btn active uppercase">Profile</button>
             <button onclick="switchTab('disco')" id="btn-disco" class="tab-btn uppercase">Discography</button>
         </div>
-
-        <!-- PROFILE CONTENT -->
         <div id="profile" class="content-section block">
             <div class="w-full mb-20 overflow-hidden bg-gray-50 border border-gray-100 shadow-sm" style="aspect-ratio: 3 / 1;">
                 <img id="group-banner" src="" class="w-full h-full object-contain">
@@ -40,66 +35,49 @@
             <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6">Member</h2>
             <div id="member-grid" class="member-flex-container"></div>
         </div>
-
-        <!-- DISCOGRAPHY CONTENT -->
         <div id="disco" class="content-section hidden">
             <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6">Discography</h2>
-            <div id="disco-list" class="grid grid-cols-1 gap-12 text-center"></div>
+            <div id="disco-list" class="grid grid-cols-1 gap-12"></div>
         </div>
     </main>
-
     <footer>
         <div class="f-logo">TVT</div>
         <p>&copy; Teyvat Entertainment All Rights Reserved.</p>
     </footer>
-
     <script>
         const params = new URLSearchParams(window.location.search);
         const groupId = params.get('id') || 'gen1us';
         const data = allGroups[groupId];
-
         if (data) {
             document.title = `${data.name} | TVT Official`;
             document.getElementById('group-name').innerText = data.name;
             document.getElementById('group-banner').src = data.banner;
-
             const memberGrid = document.getElementById('member-grid');
             memberGrid.classList.add('layout-' + (data.layout || 4));
-
             data.members.forEach((m) => {
                 memberGrid.innerHTML += `
-                    <div class="member-card text-left">
+                    <div class="member-card">
                         <div class="aspect-square overflow-hidden bg-gray-50 border border-gray-100 mb-6">
                             <img src="${m.img}" class="w-full h-full object-cover" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMAGE'">
                         </div>
-                        <p class="logo-font text-2xl leading-none" style="text-transform: none;">${m.name}</p>
-                        <p class="text-[12px] text-black font-black mt-4 tracking-widest" style="text-transform: none;">${m.div}</p>
-                        <p class="text-[10px] text-gray-400 mt-1 tracking-widest leading-relaxed" style="text-transform: none;">${m.pos}</p>
-                    </div>
-                `;
+                        <p class="logo-font text-2xl leading-none">${m.name}</p>
+                        <p class="text-[12px] text-black font-black mt-4 tracking-widest">${m.div}</p>
+                        <p class="text-[10px] text-gray-400 mt-1 tracking-widest leading-relaxed">${m.pos}</p>
+                    </div>`;
             });
-
-            // ディスコグラフィ描画
             const discoList = document.getElementById('disco-list');
             if (!data.discography || data.discography.length === 0) {
-                discoList.innerHTML = '<p class="logo-font text-gray-200 text-3xl uppercase">Coming Soon</p>';
+                discoList.innerHTML = '<p class="logo-font text-gray-200 text-3xl uppercase text-center">Coming Soon</p>';
             } else {
                 data.discography.forEach(d => {
-                    discoList.innerHTML += `
-                        <div class="max-w-4xl mx-auto w-full">
-                            <div class="text-left mb-6">
-                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] mb-1">${d.type}</p>
-                                <h3 class="logo-font text-3xl uppercase">${d.title}</h3>
-                            </div>
-                            <div class="bg-gray-50 rounded-xl overflow-hidden shadow-inner border border-gray-100">
-                                ${d.embed}
-                            </div>
-                        </div>
-                    `;
+                    discoList.innerHTML += `<div class="max-w-4xl mx-auto w-full text-left">
+                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] mb-1">${d.type}</p>
+                        <h3 class="logo-font text-3xl uppercase mb-4">${d.title}</h3>
+                        <div class="bg-gray-50 rounded-xl overflow-hidden shadow-inner border border-gray-100">${d.embed}</div>
+                    </div>`;
                 });
             }
         }
-
         function switchTab(tabName) {
             document.querySelectorAll('.content-section').forEach(s => { s.classList.add('hidden'); s.classList.remove('block'); });
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -107,14 +85,9 @@
             document.getElementById(tabName).classList.add('block');
             document.getElementById('btn-' + tabName).classList.add('active');
         }
-
         const menuBtn = document.getElementById('menu-btn');
         const navMenu = document.getElementById('nav-menu');
-        menuBtn.onclick = () => { 
-            menuBtn.classList.toggle('active'); 
-            navMenu.classList.toggle('open'); 
-            document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : 'auto';
-        };
+        menuBtn.onclick = () => { menuBtn.classList.toggle('active'); navMenu.classList.toggle('open'); document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : 'auto'; };
     </script>
 </body>
 </html>

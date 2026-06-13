@@ -4,7 +4,7 @@
 
 html { 
     scroll-behavior: smooth; 
-    scroll-padding-top: 80px; 
+    scroll-padding-top: 100px; 
 }
 
 body { 
@@ -16,7 +16,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Rajdhani：鋭い見出し・ロゴ用 */
 .logo-font { 
     font-family: 'Rajdhani', sans-serif; 
     font-weight: 700; 
@@ -48,7 +47,6 @@ header .logo {
     letter-spacing: -0.05em;
 }
 
-/* ハンバーガーアイコン */
 .menu-trigger {
     position: relative;
     width: 30px;
@@ -72,7 +70,6 @@ header .logo {
 .menu-trigger.active span:nth-child(2) { opacity: 0; }
 .menu-trigger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-/* 全画面メニュー */
 .nav-overlay {
     position: fixed;
     top: 0;
@@ -93,7 +90,7 @@ header .logo {
 .nav-overlay a {
     font-size: 3rem;
     font-weight: 800;
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     text-decoration: none;
     color: #000;
     margin: 15px 0;
@@ -102,13 +99,13 @@ header .logo {
 .nav-overlay a:hover { color: #ccc; }
 
 footer { padding: 80px 0; border-top: 1px solid #f0f0f0; text-align: center; background: #fff; margin-top: 100px; }
-footer .f-logo { font-size: 3rem; margin-bottom: 20px; color: #000; font-family: 'Rajdhani', sans-serif; font-weight: 800; }
+footer .f-logo { font-size: 3rem; margin-bottom: 20px; color: #000; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; }
 footer p { font-size: 9px; color: #ccc; letter-spacing: 0.3em; text-transform: uppercase; }
 
 .tab-btn { 
     font-size: 12px; 
     font-weight: 700; 
-    font-family: 'Rajdhani', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     color: #ccc; 
     letter-spacing: 0.15em; 
     transition: 0.3s; 
@@ -118,21 +115,22 @@ footer p { font-size: 9px; color: #ccc; letter-spacing: 0.3em; text-transform: u
 }
 .tab-btn.active { color: #000; border-bottom: 2px solid #000; }
 
-/* メンバーグリッド（左詰め・中央配置） */
-#member-grid {
-    display: grid;
-    margin: 0 auto;
+.member-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 40px 20px;
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
-.layout-4 { grid-template-columns: repeat(4, 1fr); max-width: 1200px; }
-.layout-3 { grid-template-columns: repeat(3, 1fr); max-width: 900px; }
+
+.layout-4 .member-card { width: calc(25% - 20px); }
+.layout-3 .member-card { width: calc(33.33% - 20px); }
 
 @media (max-width: 768px) {
     header { padding: 15px 20px; }
     .nav-overlay a { font-size: 2rem; }
-    #member-grid.layout-3, #member-grid.layout-4 {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px 10px;
-    }
+    .member-flex-container { gap: 30px 10px; }
+    .layout-3 .member-card, .layout-4 .member-card { width: calc(50% - 10px); }
 }
