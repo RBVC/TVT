@@ -1,6 +1,6 @@
 // group.js - Teyvat Entertainment Master Database
 
-// HEAVENTEEN 順位データ
+// HEAVENTEEN 順位データ (Wiki自動生成用)
 const heaventeenResults = [
     { name: "Tartaglia", rank0: 9, rank1: 4, rank2: 3, final: 1, result: "GEN1US" },
     { name: "Dainsleif", rank0: 1, rank1: 2, rank2: 4, final: 2, result: "GEN1US" },
@@ -17,9 +17,9 @@ const heaventeenResults = [
     { name: "Wriothesley", rank0: 6, rank1: 99, rank2: 99, final: 99, result: "House of the Hearth" }
 ];
 
-// レーベル情報 (HQを追加)
+// レーベル情報
 const labels = {
-    "HQ": { name: "TEYVAT ENT. (HQ)", ceo: "RBVC" },
+    "HQ": { name: "TEYVAT ENT. (HQ)", ceo: "パイモン" }, // ✅ RBVCから変更
     "FAVONIUS": { name: "FAVONIUS MUSIC", ceo: "ジン" },
     "QIXING": { name: "QIXING STUDIO", ceo: "凝光" },
     "NARUKAMI": { name: "NARUKAMI RECORDS", ceo: "雷電将軍" },

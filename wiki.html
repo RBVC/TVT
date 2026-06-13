@@ -9,14 +9,19 @@
     <script src="group.js"></script>
     <style>
         body { background-color: #f6f6f6; color: #202122; font-family: 'Noto Sans JP', sans-serif; }
-        .wiki-container { max-width: 1200px; margin: 100px auto; background: white; padding: 60px; border: 1px solid #a2a9b1; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .wiki-container { max-width: 1100px; margin: 100px auto; background: white; padding: 60px; border: 1px solid #a2a9b1; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
         
         h1 { font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-bottom: 2rem; }
-        h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-top: 5rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding-bottom: 10px; }
-        h2::before { content: ""; display: inline-block; width: 8px; height: 1.8rem; background: #000; margin-right: 12px; }
-        h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1rem; color: #000; display: flex; align-items: center; justify-content: space-between; cursor: pointer; background: #f8f9fa; padding: 12px; border: 1px solid #eee; }
+        
+        /* 🆕 セクションごとの大きな余白：非表示時でも隙間を保つ */
+        section { margin-bottom: 5rem; }
 
-        /* 目次 (TOC) */
+        h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding-bottom: 10px; }
+        h2::before { content: ""; display: inline-block; width: 8px; height: 1.8rem; background: #000; margin-right: 12px; }
+        
+        h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; font-weight: 700; margin-top: 1rem; margin-bottom: 1rem; color: #000; display: flex; align-items: center; justify-content: space-between; cursor: pointer; background: #f8f9fa; padding: 12px; border: 1px solid #eee; }
+
+        .toggle-btn { font-size: 0.75rem; color: #0645ad; font-weight: normal; }
         .toc-box { background: #f8f9fa; border: 1px solid #a2a9b1; padding: 25px; display: inline-block; min-width: 350px; margin-bottom: 4rem; font-size: 0.9rem; }
         .toc-title { font-weight: 900; text-align: center; margin-bottom: 15px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
         .toc-box ul { list-style: none; padding: 0; }
@@ -24,19 +29,16 @@
         .toc-box a { color: #0645ad; text-decoration: none; }
         .toc-box a:hover { text-decoration: underline; }
 
-        /* テーブル設定 */
-        .table-wrapper { overflow-x: auto; margin-bottom: 3rem; border: 1px solid #a2a9b1; }
+        .table-wrapper { overflow-x: auto; margin-bottom: 2rem; border: 1px solid #a2a9b1; }
         table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
         th, td { border: 1px solid #a2a9b1; padding: 12px; text-align: left; vertical-align: middle; }
-        th { background-color: #eaecf0; font-weight: bold; }
+        th { background-color: #eaecf0; font-weight: bold; cursor: pointer; }
         
-        /* マトリックス表：7列均等 (100 / 7 = 14.28%) */
         .matrix-table { table-layout: fixed; min-width: 1000px; }
         .matrix-table th, .matrix-table td { width: 14.28%; text-align: center; }
         .matrix-ceo { font-size: 0.7rem; color: #666; font-weight: 400; display: block; margin-top: 4px; border-top: 1px solid #ccc; padding-top: 4px; }
         .group-col { font-family: 'Rajdhani', sans-serif; font-weight: 800; background: #f8f9fa; text-align: left !important; width: 140px !important; }
 
-        /* 詳細表：幅統一 */
         .detail-table { table-layout: fixed; min-width: 800px; }
         .detail-table th:nth-child(1) { width: 70px; }
         .detail-table th:nth-child(2) { width: 160px; }
@@ -45,7 +47,6 @@
         .detail-table th:nth-child(5) { width: 120px; }
 
         .member-img { width: 50px; height: 50px; object-fit: cover; background: #eee; border-radius: 2px; margin: 0 auto; }
-        .toggle-btn { font-size: 0.75rem; color: #0645ad; font-weight: normal; }
         .collapsible-content.collapsed { display: none; }
         
         @media (max-width: 768px) {
@@ -62,10 +63,9 @@
     <main class="wiki-container">
         <h1>Teyvat Entertainment 内部機密資料</h1>
         
-        <!-- 🆕 目次復活 -->
         <nav class="toc-box">
             <div class="toc-title">目次</div>
-            <ul id="toc-list">
+            <ul>
                 <li>1. <a href="#sec-affiliates">所属アーティスト・マトリックス</a></li>
                 <li>2. <a href="#sec-details">グループ詳細設定</a></li>
                 <li>3. <a href="#sec-projects">プロジェクト一覧</a></li>
@@ -77,9 +77,7 @@
             <h2 onclick="toggleSection('matrix-content', 'matrix-btn')">所属アーティスト・マトリックス <span class="toggle-btn" id="matrix-btn">非表示</span></h2>
             <div class="collapsible-content" id="matrix-content">
                 <div class="table-wrapper"><table class="matrix-table" id="matrix-table">
-                    <thead>
-                        <tr id="matrix-header"><th>グループ名</th></tr>
-                    </thead>
+                    <thead><tr id="matrix-header"><th>グループ名</th></tr></thead>
                     <tbody id="matrix-body"></tbody>
                 </table></div>
             </div>
@@ -88,9 +86,7 @@
         <!-- Section 2: グループ詳細 -->
         <section id="sec-details">
             <h2 onclick="toggleSection('details-content', 'details-btn')">グループ詳細設定 <span class="toggle-btn" id="details-btn">非表示</span></h2>
-            <div class="collapsible-content" id="details-content">
-                <!-- JSで自動生成 -->
-            </div>
+            <div class="collapsible-content" id="details-content"></div>
         </section>
 
         <!-- Section 3: HEAVENTEEN -->
@@ -107,7 +103,7 @@
     </main>
 
     <script>
-        // 1. マトリックス生成
+        // マトリックス生成
         const matrixHeader = document.getElementById('matrix-header');
         const matrixBody = document.getElementById('matrix-body');
         Object.keys(labels).forEach(k => {
@@ -123,7 +119,7 @@
             matrixBody.innerHTML += row + `</tr>`;
         });
 
-        // 2. 詳細表生成
+        // 詳細表生成
         const detailArea = document.getElementById('details-content');
         Object.keys(allGroups).forEach(gK => {
             const g = allGroups[gK];
@@ -139,7 +135,7 @@
             detailArea.innerHTML += html + `</tbody></table></div>`;
         });
 
-        // 3. HEAVENTEEN生成
+        // HEAVENTEEN生成
         const hvBody = document.getElementById('heaventeen-body');
         heaventeenResults.forEach(r => {
             hvBody.innerHTML += `<tr ${r.final === 99 ? 'style="color:#bbb"' : ''}>
@@ -147,7 +143,12 @@
                 <td>${r.rank2===99?'脱落':r.rank2+'位'}</td><td>${r.final===99?'-':r.final+'位'}</td><td>${r.result}</td></tr>`;
         });
 
-        function toggleSection(cId, bId) { const c = document.getElementById(cId); const b = document.getElementById(bId); c.classList.toggle('collapsed'); b.innerText = c.classList.contains('collapsed') ? "表示" : "非表示"; }
+        function toggleSection(cId, bId) { 
+            const c = document.getElementById(cId); 
+            const b = document.getElementById(bId); 
+            c.classList.toggle('collapsed'); 
+            b.innerText = c.classList.contains('collapsed') ? "表示" : "非表示"; 
+        }
         const menuBtn = document.getElementById('menu-btn'); const navMenu = document.getElementById('nav-menu'); menuBtn.onclick = () => { menuBtn.classList.toggle('active'); navMenu.classList.toggle('open'); document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : 'auto'; };
     </script>
 </body>
