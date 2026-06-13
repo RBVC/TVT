@@ -1,6 +1,6 @@
 // group.js - Teyvat Entertainment Master Database
 
-// HEAVENTEEN 順位データ (Wiki自動生成用)
+// HEAVENTEEN 順位データ
 const heaventeenResults = [
     { name: "Tartaglia", rank0: 9, rank1: 4, rank2: 3, final: 1, result: "GEN1US" },
     { name: "Dainsleif", rank0: 1, rank1: 2, rank2: 4, final: 2, result: "GEN1US" },
@@ -13,12 +13,13 @@ const heaventeenResults = [
     { name: "Itto", rank0: 13, rank1: 11, rank2: 7, final: 9, result: "GEN1US" },
     { name: "Alhaitham", rank0: 3, rank1: 8, rank2: 99, final: 99, result: "4ggravate" },
     { name: "Kaveh", rank0: 10, rank1: 9, rank2: 99, final: 99, result: "4ggravate" },
-    { name: "Neuvillette", rank0: 5, rank1: 99, rank2: 99, final: 99, result: "H.O.T.H" },
-    { name: "Wriothesley", rank0: 6, rank1: 99, rank2: 99, final: 99, result: "H.O.T.H" }
+    { name: "Neuvillette", rank0: 5, rank1: 99, rank2: 99, final: 99, result: "House of the Hearth" },
+    { name: "Wriothesley", rank0: 6, rank1: 99, rank2: 99, final: 99, result: "House of the Hearth" }
 ];
 
-// レーベル情報
+// レーベル情報 (HQを追加)
 const labels = {
+    "HQ": { name: "TEYVAT ENT. (HQ)", ceo: "RBVC" },
     "FAVONIUS": { name: "FAVONIUS MUSIC", ceo: "ジン" },
     "QIXING": { name: "QIXING STUDIO", ceo: "凝光" },
     "NARUKAMI": { name: "NARUKAMI RECORDS", ceo: "雷電将軍" },
@@ -56,8 +57,7 @@ const allGroups = {
             { name: "Cyno", div: "Sumeru", pos: "Main Rapper", label: "AKASHA", img: "images/4ggravate/cyber-cyno.jpg" },
             { name: "Kaveh", div: "Sumeru", pos: "Lead Dancer / Lead Vocal", label: "AKASHA", img: "images/4ggravate/cyber-kaveh.jpg" },
             { name: "Tighnari", div: "Sumeru", pos: "Main Vocal", label: "AKASHA", isLeader: true, img: "images/4ggravate/cyber-tighnari.jpg" },
-            // 元メンバー設定
-            { name: "Aether", div: "???", pos: "Main Vocal / Lead Dancer", label: "AKASHA", isFormer: true },
+            { name: "Aether", div: "???", pos: "Main Vocal / Lead Dancer", label: "HQ", isFormer: true },
             { name: "Wanderer", div: "Inazuma", pos: "Main Dancer / Sub Vocal", label: "AKASHA", isFormer: true }
         ],
         discography: [{ title: "All Out", type: "Mini Album", embed: `<iframe src="https://u.pcloud.link/publink/show?code=0ZfjiU5ZFUGomJCKJ8XBS3YOVjqAVYqbB2EX&view=list" width="100%" height="500" frameborder="0"></iframe>` }]
@@ -72,7 +72,7 @@ const allGroups = {
             { name: "Xiao", div: "Liyue", pos: "Main Rapper / Sub Vocal", label: "QIXING", img: "images/6reeze/heart-xiao.jpg" },
             { name: "Venti", div: "Mondstadt", pos: "Main Vocal / Center", label: "FAVONIUS", img: "images/6reeze/heart-venti.jpg" },
             { name: "Kazuha", div: "Inazuma", pos: "Main Vocal / Lead Dancer", label: "NARUKAMI", img: "images/6reeze/heart-kazuha.jpg" },
-            { name: "Aether", div: "???", pos: "Lead Vocal", label: "AKASHA", isLeader: true, img: "images/6reeze/heart-aether.jpg" },
+            { name: "Aether", div: "???", pos: "Lead Vocal", label: "HQ", isLeader: true, img: "images/6reeze/heart-aether.jpg" },
             { name: "Heizou", div: "Inazuma", pos: "Lead Rapper / Lead Dancer", label: "NARUKAMI", img: "images/6reeze/heart-heizou.jpg" }
         ],
         discography: [{ title: "EMPATHY", type: "Mini Album", embed: `<iframe src="https://u.pcloud.link/publink/show?code=0ZKSiU5ZyeY0Tie17AfQ2saxTO7PBpiKqcC7&view=list" width="100%" height="500" frameborder="0"></iframe>` }]
