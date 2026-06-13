@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVT Wiki | 内部機密資料</title>
+    <title>TVT Wiki | 内部機密アーカイブ</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="group.js"></script>
     <style>
         body { background-color: #f6f6f6; color: #202122; font-family: 'Noto Sans JP', sans-serif; }
-        .wiki-container { max-width: 1100px; margin: 100px auto; background: white; padding: 60px; border: 1px solid #a2a9b1; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .wiki-container { max-width: 1100px; margin: 100px auto; background: white; padding: 40px; border: 1px solid #a2a9b1; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
         
         h1 { font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-bottom: 2rem; }
         
-        /* 🆕 セクションごとの大きな余白：非表示時でも隙間を保つ */
         section { margin-bottom: 5rem; }
 
         h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding-bottom: 10px; }
@@ -31,13 +30,13 @@
 
         .table-wrapper { overflow-x: auto; margin-bottom: 2rem; border: 1px solid #a2a9b1; }
         table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-        th, td { border: 1px solid #a2a9b1; padding: 12px; text-align: left; vertical-align: middle; }
+        th, td { border: 1px solid #a2a9b1; padding: 12px; text-align: left; vertical-align: top; } /* 💡上揃えに変更 */
         th { background-color: #eaecf0; font-weight: bold; cursor: pointer; }
         
         .matrix-table { table-layout: fixed; min-width: 1000px; }
-        .matrix-table th, .matrix-table td { width: 14.28%; text-align: center; }
-        .matrix-ceo { font-size: 0.7rem; color: #666; font-weight: 400; display: block; margin-top: 4px; border-top: 1px solid #ccc; padding-top: 4px; }
-        .group-col { font-family: 'Rajdhani', sans-serif; font-weight: 800; background: #f8f9fa; text-align: left !important; width: 140px !important; }
+        .matrix-table th, .matrix-table td { width: 14.28%; text-align: center; line-height: 1.4; }
+        .matrix-ceo { font-size: 0.7rem; color: #666; font-weight: 400; display: block; margin-top: 8px; border-top: 1px solid #ccc; padding-top: 6px; }
+        .group-col { font-family: 'Rajdhani', sans-serif; font-weight: 800; background: #f8f9fa; text-align: left !important; width: 140px !important; vertical-align: middle; }
 
         .detail-table { table-layout: fixed; min-width: 800px; }
         .detail-table th:nth-child(1) { width: 70px; }
@@ -89,7 +88,7 @@
             <div class="collapsible-content" id="details-content"></div>
         </section>
 
-        <!-- Section 3: HEAVENTEEN -->
+        <!-- Section 3: プロジェクト -->
         <section id="sec-projects">
             <h2 onclick="toggleSection('projects-content', 'projects-btn')">プロジェクト一覧 <span class="toggle-btn" id="projects-btn">非表示</span></h2>
             <div class="collapsible-content" id="projects-content">
@@ -107,13 +106,19 @@
         const matrixHeader = document.getElementById('matrix-header');
         const matrixBody = document.getElementById('matrix-body');
         Object.keys(labels).forEach(k => {
-            matrixHeader.innerHTML += `<th>${labels[k].name}<span class="matrix-ceo">${labels[k].ceo}</span></th>`;
+            // 💡レーベル名をスペースで改行
+            const formattedLabelName = labels[k].name.replace(' ', '<br>');
+            matrixHeader.innerHTML += `<th><span class="matrix-label">${formattedLabelName}</span><span class="matrix-ceo">${labels[k].ceo}</span></th>`;
         });
         Object.keys(allGroups).forEach(gK => {
             const g = allGroups[gK];
             let row = `<tr><td class="group-col">${g.name}</td>`;
             Object.keys(labels).forEach(lK => {
-                const members = g.members.filter(m => m.label === lK && !m.isFormer).map(m => m.name).join(', ');
+                // 💡メンバー名を改行で繋ぐ
+                const members = g.members
+                    .filter(m => m.label === lK && !m.isFormer)
+                    .map(m => m.name)
+                    .join('<br>');
                 row += `<td>${members || '-'}</td>`;
             });
             matrixBody.innerHTML += row + `</tr>`;
