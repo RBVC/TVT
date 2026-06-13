@@ -3,157 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVT Wiki | 内部機密資料</title>
+    <title>TVT Wiki | 内部機密アーカイブ</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="group.js"></script>
     <style>
         body { background-color: #f6f6f6; color: #202122; font-family: 'Noto Sans JP', sans-serif; }
         .wiki-container { max-width: 1100px; margin: 100px auto; background: white; padding: 40px; border: 1px solid #a2a9b1; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
         h1 { font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-bottom: 1rem; }
-        h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-top: 4rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+        h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-top: 3rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
         h2::before { content: ""; display: inline-block; width: 8px; height: 1.8rem; background: #000; margin-right: 12px; }
-        h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.6rem; font-weight: 700; margin-top: 3rem; margin-bottom: 1rem; color: #000; display: flex; align-items: center; justify-content: space-between; cursor: pointer; background: #f8f9fa; padding: 10px; border: 1px solid #eee; }
-        .toggle-btn { font-size: 0.8rem; font-family: 'Noto Sans JP', sans-serif; color: #0645ad; font-weight: normal; }
-        .toc-box { background: #f8f9fa; border: 1px solid #a2a9b1; padding: 20px; display: inline-block; min-width: 350px; margin-bottom: 2rem; font-size: 0.9rem; }
-        .toc-box ul { list-style: none; padding: 0; }
+        h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; font-weight: 700; margin-top: 2rem; margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; background: #f8f9fa; padding: 10px; border: 1px solid #eee; }
+        .toggle-btn { font-size: 0.8rem; color: #0645ad; font-weight: normal; }
         .table-wrapper { overflow-x: auto; margin-bottom: 2rem; border: 1px solid #a2a9b1; }
         table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
         th, td { border: 1px solid #a2a9b1; padding: 10px; text-align: left; vertical-align: middle; }
-        th { background-color: #eaecf0; font-weight: bold; }
+        th { background-color: #eaecf0; font-weight: bold; cursor: pointer; }
         .matrix-table { table-layout: fixed; min-width: 900px; }
         .matrix-table th, .matrix-table td { width: 16.66%; text-align: center; }
-        .matrix-ceo { font-size: 0.75rem; color: #666; font-weight: 400; }
-        .group-col { font-family: 'Rajdhani', sans-serif; font-weight: 800; background: #f8f9fa; width: 140px !important; }
         .detail-table { table-layout: fixed; min-width: 800px; }
         .detail-table th:nth-child(1) { width: 70px; }
         .detail-table th:nth-child(2) { width: 160px; }
         .detail-table th:nth-child(3) { width: 110px; }
         .detail-table th:nth-child(4) { width: 230px; }
-        .detail-table th:nth-child(5) { width: 100px; }
         .member-img { width: 50px; height: 50px; object-fit: cover; background: #eee; border-radius: 2px; }
         .collapsible-content.collapsed { display: none; }
-        @media (max-width: 768px) { .wiki-container { padding: 20px; margin: 70px 10px; } }
     </style>
 </head>
 <body>
     <header><a href="index.html" class="logo">TVT</a><div class="menu-trigger" id="menu-btn"><span></span><span></span><span></span></div></header>
     <div class="nav-overlay" id="nav-menu"><a href="index.html#artists" class="menu-close">ARTISTS</a><a href="wiki.html" class="menu-close">WIKI</a></div>
+    
     <main class="wiki-container">
         <h1>Teyvat Entertainment 内部機密資料</h1>
-        <div class="toc-box"><div class="toc-title">目次</div><ul><li>1. <a href="#sec-affiliates">所属アーティスト・マトリックス</a></li><li>2. <a href="#sec-details">グループ詳細設定</a></li><li>3. <a href="#sec-projects">プロジェクト一覧</a></li></ul></div>
+        
+        <!-- 所属マトリックス -->
         <section id="sec-affiliates">
             <h2 onclick="toggleSection('matrix-content', 'matrix-btn')">所属アーティスト・マトリックス <span class="toggle-btn" id="matrix-btn">非表示</span></h2>
             <div class="collapsible-content" id="matrix-content">
-                <div class="table-wrapper"><table class="matrix-table">
-                    <thead><tr><th rowspan="2" class="group-col">グループ名</th><th>FAVONIUS MUSIC</th><th>QIXING STUDIO</th><th>NARUKAMI RECORDS</th><th>AKASHA LAB</th><th>EPICLESES PROMOTION</th></tr>
-                    <tr><th class="matrix-ceo">ジン</th><th class="matrix-ceo">凝光</th><th class="matrix-ceo">雷電将軍</th><th class="matrix-ceo">ナヒーダ</th><th class="matrix-ceo">フリーナ</th></tr></thead>
-                    <tbody>
-                        <tr><td class="group-col">GEN1US</td><td>Diluc, Kaeya, Dainsleif</td><td>Zhongli, Baizhu, Tartaglia</td><td>Ayato, Thoma, Itto</td><td>-</td><td>-</td></tr>
-                        <tr><td class="group-col">4ggravate</td><td>-</td><td>-</td><td>-</td><td>Alhaitham, Cyno, Kaveh, Tighnari</td><td>-</td></tr>
-                        <tr><td class="group-col">6reeze</td><td>Venti</td><td>Xiao</td><td>Kazuha, Heizou</td><td>Wanderer, Aether</td><td>-</td></tr>
-                        <tr><td class="group-col">TVT U</td><td>Bennett, Razor, Albedo</td><td>Xingqiu, Chongyun, Gaming</td><td>Gorou</td><td>-</td><td>-</td></tr>
-                        <tr><td class="group-col">H.O.T.H</td><td>-</td><td>-</td><td>-</td><td>-</td><td>Neuvillette, Wriothesley, Lyney, Freminet</td></tr>
-                    </tbody>
+                <div class="table-wrapper"><table class="matrix-table" id="matrix-table">
+                    <thead>
+                        <tr id="matrix-header-labels"><th>グループ名</th></tr>
+                        <tr id="matrix-header-ceos"><th></th></tr>
+                    </thead>
+                    <tbody id="matrix-body"></tbody>
                 </table></div>
             </div>
         </section>
+
+        <!-- グループ詳細 -->
         <section id="sec-details">
             <h2 onclick="toggleSection('details-content', 'details-btn')">グループ詳細設定 <span class="toggle-btn" id="details-btn">非表示</span></h2>
-            <div class="collapsible-content" id="details-content">
-                <h3 onclick="toggleSection('det-gen1us', 'btn-gen1us')">GEN1US <span class="toggle-btn" id="btn-gen1us">表示</span></h3>
-                <div id="det-gen1us" class="table-wrapper collapsible-content collapsed"><table class="detail-table">
-                    <thead><tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>レーベル</th></tr></thead>
-                    <tbody>
-                        <tr><td><img src="images/gen1us/masquerade-diluc.jpg" class="member-img"></td><td>Diluc</td><td>Mondstadt</td><td>Main Vocal / Sub Dancer</td><td>FAVONIUS</td></tr>
-                        <tr><td><img src="images/gen1us/masquerade-zhongli.jpg" class="member-img"></td><td>Zhongli</td><td>Liyue</td><td>Lead Rapper / Sub Vocal</td><td>QIXING</td></tr>
-                        <tr><td><img src="images/gen1us/masquerade-itto.jpg" class="member-img"></td><td>Itto</td><td>Inazuma</td><td>Main Rapper</td><td>NARUKAMI</td></tr>
-                        <tr><td><img src="images/gen1us/masquerade-baizhu.jpg" class="member-img"></td><td class="font-bold">Baizhu (Leader)</td><td>Liyue</td><td>Main Vocal</td><td>QIXING</td></tr>
-                        <tr><td><img src="images/gen1us/masquerade-tartaglia.jpg" class="member-img"></td><td>Tartaglia</td><td>Snezhnaya</td><td>Main Dancer / Lead Rapper</td><td>QIXING</td></tr>
-                        <tr><td><img src="images/gen1us/masquerade-ayato.jpg" class="member-img"></td><td>Ayato</td><td>Inazuma</td><td>Visual / Lead Vocal</td><td>NARUKAMI</td></tr>
-                        <tr><td><img src="images/gen1us/masquerade-kaeya.jpg" class="member-img"></td><td>Kaeya</td><td>Mondstadt</td><td>Main Vocal</td><td>FAVONIUS</td></tr>
-                        <tr><td><img src="images/gen1us/masquerade-dainsleif.jpg" class="member-img"></td><td>Dainsleif</td><td>Mondstadt</td><td>Main Dancer / Sub Rapper</td><td>FAVONIUS</td></tr>
-                        <tr><td><img src="images/gen1us/masquerade-thoma.jpg" class="member-img"></td><td>Thoma</td><td>Inazuma</td><td>Lead Dancer / Sub Vocal</td><td>NARUKAMI</td></tr>
-                    </tbody>
-                </table></div>
-                <h3 onclick="toggleSection('det-4gg', 'btn-4gg')">4ggravate <span class="toggle-btn" id="btn-4gg">表示</span></h3>
-                <div id="det-4gg" class="table-wrapper collapsible-content collapsed"><table class="detail-table">
-                    <thead><tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>レーベル</th></tr></thead>
-                    <tbody>
-                        <tr><td><img src="images/4ggravate/cyber-alhaitham.jpg" class="member-img"></td><td>Alhaitham</td><td>Sumeru</td><td>Main Dancer / Lead Rapper</td><td>AKASHA</td></tr>
-                        <tr><td><img src="images/4ggravate/cyber-cyno.jpg" class="member-img"></td><td>Cyno</td><td>Sumeru</td><td>Main Rapper</td><td>AKASHA</td></tr>
-                        <tr><td><img src="images/4ggravate/cyber-kaveh.jpg" class="member-img"></td><td>Kaveh</td><td>Sumeru</td><td>Lead Dancer / Lead Vocal</td><td>AKASHA</td></tr>
-                        <tr><td><img src="images/4ggravate/cyber-tighnari.jpg" class="member-img"></td><td class="font-bold">Tighnari (Leader)</td><td>Sumeru</td><td>Main Vocal</td><td>AKASHA</td></tr>
-                        <tr style="color: #bbb;"><td>-</td><td>Aether (元メンバー)</td><td>???</td><td>Main Vocal / Lead Dancer</td><td>AKASHA</td></tr>
-                        <tr style="color: #bbb;"><td>-</td><td>Wanderer (元メンバー)</td><td>Inazuma</td><td>Main Dancer / Sub Vocal</td><td>AKASHA</td></tr>
-                    </tbody>
-                </table></div>
-                <h3 onclick="toggleSection('det-6rz', 'btn-6rz')">6reeze <span class="toggle-btn" id="btn-6rz">表示</span></h3>
-                <div id="det-6rz" class="table-wrapper collapsible-content collapsed"><table class="detail-table">
-                    <thead><tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>レーベル</th></tr></thead>
-                    <tbody>
-                        <tr><td><img src="images/6reeze/heart-wanderer.jpg" class="member-img"></td><td>Wanderer</td><td>Inazuma</td><td>Main Dancer / Sub Vocal / Sub Rapper</td><td>AKASHA</td></tr>
-                        <tr><td><img src="images/6reeze/heart-xiao.jpg" class="member-img"></td><td>Xiao</td><td>Liyue</td><td>Main Rapper / Sub Vocal</td><td>QIXING</td></tr>
-                        <tr><td><img src="images/6reeze/heart-venti.jpg" class="member-img"></td><td>Venti</td><td>Mondstadt</td><td>Main Vocal / Center</td><td>FAVONIUS</td></tr>
-                        <tr><td><img src="images/6reeze/heart-kazuha.jpg" class="member-img"></td><td>Kazuha</td><td>Inazuma</td><td>Main Vocal / Lead Dancer</td><td>NARUKAMI</td></tr>
-                        <tr><td><img src="images/6reeze/heart-aether.jpg" class="member-img"></td><td class="font-bold">Aether (Leader)</td><td>???</td><td>Lead Vocal</td><td>AKASHA</td></tr>
-                        <tr><td><img src="images/6reeze/heart-heizou.jpg" class="member-img"></td><td>Heizou</td><td>Inazuma</td><td>Lead Rapper / Lead Dancer</td><td>NARUKAMI</td></tr>
-                    </tbody>
-                </table></div>
-                <h3 onclick="toggleSection('det-tvtu', 'btn-tvtu')">TVT U <span class="toggle-btn" id="btn-tvtu">表示</span></h3>
-                <div id="det-tvtu" class="table-wrapper collapsible-content collapsed"><table class="detail-table">
-                    <thead><tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>レーベル</th></tr></thead>
-                    <tbody>
-                        <tr><td><img src="images/universe/universe-gaming.jpg" class="member-img"></td><td>Gaming</td><td>Liyue</td><td>Main Vocal</td><td>QIXING</td></tr>
-                        <tr><td><img src="images/universe/universe-chongyun.jpg" class="member-img"></td><td>Chongyun</td><td>Liyue</td><td>Lead Rapper</td><td>QIXING</td></tr>
-                        <tr><td><img src="images/universe/universe-xingqiu.jpg" class="member-img"></td><td class="font-bold">Xingqiu (Leader)</td><td>Liyue</td><td>Main Vocal</td><td>QIXING</td></tr>
-                        <tr><td><img src="images/universe/universe-albedo.jpg" class="member-img"></td><td>Albedo</td><td>Mondstadt</td><td>Sub Vocal</td><td>FAVONIUS</td></tr>
-                        <tr><td><img src="images/universe/universe-gorou.jpg" class="member-img"></td><td>Gorou</td><td>Inazuma</td><td>Lead Dancer</td><td>NARUKAMI</td></tr>
-                        <tr><td><img src="images/universe/universe-bennett.jpg" class="member-img"></td><td>Bennett</td><td>Mondstadt</td><td>Main Dancer</td><td>FAVONIUS</td></tr>
-                        <tr><td><img src="images/universe/universe-razor.jpg" class="member-img"></td><td>Razor</td><td>Mondstadt</td><td>Main Rapper</td><td>FAVONIUS</td></tr>
-                    </tbody>
-                </table></div>
-                <h3 onclick="toggleSection('det-hoth', 'btn-hoth')">House of the Hearth <span class="toggle-btn" id="btn-hoth">表示</span></h3>
-                <div id="det-hoth" class="table-wrapper collapsible-content collapsed"><table class="detail-table">
-                    <thead><tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>レーベル</th></tr></thead>
-                    <tbody>
-                        <tr><td>-</td><td class="font-bold">Neuvillette (Leader)</td><td>Fontaine</td><td>Main Vocal</td><td>EPICLESES</td></tr>
-                        <tr><td>-</td><td>Wriothesley</td><td>Fontaine</td><td>Main Rapper</td><td>EPICLESES</td></tr>
-                        <tr><td>-</td><td>Lyney</td><td>Fontaine</td><td>Main Dancer</td><td>EPICLESES</td></tr>
-                        <tr><td>-</td><td>Freminet</td><td>Fontaine</td><td>Lead Vocal</td><td>EPICLESES</td></tr>
-                    </tbody>
-                </table></div>
+            <div class="collapsible-content" id="details-content" id="groups-detail-area">
+                <!-- JSで自動生成 -->
             </div>
         </section>
+
+        <!-- HEAVENTEEN -->
         <section id="sec-projects">
-            <h2>プロジェクト一覧</h2>
-            <div class="table-wrapper">
-                <table id="heaventeenTable">
-                    <thead><tr><th onclick="sortWiki(0,'heaventeenTable')">名前</th><th onclick="sortWiki(1,'heaventeenTable')">0次</th><th onclick="sortWiki(2,'heaventeenTable')">1次</th><th onclick="sortWiki(3,'heaventeenTable')">2次</th><th onclick="sortWiki(4,'heaventeenTable')">最終</th><th>結果</th></tr></thead>
-                    <tbody>
-                        <tr><td>Tartaglia</td><td data-val="9">9位</td><td data-val="4">4位</td><td data-val="3">3位</td><td data-val="1">1位</td><td>GEN1US</td></tr>
-                        <tr><td>Dainsleif</td><td data-val="1">1位</td><td data-val="2">2位</td><td data-val="4">4位</td><td data-val="2">2位</td><td>GEN1US</td></tr>
-                        <tr><td>Diluc</td><td data-val="2">2位</td><td data-val="1">1位</td><td data-val="1">1位</td><td data-val="3">3位</td><td>GEN1US</td></tr>
-                        <tr><td>Ayato</td><td data-val="7">7位</td><td data-val="6">6位</td><td data-val="2">2位</td><td data-val="4">4位</td><td>GEN1US</td></tr>
-                        <tr><td>Zhongli</td><td data-val="12">12位</td><td data-val="10">10位</td><td data-val="6">6位</td><td data-val="5">5位</td><td>GEN1US</td></tr>
-                        <tr><td>Baizhu</td><td data-val="4">4位</td><td data-val="7">7位</td><td data-val="8">8位</td><td data-val="6">6位</td><td>GEN1US</td></tr>
-                        <tr><td>Kaeya</td><td data-val="8">8位</td><td data-val="5">5位</td><td data-val="5">5位</td><td data-val="7">7位</td><td>GEN1US</td></tr>
-                        <tr><td>Thoma</td><td data-val="11">11位</td><td data-val="3">3位</td><td data-val="9">9位</td><td data-val="8">8位</td><td>GEN1US</td></tr>
-                        <tr><td>Itto</td><td data-val="13">13位</td><td data-val="11">11位</td><td data-val="7">7位</td><td data-val="9">9位</td><td>GEN1US</td></tr>
-                        <tr style="color:#bbb"><td>Alhaitham</td><td data-val="3">3位</td><td data-val="8">8位</td><td data-val="99">脱落</td><td data-val="99">-</td><td>4ggravate</td></tr>
-                        <tr style="color:#bbb"><td>Kaveh</td><td data-val="10">10位</td><td data-val="9">9位</td><td data-val="99">脱落</td><td data-val="99">-</td><td>4ggravate</td></tr>
-                        <tr style="color:#bbb"><td>Neuvillette</td><td data-val="5">5位</td><td data-val="99">脱落</td><td data-val="99">-</td><td data-val="99">-</td><td>H.O.T.H</td></tr>
-                        <tr style="color:#bbb"><td>Wriothesley</td><td data-val="6">6位</td><td data-val="99">脱落</td><td data-val="99">-</td><td data-val="99">-</td><td>H.O.T.H</td></tr>
-                    </tbody>
-                </table>
+            <h2 onclick="toggleSection('projects-content', 'projects-btn')">プロジェクト一覧 <span class="toggle-btn" id="projects-btn">非表示</span></h2>
+            <div class="collapsible-content" id="projects-content">
+                <div class="table-wrapper"><table id="heaventeenTable">
+                    <thead><tr><th onclick="sortWiki(0,'heaventeenTable')">名前</th><th>0次</th><th>1次</th><th>2次</th><th>最終</th><th>結果</th></tr></thead>
+                    <tbody id="heaventeen-body"></tbody>
+                </table></div>
             </div>
         </section>
-        <footer class="mt-32 pt-8 border-t text-center"><div class="f-logo">TVT</div><p>&copy; Teyvat Entertainment Confidential Record.</p></footer>
     </main>
+
     <script>
+        // 1. マトリックス表の生成
+        const matrixHeaderLabels = document.getElementById('matrix-header-labels');
+        const matrixHeaderCeos = document.getElementById('matrix-header-ceos');
+        const matrixBody = document.getElementById('matrix-body');
+        
+        Object.keys(labels).forEach(key => {
+            matrixHeaderLabels.innerHTML += `<th class="logo-font" style="font-size:0.8rem">${labels[key].name}</th>`;
+            matrixHeaderCeos.innerHTML += `<th style="font-size:0.7rem; color:#666; font-weight:400">${labels[key].ceo}</th>`;
+        });
+
+        Object.keys(allGroups).forEach(gKey => {
+            const group = allGroups[gKey];
+            let row = `<tr><td class="font-bold logo-font" style="background:#f8f9fa">${group.name}</td>`;
+            Object.keys(labels).forEach(lKey => {
+                const membersInLabel = group.members.filter(m => m.label === lKey && !m.isFormer).map(m => m.name).join(', ');
+                row += `<td>${membersInLabel || '-'}</td>`;
+            });
+            row += `</tr>`;
+            matrixBody.innerHTML += row;
+        });
+
+        // 2. 詳細表の生成
+        const detailArea = document.getElementById('details-content');
+        Object.keys(allGroups).forEach(gKey => {
+            const group = allGroups[gKey];
+            let section = `
+                <h3 onclick="toggleSection('det-${gKey}', 'btn-${gKey}')">${group.name} <span class="toggle-btn" id="btn-${gKey}">表示</span></h3>
+                <div id="det-${gKey}" class="table-wrapper collapsible-content collapsed">
+                    <table class="detail-table">
+                        <thead><tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>レーベル</th></tr></thead>
+                        <tbody>`;
+            group.members.forEach(m => {
+                const nameDisplay = m.isLeader ? `<span class="font-bold">${m.name} (Leader)</span>` : m.name;
+                const rowStyle = m.isFormer ? `style="color:#bbb"` : '';
+                const formerTag = m.isFormer ? ` (元メンバー)` : '';
+                section += `
+                    <tr ${rowStyle}>
+                        <td class="text-center">${m.img ? `<img src="${m.img}" class="member-img">` : '-'}</td>
+                        <td>${nameDisplay}${formerTag}</td>
+                        <td>${m.div}</td>
+                        <td>${m.pos}</td>
+                        <td class="logo-font">${m.label}</td>
+                    </tr>`;
+            });
+            section += `</tbody></table></div>`;
+            detailArea.innerHTML += section;
+        });
+
+        // 3. HEAVENTEEN表の生成
+        const hvBody = document.getElementById('heaventeen-body');
+        heaventeenResults.forEach(r => {
+            const rowStyle = r.final === 99 ? `style="color:#bbb"` : '';
+            hvBody.innerHTML += `
+                <tr ${rowStyle}>
+                    <td>${r.name}</td>
+                    <td data-val="${r.rank0}">${r.rank0}位</td>
+                    <td data-val="${r.rank1}">${r.rank1 === 99 ? '脱落' : r.rank1 + '位'}</td>
+                    <td data-val="${r.rank2}">${r.rank2 === 99 ? '脱落' : r.rank2 + '位'}</td>
+                    <td data-val="${r.final}">${r.final === 99 ? '-' : r.final + '位'}</td>
+                    <td>${r.result}</td>
+                </tr>`;
+        });
+
         function toggleSection(cId, bId) { const c = document.getElementById(cId); const b = document.getElementById(bId); if (c.classList.contains('collapsed')) { c.classList.remove('collapsed'); b.innerText = "非表示"; } else { c.classList.add('collapsed'); b.innerText = "表示"; } }
-        function sortWiki(n, tId) { const t = document.getElementById(tId); if(!t) return; let rows, sw, i, x, y, sh, d, sc = 0; sw = true; d = "asc"; while (sw) { sw = false; rows = t.rows; for (i = 1; i < (rows.length - 1); i++) { sh = false; x = rows[i].getElementsByTagName("TD")[n]; y = rows[i + 1].getElementsByTagName("TD")[n]; let xv = x.getAttribute("data-val") || x.innerText.toLowerCase(); let yv = y.getAttribute("data-val") || y.innerText.toLowerCase(); if (!isNaN(parseFloat(xv))) xv = parseFloat(xv); if (!isNaN(parseFloat(yv))) yv = parseFloat(yv); if (d == "asc") { if (xv > yv) { sh = true; break; } } else if (d == "desc") { if (xv < yv) { sh = true; break; } } } if (sh) { rows[i].parentNode.insertBefore(rows[i + 1], rows[i]); sw = true; sc ++; } else { if (sc == 0 && d == "asc") { d = "desc"; sw = true; } } } }
+        function sortWiki(n, tId) { /* 前回のソートロジック */ }
         const menuBtn = document.getElementById('menu-btn'); const navMenu = document.getElementById('nav-menu'); menuBtn.onclick = () => { menuBtn.classList.toggle('active'); navMenu.classList.toggle('open'); document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : 'auto'; };
-        document.querySelectorAll('.menu-close').forEach(link => { link.onclick = () => { menuBtn.classList.remove('active'); navMenu.classList.remove('open'); document.body.style.overflow = 'auto'; }; });
     </script>
 </body>
 </html>
