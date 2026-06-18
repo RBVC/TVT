@@ -14,20 +14,42 @@
         .intro-text { font-size: 1.25rem; line-height: 1.8; color: #ccc; max-width: 900px; margin: 0 auto; text-align: center; }
         
         .team-section { margin-bottom: 150px; }
-        .member-grid-news { display: grid; grid-template-columns: repeat(4, 1fr); gap: 60px 20px; }
         
-        .member-unit { text-align: center; }
-        .m-img-box { width: 150px; height: 150px; border-radius: 50%; overflow: hidden; margin: 0 auto 25px; border: 2px solid #333; transition: 0.4s; }
-        .member-unit:hover .m-img-box { border-color: #fff; transform: translateY(-10px); box-shadow: 0 10px 30px rgba(255,255,255,0.1); }
+        /* 🆕 グリッド安定化：高さを揃える */
+        .member-grid-news { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 60px 20px; 
+            align-items: start; /* 上揃えにしてガタつき防止 */
+        }
+        
+        .member-unit { text-align: center; height: 100%; display: flex; flex-direction: column; }
+        .m-img-box { 
+            width: 150px; 
+            height: 150px; 
+            border-radius: 50%; 
+            overflow: hidden; 
+            margin: 0 auto 25px; 
+            border: 2px solid #333; 
+            flex-shrink: 0;
+        }
         .m-img-box img { width: 100%; height: 100%; object-fit: cover; }
         
-        .m-name { font-size: 1.6rem; margin-bottom: 5px; }
+        .m-name { font-size: 1.6rem; margin-bottom: 5px; min-height: 1.2em; }
         .role-badge { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; color: #fff; background: #222; padding: 2px 12px; display: inline-block; margin-bottom: 12px; border: 1px solid #444; }
-        .m-desc { font-size: 0.85rem; color: #aaa; line-height: 1.6; max-width: 260px; margin: 0 auto 15px; }
-        .m-pos { font-size: 0.65rem; color: #666; font-weight: 800; letter-spacing: 0.05em; border-top: 1px solid #222; padding-top: 10px; }
+        .m-desc { font-size: 0.85rem; color: #aaa; line-height: 1.6; max-width: 260px; margin: 0 auto 15px; flex-grow: 1; } /* flex-growで高さを埋める */
+        .m-pos { font-size: 0.65rem; color: #666; font-weight: 800; letter-spacing: 0.05em; border-top: 1px solid #222; padding-top: 10px; margin-top: auto; }
 
         @media (max-width: 1024px) { .member-grid-news { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) { .project-title { font-size: 2.5rem; } .m-img-box { width: 120px; height: 120px; } .intro-text { font-size: 1rem; } }
+        
+        @media (max-width: 768px) { 
+            .project-title { font-size: 2.5rem; } 
+            .m-img-box { width: 120px; height: 120px; } 
+            .intro-text { font-size: 1rem; } 
+            .member-grid-news { gap: 40px 15px; } /* スマホでの隙間調整 */
+            .m-name { font-size: 1.2rem; }
+            .m-desc { font-size: 0.75rem; }
+        }
     </style>
 </head>
 <body>
@@ -35,20 +57,24 @@
 
     <main class="pt-32 pb-24">
         <div class="max-w-6xl mx-auto px-6">
+            <!-- Header Area -->
             <div class="text-center mb-20">
-                <p class="text-gray-500 uppercase tracking-[0.5em] mb-4">Teyvat Times Special</p>
+                <p class="text-gray-500 uppercase tracking-[0.5em] mb-4">Teyvat Times Special Report</p>
                 <h1 id="p-title" class="logo-font project-title uppercase mb-8"></h1>
                 <p id="p-tagline" class="text-xl italic text-gray-400 font-serif"></p>
             </div>
 
+            <!-- Main Visual -->
             <div class="w-full aspect-video bg-zinc-900 mb-24 overflow-hidden border border-zinc-800 shadow-2xl">
                 <img id="p-visual" src="" class="w-full h-full object-cover">
             </div>
 
+            <!-- Intro -->
             <div class="mb-40">
                 <p id="p-desc" class="intro-text font-light"></p>
             </div>
 
+            <!-- Teams Area -->
             <div id="teams-container" class="space-y-40">
                 <!-- JSで動的に流し込み -->
             </div>
@@ -74,7 +100,8 @@
                 const folder = team.name.toLowerCase().includes('mafia') ? 'mafia' : 'police';
 
                 let memberHtml = team.members.map(m => {
-                    const imgPath = `images/mafia_vs_police/${folder}/${m.name.toLowerCase()}.jpg`;
+                    // ✅ 新所在地 images/the-sovereign/ に合わせたパス生成
+                    const imgPath = `images/the-sovereign/${folder}/${m.name.toLowerCase()}.jpg`;
                     return `
                         <div class="member-unit">
                             <div class="m-img-box">
