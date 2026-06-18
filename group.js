@@ -6,34 +6,82 @@ const specialProjects = {
         title: "Mafia vs Police",
         tagline: "The Chessboard of Teyvat: Who truly moves the pieces?",
         mainVisual: "images/mafia_vs_police/main.jpg",
-        description: "裏社会を支配する『Mafia』と、秩序を守る精鋭『Police』。二つの勢力が激突する、Teyvat Entertainment 史上最大のスペシャルプロジェクト。表向きの総監はヌヴィレットだが、Policeの真の支配者は別にいるという噂も……。",
+        description: "裏社会を支配する『Mafia』と、秩序を守る精鋭『Police』。二つの勢力が、今、激突する。",
         teams: [
             {
                 name: "Team Mafia",
                 model: "Stray Kids",
                 members: [
-                    { name: "Zhongli", role: "THE BOSS", img: "images/mafia_vs_police/mafia/zhongli.jpg" },
-                    { name: "Ayato", role: "THE UNDERBOSS", img: "images/mafia_vs_police/mafia/ayato.jpg" },
-                    { name: "Xiao", role: "RIGHT-HAND MAN", img: "images/mafia_vs_police/mafia/xiao.jpg" },
-                    { name: "Tartaglia", role: "MERCENARY", img: "images/mafia_vs_police/mafia/tartaglia.jpg" },
-                    { name: "Wanderer", role: "THE HEIR", img: "images/mafia_vs_police/mafia/wanderer.jpg" },
-                    { name: "Kaeya", role: "THE CONSIGLIERE", img: "images/mafia_vs_police/mafia/kaeya.jpg" },
-                    { name: "Kazuha", role: "THE BODYGUARD", img: "images/mafia_vs_police/mafia/kazuha.jpg" },
-                    { name: "Wriothesley", role: "UNDERCOVER AGENT", img: "images/mafia_vs_police/mafia/wriothesley.jpg" }
+                    { 
+                        name: "Zhongli", role: "THE BOSS", pos: "Lead Rapper (Felix)", 
+                        desc: "地響きのような低音で組織を統率する絶対的支配者。彼の言葉は「契約」であり、背くことは死を意味する。" 
+                    },
+                    { 
+                        name: "Ayato", role: "THE UNDERBOSS", pos: "Leader / Vocal (Bang Chan)", 
+                        desc: "組織の頭脳。表向きの交渉から内部の粛正まで、扇子一つで冷徹にこなす若頭。" 
+                    },
+                    { 
+                        name: "Xiao", role: "RIGHT-HAND MAN", pos: "Main Rapper / Vocal (Han)", 
+                        desc: "ボスの右腕として闇を駆ける暗殺者。超高速のラップと身のこなしで、敵に情けをかけず一掃する。" 
+                    },
+                    { 
+                        name: "Tartaglia", role: "MERCENARY", pos: "Main Dancer / Center (Hyunjin)", 
+                        desc: "戦場を愛する狂気の傭兵。彼が踊り（暴れ）始めたら最後、周囲は血と硝煙に染まる。" 
+                    },
+                    { 
+                        name: "Wanderer", role: "THE HEIR", pos: "Main Dancer (Lee Know)", 
+                        desc: "組織の次期継承者。無機質で完璧な技術を持ち、誰にも心を開かない孤独な天才。" 
+                    },
+                    { 
+                        name: "Kaeya", role: "THE CONSIGLIERE", pos: "Main Vocal (Seungmin)", 
+                        desc: "組織の相談役。甘い歌声で情報を引き出し、笑顔の裏で敵を奈落へ突き落とす策士。" 
+                    },
+                    { 
+                        name: "Kazuha", role: "THE BODYGUARD", pos: "Sub Vocal (I.N)", 
+                        desc: "静寂を纏う護衛。荒々しいマフィアの中で、一筋の風のように淡々と任務を遂行する。" 
+                    },
+                    { 
+                        name: "Wriothesley", role: "UNDERCOVER AGENT", pos: "Main Rapper (Changbin)", 
+                        desc: "最前線で拳を振るう重鎮。その正体は誰も知らないが、組織で最も重厚な一撃（ラップ）を放つ。" 
+                    }
                 ]
             },
             {
                 name: "Team Police",
                 model: "THE BOYZ",
                 members: [
-                    { name: "Venti", role: "THE CASANOVA (True Mastermind)", img: "images/mafia_vs_police/police/venti.jpg" },
-                    { name: "Neuvillette", role: "CHIEF JUSTICE", img: "images/mafia_vs_police/police/neuvillette.jpg" },
-                    { name: "Alhaitham", role: "CHIEF COMMANDER", img: "images/mafia_vs_police/police/alhaitham.jpg" },
-                    { name: "Diluc", role: "THE VIGILANTE", img: "images/mafia_vs_police/police/diluc.jpg" },
-                    { name: "Baizhu", role: "THE PATHOLOGIST", img: "images/mafia_vs_police/police/baizhu.jpg" },
-                    { name: "Cyno", role: "TACTICAL POLICE", img: "images/mafia_vs_police/police/cyno.jpg" },
-                    { name: "Tighnari", role: "THE SCIENTIST", img: "images/mafia_vs_police/police/tighnari.jpg" },
-                    { name: "Kaveh", role: "THE DETECTIVE", img: "images/mafia_vs_police/police/kaveh.jpg" }
+                    { 
+                        name: "Venti", role: "THE CASANOVA (Mastermind)", pos: "Main Vocal (New)", 
+                        desc: "遊び人を装いながら警察を裏から操る真の黒幕。酒場の冗談の合間に、世界の天秤を動かしている。" 
+                    },
+                    { 
+                        name: "Neuvillette", role: "CHIEF JUSTICE", pos: "Main Vocal (Sangyeon)", 
+                        desc: "警察の顔であり絶対的な正義。彼の歌声（判決）には一切の私情が混じらず、悪を完璧に沈黙させる。" 
+                    },
+                    { 
+                        name: "Alhaitham", role: "CHIEF COMMANDER", pos: "Main Dancer (Juyeon)", 
+                        desc: "計算と効率の鬼である最高指揮官。一糸乱れぬダンスフォーメーションでマフィアを追い詰める。" 
+                    },
+                    { 
+                        name: "Diluc", role: "THE VIGILANTE", pos: "Main Vocal (Kevin)", 
+                        desc: "夜を統べる執行人。警察組織に属しながらも、独自の正義を貫く孤高のボーカリスト。" 
+                    },
+                    { 
+                        name: "Baizhu", role: "THE PATHOLOGIST", pos: "Lead Vocal (Hyunjae)", 
+                        desc: "死体から真実を暴く監察医。眼鏡の奥に光る知性的な瞳で、マフィアの急所（弱点）を見抜く。" 
+                    },
+                    { 
+                        name: "Cyno", role: "TACTICAL POLICE", pos: "Main Rapper (Sunwoo)", 
+                        desc: "罪を断じる特殊部隊員。一度狙った獲物は逃さず、鋭いラップで容赦なく制圧する。" 
+                    },
+                    { 
+                        name: "Tighnari", role: "THE SCIENTIST", pos: "Lead Vocal (Jacob)", 
+                        desc: "最新技術を駆使する科学捜査官。穏やかな歌声の裏で、マフィアの痕跡を一つ残らず解析する。" 
+                    },
+                    { 
+                        name: "Kaveh", role: "THE DETECTIVE", pos: "Main Dancer (Q)", 
+                        desc: "情熱的に現場を駆ける捜査官。アルハイゼンと反目しながらも、華麗なダンスで証拠を掴み取る。" 
+                    }
                 ]
             }
         ]
@@ -53,8 +101,8 @@ const heaventeenResults = [
     { name: "Itto", rank0: 13, rank1: 11, rank2: 7, final: 9, result: "GEN1US" },
     { name: "Alhaitham", rank0: 3, rank1: 8, rank2: 99, final: 99, result: "4ggravate" },
     { name: "Kaveh", rank0: 10, rank1: 9, rank2: 99, final: 99, result: "4ggravate" },
-    { name: "Neuvillette", rank0: 5, rank1: 99, rank2: 99, final: 99, result: "H.O.T.H" },
-    { name: "Wriothesley", rank0: 6, rank1: 99, rank2: 99, final: 99, result: "H.O.T.H" }
+    { name: "Neuvillette", rank0: 5, rank1: 99, rank2: 99, final: 99, result: "House of the Hearth" },
+    { name: "Wriothesley", rank0: 6, rank1: 99, rank2: 99, final: 99, result: "House of the Hearth" }
 ];
 
 const labels = {
@@ -111,7 +159,7 @@ const allGroups = {
         members: [
             { name: "Gaming", div: "Liyue", pos: "Main Vocal", label: "QIXING", img: "images/universe/universe-gaming.jpg" },
             { name: "Chongyun", div: "Liyue", pos: "Lead Rapper", label: "QIXING", img: "images/universe/universe-chongyun.jpg" },
-            { name: "Xingqiu", div: "Liyue", pos: "Main Vocal", label: "QIXING", isLeader: true, img: "images/universe/universe-xingqiu.jpg" },
+            { name: "Xingqiu", div: "Liyue", pos: "Leader / Main Vocal", label: "QIXING", isLeader: true, img: "images/universe/universe-xingqiu.jpg" },
             { name: "Albedo", div: "Mondstadt", pos: "Sub Vocal", label: "FAVONIUS", img: "images/universe/universe-albedo.jpg" },
             { name: "Gorou", div: "Inazuma", pos: "Lead Dancer", label: "NARUKAMI", img: "images/universe/universe-gorou.jpg" },
             { name: "Bennett", div: "Mondstadt", pos: "Main Dancer", label: "FAVONIUS", img: "images/universe/universe-bennett.jpg" },
