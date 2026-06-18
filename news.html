@@ -17,7 +17,8 @@
         .member-grid-news { display: grid; grid-template-columns: repeat(4, 1fr); gap: 60px 20px; }
         
         .member-unit { text-align: center; }
-        .m-img-box { width: 150px; height: 150px; border-radius: 50%; overflow: hidden; margin: 0 auto 25px; border: 2px solid #333; }
+        .m-img-box { width: 150px; height: 150px; border-radius: 50%; overflow: hidden; margin: 0 auto 25px; border: 2px solid #333; transition: 0.4s; }
+        .member-unit:hover .m-img-box { border-color: #fff; transform: translateY(-10px); box-shadow: 0 10px 30px rgba(255,255,255,0.1); }
         .m-img-box img { width: 100%; height: 100%; object-fit: cover; }
         
         .m-name { font-size: 1.6rem; margin-bottom: 5px; }
@@ -34,24 +35,20 @@
 
     <main class="pt-32 pb-24">
         <div class="max-w-6xl mx-auto px-6">
-            <!-- Header -->
             <div class="text-center mb-20">
-                <p class="text-gray-500 uppercase tracking-[0.5em] mb-4">Teyvat Times Special Report</p>
+                <p class="text-gray-500 uppercase tracking-[0.5em] mb-4">Teyvat Times Special</p>
                 <h1 id="p-title" class="logo-font project-title uppercase mb-8"></h1>
                 <p id="p-tagline" class="text-xl italic text-gray-400 font-serif"></p>
             </div>
 
-            <!-- Main Visual -->
             <div class="w-full aspect-video bg-zinc-900 mb-24 overflow-hidden border border-zinc-800 shadow-2xl">
                 <img id="p-visual" src="" class="w-full h-full object-cover">
             </div>
 
-            <!-- Intro: 改行なしで美しく -->
             <div class="mb-40">
                 <p id="p-desc" class="intro-text font-light"></p>
             </div>
 
-            <!-- Teams -->
             <div id="teams-container" class="space-y-40">
                 <!-- JSで動的に流し込み -->
             </div>
