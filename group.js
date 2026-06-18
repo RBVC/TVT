@@ -10,77 +10,75 @@ const specialProjects = {
         teams: [
             {
                 name: "Team Mafia",
-                model: "Stray Kids",
                 members: [
                     { 
-                        name: "Zhongli", role: "THE BOSS", pos: "Lead Rapper (Felix)", 
-                        desc: "地響きのような低音で組織を統率する絶対的支配者。彼の言葉は「契約」であり、背くことは死を意味する。" 
+                        name: "Zhongli", role: "THE BOSS", pos: "Leader", 
+                        desc: "裏社会の絶対的頂点。冷徹なまでの判断力と重厚なオーラで組織を束ねる、静かなる支配者。" 
                     },
                     { 
-                        name: "Ayato", role: "THE UNDERBOSS", pos: "Leader / Vocal (Bang Chan)", 
-                        desc: "組織の頭脳。表向きの交渉から内部の粛正まで、扇子一つで冷徹にこなす若頭。" 
+                        name: "Ayato", role: "THE UNDERBOSS", pos: "Executive", 
+                        desc: "組織のナンバー2。表向きの交渉から内部の粛正まで、扇子一つで完璧にこなす冷酷な若頭。" 
                     },
                     { 
-                        name: "Xiao", role: "RIGHT-HAND MAN", pos: "Main Rapper / Vocal (Han)", 
-                        desc: "ボスの右腕として闇を駆ける暗殺者。超高速のラップと身のこなしで、敵に情けをかけず一掃する。" 
+                        name: "Xiao", role: "RIGHT-HAND MAN", pos: "Hitman", 
+                        desc: "ボスの右腕として闇を駆ける暗殺者。一切の情けを捨て、ただ任務のみを遂行する死の執行人。" 
                     },
                     { 
-                        name: "Tartaglia", role: "MERCENARY", pos: "Main Dancer / Center (Hyunjin)", 
-                        desc: "戦場を愛する狂気の傭兵。彼が踊り（暴れ）始めたら最後、周囲は血と硝煙に染まる。" 
+                        name: "Tartaglia", role: "MERCENARY", pos: "Vanguard", 
+                        desc: "戦場にのみ生を感じる狂気の傭兵。敵を壊滅させることだけを目的とする、組織最強の矛。" 
                     },
                     { 
-                        name: "Wanderer", role: "THE HEIR", pos: "Main Dancer (Lee Know)", 
-                        desc: "組織の次期継承者。無機質で完璧な技術を持ち、誰にも心を開かない孤独な天才。" 
+                        name: "Wanderer", role: "THE HEIR", pos: "Next Generation", 
+                        desc: "組織の次期継承者。誰にも心を開かず、完璧な技術と冷めた瞳で獲物を追い詰める孤独な天才。" 
                     },
                     { 
-                        name: "Kaeya", role: "THE CONSIGLIERE", pos: "Main Vocal (Seungmin)", 
-                        desc: "組織の相談役。甘い歌声で情報を引き出し、笑顔の裏で敵を奈落へ突き落とす策士。" 
+                        name: "Kaeya", role: "THE CONSIGLIERE", pos: "Strategist", 
+                        desc: "組織の知恵袋。笑顔の裏で敵の弱みを握り、盤上を自在に操るマフィアの参謀役。" 
                     },
                     { 
-                        name: "Kazuha", role: "THE BODYGUARD", pos: "Sub Vocal (I.N)", 
-                        desc: "静寂を纏う護衛。荒々しいマフィアの中で、一筋の風のように淡々と任務を遂行する。" 
+                        name: "Kazuha", role: "THE BODYGUARD", pos: "Guardian", 
+                        desc: "静寂を纏う護衛。一糸乱れぬ動きで対象を守り抜き、邪魔な存在は風のように速やかに排除する。" 
                     },
                     { 
-                        name: "Wriothesley", role: "UNDERCOVER AGENT", pos: "Main Rapper (Changbin)", 
-                        desc: "最前線で拳を振るう重鎮。その正体は誰も知らないが、組織で最も重厚な一撃（ラップ）を放つ。" 
+                        name: "Wriothesley", role: "UNDERCOVER AGENT", pos: "Special Operative", 
+                        desc: "組織の重鎮でありながら、その動向は謎に包まれている。圧倒的な力で障害を粉砕する実力者。" 
                     }
                 ]
             },
             {
                 name: "Team Police",
-                model: "THE BOYZ",
                 members: [
                     { 
-                        name: "Venti", role: "THE CASANOVA (Mastermind)", pos: "Main Vocal (New)", 
-                        desc: "遊び人を装いながら警察を裏から操る真の黒幕。酒場の冗談の合間に、世界の天秤を動かしている。" 
+                        name: "Venti", role: "THE CASANOVA", pos: "True Mastermind", 
+                        desc: "遊び人を装いながら警察組織の全中枢を掌握する真の黒幕。彼の指先ひとつで世界の天秤が傾く。" 
                     },
                     { 
-                        name: "Neuvillette", role: "CHIEF JUSTICE", pos: "Main Vocal (Sangyeon)", 
-                        desc: "警察の顔であり絶対的な正義。彼の歌声（判決）には一切の私情が混じらず、悪を完璧に沈黙させる。" 
+                        name: "Neuvillette", role: "CHIEF JUSTICE", pos: "General Manager", 
+                        desc: "警察の象徴であり絶対的正義。私情を一切挟まない厳格な裁きによって、混沌を秩序へと変える。" 
                     },
                     { 
-                        name: "Alhaitham", role: "CHIEF COMMANDER", pos: "Main Dancer (Juyeon)", 
-                        desc: "計算と効率の鬼である最高指揮官。一糸乱れぬダンスフォーメーションでマフィアを追い詰める。" 
+                        name: "Alhaitham", role: "CHIEF COMMANDER", pos: "Tactician", 
+                        desc: "警察組織の最高指揮官。理論と効率を極め、一寸の狂いもない作戦でマフィアを追い詰める。" 
                     },
                     { 
-                        name: "Diluc", role: "THE VIGILANTE", pos: "Main Vocal (Kevin)", 
-                        desc: "夜を統べる執行人。警察組織に属しながらも、独自の正義を貫く孤高のボーカリスト。" 
+                        name: "Diluc", role: "THE VIGILANTE", pos: "Rogue Inspector", 
+                        desc: "組織に属しながらも独自の正義を貫く執行人。法の隙間を縫って悪を討つ、夜を統べる者。" 
                     },
                     { 
-                        name: "Baizhu", role: "THE PATHOLOGIST", pos: "Lead Vocal (Hyunjae)", 
-                        desc: "死体から真実を暴く監察医。眼鏡の奥に光る知性的な瞳で、マフィアの急所（弱点）を見抜く。" 
+                        name: "Baizhu", role: "THE PATHOLOGIST", pos: "Medical Examiner", 
+                        desc: "死体から真実を紡ぎ出す監察医。知性的な瞳で、マフィアの痕跡を一つ残らず暴き出す。" 
                     },
                     { 
-                        name: "Cyno", role: "TACTICAL POLICE", pos: "Main Rapper (Sunwoo)", 
-                        desc: "罪を断じる特殊部隊員。一度狙った獲物は逃さず、鋭いラップで容赦なく制圧する。" 
+                        name: "Cyno", role: "TACTICAL POLICE", pos: "Field Agent", 
+                        desc: "現場の先陣を切る特殊部隊員。法の盾を持ち、逃げ場のない追撃で罪人を制圧するハンター。" 
                     },
                     { 
-                        name: "Tighnari", role: "THE SCIENTIST", pos: "Lead Vocal (Jacob)", 
-                        desc: "最新技術を駆使する科学捜査官。穏やかな歌声の裏で、マフィアの痕跡を一つ残らず解析する。" 
+                        name: "Tighnari", role: "THE SCIENTIST", pos: "Forensic Expert", 
+                        desc: "最新の科学捜査を司るスペシャリスト。現場の微細な証拠から、組織のネットワークを解析する。" 
                     },
                     { 
-                        name: "Kaveh", role: "THE DETECTIVE", pos: "Main Dancer (Q)", 
-                        desc: "情熱的に現場を駆ける捜査官。アルハイゼンと反目しながらも、華麗なダンスで証拠を掴み取る。" 
+                        name: "Kaveh", role: "THE DETECTIVE", pos: "Lead Investigator", 
+                        desc: "情熱を燃やし証拠を追う捜査官。アルハイゼンとぶつかりながらも、真実への執念で現場を走る。" 
                     }
                 ]
             }
