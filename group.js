@@ -13,36 +13,44 @@ const specialProjects = {
                 model: "Stray Kids",
                 members: [
                     { 
-                        name: "Zhongli", role: "THE BOSS", pos: "Felix Model / 楽曲の重厚感を決定づける超低音ラップ", 
-                        desc: "裏社会の絶対的頂点。冷徹なまでの判断力と重厚なオーラで組織を束ねる、静かなる支配者。" 
+                        name: "Zhongli", role: "THE BOSS", 
+                        pos: "Lead Rapper / Lead Dancer (Felix)", 
+                        desc: "裏社会の絶対的頂点。地響きのような低音で組織を統率し、その言葉一つで世界の均衡を保つ静かなる支配者。" 
                     },
                     { 
-                        name: "Ayato", role: "THE UNDERBOSS", pos: "Bang Chan Model / 組織を統率する多才なオールラウンダー", 
-                        desc: "組織のナンバー2。表向きの交渉から内部の粛正まで、扇子一つで完璧にこなす冷酷な若頭。" 
+                        name: "Ayato", role: "THE UNDERBOSS", 
+                        pos: "Leader / Vocal / All-rounder (Bang Chan)", 
+                        desc: "組織の頭脳。表向きの交渉から内部の粛正まで、扇子一つで冷徹にこなす若頭。" 
                     },
                     { 
-                        name: "Xiao", role: "RIGHT-HAND MAN", pos: "Han Model / 超高速ラップとボーカルを自在に操る技術の核", 
+                        name: "Xiao", role: "RIGHT-HAND MAN", 
+                        pos: "Main Rapper / Lead Vocal (Han)", 
                         desc: "ボスの右腕として闇を駆ける暗殺者。一切の情けを捨て、ただ任務のみを遂行する死の執行人。" 
                     },
                     { 
-                        name: "Tartaglia", role: "MERCENARY", pos: "Hyunjin Model / ステージを戦場に変える狂気的なダンスセンター", 
-                        desc: "戦場にのみ生を感じる狂気の傭兵。敵を壊滅させることだけを目的とする、組織最強の矛。" 
+                        name: "Tartaglia", role: "MERCENARY", 
+                        pos: "Main Dancer / Center / Rapper (Hyunjin)", 
+                        desc: "戦場にのみ生を感じる狂気の傭兵。彼が踊り始めたら最後、周囲は血と硝煙に染まる組織最強の矛。" 
                     },
                     { 
-                        name: "Wanderer", role: "THE HEIR", pos: "Lee Know Model / 完璧な身体制御で見せる冷徹なダンスの刃", 
+                        name: "Wanderer", role: "THE HEIR", 
+                        pos: "Main Dancer / Rapper (Lee Know)", 
                         desc: "組織の次期継承者。誰にも心を開かず、完璧な技術と冷めた瞳で獲物を追い詰める孤独な天才。" 
                     },
                     { 
-                        name: "Kaeya", role: "THE CONSIGLIERE", pos: "Seungmin Model / ダークな楽曲に雅を添える艶やかなメインボーカル", 
-                        desc: "組織の知恵袋。笑顔の裏で敵の弱みを握り、盤上を自在に操るマフィアの参謀役。" 
+                        name: "Kaeya", role: "THE CONSIGLIERE", 
+                        pos: "Main Vocal (Seungmin)", 
+                        desc: "組織の相談役。甘い歌声で情報を引き出し、笑顔の裏で敵の弱みを握り、盤上を自在に操るマフィアの参謀役。" 
                     },
                     { 
-                        name: "Kazuha", role: "THE BODYGUARD", pos: "I.N Model / 激しいパフォーマンスの中の一筋の清涼な歌声", 
+                        name: "Kazuha", role: "THE BODYGUARD", 
+                        pos: "Sub Vocal (I.N)", 
                         desc: "静寂を纏う護衛。一糸乱れぬ動きで対象を守り抜き、邪魔な存在は風のように速やかに排除する。" 
                     },
                     { 
-                        name: "Wriothesley", role: "UNDERCOVER AGENT", pos: "Changbin Model / 組織に圧倒的な圧を与えるダークで力強いラップ", 
-                        desc: "組織の重鎮でありながら、その動向は謎に包まれている。圧倒的な力で障害を粉砕する実力者。" 
+                        name: "Wriothesley", role: "UNDERCOVER AGENT", 
+                        pos: "Main Rapper (Changbin)", 
+                        desc: "組織の重鎮でありながら、その動向は謎に包まれている。圧倒的な力で障害を粉砕する影の実力者。" 
                     }
                 ]
             },
@@ -51,35 +59,43 @@ const specialProjects = {
                 model: "THE BOYZ",
                 members: [
                     { 
-                        name: "Venti", role: "THE CASANOVA", pos: "New Model / 警察の正義を象徴する突き抜けるハイトーンボーカル", 
+                        name: "Venti", role: "THE CASANOVA", 
+                        pos: "Main Vocal (New) / True Mastermind", 
                         desc: "遊び人を装いながら警察組織の全中枢を掌握する真の黒幕。彼の指先ひとつで世界の天秤が傾く。" 
                     },
                     { 
-                        name: "Neuvillette", role: "CHIEF JUSTICE", pos: "Sangyeon Model / 組織を束ねる圧倒的な声量と安定した歌唱力の支柱", 
+                        name: "Neuvillette", role: "CHIEF JUSTICE", 
+                        pos: "Main Vocal / Leader (Sangyeon)", 
                         desc: "警察の象徴であり絶対的正義。私情を一切挟まない厳格な裁きによって、混沌を秩序へと変える。" 
                     },
                     { 
-                        name: "Alhaitham", role: "CHIEF COMMANDER", pos: "Juyeon Model / 特殊部隊を率いる規律正しく力強いダンスの主役", 
-                        desc: "警察組織の最高指揮官。理論と効率を極め、一寸の狂いもない作戦でマフィアを追い詰め、そのフィジカルで制圧する。" 
+                        name: "Alhaitham", role: "CHIEF COMMANDER", 
+                        pos: "Main Dancer / Sub Vocal (Juyeon)", 
+                        desc: "警察組織の最高指揮官。理論と効率を極め、一寸の狂いもない作戦でマフィアを追い詰める。" 
                     },
                     { 
-                        name: "Diluc", role: "THE VIGILANTE", pos: "Kevin Model / エリート組織に個の力をもたらす洗練されたボーカル", 
+                        name: "Diluc", role: "THE VIGILANTE", 
+                        pos: "Main Vocal (Kevin)", 
                         desc: "組織に属しながらも独自の正義を貫く執行人。法の隙間を縫って悪を討つ、夜を統べる者。" 
                     },
                     { 
-                        name: "Baizhu", role: "THE PATHOLOGIST", pos: "Hyunjae Model / 難解なメロディを優雅に歌いこなすボーカルの技巧派", 
+                        name: "Baizhu", role: "THE PATHOLOGIST", 
+                        pos: "Lead Vocal / Dancer (Hyunjae)", 
                         desc: "死体から真実を紡ぎ出す監察医。知性的な瞳で、マフィアの痕跡を一つ残らず暴き出す。" 
                     },
                     { 
-                        name: "Cyno", role: "TACTICAL POLICE", pos: "Sunwoo Model / 逃げ場を塞ぐように高速で刻まれる制圧のラップ", 
+                        name: "Cyno", role: "TACTICAL POLICE", 
+                        pos: "Main Rapper / Dancer (Sunwoo)", 
                         desc: "現場の先陣を切る特殊部隊員。法の盾を持ち、逃げ場のない追撃で罪人を制圧するハンター。" 
                     },
                     { 
-                        name: "Tighnari", role: "THE SCIENTIST", pos: "Jacob Model / 誠実で落ち着いた歌声で組織を支えるボーカルの翼", 
+                        name: "Tighnari", role: "THE SCIENTIST", 
+                        pos: "Lead Vocal (Jacob)", 
                         desc: "最新の科学捜査を司るスペシャリスト。現場の微細な証拠から、組織のネットワークを解析する。" 
                     },
                     { 
-                        name: "Kaveh", role: "THE DETECTIVE", pos: "Q Model / 感情を爆発させ、美しく躍動するダンスの芸術点", 
+                        name: "Kaveh", role: "THE DETECTIVE", 
+                        pos: "Main Dancer / Sub Vocal (Q)", 
                         desc: "情熱を燃やし証拠を追う捜査官。アルハイゼンとぶつかりながらも、真実への執念で現場を走る。" 
                     }
                 ]
@@ -88,7 +104,7 @@ const specialProjects = {
     }
 };
 
-// ...以下の heaventeenResults, labels, allGroups は既存のデータを維持...
+// --- 以下、既存データ (heaventeenResults, labels, allGroups) を維持 ---
 const heaventeenResults = [
     { name: "Tartaglia", rank0: 9, rank1: 4, rank2: 3, final: 1, result: "GEN1US" },
     { name: "Dainsleif", rank0: 1, rank1: 2, rank2: 4, final: 2, result: "GEN1US" },
@@ -126,7 +142,7 @@ const allGroups = {
             { name: "Ayato", div: "Inazuma", pos: "Visual / Lead Vocal", label: "NARUKAMI", img: "images/gen1us/masquerade-ayato.jpg" },
             { name: "Kaeya", div: "Mondstadt", pos: "Main Vocal", label: "FAVONIUS", img: "images/gen1us/masquerade-kaeya.jpg" },
             { name: "Dainsleif", div: "Mondstadt", pos: "Main Dancer / Sub Rapper", label: "FAVONIUS", img: "images/gen1us/masquerade-dainsleif.jpg" },
-            { name: "Thoma", div: "Inazuma", pos: "Lead Dancer / Sub Vocal", label: "NARUKAMI", img: "images/gen1us/masquerade-thoma.jpg" }
+            { name: "Thoma", div: "Inazuma", pos: "Main Dancer / Sub Vocal", label: "NARUKAMI", img: "images/gen1us/masquerade-thoma.jpg" }
         ],
         discography: []
     },

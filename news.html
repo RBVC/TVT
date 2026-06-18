@@ -11,22 +11,22 @@
     <style>
         body { background: #000; color: #fff; }
         .project-title { font-size: 5rem; line-height: 0.9; }
-        .team-section { margin-bottom: 150px; }
+        .intro-text { font-size: 1.25rem; line-height: 1.8; color: #ccc; max-width: 900px; margin: 0 auto; text-align: center; }
         
-        /* メンバーカード */
-        .member-grid-news { display: grid; grid-template-columns: repeat(4, 1fr); gap: 50px 20px; }
-        .member-unit { text-align: center; display: flex; flex-direction: column; align-items: center; }
-        .m-img-box { width: 140px; height: 140px; border-radius: 50%; overflow: hidden; margin-bottom: 25px; border: 2px solid #222; }
+        .team-section { margin-bottom: 150px; }
+        .member-grid-news { display: grid; grid-template-columns: repeat(4, 1fr); gap: 60px 20px; }
+        
+        .member-unit { text-align: center; }
+        .m-img-box { width: 150px; height: 150px; border-radius: 50%; overflow: hidden; margin: 0 auto 25px; border: 2px solid #333; }
         .m-img-box img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* テキスト書式 */
-        .role-badge { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; color: #fff; background: #222; padding: 2px 12px; display: inline-block; margin-bottom: 10px; letter-spacing: 0.05em; }
-        .m-name { font-size: 1.8rem; margin-bottom: 5px; line-height: 1; }
-        .m-pos { font-size: 0.65rem; color: #666; margin-bottom: 20px; font-weight: 800; border-bottom: 1px solid #333; padding-bottom: 5px; width: 100%; }
-        .m-desc { font-size: 0.85rem; color: #aaa; line-height: 1.6; max-width: 280px; text-align: left; }
+        .m-name { font-size: 1.6rem; margin-bottom: 5px; }
+        .role-badge { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; color: #fff; background: #222; padding: 2px 12px; display: inline-block; margin-bottom: 12px; border: 1px solid #444; }
+        .m-desc { font-size: 0.85rem; color: #aaa; line-height: 1.6; max-width: 260px; margin: 0 auto 15px; }
+        .m-pos { font-size: 0.65rem; color: #666; font-weight: 800; letter-spacing: 0.05em; border-top: 1px solid #222; padding-top: 10px; }
 
         @media (max-width: 1024px) { .member-grid-news { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 768px) { .project-title { font-size: 2.5rem; } .m-img-box { width: 120px; height: 120px; } }
+        @media (max-width: 768px) { .project-title { font-size: 2.5rem; } .m-img-box { width: 120px; height: 120px; } .intro-text { font-size: 1rem; } }
     </style>
 </head>
 <body>
@@ -46,9 +46,9 @@
                 <img id="p-visual" src="" class="w-full h-full object-cover">
             </div>
 
-            <!-- Intro: 1行に統合 -->
-            <div class="max-w-4xl mx-auto text-center mb-40">
-                <p id="p-desc" class="text-lg md:text-xl leading-loose text-gray-200 font-light tracking-wider"></p>
+            <!-- Intro: 改行なしで美しく -->
+            <div class="mb-40">
+                <p id="p-desc" class="intro-text font-light"></p>
             </div>
 
             <!-- Teams -->
@@ -81,20 +81,20 @@
                     return `
                         <div class="member-unit">
                             <div class="m-img-box">
-                                <img src="${imgPath}" onerror="this.src='https://placehold.jp/30/111111/333333/300x300.png?text=${m.name}'">
+                                <img src="${imgPath}" onerror="this.src='https://placehold.jp/30/333333/666666/200x200.png?text=${m.name}'">
                             </div>
-                            <span class="role-badge">${m.role}</span>
                             <p class="logo-font m-name uppercase">${m.name}</p>
-                            <p class="m-pos uppercase">${m.pos}</p>
+                            <span class="role-badge">${m.role}</span>
                             <p class="m-desc">${m.desc}</p>
+                            <p class="m-pos uppercase">${m.pos}</p>
                         </div>
                     `;
                 }).join('');
 
                 container.innerHTML += `
                     <div class="team-section">
-                        <div class="text-center mb-20">
-                            <h2 class="logo-font text-7xl md:text-9xl border-b border-zinc-800 pb-8 inline-block">${team.name}</h2>
+                        <div class="text-center mb-24">
+                            <h2 class="logo-font text-7xl md:text-[10rem] border-b border-zinc-800 pb-10 inline-block leading-none">${team.name}</h2>
                         </div>
                         <div class="member-grid-news">
                             ${memberHtml}
