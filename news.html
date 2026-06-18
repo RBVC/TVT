@@ -13,16 +13,17 @@
         .project-title { font-size: 5rem; line-height: 0.9; }
         .team-section { margin-bottom: 150px; }
         
-        .member-grid-news { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px 20px; }
-        .member-unit { text-align: center; }
-        .m-img-box { width: 140px; height: 140px; border-radius: 50%; overflow: hidden; margin: 0 auto 20px; border: 2px solid #333; transition: 0.4s; }
-        .member-unit:hover .m-img-box { border-color: #fff; transform: translateY(-10px); box-shadow: 0 10px 30px rgba(255,255,255,0.1); }
+        /* メンバーカード */
+        .member-grid-news { display: grid; grid-template-columns: repeat(4, 1fr); gap: 50px 20px; }
+        .member-unit { text-align: center; display: flex; flex-direction: column; align-items: center; }
+        .m-img-box { width: 140px; height: 140px; border-radius: 50%; overflow: hidden; margin-bottom: 25px; border: 2px solid #222; }
         .m-img-box img { width: 100%; height: 100%; object-fit: cover; }
         
-        .role-badge { font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; color: #fff; border: 1px solid #555; padding: 2px 10px; display: inline-block; margin-bottom: 8px; }
-        .m-name { font-size: 1.5rem; margin-bottom: 2px; }
-        .m-pos { font-size: 0.65rem; color: #666; margin-bottom: 15px; font-weight: bold; }
-        .m-desc { font-size: 0.8rem; color: #999; line-height: 1.6; max-width: 250px; margin: 0 auto; }
+        /* テキスト書式 */
+        .role-badge { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; color: #fff; background: #222; padding: 2px 12px; display: inline-block; margin-bottom: 10px; letter-spacing: 0.05em; }
+        .m-name { font-size: 1.8rem; margin-bottom: 5px; line-height: 1; }
+        .m-pos { font-size: 0.65rem; color: #666; margin-bottom: 20px; font-weight: 800; border-bottom: 1px solid #333; padding-bottom: 5px; width: 100%; }
+        .m-desc { font-size: 0.85rem; color: #aaa; line-height: 1.6; max-width: 280px; text-align: left; }
 
         @media (max-width: 1024px) { .member-grid-news { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) { .project-title { font-size: 2.5rem; } .m-img-box { width: 120px; height: 120px; } }
@@ -33,7 +34,7 @@
 
     <main class="pt-32 pb-24">
         <div class="max-w-6xl mx-auto px-6">
-            <!-- Header Area -->
+            <!-- Header -->
             <div class="text-center mb-20">
                 <p class="text-gray-500 uppercase tracking-[0.5em] mb-4">Teyvat Times Special Report</p>
                 <h1 id="p-title" class="logo-font project-title uppercase mb-8"></h1>
@@ -45,9 +46,9 @@
                 <img id="p-visual" src="" class="w-full h-full object-cover">
             </div>
 
-            <!-- Intro -->
-            <div class="max-w-3xl mx-auto text-center mb-40">
-                <p id="p-desc" class="text-xl leading-loose text-gray-300 font-light"></p>
+            <!-- Intro: 1行に統合 -->
+            <div class="max-w-4xl mx-auto text-center mb-40">
+                <p id="p-desc" class="text-lg md:text-xl leading-loose text-gray-200 font-light tracking-wider"></p>
             </div>
 
             <!-- Teams -->
@@ -73,16 +74,14 @@
 
             const container = document.getElementById('teams-container');
             project.teams.forEach(team => {
-                // チーム名に基づいて画像フォルダを決定
                 const folder = team.name.toLowerCase().includes('mafia') ? 'mafia' : 'police';
 
                 let memberHtml = team.members.map(m => {
-                    // 名前を小文字にして画像パスを作成
                     const imgPath = `images/mafia_vs_police/${folder}/${m.name.toLowerCase()}.jpg`;
                     return `
                         <div class="member-unit">
                             <div class="m-img-box">
-                                <img src="${imgPath}" onerror="this.src='https://placehold.jp/30/333333/666666/200x200.png?text=${m.name}'">
+                                <img src="${imgPath}" onerror="this.src='https://placehold.jp/30/111111/333333/300x300.png?text=${m.name}'">
                             </div>
                             <span class="role-badge">${m.role}</span>
                             <p class="logo-font m-name uppercase">${m.name}</p>
@@ -95,7 +94,7 @@
                 container.innerHTML += `
                     <div class="team-section">
                         <div class="text-center mb-20">
-                            <h2 class="logo-font text-7xl md:text-8xl border-b border-zinc-800 pb-8 inline-block">${team.name}</h2>
+                            <h2 class="logo-font text-7xl md:text-9xl border-b border-zinc-800 pb-8 inline-block">${team.name}</h2>
                         </div>
                         <div class="member-grid-news">
                             ${memberHtml}
