@@ -2,6 +2,33 @@
 
 // SPECIAL PROJECTS (TEYVAT TIMES / news.html 用)
 const specialProjects = {
+    "nightfall-ops": {
+        title: "Nightfall Ops",
+        tagline: "Covert Mission in the Deepest Night.",
+        mainVisual: "images/nightfall-ops/main.jpg",
+        description: "漆黒の夜に紛れ、秘密裏に遂行される特殊作戦。4人のエージェントと、彼らを支える影の天才たちによる伝説の記録。",
+        teams: [
+            {
+                name: "Special Agents",
+                model: "nqrse Style",
+                members: [
+                    { name: "Ayato", role: "COMMANDER", pos: "Leader / Backup", desc: "作戦全体の指揮・統括を担う司令塔。コントロールルームから冷徹な指示を出す組織の脳。", img: "images/heaventeen/ayato.jpg" },
+                    { name: "Wriothesley", role: "BREACHER", pos: "Frontline / Melee", desc: "前線突破を担う切り込み隊長。屈強な肉体と拳で、ターゲットへの道を力強く切り開く。", img: "images/heaventeen/wriothesley.jpg" },
+                    { name: "Tartaglia", role: "INFILTRATOR", pos: "Assassin / Spy", desc: "隠密潜入のスペシャリスト。華麗なガンアクションで、ターゲットを影から確実に排除する。", img: "images/heaventeen/tartaglia.jpg" },
+                    { name: "Diluc", role: "CLEANER", pos: "Annihilation", desc: "証拠隠滅と最終制圧を担う。圧倒的な火力ですべてを焼き尽くし、跡形もなく掃除する殿。", img: "images/heaventeen/diluc.jpg" }
+                ]
+            },
+            {
+                name: "Back Office",
+                model: "Supporters",
+                members: [
+                    { name: "Zhongli", role: "SUPPORTER", pos: "Patron / Authority", desc: "組織の最高顧問にして莫大な資金源。財界の裏で糸を引く、組織の絶対的なバックアップ。", img: "images/heaventeen/zhongli.jpg" },
+                    { name: "Alhaitham", role: "PLANNER", pos: "System Architect", desc: "作戦立案とシステム構築の天才。綾人が振るう「指揮」の頭脳部分を裏で設計した人物。", img: "images/heaventeen/alhaitham.jpg" },
+                    { name: "Kaveh", role: "DESIGNER", pos: "Mechanic / Gadgets", desc: "エージェントの武器やガジェットを開発. アルハイゼンの理論を形にする、組織随一の技術者。", img: "images/heaventeen/kaveh.jpg" }
+                ]
+            }
+        ]
+    },
     "the-sovereign": {
         title: "THE SOVEREIGN",
         tagline: "TIC TOC, IT'S YOUR TURN.",
@@ -12,7 +39,7 @@ const specialProjects = {
                 name: "Team Mafia",
                 model: "Stray Kids",
                 members: [
-                    { name: "Zhongli", role: "THE BOSS", pos: "Leader / Lead Rapper (Felix)", desc: "裏社会の絶対的頂点。地響きのような低音で組織を統率し、その言葉一つで世界の均衡を保つ静かなる支配者。" },
+                    { name: "Zhongli", role: "THE BOSS", pos: "Leader / Lead Rapper (Felix)", desc: "裏社会の絶対的頂点。冷徹なまでの判断力と重厚なオーラで組織を束ねる、静かなる支配者。" },
                     { name: "Ayato", role: "THE UNDERBOSS", pos: "All-rounder (Bang Chan)", desc: "組織の頭脳。表向きの交渉から内部の粛正まで、扇子一つで冷徹にこなす組織のナンバー2。" },
                     { name: "Kaeya", role: "THE CONSIGLIERE", pos: "Main Vocal (Seungmin)", desc: "組織の相談役。甘い歌声で情報を引き出し、笑顔の裏で敵の弱みを握り、盤上を自在に操る参謀。" },
                     { name: "Wanderer", role: "THE HEIR", pos: "Main Dancer / Sub Vocal (Lee Know)", desc: "組織の次期継承者。誰にも心を開かず、完璧な技術と冷めた瞳で獲物を追い詰める孤独な天才。" },
@@ -32,7 +59,7 @@ const specialProjects = {
                     { name: "Diluc", role: "THE VIGILANTE", pos: "Main Vocal (Kevin)", desc: "組織に属しながらも独自の正義を貫く執行人。法の隙間を縫って悪を討つ、夜を統べる特別捜査官。" },
                     { name: "Baizhu", role: "THE PATHOLOGIST", pos: "Lead Vocal (Hyunjae)", desc: "死体から真実を紡ぎ出す監察医。知性的な瞳で、マフィアの痕跡を一つ残らず暴き出す検視のスペシャリスト。" },
                     { name: "Tighnari", role: "THE SCIENTIST", pos: "Lead Vocal / Sub Rapper (Jacob)", desc: "最新の科学捜査を司るトップ。現場の微細な証拠から、組織のネットワークを解析する知性の要。" },
-                    { name: "Cyno", role: "TACTICAL POLICE", pos: "Main Rapper (Sunwoo)", desc: "現場の先陣を切る特殊部隊長。法の盾を持ち、逃げ場のない追撃で罪人を制圧するハンター。" },
+                    { name: "Cyno", role: "TACTICAL POLICE", pos: "Main Rapper (Sunwoo)", desc: "現場の先陣を切る特殊部隊長. 法の盾を持ち、逃げ場のない追撃で罪人を制圧するハンター。" },
                     { name: "Kaveh", role: "THE DETECTIVE", pos: "Main Dancer / Sub Vocal (Q)", desc: "情熱を燃やし証拠を追う精鋭捜査官。アルハイゼンと反目しながらも、真実への執念で現場を走る。" }
                 ]
             }
@@ -40,7 +67,6 @@ const specialProjects = {
     }
 };
 
-// ...以下のデータも全文ルールに基づき維持...
 const heaventeenResults = [
     { name: "Tartaglia", rank0: 9, rank1: 4, rank2: 3, final: 1, result: "GEN1US" },
     { name: "Dainsleif", rank0: 1, rank1: 2, rank2: 4, final: 2, result: "GEN1US" },

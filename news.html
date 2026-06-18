@@ -12,82 +12,40 @@
         body { background: #000; color: #fff; }
         .project-title { font-size: 5rem; line-height: 0.9; }
         .intro-text { font-size: 1.25rem; line-height: 1.8; color: #ccc; max-width: 900px; margin: 0 auto; text-align: center; }
-        
         .team-section { margin-bottom: 150px; }
-        
-        /* 🆕 グリッド安定化：高さを揃える */
-        .member-grid-news { 
-            display: grid; 
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 60px 20px; 
-            align-items: start; /* 上揃えにしてガタつき防止 */
-        }
-        
+        .member-grid-news { display: grid; grid-template-columns: repeat(4, 1fr); gap: 60px 20px; align-items: start; }
         .member-unit { text-align: center; height: 100%; display: flex; flex-direction: column; }
-        .m-img-box { 
-            width: 150px; 
-            height: 150px; 
-            border-radius: 50%; 
-            overflow: hidden; 
-            margin: 0 auto 25px; 
-            border: 2px solid #333; 
-            flex-shrink: 0;
-        }
+        .m-img-box { width: 150px; height: 150px; border-radius: 50%; overflow: hidden; margin: 0 auto 25px; border: 2px solid #333; flex-shrink: 0; }
         .m-img-box img { width: 100%; height: 100%; object-fit: cover; }
-        
         .m-name { font-size: 1.6rem; margin-bottom: 5px; min-height: 1.2em; }
         .role-badge { font-family: 'Rajdhani', sans-serif; font-size: 0.8rem; color: #fff; background: #222; padding: 2px 12px; display: inline-block; margin-bottom: 12px; border: 1px solid #444; }
-        .m-desc { font-size: 0.85rem; color: #aaa; line-height: 1.6; max-width: 260px; margin: 0 auto 15px; flex-grow: 1; } /* flex-growで高さを埋める */
+        .m-desc { font-size: 0.85rem; color: #aaa; line-height: 1.6; max-width: 260px; margin: 0 auto 15px; flex-grow: 1; }
         .m-pos { font-size: 0.65rem; color: #666; font-weight: 800; letter-spacing: 0.05em; border-top: 1px solid #222; padding-top: 10px; margin-top: auto; }
-
         @media (max-width: 1024px) { .member-grid-news { grid-template-columns: repeat(2, 1fr); } }
-        
-        @media (max-width: 768px) { 
-            .project-title { font-size: 2.5rem; } 
-            .m-img-box { width: 120px; height: 120px; } 
-            .intro-text { font-size: 1rem; } 
-            .member-grid-news { gap: 40px 15px; } /* スマホでの隙間調整 */
-            .m-name { font-size: 1.2rem; }
-            .m-desc { font-size: 0.75rem; }
-        }
+        @media (max-width: 768px) { .project-title { font-size: 2.5rem; } .m-img-box { width: 120px; height: 120px; } .intro-text { font-size: 1rem; } }
     </style>
 </head>
 <body>
     <div id="common-header"></div>
-
     <main class="pt-32 pb-24">
         <div class="max-w-6xl mx-auto px-6">
-            <!-- Header Area -->
             <div class="text-center mb-20">
                 <p class="text-gray-500 uppercase tracking-[0.5em] mb-4">Teyvat Times Special Report</p>
                 <h1 id="p-title" class="logo-font project-title uppercase mb-8"></h1>
                 <p id="p-tagline" class="text-xl italic text-gray-400 font-serif"></p>
             </div>
-
-            <!-- Main Visual -->
             <div class="w-full aspect-video bg-zinc-900 mb-24 overflow-hidden border border-zinc-800 shadow-2xl">
                 <img id="p-visual" src="" class="w-full h-full object-cover">
             </div>
-
-            <!-- Intro -->
-            <div class="mb-40">
-                <p id="p-desc" class="intro-text font-light"></p>
-            </div>
-
-            <!-- Teams Area -->
-            <div id="teams-container" class="space-y-40">
-                <!-- JSで動的に流し込み -->
-            </div>
+            <div class="mb-40"><p id="p-desc" class="intro-text font-light"></p></div>
+            <div id="teams-container" class="space-y-40"></div>
         </div>
     </main>
-
     <div id="common-footer"></div>
-
     <script>
         const params = new URLSearchParams(window.location.search);
         const projectId = params.get('id');
         const project = specialProjects[projectId];
-
         if (project) {
             document.title = `${project.title} | Teyvat Times`;
             document.getElementById('p-title').innerText = project.title;
@@ -97,34 +55,23 @@
 
             const container = document.getElementById('teams-container');
             project.teams.forEach(team => {
-                const folder = team.name.toLowerCase().includes('mafia') ? 'mafia' : 'police';
-
                 let memberHtml = team.members.map(m => {
-                    // ✅ 新所在地 images/the-sovereign/ に合わせたパス生成
-                    const imgPath = `images/the-sovereign/${folder}/${m.name.toLowerCase()}.jpg`;
-                    return `
-                        <div class="member-unit">
-                            <div class="m-img-box">
-                                <img src="${imgPath}" onerror="this.src='https://placehold.jp/30/333333/666666/200x200.png?text=${m.name}'">
-                            </div>
-                            <p class="logo-font m-name uppercase">${m.name}</p>
-                            <span class="role-badge">${m.role}</span>
-                            <p class="m-desc">${m.desc}</p>
-                            <p class="m-pos uppercase">${m.pos}</p>
-                        </div>
-                    `;
+                    // ✅ 修正：データ内の m.img（heaventeen/*.jpg）を最優先。なければSOVEREIGNフォルダ。
+                    let imgPath = m.img;
+                    if (!imgPath) {
+                        const folder = team.name.toLowerCase().includes('mafia') ? 'mafia' : 'police';
+                        imgPath = `images/the-sovereign/${folder}/${m.name.toLowerCase()}.jpg`;
+                    }
+                    
+                    return `<div class="member-unit">
+                        <div class="m-img-box"><img src="${imgPath}" onerror="this.src='https://placehold.jp/30/333333/666666/200x200.png?text=${m.name}'"></div>
+                        <p class="logo-font m-name uppercase">${m.name}</p>
+                        <span class="role-badge">${m.role}</span>
+                        <p class="m-desc">${m.desc}</p>
+                        <p class="m-pos uppercase">${m.pos}</p>
+                    </div>`;
                 }).join('');
-
-                container.innerHTML += `
-                    <div class="team-section">
-                        <div class="text-center mb-24">
-                            <h2 class="logo-font text-7xl md:text-[10rem] border-b border-zinc-800 pb-10 inline-block leading-none">${team.name}</h2>
-                        </div>
-                        <div class="member-grid-news">
-                            ${memberHtml}
-                        </div>
-                    </div>
-                `;
+                container.innerHTML += `<div class="team-section"><div class="text-center mb-24"><h2 class="logo-font text-7xl md:text-[10rem] border-b border-zinc-800 pb-10 inline-block leading-none">${team.name}</h2></div><div class="member-grid-news">${memberHtml}</div></div>`;
             });
         }
     </script>
