@@ -21,8 +21,9 @@
             <button onclick="switchTab('disco')" id="btn-disco" class="tab-btn uppercase">Discography</button>
         </div>
         <div id="profile" class="content-section block">
+            <!-- 💡バナー枠をcoverに戻し、3:1比率で完璧にフィットさせました -->
             <div class="w-full mb-20 overflow-hidden bg-gray-50 border border-gray-100 shadow-sm" style="aspect-ratio: 3 / 1;">
-                <img id="group-banner" src="" class="w-full h-full object-contain">
+                <img id="group-banner" src="" class="w-full h-full object-cover">
             </div>
             <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6">Member</h2>
             <div id="member-grid" class="member-flex-container"></div>
@@ -49,11 +50,23 @@
                         <div class="aspect-square overflow-hidden bg-gray-50 border border-gray-100 mb-6">
                             <img src="${m.img}" class="w-full h-full object-cover" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMAGE'">
                         </div>
-                        <p class="logo-font text-2xl leading-none">${m.isLeader ? m.name + ' (Leader)' : m.name}</p>
-                        <p class="text-[12px] text-black font-black mt-4 tracking-widest">${m.div}</p>
-                        <p class="text-[10px] text-gray-400 mt-1 tracking-widest leading-relaxed">${m.pos}</p>
+                        <p class="logo-font text-2xl leading-none" style="text-transform: none;">${m.isLeader ? m.name + ' (Leader)' : m.name}</p>
+                        <p class="text-[12px] text-black font-black mt-4 tracking-widest" style="text-transform: none;">${m.div}</p>
+                        <p class="text-[10px] text-gray-400 mt-1 tracking-widest leading-relaxed" style="text-transform: none;">${m.pos}</p>
                     </div>`;
             });
+            const discoList = document.getElementById('disco-list');
+            if (!data.discography || data.discography.length === 0) {
+                discoList.innerHTML = '<p class="logo-font text-gray-200 text-3xl uppercase text-center">Coming Soon</p>';
+            } else {
+                data.discography.forEach(d => {
+                    discoList.innerHTML += `<div class="max-w-4xl mx-auto w-full text-left">
+                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] mb-1">${d.type}</p>
+                        <h3 class="logo-font text-3xl uppercase mb-4">${d.title}</h3>
+                        <div class="bg-gray-50 rounded-xl overflow-hidden shadow-inner border border-gray-100">${d.embed}</div>
+                    </div>`;
+                });
+            }
         }
         function switchTab(tabName) {
             document.querySelectorAll('.content-section').forEach(s => { s.classList.add('hidden'); s.classList.remove('block'); });
