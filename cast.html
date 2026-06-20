@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="group.js"></script>
+    <script src="project.js"></script>
+    <style>
+        body { background: #000; color: #fff; padding: 0; margin: 0; overflow: hidden; }
+        .cast-layout { display: flex; height: 100vh; align-items: center; padding: 40px; gap: 40px; }
+        .cast-img { width: 45%; aspect-ratio: 1/1; object-fit: cover; border: 1px solid #333; }
+        .cast-info { flex: 1; }
+        .cast-role { font-size: 1rem; color: #fff; background: #333; padding: 2px 12px; display: inline-block; margin-bottom: 15px; font-weight: 700; border: 1px solid #444; }
+        .cast-name { font-size: 3.5rem; font-weight: 900; margin-bottom: 20px; line-height: 1; }
+        .cast-desc { font-size: 0.95rem; color: #ccc; line-height: 1.8; margin-bottom: 30px; }
+        .cast-pos { font-size: 0.75rem; color: #666; font-weight: 800; border-top: 1px solid #222; padding-top: 15px; }
+        @media (max-width: 768px) {
+            .cast-layout { flex-direction: column; overflow-y: auto; padding: 20px; }
+            .cast-img { width: 100%; }
+            .cast-name { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div id="cast-detail" class="cast-layout"></div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const pid = params.get('pid');
+        const tidx = params.get('tidx');
+        const midx = params.get('midx');
+        const m = specialProjects[pid].teams[tidx].members[midx];
+
+        document.getElementById('cast-detail').innerHTML = `
+            <img src="${m.img}" class="cast-img" onerror="this.src='https://placehold.jp/400x400.png?text=${m.name}'">
+            <div class="cast-info">
+                <span class="cast-role">${m.role}</span>
+                <h2 class="cast-name logo-font">${m.name}</h2>
+                <p class="cast-desc">${m.desc}</p>
+                ${m.pos ? `<p class="cast-pos uppercase">${m.pos}</p>` : ''}
+            </div>
+        `;
+    </script>
+</body>
+</html>
