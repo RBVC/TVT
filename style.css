@@ -11,8 +11,8 @@ html { scroll-behavior: smooth; box-sizing: border-box; }
 *, *:before, *:after { box-sizing: inherit; }
 body { background-color: #ffffff; color: #000000; font-family: 'Source Han Sans JP', sans-serif; font-weight: 400; margin: 0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-/* 🆕 コンテンツ開始位置をさらに下げ、余裕を持たせる */
-main { padding-top: 140px; }
+/* 🆕 共通設定：コンテンツはヘッダー(80px)の直下から開始 */
+main { padding-top: 80px; }
 
 h1, h2, h3, h4, p, span, a, .logo-font { text-transform: none !important; }
 .bold-title { font-weight: 900 !important; }
@@ -45,13 +45,11 @@ footer p { font-size: 9px; color: #999; letter-spacing: 0.3em; text-transform: u
 .layout-4 { grid-template-columns: repeat(4, 1fr); max-width: 1200px; }
 .layout-3 { grid-template-columns: repeat(3, 1fr); max-width: 900px; }
 
-/* 🆕 セクションごとの余白ルール */
-.section-spacer { padding-top: 100px; margin-bottom: 60px; }
-
 @media (max-width: 768px) {
     header { padding: 15px 20px; height: 70px; }
-    main { padding-top: 100px; }
+    main { padding-top: 70px; }
     .nav-overlay a { font-size: 2rem; }
-    .layout-3, .layout-4 { grid-template-columns: repeat(2, 1fr) !important; gap: 30px 10px; }
-    .section-spacer { padding-top: 60px; }
+    .member-grid-container.layout-3, .member-grid-container.layout-4 { 
+        grid-template-columns: repeat(2, 1fr) !important; gap: 30px 10px; 
+    }
 }
