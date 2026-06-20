@@ -8,7 +8,7 @@ const specialProjects = {
         description: "漆黒の夜に紛れ、秘密裏に遂行される特殊作戦。4人のエージェントと、彼らを支える影の天才たちによる伝説の記録。",
         teams: [
             {
-                name: "Special Agents",
+                name: "Agents",
                 model: "nqrse Style",
                 members: [
                     { name: "Ayato", role: "Commander", pos: "Lead Vocal / Sub Rapper", desc: "作戦全体の指揮・統括を担う司令塔。コントロールルームから冷徹な指示を出す組織の脳。", img: "images/heaventeen/ayato.jpg" },
@@ -93,18 +93,17 @@ const labels = {
 
 const allGroups = {
     "gen1us": {
-        name: "GEN1US", concept: "MASQUERADE", layout: 3,
-        banner: "images/gen1us/masquerade/main.jpg",
+        name: "GEN1US", concept: "MASQUERADE", layout: 3, banner: "images/gen1us/masquerade/main.jpg",
         members: [
             { name: "Diluc", div: "Mondstadt", pos: "Main Vocal / Sub Dancer", label: "FAVONIUS", img: "images/gen1us/masquerade/diluc.jpg" },
             { name: "Zhongli", div: "Liyue", pos: "Lead Rapper / Sub Vocal", label: "QIXING", img: "images/gen1us/masquerade/zhongli.jpg" },
-            { name: "Itto", div: "Inazuma", pos: "Main Rapper", label: "NARUKAMI", img: "images/gen1us/masquerade/itto.jpg" },
+            { name: "Itto", div: "Inazuma", pos: "Main Rapper", label: "NARUKAMI", img: "images/gen1us/masquerade-itto.jpg" },
             { name: "Baizhu", div: "Liyue", pos: "Main Vocal", label: "QIXING", isLeader: true, img: "images/gen1us/masquerade/baizhu.jpg" },
             { name: "Tartaglia", div: "Snezhnaya", pos: "Main Dancer / Lead Rapper", label: "QIXING", img: "images/gen1us/masquerade/tartaglia.jpg" },
             { name: "Ayato", div: "Inazuma", pos: "Visual / Lead Vocal", label: "NARUKAMI", img: "images/gen1us/masquerade/ayato.jpg" },
-            { name: "Kaeya", div: "Mondstadt", pos: "Main Vocal", label: "FAVONIUS", img: "images/gen1us/masquerade/kaeya.jpg" },
-            { name: "Dainsleif", div: "Mondstadt", pos: "Main Dancer / Sub Rapper", label: "FAVONIUS", img: "images/gen1us/masquerade/dainsleif.jpg" },
-            { name: "Thoma", div: "Inazuma", pos: "Lead Dancer / Sub Vocal", label: "NARUKAMI", img: "images/gen1us/masquerade/thoma.jpg" }
+            { name: "Kaeya", div: "Mondstadt", pos: "Main Vocal", label: "FAVONIUS", img: "images/gen1us/masquerade-kaeya.jpg" },
+            { name: "Dainsleif", div: "Mondstadt", pos: "Main Dancer / Sub Rapper", label: "FAVONIUS", img: "images/gen1us/masquerade-dainsleif.jpg" },
+            { name: "Thoma", div: "Inazuma", pos: "Lead Dancer / Sub Vocal", label: "NARUKAMI", img: "images/gen1us/masquerade-thoma.jpg" }
         ],
         discography: []
     },

@@ -13,7 +13,6 @@ body { background-color: #ffffff; color: #000000; font-family: 'Source Han Sans 
 
 .tvt-logo { font-family: 'Source Han Sans JP', sans-serif; font-weight: 900; letter-spacing: -0.12em; font-style: normal; text-transform: uppercase; display: inline-block; }
 
-/* 🆕 ヘッダーのレイヤーを最前面に固定 */
 header {
     width: 100%; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center;
     position: fixed; top: 0; background: rgba(255,255,255,0.95); backdrop-blur: 15px; 
@@ -41,12 +40,14 @@ footer p { font-size: 9px; color: #ccc; letter-spacing: 0.3em; }
 .tab-btn.active { color: #000; border-bottom: 2px solid #000; }
 
 .member-flex-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px 20px; width: 100%; max-width: 1200px; margin: 0 auto; }
-.layout-4 .member-card { width: calc(25% - 20px); }
-.layout-3 .member-card { width: calc(33.33% - 20px); }
+.layout-4 { grid-template-columns: repeat(4, 1fr); }
+.layout-3 { grid-template-columns: repeat(3, 1fr); }
+
+/* 見出しの太字化(900)を徹底 */
+h1, h2, .bold-title { font-weight: 900 !important; }
 
 @media (max-width: 768px) {
     header { padding: 15px 20px; }
     .nav-overlay a { font-size: 2rem; }
-    .member-flex-container { gap: 30px 10px; }
-    .layout-3 .member-card, .layout-4 .member-card { width: calc(50% - 10px); }
+    .layout-3, .layout-4 { grid-template-columns: repeat(2, 1fr); gap: 30px 10px; }
 }
