@@ -1,14 +1,10 @@
-// common.js - Teyvat Entertainment 共通パーツ管理システム
-
+// common.js
 function loadCommonParts() {
     const headerHTML = `
     <header>
         <a href="index.html" class="tvt-logo" style="font-size: 1.8rem;">TVT</a>
-        <div class="menu-trigger" id="menu-btn">
-            <span></span><span></span><span></span>
-        </div>
+        <div class="menu-trigger" id="menu-btn"><span></span><span></span><span></span></div>
     </header>
-
     <div class="nav-overlay" id="nav-menu">
         <a href="index.html#artists" class="menu-link">Artists</a>
         <a href="index.html#latest-news" class="menu-link">News</a>
@@ -35,23 +31,19 @@ function loadCommonParts() {
 function initMenu() {
     const menuBtn = document.getElementById('menu-btn');
     const navMenu = document.getElementById('nav-menu');
-    const menuLinks = document.querySelectorAll('.menu-link');
-
     if (menuBtn && navMenu) {
         menuBtn.onclick = () => {
             menuBtn.classList.toggle('active');
             navMenu.classList.toggle('open');
             document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : 'auto';
         };
-
-        menuLinks.forEach(link => {
+        document.querySelectorAll('.menu-link').forEach(link => {
             link.onclick = () => {
-                menuBtn.classList.remove('active');
                 navMenu.classList.remove('open');
+                menuBtn.classList.remove('active');
                 document.body.style.overflow = 'auto';
             };
         });
     }
 }
-
 window.addEventListener('DOMContentLoaded', loadCommonParts);
