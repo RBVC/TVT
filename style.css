@@ -51,36 +51,21 @@ footer p { font-size: 9px; color: #999; letter-spacing: 0.3em; text-transform: u
 .tab-btn { font-size: 12px; font-weight: 700; color: #ccc; letter-spacing: 0.15em; border-bottom: 2px solid transparent; padding-bottom: 10px; cursor: pointer; }
 .tab-btn.active { color: #000; border-bottom: 2px solid #000; }
 
-/* 🆕 メンバーグリッド：最新・鉄壁設定 */
+/* メンバーグリッド設定 */
 .member-grid-container { 
     display: grid; 
     gap: 60px 20px; 
     width: 100%; 
     margin: 0 auto; 
 }
+.layout-4 { grid-template-columns: repeat(4, 1fr); max-width: 1200px; }
+.layout-3 { grid-template-columns: repeat(3, 1fr); max-width: 900px; }
 
-/* PC：4列レイアウト */
-.layout-4 { 
-    grid-template-columns: repeat(4, 1fr); 
-    max-width: 1200px; 
-}
-
-/* PC：3列レイアウト (GEN1US, 6reeze) */
-.layout-3 { 
-    grid-template-columns: repeat(3, 1fr); 
-    max-width: 900px; 
-}
-
-.member-card { width: 100%; }
-
-@media (max-width: 1024px) {
-    .layout-4 { grid-template-columns: repeat(3, 1fr); max-width: 900px; }
-}
+h1, h2, .bold-title { font-weight: 900 !important; }
 
 @media (max-width: 768px) {
     header { padding: 15px 20px; }
     .nav-overlay a { font-size: 2rem; }
-    /* スマホ：全グループ共通 2列 */
     .member-grid-container.layout-3, 
     .member-grid-container.layout-4 { 
         grid-template-columns: repeat(2, 1fr) !important; 
