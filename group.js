@@ -22,7 +22,7 @@ const specialProjects = {
                 name: "Back Office",
                 model: "Supporters",
                 members: [
-                    { name: "Zhongli", role: "SUPPORTER", pos: "", desc: "組織の最高顧問にして莫大な資金源. 財界の裏で糸を引く、組織の絶対的なバックアップ。", img: "images/heaventeen/zhongli.jpg" },
+                    { name: "Zhongli", role: "SUPPORTER", pos: "", desc: "組織の最高顧問にして莫大な資金源。財界の裏で糸を引く、組織の絶対的なバックアップ。", img: "images/heaventeen/zhongli.jpg" },
                     { name: "Alhaitham", role: "PLANNER", pos: "", desc: "作戦立案とシステム構築の天才。綾人が振るう「指揮」の頭脳部分を裏で設計した人物。", img: "images/heaventeen/alhaitham.jpg" },
                     { name: "Kaveh", role: "DESIGNER", pos: "", desc: "エージェントの武器やガジェットを開発。アルハイゼンの理論を形にする、組織随一の技術者。", img: "images/heaventeen/kaveh.jpg" }
                 ]
@@ -39,28 +39,28 @@ const specialProjects = {
                 name: "Team Mafia",
                 model: "Stray Kids",
                 members: [
-                    { name: "Zhongli", role: "THE BOSS", pos: "Leader / Lead Rapper (Felix)", desc: "裏社会の絶対的頂点。冷徹なまでの判断力と重厚なオーラで組織を束ねる、静かなる支配者。" },
-                    { name: "Ayato", role: "THE UNDERBOSS", pos: "All-rounder (Bang Chan)", desc: "組織の頭脳。表向きの交渉から内部の粛正まで、扇子一つで冷徹にこなす組織のナンバー2。" },
-                    { name: "Kaeya", role: "THE CONSIGLIERE", pos: "Main Vocal (Seungmin)", desc: "組織の相談役。甘い歌声で情報を引き出し、笑顔の裏で敵の弱みを握り、盤上を自在に操る参謀。" },
-                    { name: "Wanderer", role: "THE HEIR", pos: "Main Dancer / Sub Vocal (Lee Know)", desc: "組織の次期継承者。誰にも心を開かず、完璧な技術と冷めた瞳で獲物を追い詰める孤独な天才。" },
-                    { name: "Xiao", role: "RIGHT-HAND MAN", pos: "Main Rapper / Lead Vocal (Han)", desc: "ボスの右腕として闇を駆ける暗殺者。一切の情けを捨て、ただ任務のみを遂行する死の執行人。" },
-                    { name: "Kazuha", role: "THE BODYGUARD", pos: "Sub Vocal (I.N)", desc: "静寂を纏う護衛。一糸乱れぬ動きで対象を守り抜き、邪魔な存在は風のように速やかに排除する。" },
-                    { name: "Tartaglia", role: "MERCENARY", pos: "Main Dancer / Rapper (Hyunjin)", desc: "戦場にのみ生を感じる狂気の傭兵。彼が踊り始めたら最後、周囲は血と硝煙に染まる組織最強の矛。" },
-                    { name: "Wriothesley", role: "UNDERCOVER AGENT", pos: "Main Rapper (Changbin)", desc: "組織の重鎮でありながら、その動向は謎に包まれている。圧倒的な力で障害を粉砕する影の実力者。" }
+                    { name: "Zhongli", role: "THE BOSS", pos: "Leader / Lead Rapper (Felix)", desc: "裏社会の絶対的頂点。冷徹なまでの判断力と重厚なオーラで組織を束ねる、静かなる支配者。", img: "images/the-sovereign/mafia/zhongli.jpg" },
+                    { name: "Ayato", role: "THE UNDERBOSS", pos: "All-rounder (Bang Chan)", desc: "組織の頭脳。表向きの交渉から内部の粛正まで、扇子一つで冷徹にこなす組織のナンバー2。", img: "images/the-sovereign/mafia/ayato.jpg" },
+                    { name: "Kaeya", role: "THE CONSIGLIERE", pos: "Main Vocal (Seungmin)", desc: "組織の相談役。甘い歌声で情報を引き出し、笑顔の裏で敵の弱みを握り、盤上を自在に操る参謀。", img: "images/the-sovereign/mafia/kaeya.jpg" },
+                    { name: "Wanderer", role: "THE HEIR", pos: "Main Dancer / Sub Vocal (Lee Know)", desc: "組織の次期継承者。誰にも心を開かず、完璧な技術と冷めた瞳で獲物を追い詰める孤独な天才。", img: "images/the-sovereign/mafia/wanderer.jpg" },
+                    { name: "Xiao", role: "RIGHT-HAND MAN", pos: "Main Rapper / Lead Vocal (Han)", desc: "ボスの右腕として闇を駆ける暗殺者。一切の情けを捨て、ただ任務のみを遂行する死の執行人。", img: "images/the-sovereign/mafia/xiao.jpg" },
+                    { name: "Kazuha", role: "THE BODYGUARD", pos: "Sub Vocal (I.N)", desc: "静寂を纏う護衛。一糸乱れぬ動きで対象を守り抜き、邪魔な存在は風のように速やかに排除する。", img: "images/the-sovereign/mafia/kazuha.jpg" },
+                    { name: "Tartaglia", role: "MERCENARY", pos: "Main Dancer / Rapper (Hyunjin)", desc: "戦場にのみ生を感じる狂気の傭兵。彼が踊り始めたら最後、周囲は血と硝煙に染まる組織最強の矛。", img: "images/the-sovereign/mafia/tartaglia.jpg" },
+                    { name: "Wriothesley", role: "UNDERCOVER AGENT", pos: "Main Rapper (Changbin)", desc: "組織の重鎮でありながら、その動向は謎に包まれている。圧倒的な力で障害を粉砕する影の実力者。", img: "images/the-sovereign/mafia/wriothesley.jpg" }
                 ]
             },
             {
                 name: "Team Police",
                 model: "THE BOYZ",
                 members: [
-                    { name: "Neuvillette", role: "CHIEF JUSTICE", pos: "Leader / Main Vocal (Sangyeon)", desc: "警察の象徴であり絶対的正義。私情を一切挟まない厳格な裁きによって、混沌を秩序へと変える最高責任者。" },
-                    { name: "Alhaitham", role: "CHIEF COMMANDER", pos: "Main Dancer / Sub Vocal (Juyeon)", desc: "警察組織の最高指揮官。理論と効率を極め、一寸の狂いもない作戦でマフィアを追い詰める。" },
-                    { name: "Venti", role: "THE CASANOVA", pos: "Main Vocal (New)", desc: "自由気ままな詩人を装っているが、その正体は警察組織の礎を築いた真の最高権威。法の枠を超えた真の正義を見通している。" },
-                    { name: "Diluc", role: "THE VIGILANTE", pos: "Main Vocal (Kevin)", desc: "組織に属しながらも独自の正義を貫く執行人。法の隙間を縫って悪を討つ、夜を統べる特別捜査官。" },
-                    { name: "Baizhu", role: "THE PATHOLOGIST", pos: "Lead Vocal (Hyunjae)", desc: "死体から真実を紡ぎ出す監察医。知性的な瞳で、マフィアの痕跡を一つ残らず暴き出す検視のスペシャリスト。" },
-                    { name: "Tighnari", role: "THE SCIENTIST", pos: "Lead Vocal / Sub Rapper (Jacob)", desc: "最新の科学捜査を司るトップ。現場の微細な証拠から、組織のネットワークを解析する知性の要。" },
-                    { name: "Cyno", role: "TACTICAL POLICE", pos: "Main Rapper (Sunwoo)", desc: "現場の先陣を切る特殊部隊長. 法の盾を持ち、逃げ場のない追撃で罪人を制圧するハンター。" },
-                    { name: "Kaveh", role: "THE DETECTIVE", pos: "Main Dancer / Sub Vocal (Q)", desc: "情熱を燃やし証拠を追う精鋭捜査官。アルハイゼンと反目しながらも、真実への執念で現場を走る。" }
+                    { name: "Neuvillette", role: "CHIEF JUSTICE", pos: "Leader / Main Vocal (Sangyeon)", desc: "警察の象徴であり絶対的正義。私情を一切挟まない厳格な裁きによって、混沌を秩序へと変える最高責任者。", img: "images/the-sovereign/police/neuvillette.jpg" },
+                    { name: "Alhaitham", role: "CHIEF COMMANDER", pos: "Main Dancer / Sub Vocal (Juyeon)", desc: "警察組織の最高指揮官。理論と効率を極め、一寸の狂いもない作戦でマフィアを追い詰める。", img: "images/the-sovereign/police/alhaitham.jpg" },
+                    { name: "Venti", role: "THE CASANOVA", pos: "Main Vocal (New)", desc: "自由気ままな詩人を装っているが、その正体は警察組織の礎を築いた真の最高権威。法の枠を超えた真の正義を見通している。", img: "images/the-sovereign/police/venti.jpg" },
+                    { name: "Diluc", role: "THE VIGILANTE", pos: "Main Vocal (Kevin)", desc: "組織に属しながらも独自の正義を貫く執行人。法の隙間を縫って悪を討つ、夜を統べる特別捜査官。", img: "images/the-sovereign/police/diluc.jpg" },
+                    { name: "Baizhu", role: "THE PATHOLOGIST", pos: "Lead Vocal (Hyunjae)", desc: "死体から真実を紡ぎ出す監察医。知性的な瞳で、マフィアの痕跡を一つ残らず暴き出す検視のスペシャリスト。", img: "images/the-sovereign/police/baizhu.jpg" },
+                    { name: "Tighnari", role: "THE SCIENTIST", pos: "Lead Vocal / Sub Rapper (Jacob)", desc: "最新の科学捜査を司るトップ。現場の微細な証拠から、組織のネットワークを解析する知性の要。", img: "images/the-sovereign/police/tighnari.jpg" },
+                    { name: "Cyno", role: "TACTICAL POLICE", pos: "Main Rapper (Sunwoo)", desc: "現場の先陣を切る特殊部隊長。法の盾を持ち、逃げ場のない追撃で罪人を制圧するハンター。", img: "images/the-sovereign/police/cyno.jpg" },
+                    { name: "Kaveh", role: "THE DETECTIVE", pos: "Main Dancer / Sub Vocal (Q)", desc: "情熱を燃やし証拠を追う精鋭捜査官。アルハイゼンと反目しながらも、真実への執念で現場を走る。", img: "images/the-sovereign/police/kaveh.jpg" }
                 ]
             }
         ]
@@ -94,16 +94,12 @@ const labels = {
 
 const allGroups = {
     "gen1us": {
-        name: "GEN1US",
-        concept: "MASQUERADE",
-        layout: 3,
-        // ✅ 修正：images/gen1us/masquerade/main.jpg に変更
+        name: "GEN1US", concept: "MASQUERADE", layout: 3,
         banner: "images/gen1us/masquerade/main.jpg",
         members: [
-            // ✅ 修正：個別の名前.jpg に変更
             { name: "Diluc", div: "Mondstadt", pos: "Main Vocal / Sub Dancer", label: "FAVONIUS", img: "images/gen1us/masquerade/diluc.jpg" },
             { name: "Zhongli", div: "Liyue", pos: "Lead Rapper / Sub Vocal", label: "QIXING", img: "images/gen1us/masquerade/zhongli.jpg" },
-            { name: "Itto", div: "Inazuma", pos: "Main Rapper", label: "NARUKAMI", img: "images/gen1us/masquerade/itto.jpg" },
+            { name: "Itto", div: "Inazuma", pos: "Main Rapper", label: "NARUKAMI", img: "images/gen1us/masquerade-itto.jpg" },
             { name: "Baizhu", div: "Liyue", pos: "Main Vocal", label: "QIXING", isLeader: true, img: "images/gen1us/masquerade/baizhu.jpg" },
             { name: "Tartaglia", div: "Snezhnaya", pos: "Main Dancer / Lead Rapper", label: "QIXING", img: "images/gen1us/masquerade/tartaglia.jpg" },
             { name: "Ayato", div: "Inazuma", pos: "Visual / Lead Vocal", label: "NARUKAMI", img: "images/gen1us/masquerade/ayato.jpg" },
