@@ -8,8 +8,13 @@
 @font-face { font-family: 'Source Han Sans JP'; src: url('./font/sourcehansansjp/SourceHanSansJP-Bold.otf') format('opentype'); font-weight: 700; }
 @font-face { font-family: 'Source Han Sans JP'; src: url('./font/sourcehansansjp/SourceHanSansJP-Heavy.otf') format('opentype'); font-weight: 900; }
 
-html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+html { scroll-behavior: smooth; }
 body { background-color: #ffffff; color: #000000; font-family: 'Source Han Sans JP', sans-serif; font-weight: 400; margin: 0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+/* 🆕 全ページ共通：メインコンテンツをヘッダー（80px）の下から開始させる */
+main { 
+    padding-top: 80px; 
+}
 
 /* 鉄則：全ページで大文字への自動変換を絶対に禁止 */
 h1, h2, h3, h4, p, span, a, .logo-font { 
@@ -26,7 +31,7 @@ h1, h2, h3, h4, p, span, a, .logo-font {
 }
 
 header {
-    width: 100%; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center;
+    width: 100%; height: 80px; padding: 0 40px; display: flex; justify-content: space-between; align-items: center;
     position: fixed; top: 0; background: #ffffff !important; 
     z-index: 9999 !important; box-sizing: border-box; border-bottom: 1px solid #f0f0f0;
 }
@@ -51,12 +56,8 @@ footer p { font-size: 9px; color: #999; letter-spacing: 0.3em; text-transform: u
 .tab-btn { font-size: 12px; font-weight: 700; color: #ccc; letter-spacing: 0.15em; border-bottom: 2px solid transparent; padding-bottom: 10px; cursor: pointer; }
 .tab-btn.active { color: #000; border-bottom: 2px solid #000; }
 
-/* メンバーグリッド設定 */
 .member-grid-container { 
-    display: grid; 
-    gap: 60px 20px; 
-    width: 100%; 
-    margin: 0 auto; 
+    display: grid; gap: 60px 20px; width: 100%; margin: 0 auto; 
 }
 .layout-4 { grid-template-columns: repeat(4, 1fr); max-width: 1200px; }
 .layout-3 { grid-template-columns: repeat(3, 1fr); max-width: 900px; }
@@ -64,11 +65,10 @@ footer p { font-size: 9px; color: #999; letter-spacing: 0.3em; text-transform: u
 h1, h2, .bold-title { font-weight: 900 !important; }
 
 @media (max-width: 768px) {
-    header { padding: 15px 20px; }
+    header { padding: 15px 20px; height: 70px; }
+    main { padding-top: 70px; }
     .nav-overlay a { font-size: 2rem; }
-    .member-grid-container.layout-3, 
-    .member-grid-container.layout-4 { 
-        grid-template-columns: repeat(2, 1fr) !important; 
-        gap: 30px 10px; 
+    .member-grid-container.layout-3, .member-grid-container.layout-4 { 
+        grid-template-columns: repeat(2, 1fr) !important; gap: 30px 10px; 
     }
 }

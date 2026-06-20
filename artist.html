@@ -12,7 +12,7 @@
 <body>
     <div id="common-header"></div>
     <main class="max-w-6xl mx-auto px-6 py-24">
-        <div class="text-center mb-16 pt-16">
+        <div class="text-center mb-16">
             <a href="index.html#artists" class="text-[10px] text-gray-300 uppercase tracking-[0.4em] mb-6 inline-block hover:text-black transition font-bold">← All Artists</a>
             <h1 id="group-name" class="text-6xl md:text-[8rem] logo-font leading-none uppercase" style="font-weight: 900;">Artist</h1>
         </div>
@@ -25,7 +25,6 @@
                 <img id="group-banner" src="" class="w-full h-full object-cover">
             </div>
             <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6" style="font-weight: 900;">Member</h2>
-            <!-- 💡修正：クラスを member-grid-container に固定 -->
             <div id="member-grid" class="member-grid-container"></div>
         </div>
         <div id="disco" class="content-section hidden">
@@ -43,10 +42,7 @@
             document.getElementById('group-name').innerText = data.name;
             document.getElementById('group-banner').src = data.banner;
             const memberGrid = document.getElementById('member-grid');
-            
-            // ✅ レイアウトクラスを付与
             memberGrid.classList.add('layout-' + (data.layout || 4));
-            
             data.members.filter(m => !m.isFormer).forEach((m) => {
                 const positionDisplay = m.isLeader ? 'Leader / ' + m.pos : m.pos;
                 memberGrid.innerHTML += `
@@ -59,18 +55,6 @@
                         <p class="text-[10px] text-gray-400 mt-1 tracking-widest leading-relaxed">${positionDisplay}</p>
                     </div>`;
             });
-            const discoList = document.getElementById('disco-list');
-            if (!data.discography || data.discography.length === 0) {
-                discoList.innerHTML = '<p class="logo-font text-gray-200 text-3xl uppercase text-center">Coming Soon</p>';
-            } else {
-                data.discography.forEach(d => {
-                    discoList.innerHTML += `<div class="max-w-4xl mx-auto w-full text-left">
-                        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] mb-1">${d.type}</p>
-                        <h3 class="logo-font text-3xl uppercase mb-4" style="font-weight: 900;">${d.title}</h3>
-                        <div class="bg-gray-50 rounded-xl overflow-hidden shadow-inner border border-gray-100">${d.embed}</div>
-                    </div>`;
-                });
-            }
         }
         function switchTab(tabName) {
             document.querySelectorAll('.content-section').forEach(s => { s.classList.add('hidden'); s.classList.remove('block'); });

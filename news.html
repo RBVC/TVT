@@ -11,93 +11,69 @@
     <style>
         body { background: #000; color: #fff; }
         
-        /* 🆕 余白調整：ヘッダーから大見出しまでの距離を十分に確保 */
-        .title-area { padding-top: 150px; padding-bottom: 60px; text-align: center; }
-        .project-title { font-size: 5rem; font-weight: 900; line-height: 0.9; }
+        /* 🆕 大見出しの上下にさらに贅沢な余白を追加 */
+        .title-area { padding: 120px 0 100px; text-align: center; }
+        .project-title { font-size: 6rem; font-weight: 900; line-height: 1; letter-spacing: -0.02em; }
         
-        /* 🆕 メイン画像下の空白をタイトに */
-        .visual-area { width: 100%; aspect-ratio: 16/9; background: #111; overflow: hidden; border-y: 1px solid #222; margin-bottom: 60px; }
+        /* メインビジュアル */
+        .visual-area { width: 100%; aspect-ratio: 16/9; background: #111; overflow: hidden; border-y: 1px solid #222; margin-bottom: 80px; }
         .visual-area img { width: 100%; height: 100%; object-fit: cover; }
 
         .team-section { margin-bottom: 120px; }
-        .team-label { font-size: 2rem; font-weight: 900; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 50px; text-align: left; }
+        .team-label { font-size: 2.2rem; font-weight: 900; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 60px; text-align: left; }
 
-        /* メンバーカード：インライン詳細表示スタイル */
-        .member-grid-news { display: grid; grid-template-columns: repeat(4, 1fr); gap: 50px 25px; align-items: start; }
-        .member-card-news { text-align: left; background: #000; }
-        .m-img-wrap { width: 100%; aspect-ratio: 1/1; overflow: hidden; margin-bottom: 20px; border: 1px solid #222; }
-        .m-img-wrap img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); transition: 0.5s; }
-        .member-card-news:hover img { filter: brightness(1.1); transform: scale(1.02); }
+        /* 🆕 メンバーグリッド：高さを統一して列を揃える */
+        .member-grid-news { display: grid; grid-template-columns: repeat(4, 1fr); gap: 60px 30px; align-items: start; }
+        .member-card-news { text-align: left; background: #000; display: flex; flex-direction: column; height: 100%; }
         
-        .m-name { font-size: 1.5rem; font-weight: 900; margin-bottom: 8px; line-height: 1; }
-        .role-badge { font-size: 0.7rem; color: #fff; background: #333; padding: 2px 10px; display: inline-block; margin-bottom: 15px; font-weight: 700; border: 1px solid #444; }
-        .m-desc { font-size: 0.85rem; color: #aaa; line-height: 1.7; margin-bottom: 20px; word-break: break-all; }
-        .m-pos { font-size: 0.65rem; color: #555; font-weight: 800; letter-spacing: 0.05em; border-top: 1px solid #222; padding-top: 10px; }
+        .m-img-wrap { width: 100%; aspect-ratio: 1/1; overflow: hidden; margin-bottom: 25px; border: 1px solid #222; flex-shrink: 0; }
+        .m-img-wrap img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
+        
+        /* 💡 各要素に最小高さを設定して、横のラインを強制的に揃える */
+        .m-name { font-size: 1.6rem; font-weight: 900; margin-bottom: 10px; line-height: 1.1; min-height: 3.2rem; display: flex; align-items: flex-end; }
+        .role-badge-wrap { min-height: 2.5rem; }
+        .role-badge { font-size: 0.7rem; color: #fff; background: #333; padding: 2px 12px; display: inline-block; font-weight: 700; border: 1px solid #444; }
+        .m-desc { font-size: 0.85rem; color: #aaa; line-height: 1.8; margin-bottom: 25px; min-height: 9rem; } /* 説明文のラインを揃える */
+        .m-pos { font-size: 0.65rem; color: #555; font-weight: 800; letter-spacing: 0.05em; border-top: 1px solid #222; padding-top: 15px; margin-top: auto; }
 
         @media (max-width: 1024px) { .member-grid-news { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) { 
-            .title-area { padding-top: 100px; }
-            .project-title { font-size: 2.8rem; } 
-            .team-label { font-size: 1.5rem; }
-            .member-grid-news { gap: 40px 15px; }
-            .m-name { font-size: 1.2rem; }
+            .title-area { padding: 80px 0 60px; }
+            .project-title { font-size: 3rem; } 
+            .m-desc { min-height: auto; } /* スマホでは高さ固定を解除して自然に流す */
+            .m-name { min-height: auto; margin-top: 10px; }
         }
     </style>
 </head>
 <body>
     <div id="common-header"></div>
-
     <main>
-        <!-- 大見出しエリア -->
-        <div class="title-area">
-            <h1 id="p-title" class="logo-font project-title uppercase"></h1>
-        </div>
-
-        <!-- メインビジュアル -->
-        <div class="visual-area shadow-2xl">
-            <img id="p-visual" src="" alt="Main Visual">
-        </div>
-
-        <!-- コンテンツエリア -->
+        <div class="title-area"><h1 id="p-title" class="logo-font project-title uppercase"></h1></div>
+        <div class="visual-area shadow-2xl"><img id="p-visual" src="" alt="Main Visual"></div>
         <div class="max-w-6xl mx-auto px-6">
-            <div id="teams-container" class="space-y-20">
-                <!-- JSで全情報を流し込み -->
-            </div>
+            <div id="teams-container" class="space-y-20"></div>
         </div>
     </main>
-
     <div id="common-footer"></div>
-
     <script>
         const params = new URLSearchParams(window.location.search);
         const projectId = params.get('id');
         const project = specialProjects[projectId];
-
         if (project) {
             document.title = `${project.title} | Teyvat Times`;
             document.getElementById('p-title').innerText = project.title;
             document.getElementById('p-visual').src = project.mainVisual;
             const container = document.getElementById('teams-container');
-            
             project.teams.forEach((team) => {
                 let memberHtml = team.members.map((m) => `
                     <div class="member-card-news">
-                        <div class="m-img-wrap">
-                            <img src="${m.img}" onerror="this.src='https://placehold.jp/30/333333/666666/400x400.png?text=${m.name}'">
-                        </div>
+                        <div class="m-img-wrap"><img src="${m.img}" onerror="this.src='https://placehold.jp/30/333333/666666/200x200.png?text=${m.name}'"></div>
                         <p class="m-name">${m.name}</p>
-                        <span class="role-badge">${m.role}</span>
+                        <div class="role-badge-wrap"><span class="role-badge">${m.role}</span></div>
                         <p class="m-desc">${m.desc}</p>
                         ${m.pos ? `<p class="m-pos uppercase">${m.pos}</p>` : ''}
-                    </div>
-                `).join('');
-                
-                container.innerHTML += `
-                    <div class="team-section">
-                        <h2 class="team-label uppercase">${team.name}</h2>
-                        <div class="member-grid-news">${memberHtml}</div>
-                    </div>
-                `;
+                    </div>`).join('');
+                container.innerHTML += `<div class="team-section"><h2 class="team-label uppercase">${team.name}</h2><div class="member-grid-news">${memberHtml}</div></div>`;
             });
         }
     </script>
