@@ -1,4 +1,5 @@
-// common.js
+// common.js - Teyvat Entertainment System Brain
+
 function loadCommonParts() {
     const headerHTML = `
     <header>
@@ -6,7 +7,8 @@ function loadCommonParts() {
         <div class="menu-trigger" id="menu-btn"><span></span><span></span><span></span></div>
     </header>
     <div class="nav-overlay" id="nav-menu">
-        <a href="index.html#artists-head" class="menu-link">Artists</a>
+        <!-- 💡 ジャンプ先を #artists-section へ変更 -->
+        <a href="index.html#artists-section" class="menu-link">Artists</a>
         <a href="index.html#latest-news" class="menu-link">News</a>
         <a href="wiki.html" class="menu-link">Wiki</a>
     </div>
@@ -17,6 +19,7 @@ function loadCommonParts() {
         <p>&copy; Teyvat Entertainment All Rights Reserved.</p>
     </footer>
     `;
+
     if (document.getElementById('common-header')) document.getElementById('common-header').innerHTML = headerHTML;
     if (document.getElementById('common-footer')) document.getElementById('common-footer').innerHTML = footerHTML;
     initMenu();
@@ -53,4 +56,5 @@ function loadLatestNews() {
             </a>`;
     });
 }
+
 window.addEventListener('DOMContentLoaded', loadCommonParts);
