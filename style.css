@@ -1,5 +1,4 @@
 /* style.css - Source Han Sans JP Edition */
-
 @font-face { font-family: 'Source Han Sans JP'; src: url('./font/sourcehansansjp/SourceHanSansJP-ExtraLight.otf') format('opentype'); font-weight: 200; }
 @font-face { font-family: 'Source Han Sans JP'; src: url('./font/sourcehansansjp/SourceHanSansJP-Light.otf') format('opentype'); font-weight: 300; }
 @font-face { font-family: 'Source Han Sans JP'; src: url('./font/sourcehansansjp/SourceHanSansJP-Regular.otf') format('opentype'); font-weight: 400; }
@@ -10,12 +9,11 @@
 
 html { scroll-behavior: smooth; box-sizing: border-box; }
 *, *:before, *:after { box-sizing: inherit; }
-
 body { background-color: #ffffff; color: #000000; font-family: 'Source Han Sans JP', sans-serif; font-weight: 400; margin: 0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
 main { padding-top: 120px; }
-
 h1, h2, h3, h4, p, span, a, .logo-font { text-transform: none !important; }
+.bold-title { font-weight: 900 !important; }
 
 .tvt-logo { font-family: 'Source Han Sans JP', sans-serif; font-weight: 900; letter-spacing: -0.12em; display: inline-block; color: #000 !important; }
 
@@ -45,13 +43,9 @@ footer p { font-size: 9px; color: #999; letter-spacing: 0.3em; text-transform: u
 .layout-4 { grid-template-columns: repeat(4, 1fr); max-width: 1200px; }
 .layout-3 { grid-template-columns: repeat(3, 1fr); max-width: 900px; }
 
-h1, h2, .bold-title { font-weight: 900 !important; }
-
 @media (max-width: 768px) {
     header { padding: 15px 20px; height: 70px; }
     main { padding-top: 100px; }
     .nav-overlay a { font-size: 2rem; }
-    .member-grid-container.layout-3, .member-grid-container.layout-4 { 
-        grid-template-columns: repeat(2, 1fr) !important; gap: 30px 10px; 
-    }
+    .member-grid-container.layout-3, .member-grid-container.layout-4 { grid-template-columns: repeat(2, 1fr) !important; gap: 30px 10px; }
 }

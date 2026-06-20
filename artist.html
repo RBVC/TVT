@@ -12,24 +12,23 @@
 <body>
     <div id="common-header"></div>
     <main class="max-w-6xl mx-auto px-6 py-24">
-        <!-- 💡修正：ヘッダーの下に十分な余白（mt-20）を確保 -->
-        <div class="text-center mb-24 mt-20">
-            <a href="index.html#artists" class="text-[10px] text-gray-300 uppercase tracking-[0.4em] mb-8 inline-block hover:text-black transition font-bold">← All Artists</a>
-            <h1 id="group-name" class="text-6xl md:text-[8rem] logo-font leading-none uppercase" style="font-weight: 900;">Artist</h1>
+        <div class="text-center mb-16">
+            <a href="index.html#artists" class="text-[10px] text-gray-300 uppercase tracking-[0.4em] mb-6 inline-block hover:text-black transition font-bold">← All Artists</a>
+            <h1 id="group-name" class="text-6xl md:text-[8rem] logo-font leading-none uppercase bold-title">Artist</h1>
         </div>
-        <div class="flex justify-center space-x-12 mb-20 border-b border-gray-100">
+        <div class="flex justify-center space-x-12 mb-16 border-b border-gray-100">
             <button onclick="switchTab('profile')" id="btn-profile" class="tab-btn active">Profile</button>
             <button onclick="switchTab('disco')" id="btn-disco" class="tab-btn">Discography</button>
         </div>
         <div id="profile" class="content-section block">
-            <div class="w-full mb-24 overflow-hidden bg-gray-50 border border-gray-100 shadow-sm" style="aspect-ratio: 3 / 1;">
+            <div class="w-full mb-20 overflow-hidden bg-gray-50 border border-gray-100 shadow-sm" style="aspect-ratio: 3 / 1;">
                 <img id="group-banner" src="" class="w-full h-full object-cover">
             </div>
-            <h2 class="text-3xl logo-font mb-16 uppercase border-l-8 border-black pl-6" style="font-weight: 900;">Member</h2>
+            <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6 bold-title">Member</h2>
             <div id="member-grid" class="member-grid-container"></div>
         </div>
         <div id="disco" class="content-section hidden">
-            <h2 class="text-3xl logo-font mb-16 uppercase border-l-8 border-black pl-6" style="font-weight: 900;">Discography</h2>
+            <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6 bold-title">Discography</h2>
             <div id="disco-list" class="grid grid-cols-1 gap-12 text-center"></div>
         </div>
     </main>
@@ -41,17 +40,18 @@
         if (data) {
             document.title = `${data.name} | TVT Official`;
             document.getElementById('group-name').innerText = data.name;
-            document.getElementById('group-banner').src = data.banner;
+            document.getElementById('group-banner').src = data.basePath + data.banner;
             const memberGrid = document.getElementById('member-grid');
             memberGrid.classList.add('layout-' + (data.layout || 4));
             data.members.filter(m => !m.isFormer).forEach((m) => {
                 const positionDisplay = m.isLeader ? 'Leader / ' + m.pos : m.pos;
+                // 💡 basePath と m.img をガッチャンコして表示
                 memberGrid.innerHTML += `
                     <div class="member-card text-left">
                         <div class="aspect-square overflow-hidden bg-gray-50 border border-gray-100 mb-6">
-                            <img src="${m.img}" class="w-full h-full object-cover" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMAGE'">
+                            <img src="${data.basePath + m.img}" class="w-full h-full object-cover" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMAGE'">
                         </div>
-                        <p class="logo-font text-2xl leading-none" style="font-weight: 900;">${m.name}</p>
+                        <p class="logo-font text-2xl leading-none bold-title">${m.name}</p>
                         <p class="text-[12px] text-black font-black mt-4 tracking-widest">${m.div}</p>
                         <p class="text-[10px] text-gray-400 mt-1 tracking-widest leading-relaxed">${positionDisplay}</p>
                     </div>`;
@@ -63,7 +63,7 @@
                 data.discography.forEach(d => {
                     discoList.innerHTML += `<div class="max-w-4xl mx-auto w-full text-left">
                         <p class="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] mb-1">${d.type}</p>
-                        <h3 class="logo-font text-3xl uppercase mb-6" style="font-weight: 900;">${d.title}</h3>
+                        <h3 class="logo-font text-3xl uppercase mb-4 bold-title">${d.title}</h3>
                         <div class="bg-gray-50 rounded-xl overflow-hidden shadow-inner border border-gray-100">${d.embed}</div>
                     </div>`;
                 });

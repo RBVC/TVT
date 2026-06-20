@@ -1,4 +1,5 @@
-// common.js
+// common.js - Teyvat Entertainment System Brain
+
 function loadCommonParts() {
     const headerHTML = `
     <header>
@@ -11,7 +12,6 @@ function loadCommonParts() {
         <a href="wiki.html" class="menu-link">Wiki</a>
     </div>
     `;
-
     const footerHTML = `
     <footer>
         <div class="f-logo tvt-logo">TVT</div>
@@ -19,31 +19,41 @@ function loadCommonParts() {
     </footer>
     `;
 
-    if (document.getElementById('common-header')) {
-        document.getElementById('common-header').innerHTML = headerHTML;
-        initMenu();
-    }
-    if (document.getElementById('common-footer')) {
-        document.getElementById('common-footer').innerHTML = footerHTML;
-    }
+    if (document.getElementById('common-header')) document.getElementById('common-header').innerHTML = headerHTML;
+    if (document.getElementById('common-footer')) document.getElementById('common-footer').innerHTML = footerHTML;
+    initMenu();
+    if (document.getElementById('latest-news-list')) loadLatestNews();
 }
 
 function initMenu() {
-    const menuBtn = document.getElementById('menu-btn');
-    const navMenu = document.getElementById('nav-menu');
-    if (menuBtn && navMenu) {
-        menuBtn.onclick = () => {
-            menuBtn.classList.toggle('active');
-            navMenu.classList.toggle('open');
-            document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : 'auto';
-        };
-        document.querySelectorAll('.menu-link').forEach(link => {
-            link.onclick = () => {
-                navMenu.classList.remove('open');
-                menuBtn.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            };
-        });
-    }
+    const btn = document.getElementById('menu-btn');
+    const nav = document.getElementById('nav-menu');
+    if (!btn || !nav) return;
+    btn.onclick = () => {
+        btn.classList.toggle('active');
+        nav.classList.toggle('open');
+        document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : 'auto';
+    };
+    document.querySelectorAll('.menu-link').forEach(l => {
+        l.onclick = () => { nav.classList.remove('open'); btn.classList.remove('active'); document.body.style.overflow = 'auto'; };
+    });
 }
+
+// 🆕 トップページに最新ニュースを自動表示
+function loadLatestNews() {
+    const list = document.getElementById('latest-news-list');
+    const latest = Object.keys(specialProjects).reverse().slice(0, 2);
+    latest.forEach(key => {
+        const p = specialProjects[key];
+        list.innerHTML += `
+            <a href="news.html?id=${key}" class="group cursor-pointer block">
+                <p class="text-[10px] text-gray-400 mb-4 uppercase tracking-[0.4em] font-bold">Project / Archive</p>
+                <h3 class="text-2xl font-bold mb-6 group-hover:text-gray-500 transition">${p.title}</h3>
+                <div class="aspect-video bg-gray-100 overflow-hidden border border-gray-100">
+                    <img src="${p.mainVisual}" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+                </div>
+            </a>`;
+    });
+}
+
 window.addEventListener('DOMContentLoaded', loadCommonParts);
