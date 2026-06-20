@@ -10,104 +10,76 @@
     <script src="common.js"></script>
     <style>
         body { background: #000; color: #fff; }
-        
-        /* 余白調整：ヘッダー(80px) + α の余白を持たせる */
-        .title-area { padding: 100px 0 60px; text-align: center; }
+        .title-area { padding: 120px 0 80px; text-align: center; }
         .project-title { font-size: 5rem; font-weight: 900; line-height: 1; letter-spacing: -0.02em; }
-        
-        /* メインビジュアル：下の余白を詰め、迫力を出す */
-        .visual-area { width: 100%; aspect-ratio: 16 / 9; background: #111; overflow: hidden; border-y: 1px solid #222; margin-bottom: 40px; }
+        .visual-area { width: 100%; aspect-ratio: 16 / 9; background: #111; overflow: hidden; margin-bottom: 60px; }
         .visual-area img { width: 100%; height: 100%; object-fit: cover; }
-
+        
         .team-section { margin-bottom: 120px; }
-        .team-label { font-size: 2.2rem; font-weight: 900; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 60px; text-align: left; }
+        .team-label { font-size: 2.2rem; font-weight: 900; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 60px; }
 
-        /* 🆕 メンバーグリッド：横のラインを完璧に揃える設定 */
-        .member-grid-news { display: grid; grid-template-columns: repeat(4, 1fr); gap: 60px 30px; align-items: start; }
+        /* 🆕 ニュースグリッド：スマホ2列固定 */
+        .member-grid-news { display: grid; grid-template-columns: repeat(4, 1fr); gap: 60px 30px; }
+        
         .member-card-news { text-align: left; background: #000; display: flex; flex-direction: column; }
+        .m-img-wrap { width: 100%; aspect-ratio: 1/1; overflow: hidden; margin-bottom: 25px; border: 1px solid #222; }
+        .m-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
         
-        /* 画像：正方形固定 */
-        .m-img-wrap { width: 100%; aspect-ratio: 1 / 1; overflow: hidden; margin-bottom: 25px; border: 1px solid #222; flex-shrink: 0; }
-        .m-img-wrap img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
-        
-        /* 名前：インパクト重視 */
-        .m-name { font-size: 1.8rem; font-weight: 900; margin-bottom: 10px; line-height: 1.1; }
-        
-        /* 💡 パフォーマンスポジション：2行分の高さを固定してラインを揃える */
-        .m-pos { font-size: 0.7rem; color: #777; font-weight: 800; letter-spacing: 0.05em; min-height: 2.4rem; display: flex; align-items: flex-start; margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 10px; }
-        
-        /* 役名バッジ */
-        .role-badge-wrap { margin-bottom: 15px; }
-        .role-badge { font-size: 0.75rem; color: #fff; background: #333; padding: 3px 12px; display: inline-block; font-weight: 700; border: 1px solid #444; }
-        
-        /* 役名解説：ここも高さを最低限確保 */
-        .m-desc { font-size: 0.85rem; color: #bbb; line-height: 1.7; min-height: 8rem; }
+        /* 💡 修正：ここを固定高さにすることで、下の役名バッジのラインを揃えます */
+        .m-header-info { min-height: 5.5rem; display: flex; flex-direction: column; justify-content: flex-end; margin-bottom: 15px; }
+        .m-name { font-size: 1.6rem; font-weight: 900; line-height: 1.1; margin-bottom: 5px; }
+        .m-pos { font-size: 0.65rem; color: #666; font-weight: 800; letter-spacing: 0.05em; margin-bottom: 0; }
 
-        @media (max-width: 1024px) { .member-grid-news { grid-template-columns: repeat(2, 1fr); } }
+        .role-badge-wrap { margin-bottom: 15px; border-top: 1px solid #222; padding-top: 15px; }
+        .role-badge { font-size: 0.75rem; color: #fff; background: #333; padding: 2px 10px; display: inline-block; font-weight: 700; }
+        
+        /* 💡 解説文も最低限の高さを確保 */
+        .m-desc { font-size: 0.85rem; color: #aaa; line-height: 1.7; min-height: 7.5rem; }
+
+        @media (max-width: 1024px) { 
+            .member-grid-news { grid-template-columns: repeat(2, 1fr); gap: 40px 20px; } 
+            .m-header-info { min-height: 4.5rem; }
+            .m-desc { min-height: 6rem; }
+        }
         @media (max-width: 768px) { 
-            .title-area { padding-top: 80px; }
-            .project-title { font-size: 3rem; } 
-            .m-desc { min-height: auto; }
-            .m-pos { min-height: auto; }
+            .project-title { font-size: 2.8rem; }
+            .m-name { font-size: 1.2rem; }
+            .m-header-info { min-height: 4rem; }
+            .m-desc { min-height: auto; } /* スマホでは高さ制限を解く（スクロール量節約） */
         }
     </style>
 </head>
 <body>
     <div id="common-header"></div>
-
     <main>
-        <!-- プロジェクトタイトル -->
-        <div class="title-area">
-            <h1 id="p-title" class="logo-font project-title uppercase"></h1>
-        </div>
-
-        <!-- メインビジュアル -->
-        <div class="visual-area shadow-2xl">
-            <img id="p-visual" src="" alt="Main Visual">
-        </div>
-
-        <!-- コンテンツエリア -->
+        <div class="title-area"><h1 id="p-title" class="logo-font project-title uppercase"></h1></div>
+        <div class="visual-area shadow-2xl"><img id="p-visual" src="" alt="Main Visual"></div>
         <div class="max-w-6xl mx-auto px-6">
-            <div id="teams-container" class="space-y-10">
-                <!-- JSで情報を流し込み -->
-            </div>
+            <div id="teams-container" class="space-y-10"></div>
         </div>
     </main>
-
     <div id="common-footer"></div>
-
     <script>
         const params = new URLSearchParams(window.location.search);
         const projectId = params.get('id');
         const project = specialProjects[projectId];
-
         if (project) {
             document.title = `${project.title} | Teyvat Times`;
             document.getElementById('p-title').innerText = project.title;
             document.getElementById('p-visual').src = project.mainVisual;
             const container = document.getElementById('teams-container');
-            
             project.teams.forEach((team) => {
                 let memberHtml = team.members.map((m) => `
                     <div class="member-card-news">
-                        <div class="m-img-wrap">
-                            <img src="${m.img}" onerror="this.src='https://placehold.jp/30/333333/666666/400x400.png?text=${m.name}'">
+                        <div class="m-img-wrap"><img src="${m.img}" onerror="this.src='https://placehold.jp/200x200.png?text=${m.name}'"></div>
+                        <div class="m-header-info">
+                            <p class="m-name">${m.name}</p>
+                            <p class="m-pos uppercase">${m.pos}</p>
                         </div>
-                        <p class="m-name">${m.name}</p>
-                        <p class="m-pos uppercase">${m.pos}</p>
-                        <div class="role-badge-wrap">
-                            <span class="role-badge">${m.role}</span>
-                        </div>
+                        <div class="role-badge-wrap"><span class="role-badge">${m.role}</span></div>
                         <p class="m-desc">${m.desc}</p>
-                    </div>
-                `).join('');
-                
-                container.innerHTML += `
-                    <div class="team-section">
-                        <h2 class="team-label uppercase">${team.name}</h2>
-                        <div class="member-grid-news">${memberHtml}</div>
-                    </div>
-                `;
+                    </div>`).join('');
+                container.innerHTML += `<div class="team-section"><h2 class="team-label uppercase">${team.name}</h2><div class="member-grid-news">${memberHtml}</div></div>`;
             });
         }
     </script>

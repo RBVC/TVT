@@ -10,30 +10,38 @@
     <script src="common.js"></script>
     <style>
         body { background-color: #f6f6f6; color: #202122; font-family: 'Noto Sans JP', sans-serif; }
-        .wiki-container { max-width: 1100px; margin: 100px auto; background: white; padding: 60px; border: 1px solid #a2a9b1; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+        .wiki-container { max-width: 1100px; margin: 100px auto; background: white; padding: 40px; border: 1px solid #a2a9b1; }
         h1 { font-family: 'Source Han Sans JP', sans-serif; font-size: 3rem; font-weight: 900; border-bottom: 1px solid #a2a9b1; margin-bottom: 2rem; }
         section { margin-bottom: 5rem; }
         h2 { font-family: 'Source Han Sans JP', sans-serif; font-size: 1.8rem; font-weight: 900; border-bottom: 1px solid #a2a9b1; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding-bottom: 10px; }
         h2::before { content: ""; display: inline-block; width: 8px; height: 1.8rem; background: #000; margin-right: 12px; }
-        h3 { font-family: 'Source Han Sans JP', sans-serif; font-size: 1.4rem; font-weight: 900; margin-top: 1rem; margin-bottom: 1rem; color: #000; display: flex; align-items: center; justify-content: space-between; cursor: pointer; background: #f8f9fa; padding: 12px; border: 1px solid #eee; }
-        .toggle-btn { font-size: 0.75rem; color: #0645ad; font-weight: normal; }
-        .toc-box { background: #f8f9fa; border: 1px solid #a2a9b1; padding: 25px; display: inline-block; min-width: 350px; margin-bottom: 4rem; font-size: 0.9rem; }
-        .table-wrapper { overflow-x: auto; margin-bottom: 2rem; border: 1px solid #a2a9b1; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        
+        /* 🆕 目次：スマホ対応 */
+        .toc-box { background: #f8f9fa; border: 1px solid #a2a9b1; padding: 20px; display: inline-block; width: 100%; max-width: 400px; margin: 40px 0; font-size: 0.9rem; }
+        .toc-title { font-weight: 900; text-align: center; margin-bottom: 10px; border-bottom: 1px solid #ccc; }
+        .toc-box ul { list-style: none; padding: 0; }
+        .toc-box li { margin: 8px 0; }
+        .toc-box a { color: #0645ad; text-decoration: none; }
+
+        /* 🆕 テーブル：スマホで横スクロールを保証 */
+        .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 2rem; border: 1px solid #a2a9b1; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: 800px; } /* 💡min-widthで内容を潰さない */
         th, td { border: 1px solid #a2a9b1; padding: 12px; text-align: left; vertical-align: top; }
-        th { background-color: #eaecf0; font-weight: bold; cursor: pointer; }
+        th { background-color: #eaecf0; font-weight: bold; }
+        
         .matrix-table { table-layout: fixed; min-width: 1000px; }
         .matrix-table th, .matrix-table td { width: 14.28%; text-align: center; }
         .matrix-ceo { font-size: 0.7rem; color: #666; font-weight: 400; display: block; margin-top: 8px; border-top: 1px solid #ccc; padding-top: 6px; }
-        .group-col { font-weight: 900; background: #f8f9fa; width: 140px !important; vertical-align: middle; }
+        
         .detail-table { table-layout: fixed; min-width: 800px; }
         .detail-table th:nth-child(1) { width: 70px; }
         .detail-table th:nth-child(2) { width: 160px; }
         .detail-table th:nth-child(3) { width: 110px; }
         .detail-table th:nth-child(4) { width: 230px; }
-        .member-img { width: 50px; height: 50px; object-fit: cover; background: #eee; border-radius: 2px; margin: 0 auto; }
+        
+        .member-img { width: 50px; height: 50px; object-fit: cover; background: #eee; border-radius: 2px; }
         .collapsible-content.collapsed { display: none; }
-        @media (max-width: 768px) { .wiki-container { padding: 20px; margin: 70px 10px; } }
+        @media (max-width: 768px) { .wiki-container { padding: 20px; margin: 70px 10px; } h1 { font-size: 2rem; } }
     </style>
 </head>
 <body>
@@ -41,58 +49,44 @@
     <main class="wiki-container">
         <h1>Teyvat Entertainment 内部機密資料</h1>
         
-        <!-- 目次 -->
         <nav class="toc-box">
-            <div class="font-bold text-center mb-4 border-b pb-2">目次</div>
-            <ul id="toc-list">
+            <div class="toc-title">目次</div>
+            <ul>
                 <li>1. <a href="#sec-affiliates">所属アーティスト・マトリックス</a></li>
                 <li>2. <a href="#sec-details">グループ詳細設定</a></li>
                 <li>3. <a href="#sec-projects">プロジェクト一覧</a></li>
             </ul>
         </nav>
 
-        <!-- Section 1: マトリックス -->
         <section id="sec-affiliates">
             <h2 onclick="toggleSection('matrix-content', 'matrix-btn')">所属アーティスト・マトリックス <span class="toggle-btn" id="matrix-btn">非表示</span></h2>
-            <!-- 💡修正：タイトルとの間に余白を追加 -->
-            <div class="collapsible-content mt-12" id="matrix-content">
+            <div class="collapsible-content" id="matrix-content">
                 <div class="table-wrapper"><table class="matrix-table"><thead id="matrix-header"><tr><th>グループ名</th></tr></thead><tbody id="matrix-body"></tbody></table></div>
             </div>
         </section>
 
-        <!-- Section 2: グループ詳細 -->
         <section id="sec-details">
             <h2 onclick="toggleSection('details-content', 'details-btn')">グループ詳細設定 <span class="toggle-btn" id="details-btn">非表示</span></h2>
-            <div class="collapsible-content mt-12" id="details-content"></div>
+            <div class="collapsible-content" id="details-content"></div>
         </section>
 
-        <!-- Section 3: プロジェクト一覧 -->
         <section id="sec-projects">
             <h2 onclick="toggleSection('projects-content', 'projects-btn')">プロジェクト一覧 <span class="toggle-btn" id="projects-btn">表示</span></h2>
-            <!-- 💡修正：初期状態を非表示(collapsed)に設定 -->
-            <div class="collapsible-content mt-12 collapsed" id="projects-content">
-                
-                <!-- 🆕 Latest News のアーカイブ情報を自動生成 -->
+            <div class="collapsible-content" id="projects-content">
                 <div id="special-projects-area"></div>
-
                 <h3 onclick="toggleSection('heaventeen-table', 'btn-heaventeen')">HEAVENTEEN 全記録 <span class="toggle-btn font-normal text-xs" id="btn-heaventeen">表示</span></h3>
-                <!-- 💡修正：初期状態を非表示(collapsed)に設定 -->
                 <div class="table-wrapper collapsible-content collapsed" id="heaventeen-table">
-                    <table id="heaventeenTable">
-                        <thead><tr><th>名前</th><th>0次</th><th>1次</th><th>2次</th><th>最終</th><th>結果</th></tr></thead>
-                        <tbody id="heaventeen-body"></tbody>
-                    </table>
+                    <table><thead><tr><th>名前</th><th>0次</th><th>1次</th><th>2次</th><th>最終</th><th>結果</th></tr></thead><tbody id="heaventeen-body"></tbody></table>
                 </div>
             </div>
         </section>
     </main>
     <div id="common-footer"></div>
-
     <script>
         const mHead = document.getElementById('matrix-header').rows[0];
         const mBody = document.getElementById('matrix-body');
         Object.keys(labels).forEach(k => { const label = labels[k]; mHead.innerHTML += `<th><span class="matrix-label">${label.name.replace(' ','<br>')}</span><span class="matrix-ceo">${label.ceo}</span></th>`; });
-        Object.keys(allGroups).forEach(gk => { const g = allGroups[gk]; let row = `<tr><td class="group-col">${g.name}</td>`; Object.keys(labels).forEach(lk => { const mems = g.members.filter(m => m.label === lk && !m.isFormer).map(m => m.name).join('<br>'); row += `<td>${mems || '-'}</td>`; }); mBody.innerHTML += row + '</tr>'; });
+        Object.keys(allGroups).forEach(gk => { const g = allGroups[gk]; let row = `<tr><td class="font-bold" style="background:#f8f9fa">${g.name}</td>`; Object.keys(labels).forEach(lk => { const mems = g.members.filter(m => m.label === lk && !m.isFormer).map(m => m.name).join('<br>'); row += `<td>${mems || '-'}</td>`; }); mBody.innerHTML += row + '</tr>'; });
 
         const dArea = document.getElementById('details-content');
         Object.keys(allGroups).forEach(gk => { const g = allGroups[gk]; let html = `<h3 onclick="toggleSection('det-${gk}', 'btn-${gk}')">${g.name} <span class="toggle-btn" id="btn-${gk}">表示</span></h3><div id="det-${gk}" class="table-wrapper collapsible-content collapsed"><table class="detail-table"><thead><tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>レーベル</th></tr></thead><tbody>`;
@@ -100,31 +94,17 @@
             dArea.innerHTML += html + '</tbody></table></div>';
         });
 
-        // 🆕 Special Projects (Latest News) の生成
         const sArea = document.getElementById('special-projects-area');
-        Object.keys(specialProjects).forEach(pk => {
-            const p = specialProjects[pk];
-            let html = `<h3 onclick="toggleSection('proj-${pk}', 'btn-${pk}')">${p.title} <span class="toggle-btn font-normal text-xs" id="btn-${pk}">表示</span></h3>
-                <div id="proj-${pk}" class="collapsible-content collapsed p-6 bg-gray-50 border border-gray-100 mb-10">
-                    <p class="text-sm font-bold mb-4">"${p.tagline}"</p>
-                    <p class="text-sm mb-6">${p.description}</p>`;
-            p.teams.forEach(team => {
-                html += `<div class="mb-6"><p class="text-xs font-bold border-b pb-1 mb-2 uppercase">${team.name} (Model: ${team.model || 'Unknown'})</p>
-                    <p class="text-xs text-gray-600">${team.members.map(m => `${m.name} (${m.role})`).join(', ')}</p></div>`;
-            });
-            html += `</div>`;
-            sArea.innerHTML += html;
+        Object.keys(specialProjects).forEach(pk => { const p = specialProjects[pk]; let html = `<h3 onclick="toggleSection('proj-${pk}', 'btn-${pk}')">${p.title} <span class="toggle-btn font-normal text-xs" id="btn-${pk}">表示</span></h3><div id="proj-${pk}" class="collapsible-content collapsed p-6 bg-gray-50 border border-gray-100 mb-10"><p class="text-sm font-bold mb-4">"${p.tagline}"</p><p class="text-sm mb-6">${p.description}</p>`;
+            p.teams.forEach(team => { html += `<div class="mb-6"><p class="text-xs font-bold border-b pb-1 mb-2 uppercase">${team.name}</p><p class="text-xs text-gray-600">${team.members.map(m => `${m.name} (${m.role})`).join(', ')}</p></div>`; });
+            sArea.innerHTML += html + `</div>`;
         });
 
         const hvBody = document.getElementById('heaventeen-body');
         heaventeenResults.forEach(r => { hvBody.innerHTML += `<tr ${r.final === 99 ? 'style="color:#bbb"' : ''}><td>${r.name}</td><td>${r.rank0}位</td><td>${r.rank1===99?'脱落':r.rank1+'位'}</td><td>${r.rank2===99?'脱落':r.rank2+'位'}</td><td>${r.final===99?'-':r.final+'位'}</td><td>${r.result}</td></tr>`; });
 
-        function toggleSection(cId, bId) { 
-            const c = document.getElementById(cId); 
-            const b = document.getElementById(bId); 
-            c.classList.toggle('collapsed'); 
-            b.innerText = c.classList.contains('collapsed') ? "表示" : "非表示"; 
-        }
+        function toggleSection(cId, bId) { const c = document.getElementById(cId); const b = document.getElementById(bId); c.classList.toggle('collapsed'); b.innerText = c.classList.contains('collapsed') ? "表示" : "非表示"; }
+        const menuBtn = document.getElementById('menu-btn'); const navMenu = document.getElementById('nav-menu'); menuBtn.onclick = () => { menuBtn.classList.toggle('active'); navMenu.classList.toggle('open'); document.body.style.overflow = navMenu.classList.contains('open') ? 'hidden' : 'auto'; };
     </script>
 </body>
 </html>
