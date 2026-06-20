@@ -6,7 +6,7 @@ const specialProjects = {
         title: "Nightfall Ops",
         tagline: "TIC TOC, IT'S YOUR TURN.",
         mainVisual: "images/nightfall-ops/main.jpg",
-        description: "裏社会を支配する『Mafia』と、秩序を守る精鋭『Police』。二つの勢力が、今、激突する。",
+        description: "漆黒の夜に紛れ、秘密裏に遂行される特殊作戦。4人のエージェントと、彼らを支える影の天才たちによる伝説の記録。",
         teams: [
             {
                 name: "Special Agents",
@@ -22,7 +22,7 @@ const specialProjects = {
                 name: "Back Office",
                 model: "Supporters",
                 members: [
-                    { name: "Zhongli", role: "SUPPORTER", pos: "", desc: "組織の最高顧問にして莫大な資金源。財界の裏で糸を引く、組織の絶対的なバックアップ。", img: "images/heaventeen/zhongli.jpg" },
+                    { name: "Zhongli", role: "SUPPORTER", pos: "", desc: "組織の最高顧問にして莫大な資金源. 財界の裏で糸を引く、組織の絶対的なバックアップ。", img: "images/heaventeen/zhongli.jpg" },
                     { name: "Alhaitham", role: "PLANNER", pos: "", desc: "作戦立案とシステム構築の天才。綾人が振るう「指揮」の頭脳部分を裏で設計した人物。", img: "images/heaventeen/alhaitham.jpg" },
                     { name: "Kaveh", role: "DESIGNER", pos: "", desc: "エージェントの武器やガジェットを開発。アルハイゼンの理論を形にする、組織随一の技術者。", img: "images/heaventeen/kaveh.jpg" }
                 ]
@@ -56,7 +56,7 @@ const specialProjects = {
                     { name: "Neuvillette", role: "CHIEF JUSTICE", pos: "Leader / Main Vocal (Sangyeon)", desc: "警察の象徴であり絶対的正義。私情を一切挟まない厳格な裁きによって、混沌を秩序へと変える最高責任者。" },
                     { name: "Alhaitham", role: "CHIEF COMMANDER", pos: "Main Dancer / Sub Vocal (Juyeon)", desc: "警察組織の最高指揮官。理論と効率を極め、一寸の狂いもない作戦でマフィアを追い詰める。" },
                     { name: "Venti", role: "THE CASANOVA", pos: "Main Vocal (New)", desc: "自由気ままな詩人を装っているが、その正体は警察組織の礎を築いた真の最高権威。法の枠を超えた真の正義を見通している。" },
-                    { name: "Diluc", role: "THE VIGILANTE", pos: "Main Vocal (Kevin)", desc: "組織に属しながらも独自の正義を貫く執行人. 法の隙間を縫って悪を討つ、夜を統べる特別捜査官。" },
+                    { name: "Diluc", role: "THE VIGILANTE", pos: "Main Vocal (Kevin)", desc: "組織に属しながらも独自の正義を貫く執行人。法の隙間を縫って悪を討つ、夜を統べる特別捜査官。" },
                     { name: "Baizhu", role: "THE PATHOLOGIST", pos: "Lead Vocal (Hyunjae)", desc: "死体から真実を紡ぎ出す監察医。知性的な瞳で、マフィアの痕跡を一つ残らず暴き出す検視のスペシャリスト。" },
                     { name: "Tighnari", role: "THE SCIENTIST", pos: "Lead Vocal / Sub Rapper (Jacob)", desc: "最新の科学捜査を司るトップ。現場の微細な証拠から、組織のネットワークを解析する知性の要。" },
                     { name: "Cyno", role: "TACTICAL POLICE", pos: "Main Rapper (Sunwoo)", desc: "現場の先陣を切る特殊部隊長. 法の盾を持ち、逃げ場のない追撃で罪人を制圧するハンター。" },
@@ -67,7 +67,22 @@ const specialProjects = {
     }
 };
 
-// ... labels, heaventeenResults, allGroups は既存のデータを維持 ...
+const heaventeenResults = [
+    { name: "Tartaglia", rank0: 9, rank1: 4, rank2: 3, final: 1, result: "GEN1US" },
+    { name: "Dainsleif", rank0: 1, rank1: 2, rank2: 4, final: 2, result: "GEN1US" },
+    { name: "Diluc", rank0: 2, rank1: 1, rank2: 1, final: 3, result: "GEN1US" },
+    { name: "Ayato", rank0: 7, rank1: 6, rank2: 2, final: 4, result: "GEN1US" },
+    { name: "Zhongli", rank0: 12, rank1: 10, rank2: 6, final: 5, result: "GEN1US" },
+    { name: "Baizhu", rank0: 4, rank1: 7, rank2: 8, final: 6, result: "GEN1US" },
+    { name: "Kaeya", rank0: 8, rank1: 5, rank2: 5, final: 7, result: "GEN1US" },
+    { name: "Thoma", rank0: 11, rank1: 3, rank2: 9, final: 8, result: "GEN1US" },
+    { name: "Itto", rank0: 13, rank1: 11, rank2: 7, final: 9, result: "GEN1US" },
+    { name: "Alhaitham", rank0: 3, rank1: 8, rank2: 99, final: 99, result: "4ggravate" },
+    { name: "Kaveh", rank0: 10, rank1: 9, rank2: 99, final: 99, result: "4ggravate" },
+    { name: "Neuvillette", rank0: 5, rank1: 99, rank2: 99, final: 99, result: "House of the Hearth" },
+    { name: "Wriothesley", rank0: 6, rank1: 99, rank2: 99, final: 99, result: "House of the Hearth" }
+];
+
 const labels = {
     "HQ": { name: "TEYVAT ENT. (HQ)", ceo: "パイモン" },
     "FAVONIUS": { name: "FAVONIUS MUSIC", ceo: "ジン" },
@@ -79,17 +94,22 @@ const labels = {
 
 const allGroups = {
     "gen1us": {
-        name: "GEN1US", concept: "MASQUERADE", layout: 3, banner: "images/gen1us/masquerade-gen1us.jpg",
+        name: "GEN1US",
+        concept: "MASQUERADE",
+        layout: 3,
+        // ✅ 修正：images/gen1us/masquerade/main.jpg に変更
+        banner: "images/gen1us/masquerade/main.jpg",
         members: [
-            { name: "Diluc", div: "Mondstadt", pos: "Main Vocal / Sub Dancer", label: "FAVONIUS", img: "images/gen1us/masquerade-diluc.jpg" },
-            { name: "Zhongli", div: "Liyue", pos: "Lead Rapper / Sub Vocal", label: "QIXING", img: "images/gen1us/masquerade-zhongli.jpg" },
-            { name: "Itto", div: "Inazuma", pos: "Main Rapper", label: "NARUKAMI", img: "images/gen1us/masquerade-itto.jpg" },
-            { name: "Baizhu", div: "Liyue", pos: "Main Vocal", label: "QIXING", isLeader: true, img: "images/gen1us/masquerade-baizhu.jpg" },
-            { name: "Tartaglia", div: "Snezhnaya", pos: "Main Dancer / Lead Rapper", label: "QIXING", img: "images/gen1us/masquerade-tartaglia.jpg" },
-            { name: "Ayato", div: "Inazuma", pos: "Visual / Lead Vocal", label: "NARUKAMI", img: "images/gen1us/masquerade-ayato.jpg" },
-            { name: "Kaeya", div: "Mondstadt", pos: "Main Vocal", label: "FAVONIUS", img: "images/gen1us/masquerade-kaeya.jpg" },
-            { name: "Dainsleif", div: "Mondstadt", pos: "Main Dancer / Sub Rapper", label: "FAVONIUS", img: "images/gen1us/masquerade-dainsleif.jpg" },
-            { name: "Thoma", div: "Inazuma", pos: "Lead Dancer / Sub Vocal", label: "NARUKAMI", img: "images/gen1us/masquerade-thoma.jpg" }
+            // ✅ 修正：個別の名前.jpg に変更
+            { name: "Diluc", div: "Mondstadt", pos: "Main Vocal / Sub Dancer", label: "FAVONIUS", img: "images/gen1us/masquerade/diluc.jpg" },
+            { name: "Zhongli", div: "Liyue", pos: "Lead Rapper / Sub Vocal", label: "QIXING", img: "images/gen1us/masquerade/zhongli.jpg" },
+            { name: "Itto", div: "Inazuma", pos: "Main Rapper", label: "NARUKAMI", img: "images/gen1us/masquerade/itto.jpg" },
+            { name: "Baizhu", div: "Liyue", pos: "Main Vocal", label: "QIXING", isLeader: true, img: "images/gen1us/masquerade/baizhu.jpg" },
+            { name: "Tartaglia", div: "Snezhnaya", pos: "Main Dancer / Lead Rapper", label: "QIXING", img: "images/gen1us/masquerade/tartaglia.jpg" },
+            { name: "Ayato", div: "Inazuma", pos: "Visual / Lead Vocal", label: "NARUKAMI", img: "images/gen1us/masquerade/ayato.jpg" },
+            { name: "Kaeya", div: "Mondstadt", pos: "Main Vocal", label: "FAVONIUS", img: "images/gen1us/masquerade/kaeya.jpg" },
+            { name: "Dainsleif", div: "Mondstadt", pos: "Main Dancer / Sub Rapper", label: "FAVONIUS", img: "images/gen1us/masquerade/dainsleif.jpg" },
+            { name: "Thoma", div: "Inazuma", pos: "Lead Dancer / Sub Vocal", label: "NARUKAMI", img: "images/gen1us/masquerade/thoma.jpg" }
         ],
         discography: []
     },
@@ -141,19 +161,3 @@ const allGroups = {
         discography: []
     }
 };
-
-const heaventeenResults = [
-    { name: "Tartaglia", rank0: 9, rank1: 4, rank2: 3, final: 1, result: "GEN1US" },
-    { name: "Dainsleif", rank0: 1, rank1: 2, rank2: 4, final: 2, result: "GEN1US" },
-    { name: "Diluc", rank0: 2, rank1: 1, rank2: 1, final: 3, result: "GEN1US" },
-    { name: "Ayato", rank0: 7, rank1: 6, rank2: 2, final: 4, result: "GEN1US" },
-    { name: "Zhongli", rank0: 12, rank1: 10, rank2: 6, final: 5, result: "GEN1US" },
-    { name: "Baizhu", rank0: 4, rank1: 7, rank2: 8, final: 6, result: "GEN1US" },
-    { name: "Kaeya", rank0: 8, rank1: 5, rank2: 5, final: 7, result: "GEN1US" },
-    { name: "Thoma", rank0: 11, rank1: 3, rank2: 9, final: 8, result: "GEN1US" },
-    { name: "Itto", rank0: 13, rank1: 11, rank2: 7, final: 9, result: "GEN1US" },
-    { name: "Alhaitham", rank0: 3, rank1: 8, rank2: 99, final: 99, result: "4ggravate" },
-    { name: "Kaveh", rank0: 10, rank1: 9, rank2: 99, final: 99, result: "4ggravate" },
-    { name: "Neuvillette", rank0: 5, rank1: 99, rank2: 99, final: 99, result: "H.O.T.H" },
-    { name: "Wriothesley", rank0: 6, rank1: 99, rank2: 99, final: 99, result: "H.O.T.H" }
-];
