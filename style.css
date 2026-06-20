@@ -11,7 +11,7 @@
 html { scroll-behavior: smooth; scroll-padding-top: 100px; }
 body { background-color: #ffffff; color: #000000; font-family: 'Source Han Sans JP', sans-serif; font-weight: 400; margin: 0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-/* 🆕 鉄則：全ページで大文字への自動変換を絶対に禁止 */
+/* 鉄則：全ページで大文字への自動変換を絶対に禁止 */
 h1, h2, h3, h4, p, span, a, .logo-font { 
     text-transform: none !important; 
 }
@@ -22,10 +22,9 @@ h1, h2, h3, h4, p, span, a, .logo-font {
     letter-spacing: -0.12em; 
     font-style: normal; 
     display: inline-block;
-    color: #000 !important; /* ロゴは常に黒 */
+    color: #000 !important;
 }
 
-/* ヘッダー：常に最前面・白背景・黒文字 */
 header {
     width: 100%; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center;
     position: fixed; top: 0; background: #ffffff !important; 
@@ -43,27 +42,48 @@ header {
 
 .nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #fff; z-index: 9000; display: flex; flex-direction: column; align-items: center; justify-content: center; visibility: hidden; opacity: 0; transition: 0.5s; }
 .nav-overlay.open { visibility: visible; opacity: 1; }
-.nav-overlay a { font-size: 3.5rem; font-weight: 900; text-decoration: none; color: #000; margin: 15px 0; }
+.nav-overlay a { font-size: 3rem; font-weight: 900; text-decoration: none; color: #000; margin: 15px 0; }
 
 footer { padding: 80px 0; border-top: 1px solid #f0f0f0; text-align: center; background: #fff; margin-top: 100px; color: #000; }
 footer .f-logo { font-size: 3rem; margin-bottom: 20px; }
-footer p { font-size: 9px; color: #999; letter-spacing: 0.3em; text-transform: uppercase; } /* ここだけ会社規定 */
+footer p { font-size: 9px; color: #999; letter-spacing: 0.3em; text-transform: uppercase; }
 
 .tab-btn { font-size: 12px; font-weight: 700; color: #ccc; letter-spacing: 0.15em; border-bottom: 2px solid transparent; padding-bottom: 10px; cursor: pointer; }
 .tab-btn.active { color: #000; border-bottom: 2px solid #000; }
 
-.member-flex-container { 
-    display: flex; flex-wrap: wrap; justify-content: flex-start; /* 💡左揃え固定 */
-    gap: 40px 20px; width: 100%; max-width: 1200px; margin: 0 auto; 
+/* 🆕 メンバーグリッド：最新・鉄壁設定 */
+.member-grid-container { 
+    display: grid; 
+    gap: 60px 20px; 
+    width: 100%; 
+    margin: 0 auto; 
 }
 
-/* モーダル */
-.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 10001; display: none; align-items: center; justify-content: center; padding: 20px; }
-.modal-content { background: #111; width: 100%; max-width: 800px; position: relative; border: 1px solid #333; }
-.modal-close { position: absolute; top: 20px; right: 20px; font-size: 2.5rem; color: #fff; cursor: pointer; z-index: 10; }
+/* PC：4列レイアウト */
+.layout-4 { 
+    grid-template-columns: repeat(4, 1fr); 
+    max-width: 1200px; 
+}
+
+/* PC：3列レイアウト (GEN1US, 6reeze) */
+.layout-3 { 
+    grid-template-columns: repeat(3, 1fr); 
+    max-width: 900px; 
+}
+
+.member-card { width: 100%; }
+
+@media (max-width: 1024px) {
+    .layout-4 { grid-template-columns: repeat(3, 1fr); max-width: 900px; }
+}
 
 @media (max-width: 768px) {
     header { padding: 15px 20px; }
     .nav-overlay a { font-size: 2rem; }
-    .layout-3, .layout-4 { grid-template-columns: repeat(2, 1fr); gap: 30px 10px; }
+    /* スマホ：全グループ共通 2列 */
+    .member-grid-container.layout-3, 
+    .member-grid-container.layout-4 { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 30px 10px; 
+    }
 }
