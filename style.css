@@ -11,9 +11,9 @@
 html { scroll-behavior: smooth; }
 body { background-color: #ffffff; color: #000000; font-family: 'Source Han Sans JP', sans-serif; font-weight: 400; margin: 0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-/* 🆕 全ページ共通：メインコンテンツをヘッダー（80px）の下から開始させる */
+/* 🆕 メインコンテンツの開始位置を調整：ヘッダーに絶対に被せない */
 main { 
-    padding-top: 80px; 
+    padding-top: 120px; /* 80px(ヘッダー) + 40px(余白) */
 }
 
 /* 鉄則：全ページで大文字への自動変換を絶対に禁止 */
@@ -66,7 +66,7 @@ h1, h2, .bold-title { font-weight: 900 !important; }
 
 @media (max-width: 768px) {
     header { padding: 15px 20px; height: 70px; }
-    main { padding-top: 70px; }
+    main { padding-top: 100px; }
     .nav-overlay a { font-size: 2rem; }
     .member-grid-container.layout-3, .member-grid-container.layout-4 { 
         grid-template-columns: repeat(2, 1fr) !important; gap: 30px 10px; 

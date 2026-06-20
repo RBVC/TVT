@@ -3,7 +3,7 @@
 const specialProjects = {
     "nightfall-ops": {
         title: "Nightfall Ops",
-        tagline: "TIC TOC, IT'S YOUR TURN.",
+        tagline: "Covert Mission in the Deepest Night.",
         mainVisual: "images/nightfall-ops/main.jpg",
         description: "漆黒の夜に紛れ、秘密裏に遂行される特殊作戦。4人のエージェントと、彼らを支える影の天才たちによる伝説の記録。",
         teams: [
@@ -57,7 +57,7 @@ const specialProjects = {
                     { name: "Venti", role: "The Casanova", pos: "Main Vocal (New)", desc: "自由気ままな詩人を装っているが、その正体は警察組織の礎を築いた真の最高権威。法の枠を超えた真の正義を見通している。", img: "images/the-sovereign/police/venti.jpg" },
                     { name: "Diluc", role: "The Vigilante", pos: "Main Vocal (Kevin)", desc: "組織に属しながらも独自の正義を貫く執行人。法の隙間を縫って悪を討つ、夜を統べる特別捜査官。", img: "images/the-sovereign/police/diluc.jpg" },
                     { name: "Baizhu", role: "The Pathologist", pos: "Lead Vocal (Hyunjae)", desc: "死体から真実を紡ぎ出す監察医。知性的な瞳で、マフィアの痕跡を一つ残らず暴き出す検視のスペシャリスト。", img: "images/the-sovereign/police/baizhu.jpg" },
-                    { name: "Tighnari", role: "The Scientist", pos: "Lead Vocal / Sub Rapper (Jacob)", desc: "最新の科学捜査を司るトップ。現場の微細な証拠から、組織のネットワークを解析する知性の要。", img: "images/the-sovereign/police/tighnari.jpg" },
+                    { name: "Tighnari", role: "The Scientist", pos: "Lead Vocal / Sub Rapper (Jacob)", desc: "最新の科学捜査を司るトップ. 現場の微細な証拠から、組織のネットワークを解析する知性の要。", img: "images/the-sovereign/police/tighnari.jpg" },
                     { name: "Cyno", role: "Tactical Police", pos: "Main Rapper (Sunwoo)", desc: "現場の先陣を切る特殊部隊長. 法の盾を持ち、逃げ場のない追撃で罪人を制圧するハンター。", img: "images/the-sovereign/police/cyno.jpg" },
                     { name: "Kaveh", role: "The Detective", pos: "Main Dancer / Sub Vocal (Q)", desc: "情熱を燃やし証拠を追う精鋭捜査官。アルハイゼンと反目しながらも、真実への執念で現場を走る。", img: "images/the-sovereign/police/kaveh.jpg" }
                 ]
@@ -66,7 +66,6 @@ const specialProjects = {
     }
 };
 
-// --- 以下、heaventeenResults, labels, allGroups は変更なし ---
 const heaventeenResults = [
     { name: "Tartaglia", rank0: 9, rank1: 4, rank2: 3, final: 1, result: "GEN1US" },
     { name: "Dainsleif", rank0: 1, rank1: 2, rank2: 4, final: 2, result: "GEN1US" },
@@ -102,7 +101,7 @@ const allGroups = {
             { name: "Baizhu", div: "Liyue", pos: "Main Vocal", label: "QIXING", isLeader: true, img: "images/gen1us/masquerade/baizhu.jpg" },
             { name: "Tartaglia", div: "Snezhnaya", pos: "Main Dancer / Lead Rapper", label: "QIXING", img: "images/gen1us/masquerade/tartaglia.jpg" },
             { name: "Ayato", div: "Inazuma", pos: "Visual / Lead Vocal", label: "NARUKAMI", img: "images/gen1us/masquerade/ayato.jpg" },
-            { name: "Kaeya", div: "Mondstadt", pos: "Main Vocal", label: "FAVONIUS", img: "images/gen1us/masquerade/kaeya.jpg" },
+            { name: "Kaeya", div: "Mondstadt", pos: "Main Vocal", label: "FAVONIUS", img: "images/gen1us/masquerade-kaeya.jpg" },
             { name: "Dainsleif", div: "Mondstadt", pos: "Main Dancer / Sub Rapper", label: "FAVONIUS", img: "images/gen1us/masquerade/dainsleif.jpg" },
             { name: "Thoma", div: "Inazuma", pos: "Lead Dancer / Sub Vocal", label: "NARUKAMI", img: "images/gen1us/masquerade/thoma.jpg" }
         ],
