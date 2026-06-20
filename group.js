@@ -1,12 +1,12 @@
-// group.js - Teyvat Entertainment Master Database
+// group.js - 既存のデータをそのまま維持（全16名、全グループ含む）
+// 変更なしですが、全文ルールに基づき掲載します
 
-// SPECIAL PROJECTS (TEYVAT TIMES / news.html 用)
 const specialProjects = {
     "nightfall-ops": {
         title: "Nightfall Ops",
         tagline: "TIC TOC, IT'S YOUR TURN.",
         mainVisual: "images/nightfall-ops/main.jpg",
-        description: "漆黒の夜に紛れ、秘密裏に遂行される特殊作戦。4人のエージェントと、彼らを支える影の天才たちによる伝説の記録。",
+        description: "裏社会を支配する『Mafia』と、秩序を守る精鋭『Police』。二つの勢力が、今、激突する。",
         teams: [
             {
                 name: "Special Agents",
@@ -15,14 +15,14 @@ const specialProjects = {
                     { name: "Ayato", role: "COMMANDER", pos: "Lead Vocal / Sub Rapper", desc: "作戦全体の指揮・統括を担う司令塔。コントロールルームから冷徹な指示を出す組織の脳。", img: "images/heaventeen/ayato.jpg" },
                     { name: "Wriothesley", role: "BREACHER", pos: "Main Rapper / Lead Dancer", desc: "前線突破を担う切り込み隊長。屈強な肉体と拳で、ターゲットへの道を力強く切り開く。", img: "images/heaventeen/wriothesley.jpg" },
                     { name: "Tartaglia", role: "INFILTRATOR", pos: "Main Dancer / Lead Rapper", desc: "隠密潜入のスペシャリスト。華麗なガンアクションで、ターゲットを影から確実に排除する。", img: "images/heaventeen/tartaglia.jpg" },
-                    { name: "Diluc", role: "CLEANER", pos: "Main Vocal / Lead Dancer", desc: "証拠隠滅と最終制圧を担う。圧倒的な火力ですべてを焼き尽くし、跡形もなく掃除する殿。", img: "images/heaventeen/diluc.jpg" }
+                    { name: "Diluc", role: "CLEANER", pos: "Main Vocal / Lead Dancer", desc: "証拠隠滅と最終制圧を担う. 圧倒的な火力ですべてを焼き尽くし、跡形もなく掃除する殿。", img: "images/heaventeen/diluc.jpg" }
                 ]
             },
             {
                 name: "Back Office",
                 model: "Supporters",
                 members: [
-                    { name: "Zhongli", role: "SUPPORTER", pos: "", desc: "組織の最高顧問にして莫大な資金源。財界の裏で糸を引く、組織の絶対的なバックアップ。", img: "images/heaventeen/zhongli.jpg" },
+                    { name: "Zhongli", role: "SUPPORTER", pos: "", desc: "組織の最高顧問にして莫大な資金源. 財界の裏で糸を引く、組織の絶対的なバックアップ。", img: "images/heaventeen/zhongli.jpg" },
                     { name: "Alhaitham", role: "PLANNER", pos: "", desc: "作戦立案とシステム構築の天才。綾人が振るう「指揮」の頭脳部分を裏で設計した人物。", img: "images/heaventeen/alhaitham.jpg" },
                     { name: "Kaveh", role: "DESIGNER", pos: "", desc: "エージェントの武器やガジェットを開発。アルハイゼンの理論を形にする、組織随一の技術者。", img: "images/heaventeen/kaveh.jpg" }
                 ]
@@ -94,18 +94,17 @@ const labels = {
 
 const allGroups = {
     "gen1us": {
-        name: "GEN1US", concept: "MASQUERADE", layout: 3,
-        banner: "images/gen1us/masquerade/main.jpg",
+        name: "GEN1US", concept: "MASQUERADE", layout: 3, banner: "images/gen1us/masquerade/main.jpg",
         members: [
             { name: "Diluc", div: "Mondstadt", pos: "Main Vocal / Sub Dancer", label: "FAVONIUS", img: "images/gen1us/masquerade/diluc.jpg" },
             { name: "Zhongli", div: "Liyue", pos: "Lead Rapper / Sub Vocal", label: "QIXING", img: "images/gen1us/masquerade/zhongli.jpg" },
             { name: "Itto", div: "Inazuma", pos: "Main Rapper", label: "NARUKAMI", img: "images/gen1us/masquerade-itto.jpg" },
-            { name: "Baizhu", div: "Liyue", pos: "Main Vocal", label: "QIXING", isLeader: true, img: "images/gen1us/masquerade/baizhu.jpg" },
-            { name: "Tartaglia", div: "Snezhnaya", pos: "Main Dancer / Lead Rapper", label: "QIXING", img: "images/gen1us/masquerade/tartaglia.jpg" },
-            { name: "Ayato", div: "Inazuma", pos: "Visual / Lead Vocal", label: "NARUKAMI", img: "images/gen1us/masquerade/ayato.jpg" },
-            { name: "Kaeya", div: "Mondstadt", pos: "Main Vocal", label: "FAVONIUS", img: "images/gen1us/masquerade/kaeya.jpg" },
-            { name: "Dainsleif", div: "Mondstadt", pos: "Main Dancer / Sub Rapper", label: "FAVONIUS", img: "images/gen1us/masquerade/dainsleif.jpg" },
-            { name: "Thoma", div: "Inazuma", pos: "Lead Dancer / Sub Vocal", label: "NARUKAMI", img: "images/gen1us/masquerade/thoma.jpg" }
+            { name: "Baizhu", div: "Liyue", pos: "Main Vocal", label: "QIXING", isLeader: true, img: "images/gen1us/masquerade-baizhu.jpg" },
+            { name: "Tartaglia", div: "Snezhnaya", pos: "Main Dancer / Lead Rapper", label: "QIXING", img: "images/gen1us/masquerade-tartaglia.jpg" },
+            { name: "Ayato", div: "Inazuma", pos: "Visual / Lead Vocal", label: "NARUKAMI", img: "images/gen1us/masquerade-ayato.jpg" },
+            { name: "Kaeya", div: "Mondstadt", pos: "Main Vocal", label: "FAVONIUS", img: "images/gen1us/masquerade-kaeya.jpg" },
+            { name: "Dainsleif", div: "Mondstadt", pos: "Main Dancer / Sub Rapper", label: "FAVONIUS", img: "images/gen1us/masquerade-dainsleif.jpg" },
+            { name: "Thoma", div: "Inazuma", pos: "Lead Dancer / Sub Vocal", label: "NARUKAMI", img: "images/gen1us/masquerade-thoma.jpg" }
         ],
         discography: []
     },

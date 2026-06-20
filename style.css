@@ -46,7 +46,6 @@ html {
 body { 
     background-color: #ffffff; 
     color: #000000; 
-    /* 全体を源ノ角ゴシックに固定 */
     font-family: 'Source Han Sans JP', sans-serif; 
     font-weight: 400;
     margin: 0; 
@@ -54,16 +53,16 @@ body {
     overflow-x: hidden;
 }
 
-/* 見出し・ロゴ：最も太い Heavy (900) を使用 */
-.logo-font { 
+/* 🆕 TVTロゴ専用：文字をくっつける設定 */
+.tvt-logo { 
     font-family: 'Source Han Sans JP', sans-serif; 
     font-weight: 900; 
-    letter-spacing: -0.02em; 
+    letter-spacing: -0.12em; /* 文字を強力にくっつける */
     font-style: normal;
-    text-transform: none !important; 
+    text-transform: uppercase; /* ロゴなので大文字固定 */
+    display: inline-block;
 }
 
-/* ヘッダー */
 header {
     width: 100%; 
     padding: 20px 40px;
@@ -77,13 +76,6 @@ header {
     z-index: 4000;
     box-sizing: border-box;
     border-bottom: 1px solid #f0f0f0;
-}
-header .logo { 
-    font-size: 1.8rem; 
-    text-decoration: none; 
-    color: #000; 
-    font-weight: 900; 
-    letter-spacing: -0.05em;
 }
 
 /* ハンバーガーメニュー */
@@ -128,7 +120,7 @@ header .logo {
 .nav-overlay.open { visibility: visible; opacity: 1; }
 .nav-overlay a {
     font-size: 3rem;
-    font-weight: 900; /* Heavy */
+    font-weight: 900;
     text-decoration: none;
     color: #000;
     margin: 15px 0;
@@ -146,14 +138,11 @@ footer {
 footer .f-logo { 
     font-size: 3rem; 
     margin-bottom: 20px; 
-    color: #000; 
-    font-weight: 900; 
 }
 footer p { 
     font-size: 9px; 
     color: #ccc; 
     letter-spacing: 0.3em; 
-    text-transform: uppercase; 
 }
 
 /* タブボタン */

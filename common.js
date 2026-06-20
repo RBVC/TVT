@@ -1,33 +1,31 @@
 // common.js - Teyvat Entertainment 共通パーツ管理システム
 
 function loadCommonParts() {
-    // 共通ヘッダーの注入
     const headerHTML = `
     <header>
-        <a href="index.html" class="logo">TVT</a>
+        <a href="index.html" class="tvt-logo" style="font-size: 1.8rem;">TVT</a>
         <div class="menu-trigger" id="menu-btn">
             <span></span><span></span><span></span>
         </div>
     </header>
 
     <div class="nav-overlay" id="nav-menu">
-        <a href="index.html#artists" class="menu-link">ARTISTS</a>
-        <a href="wiki.html" class="menu-link">WIKI</a>
+        <a href="index.html#artists" class="menu-link">Artists</a>
+        <a href="index.html#latest-news" class="menu-link">News</a>
+        <a href="wiki.html" class="menu-link">Wiki</a>
     </div>
     `;
 
-    // 共通フッターの注入
     const footerHTML = `
     <footer>
-        <div class="f-logo">TVT</div>
+        <div class="f-logo tvt-logo">TVT</div>
         <p>&copy; Teyvat Entertainment All Rights Reserved.</p>
     </footer>
     `;
 
-    // ページに挿入（IDがある場合のみ）
     if (document.getElementById('common-header')) {
         document.getElementById('common-header').innerHTML = headerHTML;
-        initMenu(); // メニュー動作の初期化
+        initMenu();
     }
     if (document.getElementById('common-footer')) {
         document.getElementById('common-footer').innerHTML = footerHTML;
@@ -56,5 +54,4 @@ function initMenu() {
     }
 }
 
-// ページ読み込み時に実行
 window.addEventListener('DOMContentLoaded', loadCommonParts);
