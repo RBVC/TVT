@@ -11,20 +11,20 @@
     <style>
         body { background-color: #f6f6f6; color: #202122; font-family: 'Noto Sans JP', sans-serif; }
         .wiki-container { max-width: 1100px; margin: 100px auto; background: white; padding: 40px; border: 1px solid #a2a9b1; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
-        h1 { font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-bottom: 2rem; }
+        h1 { font-family: 'Source Han Sans JP', sans-serif; font-size: 3rem; font-weight: 900; border-bottom: 1px solid #a2a9b1; margin-bottom: 2rem; }
         section { margin-bottom: 5rem; }
-        h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 700; border-bottom: 1px solid #a2a9b1; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding-bottom: 10px; }
+        h2 { font-family: 'Source Han Sans JP', sans-serif; font-size: 1.8rem; font-weight: 900; border-bottom: 1px solid #a2a9b1; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding-bottom: 10px; }
         h2::before { content: ""; display: inline-block; width: 8px; height: 1.8rem; background: #000; margin-right: 12px; }
-        h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.4rem; font-weight: 700; margin-top: 1rem; margin-bottom: 1rem; color: #000; display: flex; align-items: center; justify-content: space-between; cursor: pointer; background: #f8f9fa; padding: 12px; border: 1px solid #eee; }
+        h3 { font-family: 'Source Han Sans JP', sans-serif; font-size: 1.4rem; font-weight: 900; margin-top: 1rem; margin-bottom: 1rem; color: #000; display: flex; align-items: center; justify-content: space-between; cursor: pointer; background: #f8f9fa; padding: 12px; border: 1px solid #eee; }
         .toggle-btn { font-size: 0.75rem; color: #0645ad; font-weight: normal; }
         .table-wrapper { overflow-x: auto; margin-bottom: 2rem; border: 1px solid #a2a9b1; }
         table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
         th, td { border: 1px solid #a2a9b1; padding: 12px; text-align: left; vertical-align: top; }
         th { background-color: #eaecf0; font-weight: bold; cursor: pointer; }
-        .matrix-table { table-layout: fixed; min-width: 1000px; }
-        .matrix-table th, .matrix-table td { width: 14.28%; text-align: center; }
+        .matrix-table { table-layout: fixed; min-width: 900px; }
+        .matrix-table th, .matrix-table td { width: 16.66%; text-align: center; }
         .matrix-ceo { font-size: 0.7rem; color: #666; font-weight: 400; display: block; margin-top: 8px; border-top: 1px solid #ccc; padding-top: 6px; }
-        .group-col { font-family: 'Rajdhani', sans-serif; font-weight: 800; background: #f8f9fa; text-align: left !important; width: 140px !important; vertical-align: middle; }
+        .group-col { font-weight: 900; background: #f8f9fa; width: 140px !important; vertical-align: middle; }
         .detail-table { table-layout: fixed; min-width: 800px; }
         .detail-table th:nth-child(1) { width: 70px; }
         .detail-table th:nth-child(2) { width: 160px; }
@@ -33,6 +33,7 @@
         .detail-table th:nth-child(5) { width: 120px; }
         .member-img { width: 50px; height: 50px; object-fit: cover; background: #eee; border-radius: 2px; margin: 0 auto; }
         .collapsible-content.collapsed { display: none; }
+        @media (max-width: 768px) { .wiki-container { padding: 20px; margin: 70px 10px; } }
     </style>
 </head>
 <body>
@@ -66,7 +67,7 @@
 
         const dArea = document.getElementById('details-content');
         Object.keys(allGroups).forEach(gk => { const g = allGroups[gk]; let html = `<h3 onclick="toggleSection('det-${gk}', 'btn-${gk}')">${g.name} <span class="toggle-btn" id="btn-${gk}">表示</span></h3><div id="det-${gk}" class="table-wrapper collapsible-content collapsed"><table class="detail-table"><thead><tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>レーベル</th></tr></thead><tbody>`;
-            g.members.forEach(m => { html += `<tr ${m.isFormer ? 'style="color:#bbb"' : ''}><td class="text-center">${m.img ? `<img src="${m.img}" class="member-img">` : '-'}</td><td>${m.isLeader ? `<b>${m.name} (Leader)</b>` : m.name}${m.isFormer ? ' (元メンバー)' : ''}</td><td>${m.div}</td><td>${m.pos}</td><td class="logo-font">${labels[m.label].name}</td></tr>`; });
+            g.members.forEach(m => { html += `<tr ${m.isFormer ? 'style="color:#bbb"' : ''}><td class="text-center">${m.img ? `<img src="${m.img}" class="member-img">` : '-'}</td><td>${m.isLeader ? `<b>${m.name} (Leader)</b>` : m.name}${m.isFormer ? ' (元メンバー)' : ''}</td><td>${m.div}</td><td>${m.isLeader ? 'Leader / ' + m.pos : m.pos}</td><td class="logo-font">${labels[m.label].name}</td></tr>`; });
             dArea.innerHTML += html + '</tbody></table></div>';
         });
 

@@ -1,4 +1,4 @@
-/* style.css - Teyvat Entertainment Custom Font Edition */
+/* style.css - Source Han Sans JP Edition */
 
 @font-face { font-family: 'Source Han Sans JP'; src: url('./font/sourcehansansjp/SourceHanSansJP-ExtraLight.otf') format('opentype'); font-weight: 200; }
 @font-face { font-family: 'Source Han Sans JP'; src: url('./font/sourcehansansjp/SourceHanSansJP-Light.otf') format('opentype'); font-weight: 300; }
@@ -11,16 +11,29 @@
 html { scroll-behavior: smooth; scroll-padding-top: 100px; }
 body { background-color: #ffffff; color: #000000; font-family: 'Source Han Sans JP', sans-serif; font-weight: 400; margin: 0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-.tvt-logo { font-family: 'Source Han Sans JP', sans-serif; font-weight: 900; letter-spacing: -0.12em; font-style: normal; text-transform: uppercase; display: inline-block; }
-
-header {
-    width: 100%; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center;
-    position: fixed; top: 0; background: rgba(255,255,255,0.95); backdrop-blur: 15px; 
-    z-index: 5000; box-sizing: border-box; border-bottom: 1px solid #f0f0f0;
+/* 🆕 鉄則：全ページで大文字への自動変換を絶対に禁止 */
+h1, h2, h3, h4, p, span, a, .logo-font { 
+    text-transform: none !important; 
 }
 
-.menu-trigger { position: relative; width: 30px; height: 20px; cursor: pointer; z-index: 6000; }
-.menu-trigger span { position: absolute; left: 0; width: 100%; height: 2px; background: #000; transition: 0.4s; }
+.tvt-logo { 
+    font-family: 'Source Han Sans JP', sans-serif; 
+    font-weight: 900; 
+    letter-spacing: -0.12em; 
+    font-style: normal; 
+    display: inline-block;
+    color: #000 !important; /* ロゴは常に黒 */
+}
+
+/* ヘッダー：常に最前面・白背景・黒文字 */
+header {
+    width: 100%; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center;
+    position: fixed; top: 0; background: #ffffff !important; 
+    z-index: 9999 !important; box-sizing: border-box; border-bottom: 1px solid #f0f0f0;
+}
+
+.menu-trigger { position: relative; width: 30px; height: 20px; cursor: pointer; z-index: 10000; }
+.menu-trigger span { position: absolute; left: 0; width: 100%; height: 3px; background: #000; transition: 0.4s; }
 .menu-trigger span:nth-child(1) { top: 0; }
 .menu-trigger span:nth-child(2) { top: 9px; }
 .menu-trigger span:nth-child(3) { bottom: 0; }
@@ -28,23 +41,26 @@ header {
 .menu-trigger.active span:nth-child(2) { opacity: 0; }
 .menu-trigger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-.nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #fff; z-index: 5500; display: flex; flex-direction: column; align-items: center; justify-content: center; visibility: hidden; opacity: 0; transition: 0.5s; }
+.nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #fff; z-index: 9000; display: flex; flex-direction: column; align-items: center; justify-content: center; visibility: hidden; opacity: 0; transition: 0.5s; }
 .nav-overlay.open { visibility: visible; opacity: 1; }
-.nav-overlay a { font-size: 3rem; font-weight: 900; text-decoration: none; color: #000; margin: 15px 0; }
+.nav-overlay a { font-size: 3.5rem; font-weight: 900; text-decoration: none; color: #000; margin: 15px 0; }
 
-footer { padding: 80px 0; border-top: 1px solid #f0f0f0; text-align: center; background: #fff; margin-top: 100px; }
+footer { padding: 80px 0; border-top: 1px solid #f0f0f0; text-align: center; background: #fff; margin-top: 100px; color: #000; }
 footer .f-logo { font-size: 3rem; margin-bottom: 20px; }
-footer p { font-size: 9px; color: #ccc; letter-spacing: 0.3em; }
+footer p { font-size: 9px; color: #999; letter-spacing: 0.3em; text-transform: uppercase; } /* ここだけ会社規定 */
 
 .tab-btn { font-size: 12px; font-weight: 700; color: #ccc; letter-spacing: 0.15em; border-bottom: 2px solid transparent; padding-bottom: 10px; cursor: pointer; }
 .tab-btn.active { color: #000; border-bottom: 2px solid #000; }
 
-.member-flex-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px 20px; width: 100%; max-width: 1200px; margin: 0 auto; }
-.layout-4 { grid-template-columns: repeat(4, 1fr); }
-.layout-3 { grid-template-columns: repeat(3, 1fr); }
+.member-flex-container { 
+    display: flex; flex-wrap: wrap; justify-content: flex-start; /* 💡左揃え固定 */
+    gap: 40px 20px; width: 100%; max-width: 1200px; margin: 0 auto; 
+}
 
-/* 見出しの太字化(900)を徹底 */
-h1, h2, .bold-title { font-weight: 900 !important; }
+/* モーダル */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 10001; display: none; align-items: center; justify-content: center; padding: 20px; }
+.modal-content { background: #111; width: 100%; max-width: 800px; position: relative; border: 1px solid #333; }
+.modal-close { position: absolute; top: 20px; right: 20px; font-size: 2.5rem; color: #fff; cursor: pointer; z-index: 10; }
 
 @media (max-width: 768px) {
     header { padding: 15px 20px; }

@@ -18,82 +18,58 @@
         .member-card-news img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; filter: brightness(0.8); }
         .member-card-news:hover img { transform: scale(1.05); filter: brightness(1); }
         .member-card-news .name-label { padding: 15px; text-align: left; font-size: 1.4rem; font-weight: 900; border-top: 1px solid #222; }
-        
         .modal-body { display: flex; flex-direction: column; md-flex-direction: row; gap: 40px; padding: 40px; align-items: center; }
         .modal-img { width: 300px; aspect-ratio: 1/1; object-fit: cover; border: 1px solid #333; }
         .modal-info { text-align: center; md-text-align: left; flex: 1; color: #fff; }
         .modal-role { font-size: 1rem; color: #fff; background: #333; padding: 2px 12px; display: inline-block; margin-bottom: 15px; font-weight: 700; border: 1px solid #444; }
         .modal-desc { font-size: 0.95rem; color: #ccc; line-height: 1.8; margin-bottom: 25px; }
         .modal-pos { font-size: 0.75rem; color: #666; font-weight: 800; border-top: 1px solid #222; padding-top: 15px; }
-
         @media (max-width: 1024px) { .member-grid-news { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) { .project-title { font-size: 2.5rem; } .modal-img { width: 100%; } }
     </style>
 </head>
 <body>
-    <!-- 💡復旧：共通ヘッダー -->
     <div id="common-header"></div>
-
     <main class="pt-32 pb-24">
         <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center">
-                <h1 id="p-title" class="logo-font project-title uppercase"></h1>
-            </div>
+            <div class="text-center"><h1 id="p-title" class="logo-font project-title uppercase"></h1></div>
             <div class="w-full aspect-video bg-zinc-900 mb-40 overflow-hidden border border-zinc-800 shadow-2xl">
                 <img id="p-visual" src="" class="w-full h-full object-cover">
             </div>
             <div id="teams-container" class="space-y-40"></div>
         </div>
     </main>
-
     <div id="member-modal" class="modal-overlay" onclick="closeModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeModal()">&times;</span>
             <div id="modal-inner-content" class="modal-body"></div>
         </div>
     </div>
-
-    <!-- 💡復旧：共通フッター -->
     <div id="common-footer"></div>
-
     <script>
         const params = new URLSearchParams(window.location.search);
         const projectId = params.get('id');
         const project = specialProjects[projectId];
-
         if (project) {
             document.title = `${project.title} | Teyvat Times`;
             document.getElementById('p-title').innerText = project.title;
             document.getElementById('p-visual').src = project.mainVisual;
             const container = document.getElementById('teams-container');
-            
             project.teams.forEach((team, tIdx) => {
                 let memberHtml = team.members.map((m, mIdx) => `
                     <div class="member-card-news" onclick="openModal('${tIdx}', ${mIdx})">
                         <div class="img-wrap"><img src="${m.img}" onerror="this.src='https://placehold.jp/400x400.png?text=${m.name}'"></div>
-                        <!-- 名前を Title Case で表示 -->
                         <p class="name-label">${m.name}</p>
                     </div>`).join('');
-                
-                // チーム名も Title Case で表示
                 container.innerHTML += `<div class="team-section"><div class="text-left"><h2 class="logo-font text-3xl font-bold border-b border-zinc-800 pb-4 mb-10">${team.name}</h2></div><div class="member-grid-news">${memberHtml}</div></div>`;
             });
         }
-
         function openModal(tIdx, mIdx) {
             const m = project.teams[tIdx].members[mIdx];
             const modal = document.getElementById('member-modal');
             const inner = document.getElementById('modal-inner-content');
-            inner.innerHTML = `
-                <img src="${m.img}" class="modal-img" onerror="this.src='https://placehold.jp/400x400.png?text=${m.name}'">
-                <div class="modal-info">
-                    <span class="modal-role">${m.role}</span>
-                    <h2 class="logo-font text-5xl mb-6" style="font-weight:900;">${m.name}</h2>
-                    <p class="modal-desc">${m.desc}</p>
-                    ${m.pos ? `<p class="modal-pos uppercase">${m.pos}</p>` : ''}
-                </div>`;
-            modal.style.display = 'flex'; 
-            document.body.style.overflow = 'hidden';
+            inner.innerHTML = `<img src="${m.img}" class="modal-img" onerror="this.src='https://placehold.jp/400x400.png?text=${m.name}'"><div class="modal-info"><span class="modal-role">${m.role}</span><h2 class="logo-font text-5xl mb-6" style="font-weight:900;">${m.name}</h2><p class="modal-desc">${m.desc}</p>${m.pos ? `<p class="modal-pos uppercase">${m.pos}</p>` : ''}</div>`;
+            modal.style.display = 'flex'; document.body.style.overflow = 'hidden';
         }
         function closeModal() { document.getElementById('member-modal').style.display = 'none'; document.body.style.overflow = 'auto'; }
     </script>

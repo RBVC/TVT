@@ -14,7 +14,7 @@
     <main class="max-w-6xl mx-auto px-6 py-24">
         <div class="text-center mb-16 pt-16">
             <a href="index.html#artists" class="text-[10px] text-gray-300 uppercase tracking-[0.4em] mb-6 inline-block hover:text-black transition font-bold">← All Artists</a>
-            <h1 id="group-name" class="text-6xl md:text-[8rem] logo-font leading-none uppercase">Artist</h1>
+            <h1 id="group-name" class="text-6xl md:text-[8rem] logo-font leading-none" style="font-weight: 900;">Artist</h1>
         </div>
         <div class="flex justify-center space-x-12 mb-16 border-b border-gray-100">
             <button onclick="switchTab('profile')" id="btn-profile" class="tab-btn active">Profile</button>
@@ -24,11 +24,11 @@
             <div class="w-full mb-20 overflow-hidden bg-gray-50 border border-gray-100 shadow-sm" style="aspect-ratio: 3 / 1;">
                 <img id="group-banner" src="" class="w-full h-full object-cover">
             </div>
-            <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6">Member</h2>
+            <h2 class="text-3xl logo-font mb-12 border-l-8 border-black pl-6" style="font-weight: 900;">Member</h2>
             <div id="member-grid" class="member-flex-container"></div>
         </div>
         <div id="disco" class="content-section hidden">
-            <h2 class="text-3xl logo-font mb-12 uppercase border-l-8 border-black pl-6">Discography</h2>
+            <h2 class="text-3xl logo-font mb-12 border-l-8 border-black pl-6" style="font-weight: 900;">Discography</h2>
             <div id="disco-list" class="grid grid-cols-1 gap-12 text-center"></div>
         </div>
     </main>
@@ -43,6 +43,8 @@
             document.getElementById('group-banner').src = data.banner;
             const memberGrid = document.getElementById('member-grid');
             memberGrid.classList.add('layout-' + (data.layout || 4));
+            
+            // 💡 修正：並び順を100%固定するループ
             data.members.filter(m => !m.isFormer).forEach((m) => {
                 const positionDisplay = m.isLeader ? 'Leader / ' + m.pos : m.pos;
                 memberGrid.innerHTML += `
@@ -50,8 +52,8 @@
                         <div class="aspect-square overflow-hidden bg-gray-50 border border-gray-100 mb-6">
                             <img src="${m.img}" class="w-full h-full object-cover" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMAGE'">
                         </div>
-                        <p class="logo-font text-2xl leading-none">${m.name}</p>
-                        <p class="text-[12px] text-black font-bold mt-4 tracking-widest">${m.div}</p>
+                        <p class="logo-font text-2xl leading-none" style="font-weight: 900;">${m.name}</p>
+                        <p class="text-[12px] text-black font-black mt-4 tracking-widest">${m.div}</p>
                         <p class="text-[10px] text-gray-400 mt-1 tracking-widest leading-relaxed">${positionDisplay}</p>
                     </div>`;
             });
@@ -62,7 +64,7 @@
                 data.discography.forEach(d => {
                     discoList.innerHTML += `<div class="max-w-4xl mx-auto w-full text-left">
                         <p class="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] mb-1">${d.type}</p>
-                        <h3 class="logo-font text-3xl uppercase mb-4">${d.title}</h3>
+                        <h3 class="logo-font text-3xl mb-4" style="font-weight: 900;">${d.title}</h3>
                         <div class="bg-gray-50 rounded-xl overflow-hidden shadow-inner border border-gray-100">${d.embed}</div>
                     </div>`;
                 });
