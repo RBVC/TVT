@@ -47,5 +47,7 @@ footer p { font-size: 9px; color: #999; letter-spacing: 0.3em; text-transform: u
     header { padding: 15px 20px; height: 70px; }
     main { padding-top: 100px; }
     .nav-overlay a { font-size: 2rem; }
-    .member-grid-container.layout-3, .member-grid-container.layout-4 { grid-template-columns: repeat(2, 1fr) !important; gap: 30px 10px; }
+    .member-grid-container.layout-3, .member-grid-container.layout-4 { 
+        grid-template-columns: repeat(2, 1fr) !important; gap: 30px 10px; 
+    }
 }

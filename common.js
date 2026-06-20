@@ -39,11 +39,12 @@ function initMenu() {
     });
 }
 
-// 🆕 トップページに最新ニュースを自動表示
 function loadLatestNews() {
     const list = document.getElementById('latest-news-list');
-    const latest = Object.keys(specialProjects).reverse().slice(0, 2);
-    latest.forEach(key => {
+    if (!list) return;
+    // 最新の2件を表示
+    const keys = Object.keys(specialProjects).reverse().slice(0, 2);
+    keys.forEach(key => {
         const p = specialProjects[key];
         list.innerHTML += `
             <a href="news.html?id=${key}" class="group cursor-pointer block">
