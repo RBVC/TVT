@@ -11,8 +11,10 @@ html { scroll-behavior: smooth; box-sizing: border-box; }
 *, *:before, *:after { box-sizing: inherit; }
 body { background-color: #ffffff; color: #000000; font-family: 'Source Han Sans JP', sans-serif; font-weight: 400; margin: 0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-/* 🆕 全ページ共通：メインの開始位置をヘッダー(80px) + 余白(20px) = 100px に固定 */
-main { padding-top: 100px; }
+/* 🆕 根本解決：ヘッダーの下にページを設置 */
+main { 
+    padding-top: 80px; 
+}
 
 h1, h2, h3, h4, p, span, a, .logo-font { text-transform: none !important; }
 .bold-title { font-weight: 900 !important; }
@@ -47,7 +49,9 @@ footer p { font-size: 9px; color: #999; letter-spacing: 0.3em; text-transform: u
 
 @media (max-width: 768px) {
     header { padding: 15px 20px; height: 70px; }
-    main { padding-top: 90px; }
+    main { padding-top: 70px; }
     .nav-overlay a { font-size: 2rem; }
-    .member-grid-container.layout-3, .member-grid-container.layout-4 { grid-template-columns: repeat(2, 1fr) !important; gap: 30px 10px; }
+    .member-grid-container.layout-3, .member-grid-container.layout-4 { 
+        grid-template-columns: repeat(2, 1fr) !important; gap: 30px 10px; 
+    }
 }

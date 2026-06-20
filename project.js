@@ -1,5 +1,4 @@
 // project.js - Special Projects & Teyvat Times Database
-
 const specialProjects = {
     "nightfall-ops": {
         title: "Nightfall Ops",
@@ -51,7 +50,7 @@ const specialProjects = {
                     { name: "Neuvillette", role: "Chief Justice", pos: "Leader / Main Vocal (Sangyeon)", desc: "警察の象徴であり絶対的正義。私情を一切挟まない厳格な裁きによって、混沌を秩序へと変える最高責任者。", img: "images/the-sovereign/police/neuvillette.jpg" },
                     { name: "Alhaitham", role: "Chief Commander", pos: "Main Dancer / Sub Vocal (Juyeon)", desc: "警察組織の最高指揮官。理論と効率を極め、一寸の狂いもない作戦でマフィアを追い詰める。", img: "images/the-sovereign/police/alhaitham.jpg" },
                     { name: "Venti", role: "The Casanova", pos: "Main Vocal (New)", desc: "自由気ままな詩人を装っているが、その正体は警察組織の礎を築いた真の最高権威。法の枠を超えた真の正義を見通している。", img: "images/the-sovereign/police/venti.jpg" },
-                    { name: "Diluc", role: "The Vigilante", pos: "Main Vocal (Kevin)", desc: "組織に属しながらも独自の正義を貫く執行人。法の隙間を縫って悪を討つ、夜を統べる特別捜査官。", img: "images/the-sovereign/police/diluc.jpg" },
+                    { name: "Diluc", role: "The Vigilante", pos: "Main Vocal (Kevin)", desc: "組織に属しながらも独自の正義を貫く執行人. 法の隙間を縫って悪を討つ、夜を統べる特別捜査官。", img: "images/the-sovereign/police/diluc.jpg" },
                     { name: "Baizhu", role: "The Pathologist", pos: "Lead Vocal (Hyunjae)", desc: "死体から真実を紡ぎ出す監察医。知性的な瞳で、マフィアの痕跡を一つ残らず暴き出す検視のスペシャリスト。", img: "images/the-sovereign/police/baizhu.jpg" },
                     { name: "Tighnari", role: "The Scientist", pos: "Lead Vocal / Sub Rapper (Jacob)", desc: "最新の科学捜査を司るトップ。現場の微細な証拠から、組織のネットワークを解析する知性の要。", img: "images/the-sovereign/police/tighnari.jpg" },
                     { name: "Cyno", role: "Tactical Police", pos: "Main Rapper / Dancer (Sunwoo)", desc: "現場の先陣を切る特殊部隊長. 法の盾を持ち、逃げ場のない追撃で罪人を制圧するハンター。", img: "images/the-sovereign/police/cyno.jpg" },

@@ -11,20 +11,21 @@
     <script src="common.js"></script>
     <style>
         body { background-color: #f6f6f6; color: #202122; font-family: 'Noto Sans JP', sans-serif; }
-        .wiki-container { max-width: 1100px; margin: 50px auto; background: white; padding: 60px; border: 1px solid #a2a9b1; }
+        .wiki-container { max-width: 1100px; margin: 50px auto; background: white; padding: 40px; border: 1px solid #a2a9b1; }
         h1 { font-family: 'Source Han Sans JP', sans-serif; font-size: 3rem; font-weight: 900; border-bottom: 1px solid #a2a9b1; margin-bottom: 2rem; }
         section { margin-bottom: 5rem; }
         h2 { font-family: 'Source Han Sans JP', sans-serif; font-size: 1.8rem; font-weight: 900; border-bottom: 1px solid #a2a9b1; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding-bottom: 10px; }
         h2::before { content: ""; display: inline-block; width: 8px; height: 1.8rem; background: #000; margin-right: 12px; }
         h3 { font-family: 'Source Han Sans JP', sans-serif; font-size: 1.4rem; font-weight: 900; margin-top: 1rem; margin-bottom: 1rem; color: #000; display: flex; align-items: center; justify-content: space-between; cursor: pointer; background: #f8f9fa; padding: 12px; border: 1px solid #eee; }
         .toggle-btn { font-size: 0.75rem; color: #0645ad; font-weight: normal; }
-        .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 2rem; border: 1px solid #a2a9b1; }
+        .table-wrapper { overflow-x: auto; margin-bottom: 2rem; border: 1px solid #a2a9b1; }
         table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: 800px; }
         th, td { border: 1px solid #a2a9b1; padding: 12px; text-align: left; vertical-align: top; }
         th { background-color: #eaecf0; font-weight: bold; }
         .matrix-table { table-layout: fixed; min-width: 1000px; }
         .matrix-table th, .matrix-table td { width: 14.28%; text-align: center; }
         .matrix-ceo { font-size: 0.7rem; color: #666; font-weight: 400; display: block; margin-top: 8px; border-top: 1px solid #ccc; padding-top: 6px; }
+        .group-col { font-weight: 900; background: #f8f9fa; width: 140px !important; vertical-align: middle; }
         .detail-table { table-layout: fixed; min-width: 800px; }
         .detail-table th:nth-child(1) { width: 70px; }
         .detail-table th:nth-child(2) { width: 160px; }
@@ -49,17 +50,17 @@
         </nav>
         <section id="sec-affiliates">
             <h2 onclick="toggleSection('matrix-content', 'matrix-btn')">所属アーティスト・マトリックス <span class="toggle-btn" id="matrix-btn">非表示</span></h2>
-            <div class="collapsible-content" id="matrix-content">
+            <div class="collapsible-content mt-12" id="matrix-content">
                 <div class="table-wrapper"><table class="matrix-table"><thead id="matrix-header"><tr><th>グループ名</th></tr></thead><tbody id="matrix-body"></tbody></table></div>
             </div>
         </section>
         <section id="sec-details">
             <h2 onclick="toggleSection('details-content', 'details-btn')">グループ詳細設定 <span class="toggle-btn" id="details-btn">非表示</span></h2>
-            <div class="collapsible-content" id="details-content"></div>
+            <div class="collapsible-content mt-12" id="details-content"></div>
         </section>
         <section id="sec-projects">
             <h2 onclick="toggleSection('projects-content', 'projects-btn')">プロジェクト一覧 <span class="toggle-btn" id="projects-btn">表示</span></h2>
-            <div class="collapsible-content" id="projects-content">
+            <div class="collapsible-content mt-12 collapsed" id="projects-content">
                 <div id="special-projects-area"></div>
                 <h3 onclick="toggleSection('heaventeen-table', 'btn-heaventeen')">HEAVENTEEN 全記録 <span class="toggle-btn font-normal text-xs" id="btn-heaventeen">表示</span></h3>
                 <div class="table-wrapper collapsible-content collapsed" id="heaventeen-table">
@@ -73,7 +74,7 @@
         const mHead = document.getElementById('matrix-header').rows[0];
         const mBody = document.getElementById('matrix-body');
         Object.keys(labels).forEach(k => { const label = labels[k]; mHead.innerHTML += `<th><span class="matrix-label">${label.name.replace(' ','<br>')}</span><span class="matrix-ceo">${label.ceo}</span></th>`; });
-        Object.keys(allGroups).forEach(gk => { const g = allGroups[gk]; let row = `<tr><td class="font-bold" style="background:#f8f9fa">${g.name}</td>`; Object.keys(labels).forEach(lk => { const mems = g.members.filter(m => m.label === lk && !m.isFormer).map(m => m.name).join('<br>'); row += `<td>${mems || '-'}</td>`; }); mBody.innerHTML += row + '</tr>'; });
+        Object.keys(allGroups).forEach(gk => { const g = allGroups[gk]; let row = `<tr><td class="group-col">${g.name}</td>`; Object.keys(labels).forEach(lk => { const mems = g.members.filter(m => m.label === lk && !m.isFormer).map(m => m.name).join('<br>'); row += `<td>${mems || '-'}</td>`; }); mBody.innerHTML += row + '</tr>'; });
 
         const dArea = document.getElementById('details-content');
         Object.keys(allGroups).forEach(gk => { const g = allGroups[gk]; let html = `<h3 onclick="toggleSection('det-${gk}', 'btn-${gk}')">${g.name} <span class="toggle-btn" id="btn-${gk}">表示</span></h3><div id="det-${gk}" class="table-wrapper collapsible-content collapsed"><table class="detail-table"><thead><tr><th>画像</th><th>名前</th><th>出身</th><th>ポジション</th><th>レーベル</th></tr></thead><tbody>`;

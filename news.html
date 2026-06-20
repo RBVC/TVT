@@ -11,7 +11,7 @@
     <script src="common.js"></script>
     <style>
         body { background: #000; color: #fff; }
-        .title-area { padding: 80px 0 60px; text-align: center; }
+        .title-area { padding: 120px 0 80px; text-align: center; }
         .project-title { font-size: 5rem; font-weight: 900; line-height: 1; letter-spacing: -0.02em; }
         .visual-area { width: 100%; aspect-ratio: 16 / 9; background: #111; overflow: hidden; margin-bottom: 60px; }
         .visual-area img { width: 100%; height: 100%; object-fit: cover; }
@@ -21,18 +21,14 @@
         .member-card-news { text-align: left; background: #000; display: flex; flex-direction: column; height: 100%; }
         .m-img-wrap { width: 100%; aspect-ratio: 1/1; overflow: hidden; margin-bottom: 25px; border: 1px solid #222; flex-shrink: 0; }
         .m-img-wrap img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
-        
-        /* 🆕 情報の高さを固定して横のラインを完璧に揃える */
-        .m-header-info { min-height: 6rem; display: flex; flex-direction: column; justify-content: flex-end; margin-bottom: 15px; }
+        .m-header-info { min-height: 5.5rem; display: flex; flex-direction: column; justify-content: flex-end; margin-bottom: 15px; }
         .m-name { font-size: 1.6rem; font-weight: 900; line-height: 1.1; margin-bottom: 5px; height: 2rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-        .m-pos { font-size: 0.65rem; color: #666; font-weight: 800; letter-spacing: 0.05em; margin-bottom: 0; line-height: 1.4; min-height: 2.5rem; }
-        
+        .m-pos { font-size: 0.65rem; color: #666; font-weight: 800; letter-spacing: 0.05em; margin-bottom: 0; }
         .role-badge-wrap { margin-bottom: 15px; border-top: 1px solid #222; padding-top: 15px; min-height: 4rem; }
         .role-badge { font-size: 0.75rem; color: #fff; background: #333; padding: 2px 10px; display: inline-block; font-weight: 700; line-height: 1.4; }
-        .m-desc { font-size: 0.85rem; color: #aaa; line-height: 1.7; min-height: 8.5rem; }
-
-        @media (max-width: 1024px) { .member-grid-news { grid-template-columns: repeat(2, 1fr); gap: 40px 20px; } .m-header-info { min-height: 4.5rem; } }
-        @media (max-width: 768px) { .title-area { padding-top: 40px; } .project-title { font-size: 2.8rem; } .m-name { font-size: 1.2rem; } .m-header-info { min-height: 4rem; } .m-desc { min-height: auto; } }
+        .m-desc { font-size: 0.85rem; color: #aaa; line-height: 1.7; min-height: 8rem; }
+        @media (max-width: 1024px) { .member-grid-news { grid-template-columns: repeat(2, 1fr); gap: 40px 20px; } .m-header-info { min-height: 4.5rem; } .role-badge-wrap { min-height: 3.5rem; } }
+        @media (max-width: 768px) { .project-title { font-size: 2.8rem; } .m-name { font-size: 1.2rem; } .m-header-info { min-height: 4rem; } .m-desc { min-height: auto; } }
     </style>
 </head>
 <body>
@@ -48,6 +44,7 @@
         const projectId = params.get('id');
         const project = specialProjects[projectId];
         if (project) {
+            document.title = `${project.title} | Teyvat Times`;
             document.getElementById('p-title').innerText = project.title;
             document.getElementById('p-visual').src = project.mainVisual;
             const container = document.getElementById('teams-container');
@@ -55,10 +52,7 @@
                 let memberHtml = team.members.map((m) => `
                     <div class="member-card-news">
                         <div class="m-img-wrap"><img src="${m.img}" onerror="this.src='https://placehold.jp/30/333333/666666/200x200.png?text=${m.name}'"></div>
-                        <div class="m-header-info">
-                            <p class="m-name bold-title">${m.name}</p>
-                            ${m.pos ? `<p class="m-pos uppercase">${m.pos}</p>` : ''}
-                        </div>
+                        <div class="m-header-info"><p class="m-name">${m.name}</p>${m.pos ? `<p class="m-pos uppercase">${m.pos}</p>` : ''}</div>
                         <div class="role-badge-wrap"><span class="role-badge">${m.role}</span></div>
                         <p class="m-desc">${m.desc}</p>
                     </div>`).join('');
