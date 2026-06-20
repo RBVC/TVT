@@ -14,38 +14,38 @@
         .project-title { font-size: 5rem; font-weight: 900; line-height: 1; letter-spacing: -0.02em; }
         .visual-area { width: 100%; aspect-ratio: 16 / 9; background: #111; overflow: hidden; margin-bottom: 60px; }
         .visual-area img { width: 100%; height: 100%; object-fit: cover; }
-        
         .team-section { margin-bottom: 120px; }
         .team-label { font-size: 2.2rem; font-weight: 900; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 60px; }
 
-        /* 🆕 ニュースグリッド：スマホ2列固定 */
-        .member-grid-news { display: grid; grid-template-columns: repeat(4, 1fr); gap: 60px 30px; }
-        
+        .member-grid-news { display: grid; grid-template-columns: repeat(4, 1fr); gap: 60px 30px; align-items: start; }
         .member-card-news { text-align: left; background: #000; display: flex; flex-direction: column; }
-        .m-img-wrap { width: 100%; aspect-ratio: 1/1; overflow: hidden; margin-bottom: 25px; border: 1px solid #222; }
-        .m-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .m-img-wrap { width: 100%; aspect-ratio: 1/1; overflow: hidden; margin-bottom: 25px; border: 1px solid #222; flex-shrink: 0; }
+        .m-img-wrap img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.9); }
         
-        /* 💡 修正：ここを固定高さにすることで、下の役名バッジのラインを揃えます */
-        .m-header-info { min-height: 5.5rem; display: flex; flex-direction: column; justify-content: flex-end; margin-bottom: 15px; }
-        .m-name { font-size: 1.6rem; font-weight: 900; line-height: 1.1; margin-bottom: 5px; }
-        .m-pos { font-size: 0.65rem; color: #666; font-weight: 800; letter-spacing: 0.05em; margin-bottom: 0; }
-
-        .role-badge-wrap { margin-bottom: 15px; border-top: 1px solid #222; padding-top: 15px; }
-        .role-badge { font-size: 0.75rem; color: #fff; background: #333; padding: 2px 10px; display: inline-block; font-weight: 700; }
-        
-        /* 💡 解説文も最低限の高さを確保 */
-        .m-desc { font-size: 0.85rem; color: #aaa; line-height: 1.7; min-height: 7.5rem; }
-
-        @media (max-width: 1024px) { 
-            .member-grid-news { grid-template-columns: repeat(2, 1fr); gap: 40px 20px; } 
-            .m-header-info { min-height: 4.5rem; }
-            .m-desc { min-height: 6rem; }
+        /* 💡 修正：名前を必ず1行に固定 */
+        .m-name { 
+            font-size: 1.8rem; font-weight: 900; line-height: 1.1; 
+            height: 2rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+            margin-bottom: 10px;
         }
+        
+        /* 💡 修正：ポジションを必ず2行分の高さに固定 */
+        .m-pos-wrap { 
+            height: 3rem; margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 10px; 
+            display: flex; align-items: flex-start;
+        }
+        .m-pos { font-size: 0.7rem; color: #777; font-weight: 800; letter-spacing: 0.05em; line-height: 1.4; }
+
+        .role-badge-wrap { margin-bottom: 15px; }
+        .role-badge { font-size: 0.75rem; color: #fff; background: #333; padding: 3px 12px; display: inline-block; font-weight: 700; border: 1px solid #444; }
+        
+        .m-desc { font-size: 0.85rem; color: #bbb; line-height: 1.7; min-height: 8rem; }
+
+        @media (max-width: 1024px) { .member-grid-news { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 768px) { 
-            .project-title { font-size: 2.8rem; }
-            .m-name { font-size: 1.2rem; }
-            .m-header-info { min-height: 4rem; }
-            .m-desc { min-height: auto; } /* スマホでは高さ制限を解く（スクロール量節約） */
+            .title-area { padding: 80px 0 60px; } .project-title { font-size: 2.8rem; } 
+            .m-header-info { height: auto; } .m-desc { min-height: auto; }
+            .m-pos-wrap { height: auto; min-height: 2.5rem; }
         }
     </style>
 </head>
@@ -59,27 +59,43 @@
         </div>
     </main>
     <div id="common-footer"></div>
+
     <script>
         const params = new URLSearchParams(window.location.search);
         const projectId = params.get('id');
         const project = specialProjects[projectId];
+
         if (project) {
             document.title = `${project.title} | Teyvat Times`;
             document.getElementById('p-title').innerText = project.title;
             document.getElementById('p-visual').src = project.mainVisual;
             const container = document.getElementById('teams-container');
+            
             project.teams.forEach((team) => {
-                let memberHtml = team.members.map((m) => `
+                let memberHtml = team.members.map((m) => {
+                    // 💡 修正：項目がない場合はタグごと消して空白をなくす
+                    const posTag = m.pos ? `<div class="m-pos-wrap"><p class="m-pos uppercase">${m.pos}</p></div>` : '';
+                    
+                    return `
                     <div class="member-card-news">
-                        <div class="m-img-wrap"><img src="${m.img}" onerror="this.src='https://placehold.jp/200x200.png?text=${m.name}'"></div>
-                        <div class="m-header-info">
-                            <p class="m-name">${m.name}</p>
-                            <p class="m-pos uppercase">${m.pos}</p>
+                        <div class="m-img-wrap">
+                            <img src="${m.img}" onerror="this.src='https://placehold.jp/30/333333/666666/200x200.png?text=${m.name}'">
                         </div>
-                        <div class="role-badge-wrap"><span class="role-badge">${m.role}</span></div>
+                        <p class="m-name">${m.name}</p>
+                        ${posTag}
+                        <div class="role-badge-wrap">
+                            <span class="role-badge">${m.role}</span>
+                        </div>
                         <p class="m-desc">${m.desc}</p>
-                    </div>`).join('');
-                container.innerHTML += `<div class="team-section"><h2 class="team-label uppercase">${team.name}</h2><div class="member-grid-news">${memberHtml}</div></div>`;
+                    </div>`;
+                }).join('');
+                
+                container.innerHTML += `
+                    <div class="team-section">
+                        <h2 class="team-label uppercase">${team.name}</h2>
+                        <div class="member-grid-news">${memberHtml}</div>
+                    </div>
+                `;
             });
         }
     </script>
