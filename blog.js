@@ -1,0 +1,79 @@
+// blog.js - Teyvat Times Article Database
+
+const specialProjects = {
+    "nightfall-ops": {
+        title: "Nightfall Ops",
+        tagline: "TIC TOC, IT'S YOUR TURN.",
+        mainVisual: "images/nightfall-ops/main.jpg",
+        description: "漆黒の夜に紛れ、秘密裏に遂行される特殊作戦。4人のエージェントと、彼らを支える影の天才たちによる伝説の記録。",
+        teams: [
+            {
+                name: "Agents",
+                members: [
+                    { name: "Ayato", role: "Commander", pos: "Lead Vocal / Sub Rapper", desc: "作戦全体の指揮・統括を担う司令塔。コントロールルームから冷徹な指示を出す組織の脳。", img: "images/heaventeen/ayato.jpg" },
+                    { name: "Wriothesley", role: "Breacher", pos: "Main Rapper / Lead Dancer", desc: "前線突破を担う切り込み隊長。屈強な肉体と拳で、ターゲットへの道を力強く切り開く。", img: "images/heaventeen/wriothesley.jpg" },
+                    { name: "Tartaglia", role: "Infiltrator", pos: "Main Dancer / Lead Rapper", desc: "隠密潜入のスペシャリスト。華麗なガンアクションで、ターゲットを影から確実に排除する。", img: "images/heaventeen/tartaglia.jpg" },
+                    { name: "Diluc", role: "Cleaner", pos: "Main Vocal / Lead Dancer", desc: "証拠隠滅と最終制圧を担う。圧倒的な火力ですべてを焼き尽くし、跡形もなく掃除する殿。", img: "images/heaventeen/diluc.jpg" }
+                ]
+            },
+            {
+                name: "Back Office",
+                members: [
+                    { name: "Zhongli", role: "Supporter", pos: "", desc: "組織の最高顧問にして莫大な資金源。財界の裏で糸を引く、組織の絶対的なバックアップ。", img: "images/heaventeen/zhongli.jpg" },
+                    { name: "Alhaitham", role: "Planner", pos: "", desc: "作戦立案とシステム構築の天才。綾人が振るう「指揮」の頭脳部分を裏で設計した人物。", img: "images/heaventeen/alhaitham.jpg" },
+                    { name: "Kaveh", role: "Designer", pos: "", desc: "エージェントの武器やガジェットを開発。アルハイゼンの理論を形にする、組織随一の技術者。", img: "images/heaventeen/kaveh.jpg" }
+                ]
+            }
+        ]
+    },
+    "the-sovereign": {
+        title: "The Sovereign",
+        tagline: "TIC TOC, IT'S YOUR TURN.",
+        mainVisual: "images/the-sovereign/main.jpg",
+        description: "裏社会を支配する『Mafia』と、秩序を守る精鋭『Police』。二つの勢力が、今、激突する。",
+        teams: [
+            {
+                name: "Team Mafia",
+                members: [
+                    { name: "Zhongli", role: "The Boss", pos: "Leader / Lead Rapper (Felix)", desc: "裏社会の絶対的頂点。冷徹なまでの判断力と重厚なオーラで組織を束ねる、静かなる支配者。", img: "images/the-sovereign/mafia/zhongli.jpg" },
+                    { name: "Ayato", role: "The Underboss", pos: "All-rounder (Bang Chan)", desc: "組織の頭脳。表向きの交渉から内部の粛正まで、扇子一つで冷徹にこなす組織のナンバー2。", img: "images/the-sovereign/mafia/ayato.jpg" },
+                    { name: "Kaeya", role: "The Consigliere", pos: "Main Vocal (Seungmin)", desc: "組織の相談役。甘い歌声で情報を引き出し、笑顔の裏で敵の弱みを握り、盤上を自在に操る参謀。", img: "images/the-sovereign/mafia/kaeya.jpg" },
+                    { name: "Wanderer", role: "The Heir", pos: "Main Dancer / Sub Vocal (Lee Know)", desc: "組織の次期継承者。誰にも心を開かず、完璧な技術と冷めた瞳で獲物を追い詰める孤独な天才。", img: "images/the-sovereign/mafia/wanderer.jpg" },
+                    { name: "Xiao", role: "Right-hand Man", pos: "Main Rapper / Lead Vocal (Han)", desc: "ボスの右腕として闇を駆ける暗殺者。一切の情けを捨て、ただ任務のみを遂行する死の執行人。", img: "images/the-sovereign/mafia/xiao.jpg" },
+                    { name: "Kazuha", role: "The Bodyguard", pos: "Sub Vocal (I.N)", desc: "静寂を纏う護衛。一糸乱れぬ動きで対象を守り抜き、邪魔な存在は風のように速やかに排除する。", img: "images/the-sovereign/mafia/kazuha.jpg" },
+                    { name: "Tartaglia", role: "Mercenary", pos: "Main Dancer / Rapper (Hyunjin)", desc: "戦場にのみ生を感じる狂気の傭兵。彼が踊り始めたら最後、周囲は血と硝煙に染まる組織最強の矛。", img: "images/the-sovereign/mafia/tartaglia.jpg" },
+                    { name: "Wriothesley", role: "Undercover Agent", pos: "Main Rapper (Changbin)", desc: "組織の重鎮でありながら、その動向は謎に包まれている。圧倒的な力で障害を粉砕する影の実力者。", img: "images/the-sovereign/mafia/wriothesley.jpg" }
+                ]
+            },
+            {
+                name: "Team Police",
+                members: [
+                    { name: "Neuvillette", role: "Chief Justice", pos: "Leader / Main Vocal (Sangyeon)", desc: "警察の象徴であり絶対的正義。私情を一切挟まない厳格な裁きによって、混沌を秩序へと変える最高責任者。", img: "images/the-sovereign/police/neuvillette.jpg" },
+                    { name: "Alhaitham", role: "Chief Commander", pos: "Main Dancer / Sub Vocal (Juyeon)", desc: "警察組織の最高指揮官。理論と効率を極め、一寸の狂いもない作戦でマフィアを追い詰める。", img: "images/the-sovereign/police/alhaitham.jpg" },
+                    { name: "Venti", role: "The Casanova", pos: "Main Vocal (New)", desc: "自由気ままな詩人を装っているが、その正体は警察組織の礎を築いた真の最高権威。法の枠を超えた真の正義を見通している。", img: "images/the-sovereign/police/venti.jpg" },
+                    { name: "Diluc", role: "The Vigilante", pos: "Main Vocal (Kevin)", desc: "組織に属しながらも独自の正義を貫く執行人。法の隙間を縫って悪を討つ、夜を統べる特別捜査官。", img: "images/the-sovereign/police/diluc.jpg" },
+                    { name: "Baizhu", role: "The Pathologist", pos: "Lead Vocal (Hyunjae)", desc: "死体から真実を紡ぎ出す監察医。知性的な瞳で、マフィアの痕跡を一つ残らず暴き出す検視のスペシャリスト。", img: "images/the-sovereign/police/baizhu.jpg" },
+                    { name: "Tighnari", role: "The Scientist", pos: "Lead Vocal / Sub Rapper (Jacob)", desc: "最新の科学捜査を司るトップ。現場の微細な証拠から、組織のネットワークを解析する知性の要。", img: "images/the-sovereign/police/tighnari.jpg" },
+                    { name: "Cyno", role: "Tactical Police", pos: "Main Rapper (Sunwoo)", desc: "現場の先陣を切る特殊部隊長。法の盾を持ち、逃げ場のない追撃で罪人を制圧するハンター。", img: "images/the-sovereign/police/cyno.jpg" },
+                    { name: "Kaveh", role: "The Detective", pos: "Main Dancer / Sub Vocal (Q)", desc: "情熱を燃やし証拠を追う精鋭捜査官。アルハイゼンと反目しながらも、真実への執念で現場を走る。", img: "images/the-sovereign/police/kaveh.jpg" }
+                ]
+            }
+        ]
+    }
+};
+
+const heaventeenResults = [
+    { name: "Tartaglia", rank0: 9, rank1: 4, rank2: 3, final: 1, result: "GEN1US" },
+    { name: "Dainsleif", rank0: 1, rank1: 2, rank2: 4, final: 2, result: "GEN1US" },
+    { name: "Diluc", rank0: 2, rank1: 1, rank2: 1, final: 3, result: "GEN1US" },
+    { name: "Ayato", rank0: 7, rank1: 6, rank2: 2, final: 4, result: "GEN1US" },
+    { name: "Zhongli", rank0: 12, rank1: 10, rank2: 6, final: 5, result: "GEN1US" },
+    { name: "Baizhu", rank0: 4, rank1: 7, rank2: 8, final: 6, result: "GEN1US" },
+    { name: "Kaeya", rank0: 8, rank1: 5, rank2: 5, final: 7, result: "GEN1US" },
+    { name: "Thoma", rank0: 11, rank1: 3, rank2: 9, final: 8, result: "GEN1US" },
+    { name: "Itto", rank0: 13, rank1: 11, rank2: 7, final: 9, result: "GEN1US" },
+    { name: "Alhaitham", rank0: 3, rank1: 8, rank2: 99, final: 99, result: "4ggravate" },
+    { name: "Kaveh", rank0: 10, rank1: 9, rank2: 99, final: 99, result: "4ggravate" },
+    { name: "Neuvillette", rank0: 5, rank1: 99, rank2: 99, final: 99, result: "H.O.T.H" },
+    { name: "Wriothesley", rank0: 6, rank1: 99, rank2: 99, final: 99, result: "H.O.T.H" }
+];
