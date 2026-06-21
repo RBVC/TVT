@@ -54,19 +54,19 @@
             <h1 class="bold-title">Teyvat Entertainment 内部機密資料</h1>
         </div>
 
-        <!-- 💡 目次セクション -->
         <nav class="toc-box">
             <div class="toc-title">CONTENTS</div>
             <ul class="toc-list" id="wiki-toc">
                 <li><a href="#sec-affiliates">1. 所属アーティスト・マトリックス</a></li>
                 <li><a href="#sec-details">2. グループ詳細設定</a></li>
-                <!-- グループごとのリンクがここに自動挿入されます -->
             </ul>
         </nav>
         
         <section id="sec-affiliates">
-            <h2 onclick="toggleSection('matrix-content', 'matrix-btn')">所属アーティスト・マトリックス <span class="toggle-btn" id="matrix-btn">非表示</span></h2>
-            <div class="collapsible-content mt-12" id="matrix-content">
+            <!-- 💡 初期状態で非表示にするため「表示」ボタンにする -->
+            <h2 onclick="toggleSection('matrix-content', 'matrix-btn')">所属アーティスト・マトリックス <span class="toggle-btn" id="matrix-btn">表示</span></h2>
+            <!-- 💡 collapsed クラスを追加して初期非表示化 -->
+            <div class="collapsible-content mt-12 collapsed" id="matrix-content">
                 <div class="table-wrapper">
                     <table class="matrix-table">
                         <thead id="matrix-header"><tr><th>グループ名</th></tr></thead>
@@ -78,7 +78,6 @@
 
         <section id="sec-details">
             <h2 onclick="toggleSection('details-content', 'details-btn')">グループ詳細設定 <span class="toggle-btn" id="details-btn">表示</span></h2>
-            <!-- 💡 初期状態で中身を隠すために collapsed を付与 -->
             <div id="details-content" class="collapsible-content mt-12 collapsed"></div>
         </section>
     </main>
@@ -111,7 +110,6 @@
                 const g = allGroups[gk];
                 const hasSubUnits = g.members.some(m => m.subUnit && m.subUnit !== "-");
 
-                // 💡 目次への追加
                 const tocItem = document.createElement('li');
                 tocItem.style.paddingLeft = "20px";
                 tocItem.innerHTML = `<a href="#det-anchor-${gk}">- ${g.name}</a>`;
@@ -142,12 +140,15 @@
                                 
                 g.members.forEach(m => {
                     const positionDisplay = m.isLeader ? `Leader / ${m.pos}` : m.pos;
-                    const memberImg = m.img ? (g.basePath + m.img) : '';
+                    
+                    // 💡 元メンバー(isFormer)または画像がない場合は「 - 」を表示。それ以外は <img> を表示
+                    const memberImgHtml = (m.isFormer || !m.img) 
+                        ? '<span class="text-gray-300">-</span>' 
+                        : `<img src="${g.basePath + m.img}" class="member-img" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMG'">`;
+
                     html += `
                         <tr ${m.isFormer ? 'style="color:#bbb"' : ''}>
-                            <td class="text-center">
-                                <img src="${memberImg}" class="member-img" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMG'">
-                            </td>
+                            <td class="text-center">${memberImgHtml}</td>
                             <td class="font-bold">${m.name}</td>
                             <td>${m.div}</td>
                             <td>${positionDisplay}</td>
