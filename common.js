@@ -1,4 +1,4 @@
-// common.js
+/* --- START OF FILE common.js --- */
 function loadCommonParts() {
     const headerHTML = `
     <header>
@@ -6,7 +6,6 @@ function loadCommonParts() {
         <div class="menu-trigger" id="menu-btn"><span></span><span></span><span></span></div>
     </header>
     <div class="nav-overlay" id="nav-menu">
-        <!-- 💡 Artists セクションの見出し位置へジャンプ -->
         <a href="index.html#artists-section" class="menu-link">Artists</a>
         <a href="index.html#latest-news" class="menu-link">News</a>
         <a href="wiki.html" class="menu-link">Wiki</a>
@@ -14,7 +13,7 @@ function loadCommonParts() {
     `;
     const footerHTML = `
     <footer>
-        <div class="f-logo tvt-logo">TVT</div>
+        <div class="f-logo tvt-logo">TVT</a>
         <p>&copy; Teyvat Entertainment All Rights Reserved.</p>
     </footer>
     `;
@@ -41,7 +40,9 @@ function initMenu() {
 function loadLatestNews() {
     const list = document.getElementById('latest-news-list');
     if (!list) return;
-    const keys = Object.keys(specialProjects).reverse().slice(0, 2);
+    
+    // 💡 最新の3件を表示するように変更（HEAVENTEENも含めるため）
+    const keys = Object.keys(specialProjects).reverse().slice(0, 3);
     keys.forEach(key => {
         const p = specialProjects[key];
         list.innerHTML += `
