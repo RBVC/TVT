@@ -7,6 +7,7 @@
     <title>Teyvat Entertainment | Official</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <script src="data/wiki.js"></script>
     <script src="data/group/gen1us.js"></script>
     <script src="data/group/4ggravate.js"></script>
@@ -16,6 +17,7 @@
     <script src="data/project/heaventeen.js"></script>
     <script src="data/project/nightfall-ops.js"></script>
     <script src="data/project/the-sovereign.js"></script>
+    <script src="data/project/sun-and-moon.js"></script>
     <script src="common.js"></script>
 
     <style>
@@ -25,7 +27,6 @@
         .artist-box:hover img { transform: scale(1.05); }
         .artist-hover { position: absolute; inset: 0; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.5s; z-index: 10; }
         .artist-box:hover .artist-hover { opacity: 1; }
-        /* 💡 修正：さらに太く（900）、少し小さく */
         .artist-name-hover { font-weight: 900; font-size: 1.4rem; letter-spacing: 0.4em; color: #fff; text-transform: uppercase; }
         @media (max-width: 768px) { .main-visual-grid { grid-template-columns: 1fr; } }
     </style>
@@ -33,7 +34,6 @@
 <body>
     <div id="common-header"></div>
     <main>
-        <!-- 💡 修正：余白を mt-4 mb-4 まで極限圧縮 -->
         <div class="flex justify-center space-x-12 mt-4 mb-4 border-b border-gray-100 max-w-6xl mx-auto">
             <button onclick="switchMainTab('artists')" id="btn-artists" class="tab-btn active">Artists</button>
             <button onclick="switchMainTab('news')" id="btn-news" class="tab-btn">Latest News</button>
