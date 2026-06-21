@@ -1,3 +1,4 @@
+<!-- --- START OF FILE wiki.html --- -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,8 +7,13 @@
     <title>TVT Wiki | 内部機密資料</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="group.js"></script>
-    <script src="project.js"></script>
+    
+    <!-- 💡 分割されたデータファイルを順番に読み込み -->
+    <script src="data/wiki.js"></script>
+    <script src="data/matrix.js"></script>
+    <!-- 本来はここで全グループ読み込みますが、今回は進捗確認のためgen1usのみ -->
+    <script src="data/group/gen1us.js"></script>
+    
     <script src="common.js"></script>
     <style>
         body { background-color: #ffffff; color: #000000; }
@@ -21,17 +27,19 @@
         table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: 900px; }
         th, td { border: 1px solid #f0f0f0; padding: 15px; text-align: left; vertical-align: top; }
         th { background-color: #fafafa; font-weight: 900; }
-        .matrix-table th, .matrix-table td { width: 14.28%; text-align: center; }
-        .matrix-ceo { font-size: 0.7rem; color: #aaa; font-weight: 400; display: block; margin-top: 10px; }
         .member-img { width: 55px; height: 55px; object-fit: cover; border: 1px solid #eee; }
         .collapsible-content.collapsed { display: none; }
         .toggle-btn { font-size: 0.7rem; color: #999; font-weight: 700; border: 1px solid #eee; padding: 2px 8px; border-radius: 2px; }
+        
+        /* Wiki限定：機密資料セクションのスタイル */
+        .confidential-box { background: #fff9f9; border: 1px solid #ffebeb; padding: 30px; margin-top: 20px; }
+        .conf-title { color: #d32f2f; font-weight: 900; letter-spacing: 0.2em; font-size: 0.7rem; margin-bottom: 20px; border-bottom: 1px solid #ffebeb; padding-bottom: 10px; }
+        .ratio-list { font-size: 0.75rem; color: #666; line-height: 2; }
     </style>
 </head>
 <body>
     <div id="common-header"></div>
     <main class="wiki-container">
-        <!-- 💡 修正：タイトル周りに贅沢な余白を確保 -->
         <div style="padding-top: 60px; margin-bottom: 60px;">
             <h1 class="bold-title">Teyvat Entertainment 内部機密資料</h1>
         </div>
@@ -48,49 +56,106 @@
         <section id="sec-affiliates">
             <h2 onclick="toggleSection('matrix-content', 'matrix-btn')">所属アーティスト・マトリックス <span class="toggle-btn" id="matrix-btn">非表示</span></h2>
             <div class="collapsible-content mt-12" id="matrix-content">
-                <div class="table-wrapper"><table class="matrix-table"><thead id="matrix-header"><tr><th style="background:#f0f0f0">グループ名</th></tr></thead><tbody id="matrix-body"></tbody></table></div>
+                <div class="table-wrapper">
+                    <table class="matrix-table">
+                        <thead id="matrix-header"><tr><th>グループ名</th></tr></thead>
+                        <tbody id="matrix-body"></tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
         <section id="sec-details">
             <h2 onclick="toggleSection('details-content', 'details-btn')">グループ詳細設定 <span class="toggle-btn" id="details-btn">非表示</span></h2>
-            <div class="collapsible-content mt-12" id="details-content"></div>
+            <div class="collapsible-content mt-12" id="details-content">
+                <!-- ここにJSでグループ詳細が生成されます -->
+            </div>
         </section>
 
         <section id="sec-projects">
             <h2 onclick="toggleSection('projects-content', 'projects-btn')">プロジェクト一覧 <span class="toggle-btn" id="projects-btn">表示</span></h2>
-            <div class="collapsible-content mt-12" id="projects-content">
+            <div class="collapsible-content mt-12 collapsed" id="projects-content">
                 <div id="special-projects-area"></div>
-                <h3 onclick="toggleSection('heaventeen-table', 'btn-heaventeen')" style="font-family:'Source Han Sans JP'; font-size:1.4rem; font-weight:900; margin-top:2rem; cursor:pointer; border-bottom:1px solid #eee; padding-bottom:10px; display:flex; justify-content:space-between; align-items:center;">HEAVENTEEN 全記録 <span class="toggle-btn font-normal text-xs" id="btn-heaventeen">表示</span></h3>
-                <div class="table-wrapper collapsible-content collapsed" id="heaventeen-table">
-                    <table><thead><tr><th>名前</th><th>0次</th><th>1次</th><th>2次</th><th>最終</th><th>結果</th></tr></thead><tbody id="heaventeen-body"></tbody></table>
-                </div>
             </div>
         </section>
     </main>
     <div id="common-footer"></div>
+
     <script>
-        const mHead = document.getElementById('matrix-header').rows[0];
-        const mBody = document.getElementById('matrix-body');
-        Object.keys(labels).forEach(k => { const label = labels[k]; mHead.innerHTML += `<th><span class="matrix-label">${label.name.replace(' ','<br>')}</span><span class="matrix-ceo">${label.ceo}</span></th>`; });
-        Object.keys(allGroups).forEach(gk => { const g = allGroups[gk]; let row = `<tr><td class="font-bold" style="background:#fdfdfd">${g.name}</td>`; Object.keys(labels).forEach(lk => { const mems = g.members.filter(m => m.label === lk && !m.isFormer).map(m => m.name).join('<br>'); row += `<td>${mems || '-'}</td>`; }); mBody.innerHTML += row + '</tr>'; });
+        window.addEventListener('DOMContentLoaded', () => {
+            // マトリックス生成（matrix.jsの関数を呼び出し）
+            if (typeof initAffiliationMatrix === 'function') initAffiliationMatrix();
+            
+            // グループ詳細の生成
+            const dArea = document.getElementById('details-content');
+            Object.keys(allGroups).forEach(gk => {
+                const g = allGroups[gk];
+                let html = `
+                <div class="mb-24">
+                    <h3 onclick="toggleSection('det-${gk}', 'btn-${gk}')" style="font-size:1.8rem; font-weight:900; cursor:pointer; border-bottom:2px solid #000; padding:15px 0; display:flex; justify-content:space-between; align-items:center;">
+                        ${g.name} <span class="toggle-btn" id="btn-${gk}">表示</span>
+                    </h3>
+                    <div id="det-${gk}" class="collapsible-content collapsed pt-8">
+                        ${g.description ? `<p class="text-sm leading-relaxed text-gray-700 mb-8">${g.description}</p>` : ''}
+                        ${g.units ? `<p class="text-xs font-bold mb-6">所属ユニット: ${g.units.map(u => `<span class="inline-block bg-black text-white px-2 py-1 mr-2">${u}</span>`).join('')}</p>` : ''}
+                        
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th style="width:80px">画像</th>
+                                        <th style="width:160px">名前</th>
+                                        <th style="width:230px">ポジション</th>
+                                        <th style="width:150px">レーベル</th>
+                                        <th>備考 (Remarks)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>`;
+                                
+                g.members.forEach(m => {
+                    html += `
+                        <tr ${m.isFormer ? 'style="color:#bbb"' : ''}>
+                            <td class="text-center">${m.img ? `<img src="${g.basePath + m.img}" class="member-img">` : '-'}</td>
+                            <td>${m.isLeader ? `<b>${m.name} (Leader)</b>` : m.name}</td>
+                            <td>${m.pos}</td>
+                            <td class="logo-font text-[10px]">${labels[m.label].name}</td>
+                            <td class="text-[11px]">${m.remarks || '-'}</td>
+                        </tr>`;
+                });
+                
+                html += `</tbody></table></div>`;
 
-        const dArea = document.getElementById('details-content');
-        Object.keys(allGroups).forEach(gk => { const g = allGroups[gk]; let html = `<h3 onclick="toggleSection('det-${gk}', 'btn-${gk}')" style="font-family:'Source Han Sans JP'; font-size:1.4rem; font-weight:900; cursor:pointer; border-bottom:1px solid #f0f0f0; padding:15px 0; display:flex; justify-content:space-between; align-items:center;">${g.name} <span class="toggle-btn" id="btn-${gk}">表示</span></h3><div id="det-${gk}" class="table-wrapper collapsible-content collapsed"><table style="width:100%; border-collapse:collapse; font-size:0.85rem; table-layout:fixed; min-width:800px;"><thead><tr><th style="width:80px">画像</th><th style="width:160px">名前</th><th style="width:110px">出身</th><th style="width:230px">ポジション</th><th style="width:120px">レーベル</th></tr></thead><tbody>`;
-            g.members.forEach(m => { html += `<tr ${m.isFormer ? 'style="color:#bbb"' : ''}><td class="text-center">${m.img ? `<img src="${g.basePath + m.img}" class="member-img">` : '-'}</td><td>${m.isLeader ? `<b>${m.name} (Leader)</b>` : m.name}${m.isFormer ? ' (元メンバー)' : ''}</td><td>${m.div}</td><td>${m.isLeader ? 'Leader / ' + m.pos : m.pos}</td><td class="logo-font">${labels[m.label].name}</td></tr>`; });
-            dArea.innerHTML += html + `</tbody></table></div>`;
+                // 💡 内部機密資料セクションの追加（データがある場合のみ）
+                if (g.confidential) {
+                    const conf = g.confidential;
+                    html += `
+                    <div class="confidential-box">
+                        <div class="conf-title">CONFIDENTIAL: 内部機密資料</div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <p class="text-[11px] font-bold mb-2">【年齢階層】</p>
+                                <ul class="text-[11px] space-y-1 mb-6">
+                                    ${conf.ageTeams.map(t => `<li><b>${t.name}:</b> ${t.members}</li>`).join('')}
+                                </ul>
+                                <p class="text-[11px] font-bold mb-2">【公式カップリング】</p>
+                                <p class="text-[11px] text-gray-500">${conf.couplings.join(' / ')}</p>
+                            </div>
+                            <div>
+                                <p class="text-[11px] font-bold mb-2">【ポジション比率】</p>
+                                <div class="ratio-list">
+                                    <p>VOCAL: ${conf.ratios.vocal}</p>
+                                    <p>RAP: ${conf.ratios.rap}</p>
+                                    <p>DANCE: ${conf.ratios.dance}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+                }
+
+                html += `</div></div>`;
+                dArea.innerHTML += html;
+            });
         });
-
-        const sArea = document.getElementById('special-projects-area');
-        Object.keys(specialProjects).forEach(pk => { const p = specialProjects[pk]; let html = `<h3 onclick="toggleSection('proj-${pk}', 'btn-${pk}')" style="font-family:'Source Han Sans JP'; font-size:1.4rem; font-weight:900; cursor:pointer; border-bottom:1px solid #f0f0f0; padding:15px 0; display:flex; justify-content:space-between; align-items:center;">${p.title} <span class="toggle-btn font-normal text-xs" id="btn-${pk}">表示</span></h3><div id="proj-${pk}" class="collapsible-content collapsed p-8 bg-gray-50 border border-gray-100 mb-10"><p class="text-sm font-bold mb-4">"${p.tagline}"</p><p class="text-sm mb-6">${p.description}</p>`;
-            p.teams.forEach(team => { html += `<div class="mb-6"><p class="text-xs font-bold border-b pb-1 mb-2 uppercase">${team.name}</p><p class="text-xs text-gray-600">${team.members.map(m => `${m.name} (${m.role})`).join(', ')}</p></div>`; });
-            sArea.innerHTML += html + `</div>`;
-        });
-
-        const hvBody = document.getElementById('heaventeen-body');
-        heaventeenResults.forEach(r => { hvBody.innerHTML += `<tr ${r.final === 99 ? 'style="color:#bbb"' : ''}><td>${r.name}</td><td>${r.rank0}位</td><td>${r.rank1===99?'脱落':r.rank1+'位'}</td><td>${r.rank2===99?'脱落':r.rank2+'位'}</td><td>${r.final===99?'-':r.final+'位'}</td><td>${r.result}</td></tr>`; });
-
-        function toggleSection(cId, bId) { const c = document.getElementById(cId); const b = document.getElementById(bId); c.classList.toggle('collapsed'); b.innerText = c.classList.contains('collapsed') ? "表示" : "非表示"; }
     </script>
 </body>
 </html>
