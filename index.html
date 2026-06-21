@@ -1,3 +1,4 @@
+<!-- --- START OF FILE index.html --- -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,8 +7,19 @@
     <title>Teyvat Entertainment | Official</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="group.js"></script>
-    <script src="project.js"></script>
+    
+    <!-- 💡 データファイルを順番に読み込み -->
+    <script src="data/wiki.js"></script>
+    <script src="data/group/gen1us.js"></script>
+    <script src="data/group/4ggravate.js"></script>
+    <script src="data/group/6reeze.js"></script>
+    <script src="data/group/universe.js"></script>
+    <script src="data/group/house-of-the-hearth.js"></script>
+    
+    <script src="data/project/heaventeen.js"></script>
+    <script src="data/project/nightfall-ops.js"></script>
+    <script src="data/project/the-sovereign.js"></script>
+    
     <script src="common.js"></script>
     <style>
         .main-visual-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; width: 100vw; margin-left: calc(50% - 50vw); background-color: #fff; }
@@ -22,13 +34,13 @@
 <body>
     <div id="common-header"></div>
     <main>
-        <!-- 💡 修正：Artists見出し。余白を詰め、IDを設定 -->
         <section id="artists-section" class="max-w-6xl mx-auto px-6 pt-12 pb-8">
             <h2 class="logo-font text-5xl border-b-2 border-black pb-6 bold-title">Artists</h2>
         </section>
 
         <section id="artists" class="main-visual-grid">
             <script>
+                // 全グループのバナーを生成
                 document.write(Object.keys(allGroups).map(id => {
                     const g = allGroups[id];
                     if (!g.banner) return '';

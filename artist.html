@@ -1,3 +1,4 @@
+<!-- --- START OF FILE artist.html --- -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,13 +7,20 @@
     <title>Artist | TVT Official</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="group.js"></script>
+    
+    <!-- 💡 データファイルを読み込み -->
+    <script src="data/wiki.js"></script>
+    <script src="data/group/gen1us.js"></script>
+    <script src="data/group/4ggravate.js"></script>
+    <script src="data/group/6reeze.js"></script>
+    <script src="data/group/universe.js"></script>
+    <script src="data/group/house-of-the-hearth.js"></script>
+    
     <script src="common.js"></script>
 </head>
 <body>
     <div id="common-header"></div>
     <main class="max-w-6xl mx-auto px-6 py-24">
-        <!-- 💡 修正：「Artist Name」の上に贅沢な余白を追加 ＋ パンくず削除 -->
         <div class="text-center mb-24 mt-24">
             <h1 id="group-name" class="text-6xl md:text-[8rem] logo-font leading-none uppercase bold-title">Artist</h1>
         </div>
@@ -37,12 +45,16 @@
         const params = new URLSearchParams(window.location.search);
         const groupId = params.get('id') || 'gen1us';
         const data = allGroups[groupId];
+        
         if (data) {
             document.title = `${data.name} | TVT Official`;
             document.getElementById('group-name').innerText = data.name;
             document.getElementById('group-banner').src = data.basePath + data.banner;
+            
             const memberGrid = document.getElementById('member-grid');
             memberGrid.classList.add('layout-' + (data.layout || 4));
+            
+            // 💡 修正：元メンバーはアーティストページのメイングリッドには表示しない
             data.members.filter(m => !m.isFormer).forEach((m) => {
                 const positionDisplay = m.isLeader ? 'Leader / ' + m.pos : m.pos;
                 memberGrid.innerHTML += `
@@ -55,7 +67,22 @@
                         <p class="text-[10px] text-gray-400 mt-1 tracking-widest leading-relaxed">${positionDisplay}</p>
                     </div>`;
             });
+
+            // Discography表示
+            const discoList = document.getElementById('disco-list');
+            if (data.discography) {
+                data.discography.forEach(d => {
+                    discoList.innerHTML += `
+                        <div class="mb-12">
+                            <h3 class="text-xl font-bold mb-4">${d.title} (${d.type})</h3>
+                            <div class="w-full max-w-4xl mx-auto">${d.embed}</div>
+                        </div>`;
+                });
+            } else {
+                discoList.innerHTML = `<p class="text-gray-400">COMING SOON</p>`;
+            }
         }
+
         function switchTab(tabName) {
             document.querySelectorAll('.content-section').forEach(s => { s.classList.add('hidden'); s.classList.remove('block'); });
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
