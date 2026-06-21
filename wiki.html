@@ -10,11 +10,19 @@
     
     <script src="data/wiki.js"></script>
     <script src="data/matrix.js"></script>
+    
+    <!-- 💡 アーティストデータ -->
     <script src="data/group/gen1us.js"></script>
     <script src="data/group/4ggravate.js"></script>
     <script src="data/group/6reeze.js"></script>
     <script src="data/group/universe.js"></script>
     <script src="data/group/house-of-the-hearth.js"></script>
+
+    <!-- 💡 プロジェクトデータ -->
+    <script src="data/project/heaventeen.js"></script>
+    <script src="data/project/nightfall-ops.js"></script>
+    <script src="data/project/the-sovereign.js"></script>
+    
     <script src="common.js"></script>
     
     <style>
@@ -25,7 +33,6 @@
         h2 { font-family: 'Source Han Sans JP', sans-serif; font-size: 1.4rem; font-weight: 900; border-bottom: 1px solid #eee; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding-bottom: 10px; }
         h2::before { content: ""; display: inline-block; width: 6px; height: 1.4rem; background: #000; margin-right: 12px; }
 
-        /* 目次 */
         .toc-box { background: #fafafa; border: 1px solid #f0f0f0; padding: 20px; display: inline-block; width: 100%; max-width: 400px; margin: 20px 0 40px; }
         .toc-title { font-weight: 900; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; font-size: 10px; letter-spacing: 0.1em; }
         .toc-list { list-style: none; padding: 0; margin: 0; line-height: 1.8; }
@@ -41,10 +48,6 @@
         
         .collapsible-content.collapsed { display: none; }
         .toggle-btn { font-size: 10px; color: #999; font-weight: 700; border: 1px solid #eee; padding: 3px 8px; cursor: pointer; }
-
-        /* グループ個別の見出し調整 */
-        .group-header { font-size: 1.4rem !important; font-weight: 900; cursor: pointer; border-bottom: 2px solid #000; padding: 10px 0; display: flex; justify-content: space-between; align-items: center; }
-        .group-block { margin-bottom: 3rem; }
     </style>
 </head>
 <body>
@@ -59,6 +62,7 @@
             <ul class="toc-list" id="wiki-toc">
                 <li><a href="#sec-affiliates">1. 所属アーティスト・マトリックス</a></li>
                 <li><a href="#sec-details">2. グループ詳細設定</a></li>
+                <li><a href="#sec-projects">3. プロジェクト一覧</a></li>
             </ul>
         </nav>
         
@@ -78,51 +82,51 @@
             <h2 onclick="toggleSection('details-content', 'details-btn')">グループ詳細設定 <span class="toggle-btn" id="details-btn">表示</span></h2>
             <div id="details-content" class="collapsible-content mt-6 collapsed"></div>
         </section>
+
+        <section id="sec-projects">
+            <h2 onclick="toggleSection('projects-content', 'projects-btn')">プロジェクト一覧 <span class="toggle-btn" id="projects-btn">表示</span></h2>
+            <div id="projects-content" class="collapsible-content mt-6 collapsed">
+                <!-- 💡 特設プロジェクトの自動生成エリア -->
+                <div id="special-projects-area"></div>
+
+                <!-- 💡 HEAVENTEEN結果表 -->
+                <h3 onclick="toggleSection('heaventeen-table', 'btn-heaventeen')" style="font-size:1.2rem; font-weight:900; margin-top:2rem; cursor:pointer; border-bottom:1px solid #eee; padding-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
+                    HEAVENTEEN 全記録 <span class="toggle-btn font-normal text-xs" id="btn-heaventeen">表示</span>
+                </h3>
+                <div class="table-wrapper collapsible-content collapsed" id="heaventeen-table">
+                    <table>
+                        <thead><tr><th>名前</th><th>0次</th><th>1次</th><th>2次</th><th>最終</th><th>結果</th></tr></thead>
+                        <tbody id="heaventeen-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
     </main>
     <div id="common-footer"></div>
 
     <script>
         window.addEventListener('DOMContentLoaded', () => {
             // マトリックス生成
-            const mHead = document.getElementById('matrix-header').rows[0];
-            const mBody = document.getElementById('matrix-body');
-            Object.keys(labels).forEach(k => {
-                const label = labels[k];
-                mHead.innerHTML += `<th>${label.name}<span class="matrix-ceo">CEO: ${label.ceo}</span></th>`;
-            });
-            Object.keys(allGroups).forEach(gk => {
-                const g = allGroups[gk];
-                let row = `<tr><td class="font-bold">${g.name}</td>`;
-                Object.keys(labels).forEach(lk => {
-                    const mems = g.members.filter(m => m.label === lk && !m.isFormer).map(m => m.name).join('<br>');
-                    row += `<td>${mems || '-'}</td>`;
-                });
-                mBody.innerHTML += row + '</tr>';
-            });
+            if (typeof initAffiliationMatrix === 'function') initAffiliationMatrix();
 
-            // グループ詳細 & 目次生成
+            // グループ詳細生成
             const dArea = document.getElementById('details-content');
             const tocArea = document.getElementById('wiki-toc');
-
             Object.keys(allGroups).forEach(gk => {
                 const g = allGroups[gk];
                 const hasSubUnits = g.members.some(m => m.subUnit && m.subUnit !== "-");
-
                 const tocItem = document.createElement('li');
                 tocItem.style.paddingLeft = "15px";
                 tocItem.innerHTML = `<a href="#det-anchor-${gk}">- ${g.name}</a>`;
                 tocArea.appendChild(tocItem);
-
                 const formattedDescription = g.description ? g.description.replace(/\n/g, '<br>') : '';
-
                 let html = `
-                <div class="group-block" id="det-anchor-${gk}">
-                    <h3 class="group-header" onclick="toggleSection('det-${gk}', 'btn-${gk}')">
+                <div class="mb-12" id="det-anchor-${gk}">
+                    <h3 onclick="toggleSection('det-${gk}', 'btn-${gk}')" style="font-size:1.4rem; font-weight:900; cursor:pointer; border-bottom:2px solid #000; padding:10px 0; display:flex; justify-content:space-between; align-items:center;">
                         ${g.name} <span class="toggle-btn" id="btn-${gk}">表示</span>
                     </h3>
                     <div id="det-${gk}" class="collapsible-content collapsed pt-6">
-                        <p class="text-gray-700 mb-6 leading-relaxed">${formattedDescription}</p>
-                        
+                        <p class="text-gray-700 mb-6 leading-relaxed text-[12px]">${formattedDescription}</p>
                         <div class="table-wrapper">
                             <table>
                                 <thead>
@@ -137,27 +141,38 @@
                                     </tr>
                                 </thead>
                                 <tbody>`;
-                                
                 g.members.forEach(m => {
                     const positionDisplay = m.isLeader ? `Leader / ${m.pos}` : m.pos;
-                    const memberImgHtml = (m.isFormer || !m.img) 
-                        ? '<span class="text-gray-300">-</span>' 
-                        : `<img src="${g.basePath + m.img}" class="member-img" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMG'">`;
-
-                    html += `
-                        <tr ${m.isFormer ? 'style="color:#bbb"' : ''}>
-                            <td class="text-center">${memberImgHtml}</td>
-                            <td class="font-bold">${m.name}</td>
-                            <td>${m.div}</td>
-                            <td>${positionDisplay}</td>
-                            ${hasSubUnits ? `<td>${m.subUnit || '-'}</td>` : ''}
-                            <td class="logo-font" style="font-size:10px">${labels[m.label].name}</td>
-                            <td>${m.remarks || '-'}</td>
-                        </tr>`;
+                    const memberImgHtml = (m.isFormer || !m.img) ? '<span class="text-gray-300">-</span>' : `<img src="${g.basePath + m.img}" class="member-img" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMG'">`;
+                    html += `<tr><td class="text-center">${memberImgHtml}</td><td class="font-bold">${m.name}</td><td>${m.div}</td><td>${positionDisplay}</td>${hasSubUnits ? `<td>${m.subUnit || '-'}</td>` : ''}<td class="logo-font" style="font-size:10px">${labels[m.label].name}</td><td>${m.remarks || '-'}</td></tr>`;
                 });
-                
                 html += `</tbody></table></div></div></div>`;
                 dArea.innerHTML += html;
+            });
+
+            // プロジェクト生成
+            const sArea = document.getElementById('special-projects-area');
+            Object.keys(specialProjects).forEach(pk => {
+                if (pk === 'heaventeen') return; // HEAVENTEENは別枠
+                const p = specialProjects[pk];
+                let html = `
+                <div class="mb-10">
+                    <h3 onclick="toggleSection('proj-${pk}', 'btn-${pk}')" style="font-size:1.2rem; font-weight:900; cursor:pointer; border-bottom:1px solid #f0f0f0; padding:10px 0; display:flex; justify-content:space-between; align-items:center;">
+                        ${p.title} <span class="toggle-btn font-normal text-xs" id="btn-${pk}">表示</span>
+                    </h3>
+                    <div id="proj-${pk}" class="collapsible-content collapsed p-6 bg-gray-50 border border-gray-100 mt-4">
+                        <p class="text-xs font-bold mb-3">"${p.tagline}"</p>
+                        <p class="text-[12px] mb-6 leading-relaxed">${p.description}</p>`;
+                p.teams.forEach(team => {
+                    html += `<div class="mb-4"><p class="text-[10px] font-bold border-b pb-1 mb-2 uppercase">${team.name}</p><p class="text-[11px] text-gray-600">${team.members.map(m => `${m.name} (${m.role})`).join(', ')}</p></div>`;
+                });
+                sArea.innerHTML += html + `</div></div>`;
+            });
+
+            // HEAVENTEENランキング生成
+            const hvBody = document.getElementById('heaventeen-body');
+            heaventeenResults.forEach(r => {
+                hvBody.innerHTML += `<tr ${r.final === 99 ? 'style="color:#bbb"' : ''}><td>${r.name}</td><td>${r.rank0}位</td><td>${r.rank1===99?'脱落':r.rank1+'位'}</td><td>${r.rank2===99?'脱落':r.rank2+'位'}</td><td>${r.final===99?'-':r.final+'位'}</td><td>${r.result}</td></tr>`;
             });
         });
 

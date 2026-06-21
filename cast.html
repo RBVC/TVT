@@ -4,8 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-    <script src="group.js"></script>
-    <script src="project.js"></script>
+    
+    <!-- 💡 プロジェクトデータを読み込み -->
+    <script src="data/wiki.js"></script>
+    <script src="data/project/heaventeen.js"></script>
+    <script src="data/project/nightfall-ops.js"></script>
+    <script src="data/project/the-sovereign.js"></script>
+
     <style>
         body { background: #000; color: #fff; padding: 0; margin: 0; overflow-y: auto; }
         .cast-layout { display: flex; min-height: 100vh; align-items: center; padding: 60px; gap: 40px; }
@@ -31,20 +36,22 @@
         const tidx = params.get('tidx');
         const midx = params.get('midx');
         
-        const project = specialProjects[pid];
-        const m = project.teams[tidx].members[midx];
-        // 💡 修正：basePathを適用
-        const fullImgPath = project.basePath + m.img;
+        // 💡 グローバルな specialProjects からデータを取得
+        const project = window.specialProjects[pid];
+        if (project) {
+            const m = project.teams[tidx].members[midx];
+            const fullImgPath = project.basePath + m.img;
 
-        document.getElementById('cast-detail').innerHTML = `
-            <img src="${fullImgPath}" class="cast-img" onerror="this.src='https://placehold.jp/400x400.png?text=${m.name}'">
-            <div class="cast-info">
-                <div class="cast-role">${m.role}</div>
-                <h2 class="cast-name logo-font">${m.name}</h2>
-                <p class="cast-desc">${m.desc}</p>
-                ${m.pos ? `<p class="cast-pos uppercase">${m.pos}</p>` : ''}
-            </div>
-        `;
+            document.getElementById('cast-detail').innerHTML = `
+                <img src="${fullImgPath}" class="cast-img" onerror="this.src='https://placehold.jp/400x400.png?text=${m.name}'">
+                <div class="cast-info">
+                    <div class="cast-role">${m.role}</div>
+                    <h2 class="cast-name logo-font">${m.name}</h2>
+                    <p class="cast-desc">${m.desc}</p>
+                    ${m.pos ? `<p class="cast-pos uppercase">${m.pos}</p>` : ''}
+                </div>
+            `;
+        }
     </script>
 </body>
 </html>
