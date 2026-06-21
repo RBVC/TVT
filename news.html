@@ -1,3 +1,4 @@
+<!-- --- START OF FILE news.html --- -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -35,10 +36,8 @@
         </div>
     </main>
 
-    <!-- 🆕 改良版モーダル -->
     <div id="cast-modal" class="modal-overlay" onclick="closeCast()">
         <div class="modal-container" onclick="event.stopPropagation()">
-            <!-- 💡 ❌ボタンをコンテナ内に配置 -->
             <span class="modal-close" onclick="closeCast()">&times;</span>
             <iframe id="cast-frame" class="modal-iframe" src=""></iframe>
         </div>
@@ -53,13 +52,25 @@
             document.getElementById('p-title').innerText = project.title;
             document.getElementById('p-visual').src = project.mainVisual;
             const container = document.getElementById('teams-container');
+            
             project.teams.forEach((team, tIdx) => {
-                let memberHtml = team.members.map((m, mIdx) => `
+                let memberHtml = team.members.map((m, mIdx) => {
+                    // 💡 修正：basePathを考慮した画像パス生成
+                    const imagePath = project.basePath + m.img;
+                    return `
                     <div class="member-card-news" onclick="openCast('${projectId}', ${tIdx}, ${mIdx})">
-                        <div class="img-wrap"><img src="${m.img}" onerror="this.src='https://placehold.jp/400x400.png?text=${m.name}'"></div>
+                        <div class="img-wrap"><img src="${imagePath}" onerror="this.src='https://placehold.jp/400x400.png?text=${m.name}'"></div>
                         <p class="name-label">${m.name}</p>
-                    </div>`).join('');
-                container.innerHTML += `<div class="team-section"><div class="text-left"><h2 class="logo-font text-3xl font-bold uppercase border-b border-zinc-800 pb-4 mb-10">${team.name}</h2></div><div class="member-grid-news">${memberHtml}</div></div>`;
+                    </div>`;
+                }).join('');
+                
+                container.innerHTML += `
+                    <div class="team-section">
+                        <div class="text-left">
+                            <h2 class="logo-font text-3xl font-bold uppercase border-b border-zinc-800 pb-4 mb-10">${team.name}</h2>
+                        </div>
+                        <div class="member-grid-news">${memberHtml}</div>
+                    </div>`;
             });
         }
 

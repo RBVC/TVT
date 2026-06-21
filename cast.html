@@ -1,3 +1,4 @@
+<!-- --- START OF FILE cast.html --- -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -6,23 +7,14 @@
     <script src="group.js"></script>
     <script src="project.js"></script>
     <style>
-        /* モーダル内コンテンツ専用調整 */
         body { background: #000; color: #fff; padding: 0; margin: 0; overflow-y: auto; }
-        
-        .cast-layout { 
-            display: flex; 
-            min-height: 100vh; 
-            align-items: center; 
-            padding: 60px; /* 💡❌ボタンを避けるためにパディングを増量 */
-            gap: 40px; 
-        }
+        .cast-layout { display: flex; min-height: 100vh; align-items: center; padding: 60px; gap: 40px; }
         .cast-img { width: 40%; aspect-ratio: 1/1; object-fit: cover; border: 1px solid #333; flex-shrink: 0; }
         .cast-info { flex: 1; text-align: left; }
         .cast-role { font-size: 1rem; color: #fff; background: #333; padding: 4px 15px; display: inline-block; margin-bottom: 20px; font-weight: 700; border: 1px solid #444; }
         .cast-name { font-size: 3.5rem; font-weight: 900; margin-bottom: 20px; line-height: 1; }
         .cast-desc { font-size: 1rem; color: #ccc; line-height: 1.8; margin-bottom: 30px; max-width: 500px; }
         .cast-pos { font-size: 0.8rem; color: #666; font-weight: 800; border-top: 1px solid #222; padding-top: 15px; letter-spacing: 0.1em; }
-
         @media (max-width: 768px) {
             .cast-layout { flex-direction: column; padding: 40px 20px; align-items: flex-start; }
             .cast-img { width: 100%; max-width: 300px; margin: 0 auto; }
@@ -38,10 +30,14 @@
         const pid = params.get('pid');
         const tidx = params.get('tidx');
         const midx = params.get('midx');
-        const m = specialProjects[pid].teams[tidx].members[midx];
+        
+        const project = specialProjects[pid];
+        const m = project.teams[tidx].members[midx];
+        // 💡 修正：basePathを適用
+        const fullImgPath = project.basePath + m.img;
 
         document.getElementById('cast-detail').innerHTML = `
-            <img src="${m.img}" class="cast-img" onerror="this.src='https://placehold.jp/400x400.png?text=${m.name}'">
+            <img src="${fullImgPath}" class="cast-img" onerror="this.src='https://placehold.jp/400x400.png?text=${m.name}'">
             <div class="cast-info">
                 <div class="cast-role">${m.role}</div>
                 <h2 class="cast-name logo-font">${m.name}</h2>
