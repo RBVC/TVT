@@ -10,7 +10,11 @@
     
     <script src="data/wiki.js"></script>
     <script src="data/matrix.js"></script>
+    
+    <!-- 💡 所属グループのJSを順番に読み込み -->
     <script src="data/group/gen1us.js"></script>
+    <script src="data/group/4ggravate.js"></script>
+    
     <script src="common.js"></script>
     
     <style>
@@ -115,8 +119,10 @@
                     const positionDisplay = m.isLeader ? `Leader / ${m.pos}` : m.pos;
                     html += `
                         <tr ${m.isFormer ? 'style="color:#bbb"' : ''}>
-                            <td class="text-center"><img src="${g.basePath + m.img}" class="member-img" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMG'"></td>
-                            <td class="font-bold">${m.name}</td>
+                            <td class="text-center">
+                                <img src="${g.basePath + (m.img || '')}" class="member-img" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMG'">
+                            </td>
+                            <td class="font-bold">${m.name}${m.isFormer ? ' <span class="text-[10px] font-normal">(Former)</span>' : ''}</td>
                             <td>${positionDisplay}</td>
                             <td class="font-bold">${m.subUnit || '-'}</td>
                             <td class="logo-font" style="font-size:10px">${labels[m.label].name}</td>
@@ -168,7 +174,12 @@
             const b = document.getElementById(bId);
             if (!c || !b) return;
             c.classList.toggle('collapsed');
-            b.innerText = c.classList.contains('collapsed') ? (b.classList.contains('btn-unlock') ? "閲覧許可" : "表示") : "非表示";
+            const isUnlockBtn = b.classList.contains('btn-unlock');
+            if (isUnlockBtn) {
+                b.innerText = c.classList.contains('collapsed') ? "閲覧許可" : "非表示";
+            } else {
+                b.innerText = c.classList.contains('collapsed') ? "表示" : "非表示";
+            }
         }
     </script>
 </body>
