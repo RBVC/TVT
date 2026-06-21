@@ -7,7 +7,6 @@
     <title>Teyvat Entertainment | Official</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script src="data/wiki.js"></script>
     <script src="data/group/gen1us.js"></script>
     <script src="data/group/4ggravate.js"></script>
@@ -24,18 +23,18 @@
         .artist-box { position: relative; width: 100%; aspect-ratio: 3 / 1; overflow: hidden; background-color: #000; }
         .artist-box img { width: 100%; height: 100%; object-fit: cover; transition: 1.2s; }
         .artist-box:hover img { transform: scale(1.05); }
-        /* 🆕 ホバー文字デザイン修正：小さく、太く */
         .artist-hover { position: absolute; inset: 0; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.5s; z-index: 10; }
         .artist-box:hover .artist-hover { opacity: 1; }
-        .artist-name-hover { font-weight: 900; font-size: 1.5rem; letter-spacing: 0.3em; color: #fff; text-transform: uppercase; }
-        @media (max-width: 768px) { .main-visual-grid { grid-template-columns: 1fr; } .artist-name-hover { font-size: 1.2rem; } }
+        /* 💡 修正：さらに太く（900）、少し小さく */
+        .artist-name-hover { font-weight: 900; font-size: 1.4rem; letter-spacing: 0.4em; color: #fff; text-transform: uppercase; }
+        @media (max-width: 768px) { .main-visual-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
     <div id="common-header"></div>
     <main>
-        <!-- 💡 修正：余白を mt-6 mb-8 まで圧縮 -->
-        <div class="flex justify-center space-x-12 mt-6 mb-8 border-b border-gray-100 max-w-6xl mx-auto">
+        <!-- 💡 修正：余白を mt-4 mb-4 まで極限圧縮 -->
+        <div class="flex justify-center space-x-12 mt-4 mb-4 border-b border-gray-100 max-w-6xl mx-auto">
             <button onclick="switchMainTab('artists')" id="btn-artists" class="tab-btn active">Artists</button>
             <button onclick="switchMainTab('news')" id="btn-news" class="tab-btn">Latest News</button>
         </div>
@@ -59,18 +58,13 @@
         </div>
     </main>
     <div id="common-footer"></div>
-
     <script>
         function switchMainTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(c => { c.classList.add('hidden'); c.classList.remove('block'); });
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             const targetContent = document.getElementById('tab-' + tabName);
             const targetBtn = document.getElementById('btn-' + tabName);
-            if (targetContent && targetBtn) {
-                targetContent.classList.remove('hidden');
-                targetContent.classList.add('block');
-                targetBtn.classList.add('active');
-            }
+            if (targetContent && targetBtn) { targetContent.classList.remove('hidden'); targetContent.classList.add('block'); targetBtn.classList.add('active'); }
         }
         window.addEventListener('load', () => {
             const params = new URLSearchParams(window.location.search);

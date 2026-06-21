@@ -7,36 +7,34 @@
     <title>Artist | TVT Official</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- 💡 データファイルを読み込み -->
     <script src="data/wiki.js"></script>
     <script src="data/group/gen1us.js"></script>
     <script src="data/group/4ggravate.js"></script>
     <script src="data/group/6reeze.js"></script>
     <script src="data/group/universe.js"></script>
     <script src="data/group/house-of-the-hearth.js"></script>
-    
     <script src="common.js"></script>
 </head>
 <body>
     <div id="common-header"></div>
-    <main class="max-w-6xl mx-auto px-6 py-24">
-        <div class="text-center mb-24 mt-24">
-            <h1 id="group-name" class="text-6xl md:text-[8rem] logo-font leading-none uppercase bold-title">Artist</h1>
+    <main class="max-w-6xl mx-auto px-6 py-20">
+        <!-- 💡 修正：見出しサイズを縮小（text-4xl〜5xl）し、余白を調整 -->
+        <div class="text-center mb-16 mt-16">
+            <h1 id="group-name" class="text-4xl md:text-5xl logo-font leading-none uppercase bold-title tracking-widest">Artist</h1>
         </div>
-        <div class="flex justify-center space-x-12 mb-20 border-b border-gray-100">
+        <div class="flex justify-center space-x-12 mb-16 border-b border-gray-100">
             <button onclick="switchTab('profile')" id="btn-profile" class="tab-btn active">Profile</button>
             <button onclick="switchTab('disco')" id="btn-disco" class="tab-btn">Discography</button>
         </div>
         <div id="profile" class="content-section block">
-            <div class="w-full mb-32 overflow-hidden bg-gray-50 border border-gray-100 shadow-sm" style="aspect-ratio: 3 / 1;">
+            <div class="w-full mb-24 overflow-hidden bg-gray-50 border border-gray-100 shadow-sm" style="aspect-ratio: 3 / 1;">
                 <img id="group-banner" src="" class="w-full h-full object-cover">
             </div>
-            <h2 class="text-3xl logo-font mb-16 uppercase border-l-8 border-black pl-6 bold-title">Member</h2>
+            <h2 class="text-2xl logo-font mb-12 uppercase border-l-8 border-black pl-6 bold-title">Member</h2>
             <div id="member-grid" class="member-grid-container"></div>
         </div>
         <div id="disco" class="content-section hidden">
-            <h2 class="text-3xl logo-font mb-16 uppercase border-l-8 border-black pl-6 bold-title">Discography</h2>
+            <h2 class="text-2xl logo-font mb-12 uppercase border-l-8 border-black pl-6 bold-title">Discography</h2>
             <div id="disco-list" class="grid grid-cols-1 gap-12 text-center"></div>
         </div>
     </main>
@@ -45,16 +43,12 @@
         const params = new URLSearchParams(window.location.search);
         const groupId = params.get('id') || 'gen1us';
         const data = allGroups[groupId];
-        
         if (data) {
             document.title = `${data.name} | TVT Official`;
             document.getElementById('group-name').innerText = data.name;
             document.getElementById('group-banner').src = data.basePath + data.banner;
-            
             const memberGrid = document.getElementById('member-grid');
             memberGrid.classList.add('layout-' + (data.layout || 4));
-            
-            // 💡 修正：元メンバーはアーティストページのメイングリッドには表示しない
             data.members.filter(m => !m.isFormer).forEach((m) => {
                 const positionDisplay = m.isLeader ? 'Leader / ' + m.pos : m.pos;
                 memberGrid.innerHTML += `
@@ -62,27 +56,20 @@
                         <div class="aspect-square overflow-hidden bg-gray-50 border border-gray-100 mb-6">
                             <img src="${data.basePath + m.img}" class="w-full h-full object-cover" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMAGE'">
                         </div>
-                        <p class="logo-font text-2xl leading-none bold-title">${m.name}</p>
-                        <p class="text-[12px] text-black font-black mt-4 tracking-widest">${m.div}</p>
+                        <p class="logo-font text-xl leading-none bold-title">${m.name}</p>
+                        <p class="text-[11px] text-black font-black mt-4 tracking-widest">${m.div}</p>
                         <p class="text-[10px] text-gray-400 mt-1 tracking-widest leading-relaxed">${positionDisplay}</p>
                     </div>`;
             });
-
-            // Discography表示
             const discoList = document.getElementById('disco-list');
             if (data.discography) {
                 data.discography.forEach(d => {
-                    discoList.innerHTML += `
-                        <div class="mb-12">
-                            <h3 class="text-xl font-bold mb-4">${d.title} (${d.type})</h3>
-                            <div class="w-full max-w-4xl mx-auto">${d.embed}</div>
-                        </div>`;
+                    discoList.innerHTML += `<div class="mb-12"><h3 class="text-xl font-bold mb-4">${d.title} (${d.type})</h3><div class="w-full max-w-4xl mx-auto">${d.embed}</div></div>`;
                 });
             } else {
                 discoList.innerHTML = `<p class="text-gray-400">COMING SOON</p>`;
             }
         }
-
         function switchTab(tabName) {
             document.querySelectorAll('.content-section').forEach(s => { s.classList.add('hidden'); s.classList.remove('block'); });
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
