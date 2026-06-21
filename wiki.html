@@ -11,7 +11,6 @@
     <script src="data/wiki.js"></script>
     <script src="data/matrix.js"></script>
     
-    <!-- 💡 所属グループのJSを順番に読み込み -->
     <script src="data/group/gen1us.js"></script>
     <script src="data/group/4ggravate.js"></script>
     
@@ -93,6 +92,10 @@
             const dArea = document.getElementById('details-content');
             Object.keys(allGroups).forEach(gk => {
                 const g = allGroups[gk];
+                
+                // 💡 ユニット情報があるかチェック（所属ユニット列を表示するかどうかの判定）
+                const hasSubUnits = g.members.some(m => m.subUnit && m.subUnit !== "-");
+
                 let html = `
                 <div class="mb-32">
                     <h3 onclick="toggleSection('det-${gk}', 'btn-${gk}')" style="font-size:2.2rem; font-weight:900; cursor:pointer; border-bottom:3px solid #000; padding:15px 0; display:flex; justify-content:space-between; align-items:center;">
@@ -108,7 +111,7 @@
                                         <th style="width:100px">画像</th>
                                         <th style="width:160px">名前</th>
                                         <th style="width:230px">ポジション</th>
-                                        <th style="width:160px">所属ユニット</th>
+                                        ${hasSubUnits ? '<th style="width:160px">所属ユニット</th>' : ''}
                                         <th style="width:150px">レーベル</th>
                                         <th>備考</th>
                                     </tr>
@@ -122,9 +125,9 @@
                             <td class="text-center">
                                 <img src="${g.basePath + (m.img || '')}" class="member-img" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMG'">
                             </td>
-                            <td class="font-bold">${m.name}${m.isFormer ? ' <span class="text-[10px] font-normal">(Former)</span>' : ''}</td>
+                            <td class="font-bold">${m.name}</td>
                             <td>${positionDisplay}</td>
-                            <td class="font-bold">${m.subUnit || '-'}</td>
+                            ${hasSubUnits ? `<td class="font-bold">${m.subUnit || '-'}</td>` : ''}
                             <td class="logo-font" style="font-size:10px">${labels[m.label].name}</td>
                             <td style="font-size:11px">${m.remarks || '-'}</td>
                         </tr>`;
