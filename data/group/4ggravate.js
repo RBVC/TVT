@@ -12,8 +12,7 @@ window.allGroups["4ggravate"] = {
         { name: "Cyno", div: "Sumeru", pos: "Main Rapper", label: "AKASHA", img: "cyber-cyno.jpg", remarks: "" },
         { name: "Kaveh", div: "Sumeru", pos: "Lead Dancer / Lead Vocal", label: "AKASHA", img: "cyber-kaveh.jpg", remarks: "『HEAVENTEEN』候補生" },
         { name: "Tighnari", div: "Sumeru", pos: "Main Vocal", label: "AKASHA", isLeader: true, img: "cyber-tighnari.jpg", remarks: "" },
-        { name: "Aether", div: "???", pos: "Main Vocal / Lead Dancer", label: "HQ", isFormer: true, remarks: "元メンバー（現 6reeze）" },
-        { name: "Scaramouche", div: "Inazuma", pos: "Main Dancer / Sub Vocal", label: "AKASHA", isFormer: true, remarks: "元メンバー（現 6reeze）" }
+        { name: "Aether", div: "???", pos: "Main Vocal / Lead Dancer", label: "HQ", isFormer: true, img: "", remarks: "元メンバー（現 6reeze）" },
+        { name: "Scaramouche", div: "Inazuma", pos: "Main Dancer / Sub Vocal", label: "AKASHA", isFormer: true, img: "", remarks: "元メンバー（現 6reeze）" }
     ]
-    // 💡 confidential セクションを削除しました
 };
