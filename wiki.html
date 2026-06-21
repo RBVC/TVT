@@ -10,34 +10,43 @@
     
     <script src="data/wiki.js"></script>
     <script src="data/matrix.js"></script>
-    
-    <!-- 💡 アーティストデータ -->
     <script src="data/group/gen1us.js"></script>
     <script src="data/group/4ggravate.js"></script>
     <script src="data/group/6reeze.js"></script>
     <script src="data/group/universe.js"></script>
     <script src="data/group/house-of-the-hearth.js"></script>
-
-    <!-- 💡 プロジェクトデータ -->
     <script src="data/project/heaventeen.js"></script>
     <script src="data/project/nightfall-ops.js"></script>
     <script src="data/project/the-sovereign.js"></script>
-    
     <script src="common.js"></script>
     
     <style>
         body { background-color: #ffffff; color: #000000; font-size: 13px; }
-        .wiki-container { max-width: 1100px; margin: 0 auto; background: white; padding: 40px 40px; }
-        h1 { font-family: 'Source Han Sans JP', sans-serif; font-size: 2.2rem; font-weight: 900; border-bottom: 2px solid #000; margin-bottom: 2rem; padding-bottom: 15px; }
+        /* 💡 ヘッダー(80px)に被らないようパディングを調整 */
+        .wiki-container { max-width: 1100px; margin: 0 auto; background: white; padding: 120px 40px 60px; }
+        
+        h1 { font-family: 'Source Han Sans JP', sans-serif; font-size: 2rem; font-weight: 900; border-bottom: 2px solid #000; margin-bottom: 2rem; padding-bottom: 15px; }
         section { margin-bottom: 4rem; }
-        h2 { font-family: 'Source Han Sans JP', sans-serif; font-size: 1.4rem; font-weight: 900; border-bottom: 1px solid #eee; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding-bottom: 10px; }
-        h2::before { content: ""; display: inline-block; width: 6px; height: 1.4rem; background: #000; margin-right: 12px; }
+        
+        /* 大見出し：マトリックス、グループ詳細設定、プロジェクト一覧 */
+        h2 { font-family: 'Source Han Sans JP', sans-serif; font-size: 1.2rem; font-weight: 900; border-bottom: 1px solid #eee; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding-bottom: 10px; }
+        h2::before { content: ""; display: inline-block; width: 6px; height: 1.2rem; background: #000; margin-right: 12px; }
 
-        .toc-box { background: #fafafa; border: 1px solid #f0f0f0; padding: 20px; display: inline-block; width: 100%; max-width: 400px; margin: 20px 0 40px; }
-        .toc-title { font-weight: 900; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; font-size: 10px; letter-spacing: 0.1em; }
-        .toc-list { list-style: none; padding: 0; margin: 0; line-height: 1.8; }
-        .toc-list a { color: #666; text-decoration: none; font-size: 12px; }
+        /* 小見出し：各グループ名・各プロジェクト名（デザインを統一） */
+        .sub-header { font-size: 1.1rem !important; font-weight: 900; cursor: pointer; border-bottom: 1px solid #f0f0f0; padding: 12px 0; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .sub-header:hover { color: #666; }
 
+        /* 目次ボックス */
+        .toc-box { background: #fafafa; border: 1px solid #f0f0f0; padding: 25px; display: inline-block; width: 100%; max-width: 450px; margin-bottom: 60px; }
+        .toc-title { font-weight: 900; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 8px; font-size: 11px; letter-spacing: 0.1em; }
+        .toc-list { list-style: none; padding: 0; margin: 0; line-height: 2; }
+        .toc-list li { margin-bottom: 5px; }
+        .toc-list a { color: #000; text-decoration: none; font-weight: 700; font-size: 12px; }
+        .toc-sub-list { list-style: none; padding-left: 20px; margin-top: 5px; }
+        .toc-sub-list a { color: #888; font-weight: 400; font-size: 11px; }
+        .toc-sub-list a:hover { color: #000; }
+
+        /* テーブル設定 */
         .table-wrapper { overflow-x: auto; margin-bottom: 1.5rem; border: 1px solid #f0f0f0; }
         table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 950px; table-layout: fixed; }
         th, td { border: 1px solid #f0f0f0; padding: 10px 8px; text-align: left; vertical-align: middle; line-height: 1.4; word-break: break-word; }
@@ -47,28 +56,35 @@
         .member-img { width: 45px; height: 45px; object-fit: cover; border: 1px solid #eee; display: block; margin: 0 auto; }
         
         .collapsible-content.collapsed { display: none; }
-        .toggle-btn { font-size: 10px; color: #999; font-weight: 700; border: 1px solid #eee; padding: 3px 8px; cursor: pointer; }
+        .toggle-btn { font-size: 9px; color: #bbb; font-weight: 700; border: 1px solid #eee; padding: 2px 6px; cursor: pointer; }
     </style>
 </head>
 <body>
     <div id="common-header"></div>
     <main class="wiki-container">
-        <div style="padding-top: 40px; margin-bottom: 30px;">
-            <h1 class="bold-title">Teyvat Entertainment 内部機密資料</h1>
-        </div>
+        <h1 class="bold-title">Teyvat Entertainment 内部機密資料</h1>
 
+        <!-- 💡 目次：親子関係を修正 -->
         <nav class="toc-box">
             <div class="toc-title">CONTENTS</div>
-            <ul class="toc-list" id="wiki-toc">
-                <li><a href="#sec-affiliates">1. 所属アーティスト・マトリックス</a></li>
-                <li><a href="#sec-details">2. グループ詳細設定</a></li>
-                <li><a href="#sec-projects">3. プロジェクト一覧</a></li>
+            <ul class="toc-list">
+                <li>
+                    <a href="#sec-affiliates">1. 所属アーティスト・マトリックス</a>
+                </li>
+                <li>
+                    <a href="#sec-details">2. グループ詳細設定</a>
+                    <ul class="toc-sub-list" id="toc-groups"></ul>
+                </li>
+                <li>
+                    <a href="#sec-projects">3. プロジェクト一覧</a>
+                    <ul class="toc-sub-list" id="toc-projects"></ul>
+                </li>
             </ul>
         </nav>
         
         <section id="sec-affiliates">
             <h2 onclick="toggleSection('matrix-content', 'matrix-btn')">所属アーティスト・マトリックス <span class="toggle-btn" id="matrix-btn">表示</span></h2>
-            <div class="collapsible-content mt-6 collapsed" id="matrix-content">
+            <div class="collapsible-content collapsed mt-6" id="matrix-content">
                 <div class="table-wrapper">
                     <table class="matrix-table">
                         <thead id="matrix-header"><tr><th>グループ名</th></tr></thead>
@@ -80,18 +96,16 @@
 
         <section id="sec-details">
             <h2 onclick="toggleSection('details-content', 'details-btn')">グループ詳細設定 <span class="toggle-btn" id="details-btn">表示</span></h2>
-            <div id="details-content" class="collapsible-content mt-6 collapsed"></div>
+            <div id="details-content" class="collapsible-content collapsed mt-6"></div>
         </section>
 
         <section id="sec-projects">
             <h2 onclick="toggleSection('projects-content', 'projects-btn')">プロジェクト一覧 <span class="toggle-btn" id="projects-btn">表示</span></h2>
-            <div id="projects-content" class="collapsible-content mt-6 collapsed">
-                <!-- 💡 特設プロジェクトの自動生成エリア -->
+            <div id="projects-content" class="collapsible-content collapsed mt-6">
                 <div id="special-projects-area"></div>
-
-                <!-- 💡 HEAVENTEEN結果表 -->
-                <h3 onclick="toggleSection('heaventeen-table', 'btn-heaventeen')" style="font-size:1.2rem; font-weight:900; margin-top:2rem; cursor:pointer; border-bottom:1px solid #eee; padding-bottom:10px; display:flex; justify-content:space-between; align-items:center;">
-                    HEAVENTEEN 全記録 <span class="toggle-btn font-normal text-xs" id="btn-heaventeen">表示</span>
+                
+                <h3 onclick="toggleSection('heaventeen-table', 'btn-heaventeen')" class="sub-header" style="margin-top:40px;">
+                    HEAVENTEEN 全記録 <span class="toggle-btn" id="btn-heaventeen">表示</span>
                 </h3>
                 <div class="table-wrapper collapsible-content collapsed" id="heaventeen-table">
                     <table>
@@ -109,24 +123,27 @@
             // マトリックス生成
             if (typeof initAffiliationMatrix === 'function') initAffiliationMatrix();
 
-            // グループ詳細生成
             const dArea = document.getElementById('details-content');
-            const tocArea = document.getElementById('wiki-toc');
+            const sArea = document.getElementById('special-projects-area');
+            const tocGroups = document.getElementById('toc-groups');
+            const tocProjects = document.getElementById('toc-projects');
+
+            // 1. グループ詳細 & 目次(グループ)生成
             Object.keys(allGroups).forEach(gk => {
                 const g = allGroups[gk];
                 const hasSubUnits = g.members.some(m => m.subUnit && m.subUnit !== "-");
-                const tocItem = document.createElement('li');
-                tocItem.style.paddingLeft = "15px";
-                tocItem.innerHTML = `<a href="#det-anchor-${gk}">- ${g.name}</a>`;
-                tocArea.appendChild(tocItem);
+
+                // 目次(グループ)
+                tocGroups.innerHTML += `<li><a href="#det-anchor-${gk}">- ${g.name}</a></li>`;
+
                 const formattedDescription = g.description ? g.description.replace(/\n/g, '<br>') : '';
                 let html = `
-                <div class="mb-12" id="det-anchor-${gk}">
-                    <h3 onclick="toggleSection('det-${gk}', 'btn-${gk}')" style="font-size:1.4rem; font-weight:900; cursor:pointer; border-bottom:2px solid #000; padding:10px 0; display:flex; justify-content:space-between; align-items:center;">
+                <div class="mb-10" id="det-anchor-${gk}">
+                    <h3 class="sub-header" onclick="toggleSection('det-${gk}', 'btn-${gk}')">
                         ${g.name} <span class="toggle-btn" id="btn-${gk}">表示</span>
                     </h3>
-                    <div id="det-${gk}" class="collapsible-content collapsed pt-6">
-                        <p class="text-gray-700 mb-6 leading-relaxed text-[12px]">${formattedDescription}</p>
+                    <div id="det-${gk}" class="collapsible-content collapsed pt-4">
+                        <p class="text-gray-700 mb-8 leading-relaxed text-[12px]">${formattedDescription}</p>
                         <div class="table-wrapper">
                             <table>
                                 <thead>
@@ -150,17 +167,19 @@
                 dArea.innerHTML += html;
             });
 
-            // プロジェクト生成
-            const sArea = document.getElementById('special-projects-area');
+            // 2. プロジェクト詳細 & 目次(プロジェクト)生成
             Object.keys(specialProjects).forEach(pk => {
-                if (pk === 'heaventeen') return; // HEAVENTEENは別枠
                 const p = specialProjects[pk];
+                // 目次(プロジェクト)
+                tocProjects.innerHTML += `<li><a href="#proj-anchor-${pk}">- ${p.title}</a></li>`;
+                if (pk === 'heaventeen') return; // HEAVENTEENは下部に固定
+
                 let html = `
-                <div class="mb-10">
-                    <h3 onclick="toggleSection('proj-${pk}', 'btn-${pk}')" style="font-size:1.2rem; font-weight:900; cursor:pointer; border-bottom:1px solid #f0f0f0; padding:10px 0; display:flex; justify-content:space-between; align-items:center;">
-                        ${p.title} <span class="toggle-btn font-normal text-xs" id="btn-${pk}">表示</span>
+                <div class="mb-4" id="proj-anchor-${pk}">
+                    <h3 onclick="toggleSection('proj-${pk}', 'btn-${pk}')" class="sub-header">
+                        ${p.title} <span class="toggle-btn" id="btn-${pk}">表示</span>
                     </h3>
-                    <div id="proj-${pk}" class="collapsible-content collapsed p-6 bg-gray-50 border border-gray-100 mt-4">
+                    <div id="proj-${pk}" class="collapsible-content collapsed p-6 bg-gray-50 border border-gray-100 mt-2 mb-8">
                         <p class="text-xs font-bold mb-3">"${p.tagline}"</p>
                         <p class="text-[12px] mb-6 leading-relaxed">${p.description}</p>`;
                 p.teams.forEach(team => {
@@ -169,7 +188,7 @@
                 sArea.innerHTML += html + `</div></div>`;
             });
 
-            // HEAVENTEENランキング生成
+            // HEAVENTEENランキング
             const hvBody = document.getElementById('heaventeen-body');
             heaventeenResults.forEach(r => {
                 hvBody.innerHTML += `<tr ${r.final === 99 ? 'style="color:#bbb"' : ''}><td>${r.name}</td><td>${r.rank0}位</td><td>${r.rank1===99?'脱落':r.rank1+'位'}</td><td>${r.rank2===99?'脱落':r.rank2+'位'}</td><td>${r.final===99?'-':r.final+'位'}</td><td>${r.result}</td></tr>`;
