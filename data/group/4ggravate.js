@@ -6,7 +6,7 @@ window.allGroups["4ggravate"] = {
     layout: 4,
     basePath: "images/group/4ggravate/",
     banner: "4ggravate.jpg",
-    description: "Teyvat Entertainment傘下のAkasha Labに所属する4人組男性アイドルグループ。グループ結成の経緯は、レーベルCEOであるナヒーダが、番組『HEAVENTEEN』候補生であったアルハイゼンとカーヴェ、そして新たにレーベルへ加入したセノとティナリを一堂に集めたことに端を発する。この大胆な人材確保は、業界内で俗に「ナヒーダ引き抜き事件」と称された。デビュー準備期間中には、パフォーマンス留学中であった空と、ナヒーダに拾われたスカラマシュ（現・放浪者）も練習生として参加していたが、両名が別グループ『6reeze』としてデビューすることが決定したため、最終的に現在の4名体制へと至った。aespaやK/DA、MAVEらをロールモデルとしたパワフルかつサイバーな楽曲を得意とし、卓越したダンススキルと、メンバー全員がラップをこなす楽曲構成を最大の武器としている。",
+    description: "Teyvat Entertainment傘下のAkasha Labに所属する4人組男性アイドルグループ。グループ結成の経緯は、レーベルCEOであるナヒーダが、番組『HEAVENTEEN』候補生であったアルハイゼンとカーヴェ、そして新たにレーベルへ加入したセノとティナリを一堂に集めたことに端を発する。この大胆な人材確保は、業界内で俗に「ナヒーダ引き抜き事件」と称された。デビュー準備期間中には、パフォーマンス留学中であった空と、ナヒーダに拾われたスカラマシュ（現・放浪者）も練習生として参加していたが、両名が別グループ『6reeze』としてデビューすることが決定したため、最終的に現在の4名体制へと至った。\naespa、K/DA、MAVEをロールモデルとしたパワフルかつサイバーな楽曲を得意とし、卓越したダンススキルと、メンバー全員がラップをこなす楽曲構成を最大の武器としている。",
     members: [
         { name: "Alhaitham", div: "Sumeru", pos: "Main Dancer / Lead Rapper", label: "AKASHA", img: "cyber-alhaitham.jpg", remarks: "『HEAVENTEEN』候補生" },
         { name: "Cyno", div: "Sumeru", pos: "Main Rapper", label: "AKASHA", img: "cyber-cyno.jpg", remarks: "" },

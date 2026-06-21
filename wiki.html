@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- 💡 分割されたデータファイルを読み込み -->
     <script src="data/wiki.js"></script>
     <script src="data/matrix.js"></script>
     <script src="data/group/gen1us.js"></script>
@@ -40,12 +39,6 @@
         
         .collapsible-content.collapsed { display: none; }
         .toggle-btn { font-size: 11px; color: #999; font-weight: 700; border: 1px solid #eee; padding: 4px 10px; cursor: pointer; }
-
-        .confidential-area { margin-top: 40px; border-top: 2px dashed #ffebeb; padding-top: 40px; }
-        .confidential-box { background: #fffcfc; border: 1px solid #ffebeb; padding: 30px; }
-        .conf-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .conf-label { color: #d32f2f; font-weight: 900; letter-spacing: 0.2em; font-size: 11px; }
-        .btn-unlock { background: #d32f2f; color: #fff; font-size: 10px; padding: 5px 15px; font-weight: 900; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -114,13 +107,16 @@
                 tocItem.innerHTML = `<a href="#det-anchor-${gk}">- ${g.name}</a>`;
                 tocArea.appendChild(tocItem);
 
+                // 💡 解説文の改行を反映させる処理
+                const formattedDescription = g.description ? g.description.replace(/\n/g, '<br>') : '';
+
                 let html = `
                 <div class="mb-32" id="det-anchor-${gk}">
                     <h3 onclick="toggleSection('det-${gk}', 'btn-${gk}')" style="font-size:2.2rem; font-weight:900; cursor:pointer; border-bottom:3px solid #000; padding:15px 0; display:flex; justify-content:space-between; align-items:center;">
                         ${g.name} <span class="toggle-btn" id="btn-${gk}">表示</span>
                     </h3>
                     <div id="det-${gk}" class="collapsible-content collapsed pt-10">
-                        <p class="text-gray-700 mb-10 leading-relaxed">${g.description}</p>
+                        <p class="text-gray-700 mb-10 leading-relaxed">${formattedDescription}</p>
                         
                         <div class="table-wrapper">
                             <table>
@@ -155,41 +151,7 @@
                         </tr>`;
                 });
                 
-                html += `</tbody></table></div>`;
-
-                if (g.confidential) {
-                    const conf = g.confidential;
-                    html += `
-                    <div class="confidential-area">
-                        <div class="confidential-box">
-                            <div class="conf-header">
-                                <span class="conf-label">ACCESS RESTRICTED: 内部機密資料</span>
-                                <div class="btn-unlock" onclick="toggleSection('conf-body-${gk}', 'btn-unlock-${gk}')" id="btn-unlock-${gk}">閲覧許可</div>
-                            </div>
-                            <div id="conf-body-${gk}" class="collapsible-content collapsed pt-6 border-t border-red-50">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-[12px]">
-                                    <div>
-                                        <p class="font-bold mb-3 border-b border-red-100 pb-1 uppercase tracking-tighter">Age Groups</p>
-                                        <ul class="space-y-2 mb-8 text-gray-600">
-                                            ${conf.ageTeams.map(t => `<li><b class="text-black">${t.name}:</b> ${t.members}</li>`).join('')}
-                                        </ul>
-                                        <p class="font-bold mb-3 border-b border-red-100 pb-1 uppercase tracking-tighter">Official Couplings</p>
-                                        <p class="text-gray-500">${conf.couplings.join(' / ')}</p>
-                                    </div>
-                                    <div>
-                                        <p class="font-bold mb-3 border-b border-red-100 pb-1 uppercase tracking-tighter">Performance Ratio</p>
-                                        <div class="space-y-4 text-gray-500 leading-loose">
-                                            <p><b class="text-black block mb-1">VOCAL</b> ${conf.ratios.vocal}</p>
-                                            <p><b class="text-black block mb-1">RAP</b> ${conf.ratios.rap}</p>
-                                            <p><b class="text-black block mb-1">DANCE</b> ${conf.ratios.dance}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`;
-                }
-                html += `</div></div>`;
+                html += `</tbody></table></div></div></div>`;
                 dArea.innerHTML += html;
             });
         });
@@ -199,12 +161,7 @@
             const b = document.getElementById(bId);
             if (!c || !b) return;
             c.classList.toggle('collapsed');
-            const isUnlockBtn = b.classList.contains('btn-unlock');
-            if (isUnlockBtn) {
-                b.innerText = c.classList.contains('collapsed') ? "閲覧許可" : "非表示";
-            } else {
-                b.innerText = c.classList.contains('collapsed') ? "表示" : "非表示";
-            }
+            b.innerText = c.classList.contains('collapsed') ? "表示" : "非表示";
         }
     </script>
 </body>
