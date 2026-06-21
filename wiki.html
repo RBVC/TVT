@@ -10,46 +10,47 @@
     
     <script src="data/wiki.js"></script>
     <script src="data/matrix.js"></script>
-    
-    <!-- 💡 全5グループのJSを読み込み -->
     <script src="data/group/gen1us.js"></script>
     <script src="data/group/4ggravate.js"></script>
     <script src="data/group/6reeze.js"></script>
     <script src="data/group/universe.js"></script>
     <script src="data/group/house-of-the-hearth.js"></script>
-    
     <script src="common.js"></script>
     
     <style>
         body { background-color: #ffffff; color: #000000; font-size: 13px; }
-        .wiki-container { max-width: 1100px; margin: 0 auto; background: white; padding: 60px 40px; }
-        h1 { font-family: 'Source Han Sans JP', sans-serif; font-size: 3rem; font-weight: 900; border-bottom: 2px solid #000; margin-bottom: 4rem; padding-bottom: 20px; }
-        section { margin-bottom: 8rem; }
-        h2 { font-family: 'Source Han Sans JP', sans-serif; font-size: 1.8rem; font-weight: 900; border-bottom: 1px solid #eee; margin-bottom: 3rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding-bottom: 15px; }
-        h2::before { content: ""; display: inline-block; width: 8px; height: 1.8rem; background: #000; margin-right: 15px; }
+        .wiki-container { max-width: 1100px; margin: 0 auto; background: white; padding: 40px 40px; }
+        h1 { font-family: 'Source Han Sans JP', sans-serif; font-size: 2.2rem; font-weight: 900; border-bottom: 2px solid #000; margin-bottom: 2rem; padding-bottom: 15px; }
+        section { margin-bottom: 4rem; }
+        h2 { font-family: 'Source Han Sans JP', sans-serif; font-size: 1.4rem; font-weight: 900; border-bottom: 1px solid #eee; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding-bottom: 10px; }
+        h2::before { content: ""; display: inline-block; width: 6px; height: 1.4rem; background: #000; margin-right: 12px; }
 
-        .toc-box { background: #fafafa; border: 1px solid #f0f0f0; padding: 25px; display: inline-block; width: 100%; max-width: 450px; margin: 40px 0 80px; }
-        .toc-title { font-weight: 900; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; font-size: 11px; letter-spacing: 0.1em; }
-        .toc-list { list-style: none; padding: 0; margin: 0; line-height: 2; }
-        .toc-list a { color: #666; text-decoration: none; transition: 0.3s; }
-        .toc-list a:hover { color: #000; padding-left: 5px; }
+        /* 目次 */
+        .toc-box { background: #fafafa; border: 1px solid #f0f0f0; padding: 20px; display: inline-block; width: 100%; max-width: 400px; margin: 20px 0 40px; }
+        .toc-title { font-weight: 900; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; font-size: 10px; letter-spacing: 0.1em; }
+        .toc-list { list-style: none; padding: 0; margin: 0; line-height: 1.8; }
+        .toc-list a { color: #666; text-decoration: none; font-size: 12px; }
 
-        .table-wrapper { overflow-x: auto; margin-bottom: 2rem; border: 1px solid #f0f0f0; }
+        .table-wrapper { overflow-x: auto; margin-bottom: 1.5rem; border: 1px solid #f0f0f0; }
         table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 950px; table-layout: fixed; }
-        th, td { border: 1px solid #f0f0f0; padding: 12px 10px; text-align: left; vertical-align: middle; line-height: 1.4; word-break: break-word; }
+        th, td { border: 1px solid #f0f0f0; padding: 10px 8px; text-align: left; vertical-align: middle; line-height: 1.4; word-break: break-word; }
         th { background-color: #fafafa; font-weight: 900; color: #333; }
         
-        .matrix-ceo { display: block; font-size: 10px; color: #999; font-weight: 400; margin-top: 5px; border-top: 1px solid #eee; padding-top: 5px; }
-        .member-img { width: 50px; height: 50px; object-fit: cover; border: 1px solid #eee; display: block; margin: 0 auto; }
+        .matrix-ceo { display: block; font-size: 10px; color: #999; font-weight: 400; margin-top: 3px; border-top: 1px solid #eee; padding-top: 3px; }
+        .member-img { width: 45px; height: 45px; object-fit: cover; border: 1px solid #eee; display: block; margin: 0 auto; }
         
         .collapsible-content.collapsed { display: none; }
-        .toggle-btn { font-size: 11px; color: #999; font-weight: 700; border: 1px solid #eee; padding: 4px 10px; cursor: pointer; }
+        .toggle-btn { font-size: 10px; color: #999; font-weight: 700; border: 1px solid #eee; padding: 3px 8px; cursor: pointer; }
+
+        /* グループ個別の見出し調整 */
+        .group-header { font-size: 1.4rem !important; font-weight: 900; cursor: pointer; border-bottom: 2px solid #000; padding: 10px 0; display: flex; justify-content: space-between; align-items: center; }
+        .group-block { margin-bottom: 3rem; }
     </style>
 </head>
 <body>
     <div id="common-header"></div>
     <main class="wiki-container">
-        <div style="padding-top: 60px; margin-bottom: 60px;">
+        <div style="padding-top: 40px; margin-bottom: 30px;">
             <h1 class="bold-title">Teyvat Entertainment 内部機密資料</h1>
         </div>
 
@@ -63,7 +64,7 @@
         
         <section id="sec-affiliates">
             <h2 onclick="toggleSection('matrix-content', 'matrix-btn')">所属アーティスト・マトリックス <span class="toggle-btn" id="matrix-btn">表示</span></h2>
-            <div class="collapsible-content mt-12 collapsed" id="matrix-content">
+            <div class="collapsible-content mt-6 collapsed" id="matrix-content">
                 <div class="table-wrapper">
                     <table class="matrix-table">
                         <thead id="matrix-header"><tr><th>グループ名</th></tr></thead>
@@ -75,7 +76,7 @@
 
         <section id="sec-details">
             <h2 onclick="toggleSection('details-content', 'details-btn')">グループ詳細設定 <span class="toggle-btn" id="details-btn">表示</span></h2>
-            <div id="details-content" class="collapsible-content mt-12 collapsed"></div>
+            <div id="details-content" class="collapsible-content mt-6 collapsed"></div>
         </section>
     </main>
     <div id="common-footer"></div>
@@ -108,25 +109,25 @@
                 const hasSubUnits = g.members.some(m => m.subUnit && m.subUnit !== "-");
 
                 const tocItem = document.createElement('li');
-                tocItem.style.paddingLeft = "20px";
+                tocItem.style.paddingLeft = "15px";
                 tocItem.innerHTML = `<a href="#det-anchor-${gk}">- ${g.name}</a>`;
                 tocArea.appendChild(tocItem);
 
                 const formattedDescription = g.description ? g.description.replace(/\n/g, '<br>') : '';
 
                 let html = `
-                <div class="mb-32" id="det-anchor-${gk}">
-                    <h3 onclick="toggleSection('det-${gk}', 'btn-${gk}')" style="font-size:2.2rem; font-weight:900; cursor:pointer; border-bottom:3px solid #000; padding:15px 0; display:flex; justify-content:space-between; align-items:center;">
+                <div class="group-block" id="det-anchor-${gk}">
+                    <h3 class="group-header" onclick="toggleSection('det-${gk}', 'btn-${gk}')">
                         ${g.name} <span class="toggle-btn" id="btn-${gk}">表示</span>
                     </h3>
-                    <div id="det-${gk}" class="collapsible-content collapsed pt-10">
-                        <p class="text-gray-700 mb-10 leading-relaxed">${formattedDescription}</p>
+                    <div id="det-${gk}" class="collapsible-content collapsed pt-6">
+                        <p class="text-gray-700 mb-6 leading-relaxed">${formattedDescription}</p>
                         
                         <div class="table-wrapper">
                             <table>
                                 <thead>
                                     <tr>
-                                        <th style="width:80px">画像</th>
+                                        <th style="width:70px">画像</th>
                                         <th style="width:130px">名前</th>
                                         <th style="width:100px">ディビジョン</th>
                                         <th style="width:180px">ポジション</th>
