@@ -1,22 +1,35 @@
 /* --- START OF FILE common.js --- */
 function loadCommonParts() {
+    // 💡 Artistsのサブメニュー（各グループリンク）を動的に生成
+    let groupLinksHTML = '';
+    if (window.allGroups) {
+        groupLinksHTML = Object.keys(allGroups).map(id => {
+            return `<a href="artist.html?id=${id}">${allGroups[id].name}</a>`;
+        }).join('');
+    }
+
     const headerHTML = `
     <header>
         <a href="index.html" class="tvt-logo" style="font-size: 1.8rem;">TVT</a>
         <div class="menu-trigger" id="menu-btn"><span></span><span></span><span></span></div>
     </header>
     <div class="nav-overlay" id="nav-menu">
-        <a href="index.html#artists-section" class="menu-link">Artists</a>
-        <a href="index.html#latest-news" class="menu-link">News</a>
-        <a href="wiki.html" class="menu-link">Wiki</a>
+        <div class="flex flex-column items-center">
+            <div class="menu-parent" onclick="toggleSubMenu()">Artists</div>
+            <div class="sub-menu" id="artist-sub">${groupLinksHTML}</div>
+            <a href="index.html?tab=news" class="menu-link" onclick="handleMenuTabSwitch('news')">News</a>
+            <a href="wiki.html" class="menu-link">Wiki</a>
+        </div>
     </div>
     `;
+    
     const footerHTML = `
     <footer>
-        <div class="f-logo tvt-logo">TVT</a>
+        <div class="f-logo tvt-logo">TVT</div>
         <p>&copy; Teyvat Entertainment All Rights Reserved.</p>
     </footer>
     `;
+
     if (document.getElementById('common-header')) document.getElementById('common-header').innerHTML = headerHTML;
     if (document.getElementById('common-footer')) document.getElementById('common-footer').innerHTML = footerHTML;
     initMenu();
@@ -31,17 +44,41 @@ function initMenu() {
         btn.classList.toggle('active');
         nav.classList.toggle('open');
         document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : 'auto';
+        // メニューを閉じる時はサブメニューも閉じる
+        if (!nav.classList.contains('open')) {
+            const sub = document.getElementById('artist-sub');
+            if (sub) sub.classList.remove('active');
+        }
     };
-    document.querySelectorAll('.menu-link').forEach(l => {
-        l.onclick = () => { nav.classList.remove('open'); btn.classList.remove('active'); document.body.style.overflow = 'auto'; };
-    });
+}
+
+// 💡 アーティストのサブメニュー開閉
+function toggleSubMenu() {
+    const sub = document.getElementById('artist-sub');
+    if (sub) sub.classList.toggle('active');
+    
+    // indexページにいるなら、Artistsタブに切り替える
+    if (window.location.pathname.includes('index.html') || window.location.pathname.endsWith('/')) {
+        if (typeof switchMainTab === 'function') switchMainTab('artists');
+    }
+}
+
+// 💡 メニューからのタブ切り替えハンドラ
+function handleMenuTabSwitch(tabName) {
+    const btn = document.getElementById('menu-btn');
+    const nav = document.getElementById('nav-menu');
+    if (btn) btn.classList.remove('active');
+    if (nav) nav.classList.remove('open');
+    document.body.style.overflow = 'auto';
+
+    if (window.location.pathname.includes('index.html') || window.location.pathname.endsWith('/')) {
+        if (typeof switchMainTab === 'function') switchMainTab(tabName);
+    }
 }
 
 function loadLatestNews() {
     const list = document.getElementById('latest-news-list');
     if (!list) return;
-    
-    // 💡 最新の3件を表示するように変更（HEAVENTEENも含めるため）
     const keys = Object.keys(specialProjects).reverse().slice(0, 3);
     keys.forEach(key => {
         const p = specialProjects[key];

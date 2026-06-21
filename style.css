@@ -1,4 +1,4 @@
-/* style.css - Source Han Sans JP Edition */
+/* --- START OF FILE style.css --- */
 @font-face { font-family: 'Source Han Sans JP'; src: url('./font/sourcehansansjp/SourceHanSansJP-ExtraLight.otf') format('opentype'); font-weight: 200; }
 @font-face { font-family: 'Source Han Sans JP'; src: url('./font/sourcehansansjp/SourceHanSansJP-Light.otf') format('opentype'); font-weight: 300; }
 @font-face { font-family: 'Source Han Sans JP'; src: url('./font/sourcehansansjp/SourceHanSansJP-Regular.otf') format('opentype'); font-weight: 400; }
@@ -7,21 +7,13 @@
 @font-face { font-family: 'Source Han Sans JP'; src: url('./font/sourcehansansjp/SourceHanSansJP-Bold.otf') format('opentype'); font-weight: 700; }
 @font-face { font-family: 'Source Han Sans JP'; src: url('./font/sourcehansansjp/SourceHanSansJP-Heavy.otf') format('opentype'); font-weight: 900; }
 
-html { 
-    scroll-behavior: smooth; 
-    /* 💡ジャンプ位置をヘッダー（80px）の分だけ正確に下げる設定 */
-    scroll-padding-top: 80px; 
-    box-sizing: border-box; 
-}
+html { scroll-behavior: smooth; scroll-padding-top: 80px; box-sizing: border-box; }
 *, *:before, *:after { box-sizing: inherit; }
 body { background-color: #ffffff; color: #000000; font-family: 'Source Han Sans JP', sans-serif; font-weight: 400; margin: 0; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-/* 💡 indexの空白過多を解消：ヘッダー(80px)直下から開始 */
 main { padding-top: 80px; }
-
 h1, h2, h3, h4, p, span, a, .logo-font { text-transform: none !important; }
 .bold-title { font-weight: 900 !important; }
-
 .tvt-logo { font-family: 'Source Han Sans JP', sans-serif; font-weight: 900; letter-spacing: -0.12em; display: inline-block; color: #000 !important; }
 
 header { width: 100%; height: 80px; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; position: fixed; top: 0; background: #ffffff !important; z-index: 9999 !important; border-bottom: 1px solid #f0f0f0; }
@@ -35,22 +27,27 @@ header { width: 100%; height: 80px; padding: 0 40px; display: flex; justify-cont
 .menu-trigger.active span:nth-child(2) { opacity: 0; }
 .menu-trigger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-.nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #fff; z-index: 9000; display: flex; flex-direction: column; align-items: center; justify-content: center; visibility: hidden; opacity: 0; transition: 0.5s; }
+.nav-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: #fff; z-index: 9000; display: flex; flex-direction: column; align-items: center; justify-content: center; visibility: hidden; opacity: 0; transition: 0.5s; overflow-y: auto; }
 .nav-overlay.open { visibility: visible; opacity: 1; }
-.nav-overlay a { font-size: 3rem; font-weight: 900; text-decoration: none; color: #000; margin: 15px 0; }
+.nav-overlay a, .menu-parent { font-size: 2.5rem; font-weight: 900; text-decoration: none; color: #000; margin: 10px 0; cursor: pointer; }
+
+/* サブメニュー用 */
+.sub-menu { height: 0; opacity: 0; overflow: hidden; transition: 0.4s; display: flex; flex-direction: column; align-items: center; }
+.sub-menu.active { height: auto; opacity: 1; margin: 10px 0 20px 0; }
+.sub-menu a { font-size: 1.2rem !important; margin: 5px 0 !important; color: #999 !important; font-weight: 700 !important; }
+.sub-menu a:hover { color: #000 !important; }
 
 footer { padding: 80px 0; border-top: 1px solid #f0f0f0; text-align: center; background: #fff; margin-top: 100px; color: #000; }
 footer .f-logo { font-size: 3rem; margin-bottom: 20px; }
 footer p { font-size: 9px; color: #999; letter-spacing: 0.3em; text-transform: uppercase; }
 
-.tab-btn { font-size: 12px; font-weight: 700; color: #ccc; letter-spacing: 0.15em; border-bottom: 2px solid transparent; padding-bottom: 10px; cursor: pointer; }
+.tab-btn { font-size: 12px; font-weight: 700; color: #ccc; letter-spacing: 0.15em; border-bottom: 2px solid transparent; padding-bottom: 10px; cursor: pointer; transition: 0.3s; }
 .tab-btn.active { color: #000; border-bottom: 2px solid #000; }
 
 .member-grid-container { display: grid; gap: 60px 20px; width: 100%; margin: 0 auto; }
 .layout-4 { grid-template-columns: repeat(4, 1fr); max-width: 1200px; }
 .layout-3 { grid-template-columns: repeat(3, 1fr); max-width: 900px; }
 
-/* モーダル */
 .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 10001; display: none; align-items: center; justify-content: center; padding: 20px; }
 .modal-container { width: 100%; max-width: 900px; max-height: 85vh; aspect-ratio: 16 / 10; position: relative; background: #000; border: 1px solid #333; display: flex; flex-direction: column; }
 .modal-iframe { width: 100%; height: 100%; border: none; }
@@ -61,5 +58,4 @@ footer p { font-size: 9px; color: #999; letter-spacing: 0.3em; text-transform: u
     main { padding-top: 70px; }
     .nav-overlay a { font-size: 2rem; }
     .layout-3, .layout-4 { grid-template-columns: repeat(2, 1fr) !important; gap: 30px 10px; }
-    .modal-container { height: 90%; max-height: 90vh; aspect-ratio: auto; }
 }
