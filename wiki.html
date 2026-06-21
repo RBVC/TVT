@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- 💡 分割されたデータファイルを読み込み -->
     <script src="data/wiki.js"></script>
     <script src="data/matrix.js"></script>
     <script src="data/group/gen1us.js"></script>
     <script src="data/group/4ggravate.js"></script>
+    <script src="data/group/6reeze.js"></script>
     <script src="common.js"></script>
     
     <style>
@@ -22,7 +24,6 @@
         h2 { font-family: 'Source Han Sans JP', sans-serif; font-size: 1.8rem; font-weight: 900; border-bottom: 1px solid #eee; margin-bottom: 3rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding-bottom: 15px; }
         h2::before { content: ""; display: inline-block; width: 8px; height: 1.8rem; background: #000; margin-right: 15px; }
 
-        /* 目次ボックス */
         .toc-box { background: #fafafa; border: 1px solid #f0f0f0; padding: 25px; display: inline-block; width: 100%; max-width: 450px; margin: 40px 0 80px; }
         .toc-title { font-weight: 900; margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; font-size: 11px; letter-spacing: 0.1em; }
         .toc-list { list-style: none; padding: 0; margin: 0; line-height: 2; }
@@ -63,9 +64,7 @@
         </nav>
         
         <section id="sec-affiliates">
-            <!-- 💡 初期状態で非表示にするため「表示」ボタンにする -->
             <h2 onclick="toggleSection('matrix-content', 'matrix-btn')">所属アーティスト・マトリックス <span class="toggle-btn" id="matrix-btn">表示</span></h2>
-            <!-- 💡 collapsed クラスを追加して初期非表示化 -->
             <div class="collapsible-content mt-12 collapsed" id="matrix-content">
                 <div class="table-wrapper">
                     <table class="matrix-table">
@@ -140,8 +139,6 @@
                                 
                 g.members.forEach(m => {
                     const positionDisplay = m.isLeader ? `Leader / ${m.pos}` : m.pos;
-                    
-                    // 💡 元メンバー(isFormer)または画像がない場合は「 - 」を表示。それ以外は <img> を表示
                     const memberImgHtml = (m.isFormer || !m.img) 
                         ? '<span class="text-gray-300">-</span>' 
                         : `<img src="${g.basePath + m.img}" class="member-img" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMG'">`;
