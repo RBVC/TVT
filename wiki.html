@@ -10,14 +10,12 @@
     
     <script src="data/wiki.js"></script>
     <script src="data/matrix.js"></script>
-    
     <script src="data/group/gen1us.js"></script>
     <script src="data/group/4ggravate.js"></script>
-    
     <script src="common.js"></script>
     
     <style>
-        body { background-color: #ffffff; color: #000000; font-size: 14px; }
+        body { background-color: #ffffff; color: #000000; font-size: 13px; }
         .wiki-container { max-width: 1100px; margin: 0 auto; background: white; padding: 60px 40px; }
         h1 { font-family: 'Source Han Sans JP', sans-serif; font-size: 3rem; font-weight: 900; border-bottom: 2px solid #000; margin-bottom: 4rem; padding-bottom: 20px; }
         section { margin-bottom: 8rem; }
@@ -25,22 +23,22 @@
         h2::before { content: ""; display: inline-block; width: 8px; height: 1.8rem; background: #000; margin-right: 15px; }
 
         .table-wrapper { overflow-x: auto; margin-bottom: 2rem; border: 1px solid #f0f0f0; }
-        table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 1000px; table-layout: fixed; }
-        th, td { border: 1px solid #f0f0f0; padding: 15px; text-align: left; vertical-align: middle; line-height: 1.5; word-break: break-word; }
+        /* 💡 min-widthを調整し、PCでスクロールが発生しにくいように設定 */
+        table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 950px; table-layout: fixed; }
+        th, td { border: 1px solid #f0f0f0; padding: 12px 10px; text-align: left; vertical-align: middle; line-height: 1.4; word-break: break-word; }
         th { background-color: #fafafa; font-weight: 900; color: #333; }
         
-        .matrix-ceo { display: block; font-size: 11px; color: #999; font-weight: 400; margin-top: 5px; border-top: 1px solid #eee; padding-top: 5px; }
-        .member-img { width: 60px; height: 60px; object-fit: cover; border: 1px solid #eee; display: block; margin: 0 auto; }
+        .matrix-ceo { display: block; font-size: 10px; color: #999; font-weight: 400; margin-top: 5px; border-top: 1px solid #eee; padding-top: 5px; }
+        .member-img { width: 50px; height: 50px; object-fit: cover; border: 1px solid #eee; display: block; margin: 0 auto; }
         
         .collapsible-content.collapsed { display: none; }
-        .toggle-btn { font-size: 0.7rem; color: #999; font-weight: 700; border: 1px solid #eee; padding: 4px 10px; cursor: pointer; transition: 0.3s; }
-        .toggle-btn:hover { background: #000; color: #fff; }
+        .toggle-btn { font-size: 11px; color: #999; font-weight: 700; border: 1px solid #eee; padding: 4px 10px; cursor: pointer; }
 
         .confidential-area { margin-top: 40px; border-top: 2px dashed #ffebeb; padding-top: 40px; }
         .confidential-box { background: #fffcfc; border: 1px solid #ffebeb; padding: 30px; }
         .conf-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-        .conf-label { color: #d32f2f; font-weight: 900; letter-spacing: 0.2em; font-size: 0.75rem; }
-        .btn-unlock { background: #d32f2f; color: #fff; font-size: 0.7rem; padding: 5px 15px; font-weight: 900; cursor: pointer; }
+        .conf-label { color: #d32f2f; font-weight: 900; letter-spacing: 0.2em; font-size: 11px; }
+        .btn-unlock { background: #d32f2f; color: #fff; font-size: 10px; padding: 5px 15px; font-weight: 900; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -92,8 +90,6 @@
             const dArea = document.getElementById('details-content');
             Object.keys(allGroups).forEach(gk => {
                 const g = allGroups[gk];
-                
-                // 💡 ユニット情報があるかチェック（所属ユニット列を表示するかどうかの判定）
                 const hasSubUnits = g.members.some(m => m.subUnit && m.subUnit !== "-");
 
                 let html = `
@@ -108,11 +104,12 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th style="width:100px">画像</th>
-                                        <th style="width:160px">名前</th>
-                                        <th style="width:230px">ポジション</th>
-                                        ${hasSubUnits ? '<th style="width:160px">所属ユニット</th>' : ''}
-                                        <th style="width:150px">レーベル</th>
+                                        <th style="width:80px">画像</th>
+                                        <th style="width:130px">名前</th>
+                                        <th style="width:100px">ディビジョン</th>
+                                        <th style="width:180px">ポジション</th>
+                                        ${hasSubUnits ? '<th style="width:130px">所属ユニット</th>' : ''}
+                                        <th style="width:130px">レーベル</th>
                                         <th>備考</th>
                                     </tr>
                                 </thead>
@@ -122,19 +119,19 @@
                     const positionDisplay = m.isLeader ? `Leader / ${m.pos}` : m.pos;
                     html += `
                         <tr ${m.isFormer ? 'style="color:#bbb"' : ''}>
-                            <td class="text-center">
-                                <img src="${g.basePath + (m.img || '')}" class="member-img" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMG'">
-                            </td>
+                            <td class="text-center"><img src="${g.basePath + (m.img || '')}" class="member-img" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMG'"></td>
                             <td class="font-bold">${m.name}</td>
+                            <td>${m.div}</td>
                             <td>${positionDisplay}</td>
                             ${hasSubUnits ? `<td class="font-bold">${m.subUnit || '-'}</td>` : ''}
                             <td class="logo-font" style="font-size:10px">${labels[m.label].name}</td>
-                            <td style="font-size:11px">${m.remarks || '-'}</td>
+                            <td>${m.remarks || '-'}</td>
                         </tr>`;
                 });
                 
                 html += `</tbody></table></div>`;
 
+                // 💡 内部機密資料の表示判定
                 if (g.confidential) {
                     const conf = g.confidential;
                     html += `
@@ -145,17 +142,17 @@
                                 <div class="btn-unlock" onclick="toggleSection('conf-body-${gk}', 'btn-unlock-${gk}')" id="btn-unlock-${gk}">閲覧許可</div>
                             </div>
                             <div id="conf-body-${gk}" class="collapsible-content collapsed pt-6 border-t border-red-50">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                                    <div class="text-[12px]">
-                                        <p class="font-bold mb-3 border-b border-red-100 pb-1">【年齢階層】</p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-[12px]">
+                                    <div>
+                                        <p class="font-bold mb-3 border-b border-red-100 pb-1 uppercase tracking-tighter">Age Groups</p>
                                         <ul class="space-y-2 mb-8 text-gray-600">
                                             ${conf.ageTeams.map(t => `<li><b class="text-black">${t.name}:</b> ${t.members}</li>`).join('')}
                                         </ul>
-                                        <p class="font-bold mb-3 border-b border-red-100 pb-1">【公式カップリング】</p>
+                                        <p class="font-bold mb-3 border-b border-red-100 pb-1 uppercase tracking-tighter">Official Couplings</p>
                                         <p class="text-gray-500">${conf.couplings.join(' / ')}</p>
                                     </div>
-                                    <div class="text-[12px]">
-                                        <p class="font-bold mb-3 border-b border-red-100 pb-1">【ポジション比率】</p>
+                                    <div>
+                                        <p class="font-bold mb-3 border-b border-red-100 pb-1 uppercase tracking-tighter">Performance Ratio</p>
                                         <div class="space-y-4 text-gray-500 leading-loose">
                                             <p><b class="text-black block mb-1">VOCAL</b> ${conf.ratios.vocal}</p>
                                             <p><b class="text-black block mb-1">RAP</b> ${conf.ratios.rap}</p>
