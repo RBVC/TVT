@@ -8,33 +8,41 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- 💡 分割されたデータファイルを順番に読み込み -->
     <script src="data/wiki.js"></script>
     <script src="data/matrix.js"></script>
-    <!-- 本来はここで全グループ読み込みますが、今回は進捗確認のためgen1usのみ -->
     <script src="data/group/gen1us.js"></script>
-    
     <script src="common.js"></script>
+    
     <style>
-        body { background-color: #ffffff; color: #000000; }
+        body { background-color: #ffffff; color: #000000; font-size: 14px; }
         .wiki-container { max-width: 1100px; margin: 0 auto; background: white; padding: 60px 40px; }
-        h1 { font-family: 'Source Han Sans JP', sans-serif; font-size: 3.5rem; font-weight: 900; border-bottom: 2px solid #000; margin-bottom: 4rem; padding-bottom: 20px; }
+        h1 { font-family: 'Source Han Sans JP', sans-serif; font-size: 3rem; font-weight: 900; border-bottom: 2px solid #000; margin-bottom: 4rem; padding-bottom: 20px; }
         section { margin-bottom: 8rem; }
-        h2 { font-family: 'Source Han Sans JP', sans-serif; font-size: 2rem; font-weight: 900; border-bottom: 1px solid #eee; margin-bottom: 3rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding-bottom: 15px; }
-        h2::before { content: ""; display: inline-block; width: 10px; height: 2rem; background: #000; margin-right: 15px; }
-        .toc-box { background: #fafafa; border: 1px solid #f0f0f0; padding: 30px; display: inline-block; width: 100%; max-width: 450px; margin: 40px 0 80px; }
+        h2 { font-family: 'Source Han Sans JP', sans-serif; font-size: 1.8rem; font-weight: 900; border-bottom: 1px solid #eee; margin-bottom: 3rem; display: flex; align-items: center; justify-content: space-between; cursor: pointer; padding-bottom: 15px; }
+        h2::before { content: ""; display: inline-block; width: 8px; height: 1.8rem; background: #000; margin-right: 15px; }
+
+        /* テーブル共通スタイル：サイズ固定 */
         .table-wrapper { overflow-x: auto; margin-bottom: 2rem; border: 1px solid #f0f0f0; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: 900px; }
-        th, td { border: 1px solid #f0f0f0; padding: 15px; text-align: left; vertical-align: top; }
-        th { background-color: #fafafa; font-weight: 900; }
-        .member-img { width: 55px; height: 55px; object-fit: cover; border: 1px solid #eee; }
-        .collapsible-content.collapsed { display: none; }
-        .toggle-btn { font-size: 0.7rem; color: #999; font-weight: 700; border: 1px solid #eee; padding: 2px 8px; border-radius: 2px; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 900px; table-layout: fixed; }
+        th, td { border: 1px solid #f0f0f0; padding: 15px; text-align: left; vertical-align: middle; line-height: 1.5; word-break: break-all; }
+        th { background-color: #fafafa; font-weight: 900; color: #333; }
         
-        /* Wiki限定：機密資料セクションのスタイル */
-        .confidential-box { background: #fff9f9; border: 1px solid #ffebeb; padding: 30px; margin-top: 20px; }
-        .conf-title { color: #d32f2f; font-weight: 900; letter-spacing: 0.2em; font-size: 0.7rem; margin-bottom: 20px; border-bottom: 1px solid #ffebeb; padding-bottom: 10px; }
-        .ratio-list { font-size: 0.75rem; color: #666; line-height: 2; }
+        /* マトリックス専用：責任者の間に改行 */
+        .matrix-ceo { display: block; font-size: 11px; color: #999; font-weight: 400; margin-top: 5px; border-top: 1px solid #eee; pt-1; }
+
+        .member-img { width: 60px; height: 60px; object-fit: cover; border: 1px solid #eee; display: block; margin: 0 auto; }
+        
+        /* 折りたたみ制御 */
+        .collapsible-content.collapsed { display: none; }
+        .toggle-btn { font-size: 0.7rem; color: #999; font-weight: 700; border: 1px solid #eee; padding: 4px 10px; cursor: pointer; transition: 0.3s; }
+        .toggle-btn:hover { background: #000; color: #fff; }
+
+        /* 内部機密資料セクション：二重隠蔽 */
+        .confidential-area { margin-top: 40px; border-top: 2px dashed #ffebeb; pt-10; }
+        .confidential-box { background: #fffcfc; border: 1px solid #ffebeb; padding: 30px; }
+        .conf-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .conf-label { color: #d32f2f; font-weight: 900; letter-spacing: 0.2em; font-size: 0.75rem; }
+        .btn-unlock { background: #d32f2f; color: #fff; font-size: 0.7rem; padding: 5px 15px; font-weight: 900; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -44,15 +52,6 @@
             <h1 class="bold-title">Teyvat Entertainment 内部機密資料</h1>
         </div>
         
-        <nav class="toc-box">
-            <div class="font-bold text-center mb-4 border-b pb-2">目次</div>
-            <ul style="list-style:none; padding:0; line-height: 2;">
-                <li>1. <a href="#sec-affiliates">所属アーティスト・マトリックス</a></li>
-                <li>2. <a href="#sec-details">グループ詳細設定</a></li>
-                <li>3. <a href="#sec-projects">プロジェクト一覧</a></li>
-            </ul>
-        </nav>
-
         <section id="sec-affiliates">
             <h2 onclick="toggleSection('matrix-content', 'matrix-btn')">所属アーティスト・マトリックス <span class="toggle-btn" id="matrix-btn">非表示</span></h2>
             <div class="collapsible-content mt-12" id="matrix-content">
@@ -67,91 +66,118 @@
 
         <section id="sec-details">
             <h2 onclick="toggleSection('details-content', 'details-btn')">グループ詳細設定 <span class="toggle-btn" id="details-btn">非表示</span></h2>
-            <div class="collapsible-content mt-12" id="details-content">
-                <!-- ここにJSでグループ詳細が生成されます -->
-            </div>
-        </section>
-
-        <section id="sec-projects">
-            <h2 onclick="toggleSection('projects-content', 'projects-btn')">プロジェクト一覧 <span class="toggle-btn" id="projects-btn">表示</span></h2>
-            <div class="collapsible-content mt-12 collapsed" id="projects-content">
-                <div id="special-projects-area"></div>
-            </div>
+            <div id="details-content" class="collapsible-content mt-12"></div>
         </section>
     </main>
     <div id="common-footer"></div>
 
     <script>
         window.addEventListener('DOMContentLoaded', () => {
-            // マトリックス生成（matrix.jsの関数を呼び出し）
-            if (typeof initAffiliationMatrix === 'function') initAffiliationMatrix();
-            
-            // グループ詳細の生成
+            // 💡 マトリックス生成ロジックの修正（改行追加）
+            const mHead = document.getElementById('matrix-header').rows[0];
+            const mBody = document.getElementById('matrix-body');
+            Object.keys(labels).forEach(k => {
+                const label = labels[k];
+                mHead.innerHTML += `<th>${label.name}<span class="matrix-ceo">CEO: ${label.ceo}</span></th>`;
+            });
+            Object.keys(allGroups).forEach(gk => {
+                const g = allGroups[gk];
+                let row = `<tr><td class="font-bold">${g.name}</td>`;
+                Object.keys(labels).forEach(lk => {
+                    const mems = g.members.filter(m => m.label === lk && !m.isFormer).map(m => m.name).join('<br>');
+                    row += `<td>${mems || '-'}</td>`;
+                });
+                mBody.innerHTML += row + '</tr>';
+            });
+
+            // 💡 グループ詳細生成
             const dArea = document.getElementById('details-content');
             Object.keys(allGroups).forEach(gk => {
                 const g = allGroups[gk];
                 let html = `
-                <div class="mb-24">
-                    <h3 onclick="toggleSection('det-${gk}', 'btn-${gk}')" style="font-size:1.8rem; font-weight:900; cursor:pointer; border-bottom:2px solid #000; padding:15px 0; display:flex; justify-content:space-between; align-items:center;">
+                <div class="mb-32">
+                    <h3 onclick="toggleSection('det-${gk}', 'btn-${gk}')" style="font-size:2.2rem; font-weight:900; cursor:pointer; border-bottom:3px solid #000; padding:15px 0; display:flex; justify-content:space-between; align-items:center;">
                         ${g.name} <span class="toggle-btn" id="btn-${gk}">表示</span>
                     </h3>
-                    <div id="det-${gk}" class="collapsible-content collapsed pt-8">
-                        ${g.description ? `<p class="text-sm leading-relaxed text-gray-700 mb-8">${g.description}</p>` : ''}
-                        ${g.units ? `<p class="text-xs font-bold mb-6">所属ユニット: ${g.units.map(u => `<span class="inline-block bg-black text-white px-2 py-1 mr-2">${u}</span>`).join('')}</p>` : ''}
+                    <div id="det-${gk}" class="collapsible-content pt-10">
+                        <p class="text-gray-700 mb-10 leading-relaxed">${g.description}</p>
                         
+                        <!-- 💡 ユニット表の新設 -->
+                        <div class="mb-10">
+                            <p class="font-bold mb-4 text-xs uppercase tracking-widest border-l-4 border-black pl-3">Sub Units</p>
+                            <div class="table-wrapper">
+                                <table>
+                                    <thead><tr><th style="width:200px">ユニット名</th><th>コンセプト</th></tr></thead>
+                                    <tbody>
+                                        ${g.units.map(u => `<tr><td class="font-bold">${u.name}</td><td>${u.concept}</td></tr>`).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- 💡 メンバー表 -->
+                        <p class="font-bold mb-4 text-xs uppercase tracking-widest border-l-4 border-black pl-3">Member Details</p>
                         <div class="table-wrapper">
                             <table>
                                 <thead>
                                     <tr>
-                                        <th style="width:80px">画像</th>
-                                        <th style="width:160px">名前</th>
-                                        <th style="width:230px">ポジション</th>
+                                        <th style="width:100px">画像</th>
+                                        <th style="width:180px">名前</th>
+                                        <th style="width:250px">ポジション</th>
                                         <th style="width:150px">レーベル</th>
-                                        <th>備考 (Remarks)</th>
+                                        <th>備考</th>
                                     </tr>
                                 </thead>
                                 <tbody>`;
                                 
                 g.members.forEach(m => {
+                    // 💡 リーダー表記のロジック修正
+                    const positionDisplay = m.isLeader ? `Leader / ${m.pos}` : m.pos;
                     html += `
                         <tr ${m.isFormer ? 'style="color:#bbb"' : ''}>
-                            <td class="text-center">${m.img ? `<img src="${g.basePath + m.img}" class="member-img">` : '-'}</td>
-                            <td>${m.isLeader ? `<b>${m.name} (Leader)</b>` : m.name}</td>
-                            <td>${m.pos}</td>
-                            <td class="logo-font text-[10px]">${labels[m.label].name}</td>
-                            <td class="text-[11px]">${m.remarks || '-'}</td>
+                            <td class="text-center"><img src="${g.basePath + m.img}" class="member-img" onerror="this.src='https://placehold.jp/400x400.png?text=NO+IMG'"></td>
+                            <td class="font-bold">${m.name}</td>
+                            <td>${positionDisplay}</td>
+                            <td class="logo-font" style="font-size:10px">${labels[m.label].name}</td>
+                            <td style="font-size:11px">${m.remarks || '-'}</td>
                         </tr>`;
                 });
                 
                 html += `</tbody></table></div>`;
 
-                // 💡 内部機密資料セクションの追加（データがある場合のみ）
+                // 💡 二重折りたたみの機密資料
                 if (g.confidential) {
                     const conf = g.confidential;
                     html += `
-                    <div class="confidential-box">
-                        <div class="conf-title">CONFIDENTIAL: 内部機密資料</div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div>
-                                <p class="text-[11px] font-bold mb-2">【年齢階層】</p>
-                                <ul class="text-[11px] space-y-1 mb-6">
-                                    ${conf.ageTeams.map(t => `<li><b>${t.name}:</b> ${t.members}</li>`).join('')}
-                                </ul>
-                                <p class="text-[11px] font-bold mb-2">【公式カップリング】</p>
-                                <p class="text-[11px] text-gray-500">${conf.couplings.join(' / ')}</p>
+                    <div class="confidential-area">
+                        <div class="confidential-box">
+                            <div class="conf-header">
+                                <span class="conf-label">ACCESS RESTRICTED: 内部機密資料</span>
+                                <div class="btn-unlock" onclick="toggleSection('conf-body-${gk}', 'btn-unlock-${gk}')" id="btn-unlock-${gk}">閲覧許可</div>
                             </div>
-                            <div>
-                                <p class="text-[11px] font-bold mb-2">【ポジション比率】</p>
-                                <div class="ratio-list">
-                                    <p>VOCAL: ${conf.ratios.vocal}</p>
-                                    <p>RAP: ${conf.ratios.rap}</p>
-                                    <p>DANCE: ${conf.ratios.dance}</p>
+                            <div id="conf-body-${gk}" class="collapsible-content collapsed pt-6 border-t border-red-50">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                                    <div class="text-[12px]">
+                                        <p class="font-bold mb-3 border-b border-red-100 pb-1">【年齢階層】</p>
+                                        <ul class="space-y-2 mb-8 text-gray-600">
+                                            ${conf.ageTeams.map(t => `<li><b class="text-black">${t.name}:</b> ${t.members}</li>`).join('')}
+                                        </ul>
+                                        <p class="font-bold mb-3 border-b border-red-100 pb-1">【公式カップリング】</p>
+                                        <p class="text-gray-500">${conf.couplings.join(' / ')}</p>
+                                    </div>
+                                    <div class="text-[12px]">
+                                        <p class="font-bold mb-3 border-b border-red-100 pb-1">【ポジション比率】</p>
+                                        <div class="space-y-4 text-gray-500 leading-loose">
+                                            <p><b class="text-black block mb-1">VOCAL</b> ${conf.ratios.vocal}</p>
+                                            <p><b class="text-black block mb-1">RAP</b> ${conf.ratios.rap}</p>
+                                            <p><b class="text-black block mb-1">DANCE</b> ${conf.ratios.dance}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>`;
                 }
-
                 html += `</div></div>`;
                 dArea.innerHTML += html;
             });
