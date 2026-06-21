@@ -1,6 +1,5 @@
 /* --- START OF FILE common.js --- */
 function loadCommonParts() {
-    // 💡 Artistsのサブメニュー（各グループリンク）を動的に生成
     let groupLinksHTML = '';
     if (window.allGroups) {
         groupLinksHTML = Object.keys(allGroups).map(id => {
@@ -14,11 +13,17 @@ function loadCommonParts() {
         <div class="menu-trigger" id="menu-btn"><span></span><span></span><span></span></div>
     </header>
     <div class="nav-overlay" id="nav-menu">
-        <div class="flex flex-column items-center">
-            <div class="menu-parent" onclick="toggleSubMenu()">Artists</div>
-            <div class="sub-menu" id="artist-sub">${groupLinksHTML}</div>
-            <a href="index.html?tab=news" class="menu-link" onclick="handleMenuTabSwitch('news')">News</a>
-            <a href="wiki.html" class="menu-link">Wiki</a>
+        <div class="nav-container">
+            <div class="nav-group">
+                <a href="index.html?tab=artists" onclick="handleMenuTabSwitch('artists')">Artists</a>
+                <div class="sub-menu">${groupLinksHTML}</div>
+            </div>
+            <div class="nav-group">
+                <a href="index.html?tab=news" onclick="handleMenuTabSwitch('news')">News</a>
+            </div>
+            <div class="nav-group">
+                <a href="wiki.html">Wiki</a>
+            </div>
         </div>
     </div>
     `;
@@ -44,26 +49,9 @@ function initMenu() {
         btn.classList.toggle('active');
         nav.classList.toggle('open');
         document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : 'auto';
-        // メニューを閉じる時はサブメニューも閉じる
-        if (!nav.classList.contains('open')) {
-            const sub = document.getElementById('artist-sub');
-            if (sub) sub.classList.remove('active');
-        }
     };
 }
 
-// 💡 アーティストのサブメニュー開閉
-function toggleSubMenu() {
-    const sub = document.getElementById('artist-sub');
-    if (sub) sub.classList.toggle('active');
-    
-    // indexページにいるなら、Artistsタブに切り替える
-    if (window.location.pathname.includes('index.html') || window.location.pathname.endsWith('/')) {
-        if (typeof switchMainTab === 'function') switchMainTab('artists');
-    }
-}
-
-// 💡 メニューからのタブ切り替えハンドラ
 function handleMenuTabSwitch(tabName) {
     const btn = document.getElementById('menu-btn');
     const nav = document.getElementById('nav-menu');
